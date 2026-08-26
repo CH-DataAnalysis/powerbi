@@ -1,0 +1,61 @@
+table portal_authorization
+	lineageTag: 272c37de-98c7-4a9f-8016-905f66ee5b47
+
+	measure usuario_logado = USERPRINCIPALNAME()
+		lineageTag: 243bc33f-d476-4571-8fd0-05b83aec3074
+
+	measure tagvalue_logada =
+			
+			CALCULATE(
+			    MAX('portal_authorization'[tagvalue]),
+			    FILTER(
+			        'portal_authorization',
+			        'portal_authorization'[username] = [usuario_logado]
+			    )
+			)
+		formatString: 0
+		lineageTag: 312fd4b2-9c75-4783-965e-82f99b3096fe
+
+	column username
+		dataType: string
+		lineageTag: c350b547-8756-4640-ab54-8e12c3efdaf8
+		summarizeBy: none
+		sourceColumn: username
+
+		annotation SummarizationSetBy = Automatic
+
+	column tag
+		dataType: string
+		lineageTag: 0180bc30-d540-45e1-8ee8-70e67fc013e1
+		summarizeBy: none
+		sourceColumn: tag
+
+		annotation SummarizationSetBy = Automatic
+
+	column tagvalue
+		dataType: int64
+		formatString: 0
+		lineageTag: e8f17347-8977-40a3-96cd-d4bb660fffac
+		summarizeBy: none
+		sourceColumn: tagvalue
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition portal_authorization = m
+		mode: import
+		source =
+				let
+				    Fonte = PowerPlatform.Dataflows(null),
+				    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+				    #"c94214dd-6a97-4463-91b8-62676740c2ac" = Workspaces{[workspaceId="c94214dd-6a97-4463-91b8-62676740c2ac"]}[Data],
+				    #"258d0f79-7de4-443c-880b-883cd5892eee" = #"c94214dd-6a97-4463-91b8-62676740c2ac"{[dataflowId="258d0f79-7de4-443c-880b-883cd5892eee"]}[Data],
+				    #"Portal Authorization_" = #"258d0f79-7de4-443c-880b-883cd5892eee"{[entity="Portal Authorization",version=""]}[Data]
+				in
+				    #"Portal Authorization_"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Exception
+

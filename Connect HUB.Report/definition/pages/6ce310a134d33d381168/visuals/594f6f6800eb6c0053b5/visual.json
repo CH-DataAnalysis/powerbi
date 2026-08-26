@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "594f6f6800eb6c0053b5",
+  "position": {
+    "x": 0,
+    "y": 193.87770281039155,
+    "z": 3000,
+    "height": 137.55086861817989,
+    "width": 454.28571428571439,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Como é avaliada a performance da loja?",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "8pt",
+                      "color": "#808080"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "A performance da loja é medida por meio de um índice que considera tanto os pontos fortes quanto as oportunidades de melhoria. Esse índice reflete o resultado da loja em relação a diferentes fatores, como eficiência nas vendas, volume de atendimentos realizados, aproveitamento das oportunidades comerciais e adequação do mix de produtos vendidos no período.",
+                    "textStyle": {
+                      "fontSize": "8pt",
+                      "color": "#808080"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "812d1db60ede390c9057"
+}

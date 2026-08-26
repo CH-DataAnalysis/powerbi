@@ -1,0 +1,1921 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "menu_curva_compras",
+  "name": "48ee6003a1f108cc8ff9",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "e01c445df61da820b54c",
+    "filters": {
+      "byExpr": [
+        {
+          "name": "3a170103100208e5e5ce",
+          "type": "Advanced",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "a8c777398b93b76ad52a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano_mes"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "780c0fe875db6b0eb0ae",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "Date"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "298b57054d00649adc0a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "num_cnpj"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "1d023ead47b70560d037",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "nom_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "4b2b68765b06689782e1",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "status_loja"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "5aaff369e71d7ec2ceaa",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "grupo_fcia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6cbbffd4e187389030cd",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "cod_barra_tratado"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "3e49e5e40a4b100449b6",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "produto"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "529e4f8079be188400de",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "laboratorio"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "47b419050ba799b1973b",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "area_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6d81c7b0610cac72e812",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "mv_vendas_produtos"
+                }
+              },
+              "Property": "cod_nom_vendedor"
+            }
+          },
+          "howCreated": 1
+        }
+      ]
+    },
+    "sections": {
+      "e01c445df61da820b54c": {
+        "visualContainers": {
+          "3bd7716a040301de6008": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3297026a349d94740b24",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "status_produto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0f60f0f324bf63b4a50d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4902f37282d915fb83c5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nom_farmacia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9e6479c6f1cb48765e4d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3ccdbc19d6a8bc55e45b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "cod_barra"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "16ea5a2cc680c92c1fa7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "pct_acumulado_valor"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cf4389f74f77e5a7665c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "pct_acumulado_qtd"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b0d427a09102628be653",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c5fb1827ec51f20bb0c1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_qtd"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b2dee9e95ec36fbb9e37",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_curva_abc_90_dias"
+                            }
+                          },
+                          "Property": "vlr_total"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "886e82df73a9c135d920",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_curva_abc_90_dias"
+                            }
+                          },
+                          "Property": "qtd_total"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d5d548a76f85993b016f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_curva_abc_90_dias"
+                            }
+                          },
+                          "Property": "qtd_estoque"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e22096e9a795702f26f9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "cobertura_estoque_dias"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6bcfed98267dc9cec803",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "dat_ultent_formatada"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d0558d4ce3bc380d2fc8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "dat_ultven_formatada"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9b754a3791b8ddc68c42",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "dias_sem_venda"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "0ca5fb327667cc3b3e91": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fb240cc4eebcc90c24cd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e24a79a9e8956f2ab661",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_curva_abc"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "1d253bedd07b069e4e03": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "611b6fe5bf0abef21162",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "2eac2a33e00f0801dfc2": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "15cb9195e5d2094e495d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "aa5f9f6feac2031159f3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*skus_estoque_curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "6efc91352338d09cdd07": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fdbc65c60d8ec19bf9f8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0cbc8f2198b502d5e309",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*skus_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*skus_estoque"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "1e3fa03b0538ce646a59": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fa59d80d9f5ea9e3029b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "*qtd_cnpjs"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "4ba81e2683601d060dc1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ce645e7c27d95704d988",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c607936678a72f77f019",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_estoque_curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_estoque_curva_abc"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7f69f5d6632b100d7bc1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "163b6034e8a0b27f8724",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_estoque_curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "34d3f9e04a656b7e4324": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "476518ec7f69ee80bdcd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "laboratorio"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "laboratorio"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "43ca1562dbad95cdf96c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b9039e931008559669f5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d6be898f26998f9dc1ce",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "cod_barra_tratado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Values"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "produto_gcp.produto"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "produto_gcp"
+                              }
+                            },
+                            "Property": "produto"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "produto_gcp.cod_barra_tratado"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": null
+                  }
+                }
+              ]
+            }
+          },
+          "4fda6d350bcb8c811602": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5097d2d279ac36af26a8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "status_produto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Basic'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "status_produto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "53c7c097d650bd7a6a97": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "584988ee6e6873cfbf45",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "dat_ultven_formatada"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "dat_ultven_formatada"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7ece81b8c19d511a7d3e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "db390fc80d4d83da6a74",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nom_farmacia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nom_farmacia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b5d1ade330fbcca181d4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d09a0c73324be1384486",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_qtd"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Basic'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_qtd"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d8180d2fd007418cd299": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dffafef4f21eed5cdf74",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "f3f31f5f53b6815580f3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "adc04d480aabac8e7c46",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Basic'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "fb2509c160c659a0225a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bb9f8e62fe210e0fdb00",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7b8c3ad8100b46d69661": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bacc73e694f355b45a5e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_curva_abc_90_dias"
+                            }
+                          },
+                          "Property": "qtd_estoque"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7d394c9841369cbbfa2c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "dias_sem_venda"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2b158c5a27284bfe4b99",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*skus_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "scatterChart",
+              "objects": {},
+              "activeProjections": {
+                "X": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "dias_sem_venda"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "abe7347ee689cbbd0391": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f1951fcc5736cf166fbd",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "reloadtime"
+                            }
+                          },
+                          "Property": "Ultima_Atualizacao"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "84c6f022442b20a27da0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "12a9d87dca824cf12aa3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "66ea79b4ac8d0cfa12ca",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_curva_abc_90_dias"
+                            }
+                          },
+                          "Property": "vlr_custo_estoq"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_curva_abc_90_dias"
+                            }
+                          },
+                          "Property": "vlr_custo_estoq"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b10f5395b2ae63c20206": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "24cf3bc0a9adff553bd5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_curva_abc_90_dias"
+                            }
+                          },
+                          "Property": "vlr_custo_estoq"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "d2fab3e284ca34884da8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "41910bbbe38d9a9e83e3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "status_produto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "40adf72b45e62a4134c7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*skus_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "barChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*skus_estoque"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "status_produto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "3e4f23ea27bc007acc3c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9c4e3a4b66ae949cb1d1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "fdd8f2de1e07e47c3eb8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f86d8d519adb0cad0e29",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "66b4db3f08b33c509243",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_curva_abc"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc_valor"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6d4b34841c1fc6c677ce": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "a177b6808985ddd3d31c": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "ccebc18c55b06ddefe8e": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "05727c2f2afe0b57c1bf": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "a7510b71b487f02758b0": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a172cc16bc4b0212f641": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "544ee5e77d3ec28c249c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "0d65d26d8d7f6fb48d0c": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "59016a57d00fcf68bb2a": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "70962f056b8979c6143d": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "6da429fdeffde857db87": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "f97ca5d4b7fd54a49f83": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "7838072cd4bcf528ab1d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "17ef925e5e4b87a95d35": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "5ba46e56e1b7211388dd": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "7e4fbeb3af3214c9a366": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "ee001c1c6f892809a83e": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "768892294ff54fa9f853": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "5de1e3c06408a56928fa": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "e8c3f5ed41d24bc7e5ae": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "733dc8f8d3539b07198e": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "b190c950c4fc543cb850": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "bc92734790b6a7000ab9": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "7401d94de215f7495dd7": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "446d924bb483f58885e9": {
+            "isHidden": false,
+            "children": {
+              "83c55def925705c2ba37": {
+                "isHidden": true
+              },
+              "d38862d41ea4596d282f": {
+                "isHidden": true
+              },
+              "a14747a292021e5e0575": {
+                "isHidden": false
+              },
+              "a93f5813657e6969da32": {
+                "isHidden": true
+              }
+            }
+          },
+          "ff290f2c93c818d2943d": {
+            "isHidden": true
+          },
+          "96f4428936f72a1078de": {
+            "isHidden": false
+          },
+          "c4bbe2315e8b4556e825": {
+            "isHidden": true
+          },
+          "f0ce8c16387fb58bc9a8": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,2194 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "menu_prospeccao_compras",
+  "name": "e3806b564701f61abbe7",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.11",
+    "activeSection": "a4996b700aacaa5e4939",
+    "filters": {
+      "byExpr": [
+        {
+          "name": "3a170103100208e5e5ce",
+          "type": "Advanced",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "a8c777398b93b76ad52a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano_mes"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "780c0fe875db6b0eb0ae",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "Date"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "298b57054d00649adc0a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "num_cnpj"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "1d023ead47b70560d037",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "nom_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "4b2b68765b06689782e1",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "status_loja"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "5aaff369e71d7ec2ceaa",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "grupo_fcia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6cbbffd4e187389030cd",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "cod_barra_tratado"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "3e49e5e40a4b100449b6",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "produto"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "529e4f8079be188400de",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "laboratorio"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "47b419050ba799b1973b",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "area_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6d81c7b0610cac72e812",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "mv_vendas_produtos"
+                }
+              },
+              "Property": "cod_nom_vendedor"
+            }
+          },
+          "howCreated": 1
+        }
+      ]
+    },
+    "sections": {
+      "a4996b700aacaa5e4939": {
+        "filters": {
+          "byName": {
+            "a708a70ea6ad21a5ed4b": {
+              "name": "a708a70ea6ad21a5ed4b",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "v",
+                    "Entity": "mv_vendas_produtos",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "v"
+                                }
+                              },
+                              "Property": "tip_venda"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'V'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "tip_venda"
+                }
+              },
+              "howCreated": 1
+            },
+            "4fc2a35f4b5be62d6e67": {
+              "name": "4fc2a35f4b5be62d6e67",
+              "type": "Categorical",
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "p",
+                    "Entity": "produto_gcp",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "Not": {
+                        "Expression": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "p"
+                                    }
+                                  },
+                                  "Property": "cod_barra_tratado"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'0'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              "expression": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "cod_barra_tratado"
+                }
+              },
+              "howCreated": 1
+            }
+          }
+        },
+        "visualContainers": {
+          "16a7d0569df1e9955a70": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "048fc8c999a570bbac87",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1d574a066acb23b36788",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "*qtd_atendimento_venda"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "2977446d48e153b138ee": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "873c36d7c93fd3b137c3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj_mascarado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "t",
+                                "Entity": "tabela_cadastro_lojas",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "t"
+                                            }
+                                          },
+                                          "Property": "num_cnpj_mascarado"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'00.***.***/****-70'"
+                                          }
+                                        }
+                                      ],
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'01.***.***/****-13'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj_mascarado"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "45f33adb7305c55b854c": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "4883244a15eeea2fb7a0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dcc373fc20c38210c082",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_clientes_novos"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "49b5525509ef5ce1ed39",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_clientes_recorrentes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "pieChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_clientes_novos"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "4893c583b55fb194fcb9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "24b00043d005d4fef03c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_clientes_recorrentes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_clientes_recorrentes"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "536ba8a0bee148272b2b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "413ddb69ead3339c73bd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "nom_cliente_mascarado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "nom_cliente_mascarado"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "5614f4a2a8670b1363b9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4d4284c033593e21eb72",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "cod_cliente"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "cod_cliente"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "572d8600cf119fac1fed": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "70f870080b12897700ae": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "75a9e4539b129ba30eac": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "23b9dc790394411daea8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "pvc_qtd_clientes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "pvc_qtd_clientes"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "7767ee177add204ad60f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "bce55a55f74d7b8c2d1b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "13668b41e689382eb0d1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "**venda_liquida"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredBarChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "**venda_liquida"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "861682dde3cb9e27bd66": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1d03433dde3b546baac1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_clientes"
+                        }
+                      },
+                      "Property": "sex_cliente"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_clientes"
+                        }
+                      },
+                      "Property": "sex_cliente"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "8a3f496074e700f67896": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "aba208ff7b6c9605e349",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_%clientes_recorrentes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_%clientes_recorrentes"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "93364ad66877a5ad9520": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "93c4b3c0727ee0f030f4": {
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_gerais_vendas"
+                        }
+                      },
+                      "Property": "metricas_gerais_vendas"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "99cccbbd38534d9a3b15": {
+            "filters": {
+              "byName": {
+                "6a584af0aaf16243a12b": {
+                  "name": "6a584af0aaf16243a12b",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "v",
+                        "Entity": "mv_vendas_produtos",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "v"
+                                        }
+                                      },
+                                      "Property": "cod_cliente"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "cod_cliente"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              },
+              "byExpr": [
+                {
+                  "name": "eed645b3941c71216aca",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "v",
+                        "Entity": "mv_vendas_produtos",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "p",
+                        "Entity": "medidas_prospeccao_vendas_clientes",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "p"
+                                  }
+                                },
+                                "Property": "pvc_frequencia"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "pvc_frequencia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8dbf3af034f18322a179",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "nom_cliente"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e524421cc27958e68b9e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_vendas_produtos"
+                            }
+                          },
+                          "Property": "dat_emissao"
+                        }
+                      },
+                      "Function": 4
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "effa8e8f55dd1523e5eb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "*ticket_medio_atual_h"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "611231894e7033e5eac3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "pvc_meses_com_compras_pct"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a87a4b10054d7b8f35c3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "pvc_meses_com_compras"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7546a30550682cf65b23",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "pvc_meses_analisados"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "cod_cliente"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "a14075191eb6170f5ab1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d15f6e0dc786ae6455e5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nom_farmacia_mascarado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nom_farmacia_mascarado"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "aae89f220ad29ae4ae8f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "0a499da122c32b779922",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "mv_dados_clientes",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "d"
+                                    }
+                                  },
+                                  "Property": "sex_cliente"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'F'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'M'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "null"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_clientes"
+                        }
+                      },
+                      "Property": "sex_cliente"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7f6365ca9c865ecba1c0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "Hora_Num"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a48be68f533a290254db",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "**%cmv_liquido"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "Hora_Num"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "Hora_Num"
+                    }
+                  }
+                ]
+              },
+              "projections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "Hora_Num"
+                    }
+                  }
+                ],
+                "Series": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_clientes"
+                        }
+                      },
+                      "Property": "sex_cliente"
+                    }
+                  }
+                ],
+                "Y": [
+                  {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "**%cmv_liquido"
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "Y": [
+                  {
+                    "expr": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "metricas_gerais_vendas"
+                          }
+                        },
+                        "Property": "metricas_gerais_vendas"
+                      }
+                    },
+                    "index": 0,
+                    "length": 1
+                  }
+                ]
+              }
+            }
+          },
+          "bdb44dbf12bac0bf3e69": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "c9d07e039d4bde6f97a2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a9cd2abd3ed2b718604b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_clientes"
+                        }
+                      },
+                      "Property": "faixas_idade"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_clientes"
+                        }
+                      },
+                      "Property": "faixas_idade"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ca15dd21510babf64c3c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "0b5d9d71205ef9da6eaa",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_frequencia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_frequencia"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "cdfa82ca3bf054e4a79c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d8e0ab224065e4c1a07d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_clientes"
+                        }
+                      },
+                      "Property": "faixas_idade"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9b2eaa5f0ce46f44e8ca",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "pvc_qtd_clientes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "pvc_qtd_clientes"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_clientes"
+                        }
+                      },
+                      "Property": "faixas_idade"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d1a639cb5ec6074d6a1b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d508fdb60f60ef8d8746",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_relacionamento_medio"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_relacionamento_medio"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "d21dc3155482bc51a875": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4acc7f4ebb4b76c9bb96",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "c",
+                                "Entity": "calendario",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "And": {
+                                    "Left": {
+                                      "Comparison": {
+                                        "ComparisonKind": 2,
+                                        "Left": {
+                                          "Column": {
+                                            "Expression": {
+                                              "SourceRef": {
+                                                "Source": "c"
+                                              }
+                                            },
+                                            "Property": "Date"
+                                          }
+                                        },
+                                        "Right": {
+                                          "Literal": {
+                                            "Value": "datetime'2024-01-01T00:00:00'"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "Right": {
+                                      "Comparison": {
+                                        "ComparisonKind": 3,
+                                        "Left": {
+                                          "Column": {
+                                            "Expression": {
+                                              "SourceRef": {
+                                                "Source": "c"
+                                              }
+                                            },
+                                            "Property": "Date"
+                                          }
+                                        },
+                                        "Right": {
+                                          "Literal": {
+                                            "Value": "datetime'2025-09-17T00:00:00'"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "startDate": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "datetime'2024-01-01T00:00:00'"
+                            }
+                          }
+                        },
+                        "endDate": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "datetime'2025-09-16T00:00:00'"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Between'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "Date"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "fc596d9b754c14e236a5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "df18a8bb6e6f095532db",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "num_nota"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c18355e41bb551169588",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "dat_emissao"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6f27b19094910c242f70",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "cod_barra"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ddf20d799eacc0c12e67",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "83e53ae331e50a664ff7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "**venda_liquida"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d1ad42f9c7641bae3a6d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "*%valor_total_descto_venda"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "68cbd4f3e5dd5e8335aa",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "**%cmv_liquido"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b9d0efaee34da3e28066",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "*qtd_produto_venda"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_vendas_produtos"
+                        }
+                      },
+                      "Property": "**venda_liquida"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "fe8d79f47bba6d438ee6": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b25420989e794c419d71",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_taxa_retencao"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_prospeccao_vendas_clientes"
+                        }
+                      },
+                      "Property": "_taxa_retencao"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "6fed1e719d921564437c": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "cbe8cb96a6a909d8f98b": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "adada5ec6bca909851b2": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "71145ebe925031aebfbc": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "d9268df827a568d35945": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "677055606c30a30b02f8": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "f61b9f36371a73ac7f76": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "ab77a5b4807c4eff9f61": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "e78f1f8718f98b14bf5d": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "788028e4c85fc8c02c13": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "5c3bfcb7742e6aef10fe": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "93ea7989022b38b1a7ce": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "870f575ff2211d96292e": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "3539cd4ee94016ccc30f": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "afb865655b9ccce2c995": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "9fe9e251ded26639f1aa": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "20521a6de6285ce9dca2": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "f2afdd79bacc07540c02": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "b24e84fdcade5002a1a8": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "5d8a04f521ff73260223": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "1856706a243ef846f4fe": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "dab3295988b3bc828070": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "7db2512372c615de2df8": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "eea988f79dc039975b53": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "f20c73847b1e1f800ebd": {
+            "isHidden": false,
+            "children": {
+              "1b8b5807c004f4599c21": {
+                "isHidden": true
+              },
+              "690578b399e3e9a40f0a": {
+                "isHidden": true
+              },
+              "f9452e05595f6e82eb36": {
+                "isHidden": false
+              },
+              "fdd6d036c4f6598c9545": {
+                "isHidden": true
+              }
+            }
+          },
+          "5c5d362dc10311a44ba3": {
+            "isHidden": true
+          },
+          "19f768bcbcef7d240936": {
+            "isHidden": false
+          },
+          "570b69f65c744152d0e0": {
+            "isHidden": true
+          },
+          "3a96bb5c7fdbea8270d5": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

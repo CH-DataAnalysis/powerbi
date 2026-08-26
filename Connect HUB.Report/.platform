@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Connect HUB"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "d81b1ed1-b828-444e-a87a-8c9968a8501e"
+  }
+}

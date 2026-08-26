@@ -1,0 +1,1612 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "menu_analise_ruptura_compras",
+  "name": "9b7eb9b5d65b3be3f07e",
+  "options": {
+    "targetVisualNames": [
+      "34a38169a383174fce63",
+      "1b79fb7121f38ce61e6c",
+      "feeaba2b8d4f3904c2ab",
+      "7e489c049f10affbc61c"
+    ],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "01b56ded02e31e73880d",
+    "filters": {
+      "byExpr": [
+        {
+          "name": "3a170103100208e5e5ce",
+          "type": "Advanced",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "a8c777398b93b76ad52a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano_mes"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "780c0fe875db6b0eb0ae",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "Date"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "298b57054d00649adc0a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "num_cnpj"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "1d023ead47b70560d037",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "nom_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "4b2b68765b06689782e1",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "status_loja"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "5aaff369e71d7ec2ceaa",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "grupo_fcia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6cbbffd4e187389030cd",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "cod_barra_tratado"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "3e49e5e40a4b100449b6",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "produto"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "529e4f8079be188400de",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "laboratorio"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "47b419050ba799b1973b",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "area_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6d81c7b0610cac72e812",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "mv_vendas_produtos"
+                }
+              },
+              "Property": "cod_nom_vendedor"
+            }
+          },
+          "howCreated": 1
+        }
+      ]
+    },
+    "sections": {
+      "01b56ded02e31e73880d": {
+        "visualContainers": {
+          "02873c440130d7e0017c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a1fa64a4a5e1ccf0559c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "reloadtime"
+                            }
+                          },
+                          "Property": "Ultima_Atualizacao"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "055de95334eb13ed08b5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f928df9eb1684301743a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nom_farmacia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nom_farmacia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "0f429b60dc0801205b60": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d6337d1f6540f4200640",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "cod_barra"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "cod_barra"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "309b48a26f1f8d3b7d2b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "097da14457c74aac38f8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "*qtd_cnpjs"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "55f2b1ecc206aebb906a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a3c804332330f7423304",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "stock_out_botao_analise"
+                        }
+                      },
+                      "Property": "botao"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "s",
+                                "Entity": "stock_out_botao_analise",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "s"
+                                            }
+                                          },
+                                          "Property": "botao"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'3 Meses'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Basic'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "stock_out_botao_analise"
+                        }
+                      },
+                      "Property": "botao"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "stock_out_botao_analise"
+                        }
+                      },
+                      "Property": "botao"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "5ba93f45c9b029dad8b5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "479026bd2cb3594eeb2a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ee0a29b3a2b96375005f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*perda_stockout_geral"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "dd5e35055ef46c711142",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*nivel_servico"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*perda_stockout_geral"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "5c1db4dd9b704e97b400": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1299f046b60f6a6368d3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "5e98bb6935e89273ca16": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "30cc3f530e6eab6f27de",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "area_farmacia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "area_farmacia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "66f471ba05a0ad5883c9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "852fe4cbc6ec29cf89f5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_vendida_geral"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_vendida_geral"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "766a319acbb209ad4412": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d19b7403e7e29223dd1c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_produto_com_ruptura_geral"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_produto_com_ruptura_geral"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "7aab592703c7183b6706": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2f50d10a6c0174eb6d0f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "618c1245d13034cf83f7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*perda_stockout_geral"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "18fb630ce00d6b6eafb5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Arithmetic": {
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_estoque"
+                            }
+                          },
+                          "Property": "*perda_stockout_geral"
+                        }
+                      },
+                      "Right": {
+                        "ScopedEval": {
+                          "Expression": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "mv_estoque"
+                                }
+                              },
+                              "Property": "*perda_stockout_geral"
+                            }
+                          },
+                          "Scope": []
+                        }
+                      },
+                      "Operator": 3
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4925a46286ded9e030be",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_produto_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Arithmetic": {
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_estoque"
+                            }
+                          },
+                          "Property": "*perda_stockout_geral"
+                        }
+                      },
+                      "Right": {
+                        "ScopedEval": {
+                          "Expression": {
+                            "Measure": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "mv_estoque"
+                                }
+                              },
+                              "Property": "*perda_stockout_geral"
+                            }
+                          },
+                          "Scope": []
+                        }
+                      },
+                      "Operator": 3
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "8dbd6eb383c890d4a81e": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "925dc3811bbbc9167393": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e7e735fdfee011a6f2d0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*nivel_servico"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "gauge",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*nivel_servico"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "94d20f8367ae800edea0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "258468f376f19cdfadb1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "laboratorio"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "laboratorio"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "af67cd2502a5e5ee89c5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "78677957a8c8c3a4614f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*perda_stockout_geral"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*perda_stockout_geral"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "c2e2e2afe02050e7248c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "70a8b5ff8a32a2b0db1d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "cod_barra"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "67414f217cfce4b1aa10",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "310d9f15d69d8413ff19",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "ultima_venda"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6a39f5cc81f7d389e8e5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "ultima_compra"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5b741d7dff67ce09b5c2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_produto_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "88cf308e77fed45a55f2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*valor_vendido_geral"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "70f7cea4d470d1617265",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_vendida_geral"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5eb3f1478222512e9d1c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "dias_sem_compra"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "df9c8f0d082a40c7cebe",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "dias_sem_venda"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "50da63c7ba795d871f8f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*perda_stockout_geral"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*perda_stockout_geral"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "cbc00fa4bbdb7bbd4566": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "369f0f1be82a4890fa43",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "t",
+                                "Entity": "tabela_cadastro_lojas",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "t"
+                                            }
+                                          },
+                                          "Property": "num_cnpj"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'00.683.074/0001-70'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "de17c082e8c4eb8035ca": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8e0e5a342a0a3002e158",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_produto_geral"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_estoque"
+                        }
+                      },
+                      "Property": "*qtd_produto_geral"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f86385960e356d2dd6b7": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c145d02a957486d0354c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "fddeef560bb9bf9c9fa8": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "af92f8f09f496c55159b": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "7d762fece9737bce072a": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "9b1dc4c557f8002f1fd8": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "0f0956f11f29d40b3243": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "305c122e3c3dcad7dc74": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "642e1d5fc34c9e76947d": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "7f45a793a8f26e2a0ff3": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "4835a2f889d0907e46d5": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "6a8c4d63bb942e908fee": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "27637be2bced2de71640": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "31610a89978a3c88fecb": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "44506223f75140b0beb2": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "f30f2a83f8b1b6803fd0": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "9e51a53878fdd2ef2e6d": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "d92e298c51152efd7584": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "ef9f659995ee4ed7ed12": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "bd958ef77d8a12768e39": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a5f17dbf8a8bf2214426": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "c60689ce693317c67868": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "d2f1b7650080c69d42c3": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "34a38169a383174fce63": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "1b79fb7121f38ce61e6c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "feeaba2b8d4f3904c2ab": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "7e489c049f10affbc61c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "8af706e74bfea5cf22a4": {
+            "isHidden": false
+          },
+          "0c7cd44f15bbb50c4568": {
+            "isHidden": false,
+            "children": {
+              "b0fe8839f8ea8c5337bb": {
+                "isHidden": true
+              },
+              "9455a85773d6cfcda143": {
+                "isHidden": true
+              },
+              "732a5223c6b51e9869b7": {
+                "isHidden": false
+              },
+              "75a3e5133b4e29d9f862": {
+                "isHidden": true
+              }
+            }
+          },
+          "79a74748464a5777a86e": {
+            "isHidden": true
+          },
+          "39b980299600a8ebb2ec": {
+            "isHidden": false
+          },
+          "3b93ccd4a4c8c33ca0d9": {
+            "isHidden": true
+          },
+          "d510100fcb714a3b602c": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

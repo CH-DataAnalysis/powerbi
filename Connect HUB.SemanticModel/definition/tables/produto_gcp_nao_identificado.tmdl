@@ -1,0 +1,94 @@
+table produto_gcp_nao_identificado
+	lineageTag: 0c97b8a4-3f54-4cb3-ad37-b917c31ccafe
+
+	column nome_categoria
+		dataType: string
+		lineageTag: bb74a483-8736-485a-8b93-8d217e6dc13d
+		summarizeBy: none
+		sourceColumn: nome_categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column area_farmacia
+		dataType: string
+		lineageTag: a67a08f9-03c5-40c1-9137-07587ca719e2
+		summarizeBy: none
+		sourceColumn: area_farmacia
+
+		annotation SummarizationSetBy = Automatic
+
+	column principio_ativo
+		dataType: string
+		lineageTag: fa17392f-4ecd-4bcc-82ba-747a5aa879a4
+		summarizeBy: none
+		sourceColumn: principio_ativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column produto
+		dataType: string
+		lineageTag: 4c27fa11-d90e-4153-b2bf-644ca1146512
+		summarizeBy: none
+		sourceColumn: produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column laboratorio
+		dataType: string
+		lineageTag: 159b6734-c3e6-406a-9924-04390545dedd
+		summarizeBy: none
+		sourceColumn: laboratorio
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_fcia
+		dataType: string
+		lineageTag: ddd03a0f-c4a3-42bc-9880-48f604e49b99
+		summarizeBy: none
+		sourceColumn: grupo_fcia
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra
+		dataType: int64
+		formatString: 0
+		lineageTag: 3802cdd5-bb63-4709-88de-9ee1c4a2e110
+		summarizeBy: none
+		sourceColumn: cod_barra
+
+		annotation SummarizationSetBy = Automatic
+
+	partition produto_gcp_nao_identificado = m
+		mode: import
+		source =
+				let
+				    Fonte = #table(
+				        {
+				            "nome_categoria",
+				            "area_farmacia",
+				            "principio_ativo",
+				            "produto",
+				            "laboratorio",
+				            "grupo_fcia",
+				            "cod_barra"
+				        },
+				        {
+				            {
+				                "NÃO_IDENTIFICADO",
+				                "NÃO_IDENTIFICADO",
+				                "NÃO_IDENTIFICADO",
+				                "NÃO_IDENTIFICADO",
+				                "NÃO_IDENTIFICADO",
+				                "NÃO_IDENTIFICADO",
+				                0
+				            }
+				        }
+				    ),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"cod_barra", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

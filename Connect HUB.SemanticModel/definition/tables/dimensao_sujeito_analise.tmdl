@@ -1,0 +1,55 @@
+table dimensao_sujeito_analise
+	lineageTag: 315ea096-efa2-41ef-b609-c0cd10fcb18c
+
+	column dimensao_produtos
+		lineageTag: f11a5719-f48f-443b-aaf5-ff5582ff815b
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'dimensao_produtos Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'dimensao_produtos Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'dimensao_produtos Campos'
+		isHidden
+		lineageTag: 6590f460-aaf8-4873-946c-179fe943a503
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'dimensao_produtos Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'dimensao_produtos Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: a7b43b9e-6ce0-40c1-bac8-32ffec6c18be
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimensao_sujeito_analise = calculated
+		mode: import
+		source =
+				{
+				    ("Nome loja", NAMEOF('tabela_cadastro_lojas'[nom_farmacia]), 0),
+				    ("Grupo", NAMEOF('produto_gcp'[grupo_fcia]), 1),
+				    ("Área da farmácia", NAMEOF('produto_gcp'[area_farmacia]), 2),
+				    ("EAN", NAMEOF('produto_gcp'[cod_barra]), 3),
+				    ("Produto", NAMEOF('produto_gcp'[produto]), 4),
+				    ("Município", NAMEOF('geolocalizacao'[Municipio]), 5),
+				    ("Microrregião", NAMEOF('geolocalizacao'[Micro_Regiao]), 6),
+				    ("Mesorregião", NAMEOF('geolocalizacao'[Meso_Regiao]), 7),
+				    ("Estado", NAMEOF('geolocalizacao'[UF_Sigla]), 8)
+				    }
+
+	annotation PBI_Id = 23e1f4249def474396b19eacba88a804
+

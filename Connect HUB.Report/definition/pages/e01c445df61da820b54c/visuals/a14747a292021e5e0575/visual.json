@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "a14747a292021e5e0575",
+  "position": {
+    "x": 141.14345738295356,
+    "y": 71.33886177810507,
+    "z": 2000,
+    "height": 415.71428571428572,
+    "width": 279.28571428571428,
+    "tabOrder": 2000
+  },
+  "visualGroup": {
+    "displayName": "compras",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "446d924bb483f58885e9",
+  "isHidden": true
+}

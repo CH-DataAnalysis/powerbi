@@ -1,0 +1,1078 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "788959d008602761d7e2",
+  "position": {
+    "x": 35.081206496519719,
+    "y": 509.93039443155453,
+    "z": 14000,
+    "height": 482.36658932714619,
+    "width": 1594.9419953596287,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "produto"
+                }
+              },
+              "queryRef": "produto_gcp.produto",
+              "nativeQueryRef": "Produto",
+              "displayName": "Produto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "cod_barra"
+                }
+              },
+              "queryRef": "produto_gcp.cod_barra",
+              "nativeQueryRef": "EAN",
+              "displayName": "EAN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "geolocalizacao"
+                    }
+                  },
+                  "Property": "Meso_Regiao"
+                }
+              },
+              "queryRef": "geolocalizacao.Meso_Regiao",
+              "nativeQueryRef": "Mesorregião",
+              "displayName": "Mesorregião"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_venda_liquida"
+                }
+              },
+              "queryRef": "analise_mercado._venda_liquida",
+              "nativeQueryRef": "Venda líquida (Loja)",
+              "displayName": "Venda líquida (Loja)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado_simulacao"
+                    }
+                  },
+                  "Property": "_preco_medio_venda_simulacao"
+                }
+              },
+              "queryRef": "analise_mercado._preco_medio_venda_simulado",
+              "nativeQueryRef": "Preço médio (Com simulação)",
+              "displayName": "Preço médio (Com simulação)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*preco_medio_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*preco_medio_venda",
+              "nativeQueryRef": "Preço médio (Sem simulação)",
+              "displayName": "Preço médio (Sem simulação)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_preco_medio_regiao_geral"
+                }
+              },
+              "queryRef": "analise_mercado._preco_medio_regiao_geral",
+              "nativeQueryRef": "Preço médio (Mercado)",
+              "displayName": "Preço médio (Mercado)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_numero_lojas_regiao_geral"
+                }
+              },
+              "queryRef": "analise_mercado._numero_lojas_regiao_geral",
+              "nativeQueryRef": "Total de lojas que comercializaram o produto",
+              "displayName": "Total de lojas que comercializaram o produto"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_rank_vendas_regiao_geral"
+                }
+              },
+              "queryRef": "analise_mercado._rank_vendas_regiao_geral",
+              "nativeQueryRef": "Rank produto (Mercado)",
+              "displayName": "Rank produto (Mercado)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_var_preco_medio_regiao_geral"
+                }
+              },
+              "queryRef": "analise_mercado._var_preco_medio_regiao_geral",
+              "nativeQueryRef": "% Var. preço médio (Loja) vs (Mercado) (Sem simulação)",
+              "displayName": "% Var. preço médio (Loja) vs (Mercado) (Sem simulação)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "classificacao_precificacao_geral"
+                }
+              },
+              "queryRef": "analise_mercado.classificacao_precificacao_geral",
+              "nativeQueryRef": "Classificação precificação (Sem simulação)",
+              "displayName": "Classificação precificação (Sem simulação)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado_simulacao"
+                    }
+                  },
+                  "Property": "_var_preco_medio_regiao_geral_simulacao"
+                }
+              },
+              "queryRef": "analise_mercado._var_preco_medio_regiao_geral_simulacao",
+              "nativeQueryRef": "% Var. preço médio (Loja) vs (Mercado) (Com simulação)",
+              "displayName": "% Var. preço médio (Loja) vs (Mercado) (Com simulação)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado_simulacao"
+                    }
+                  },
+                  "Property": "classificacao_precificacao_geral_simulacao"
+                }
+              },
+              "queryRef": "analise_mercado.classificacao_precificacao_geral_simulacao",
+              "nativeQueryRef": "Classificação precificação (Com simulação)",
+              "displayName": "Classificação precificação (Com simulação)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "simulacao_precificacao_analise_mercado"
+                    }
+                  },
+                  "Property": "percentual"
+                }
+              },
+              "queryRef": "Sum(simulacao_precificacao_analise_mercado.percentual)",
+              "nativeQueryRef": "% Aplicado na simulação",
+              "displayName": "% Aplicado na simulação"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimensao_sujeito_analise"
+                    }
+                  },
+                  "Property": "dimensao_produtos"
+                }
+              },
+              "index": 0,
+              "length": 3
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "medidas_analise_mercado"
+                  }
+                },
+                "Property": "_venda_liquida"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "249.27920620320467D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.produto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114.00000574173671D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.cod_barra"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.35044742748616D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._preco_medio_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "116.62245987904042D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._numero_lojas_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "130.2901768890125D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._var_preco_medio_regiao_geral_simulacao"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "162.8174606044543D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado.classificacao_precificacao_geral_simulacao"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "113.0256003375285D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._preco_medio_venda_simulado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "108.33333333333333D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*preco_medio_venda"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "137.32960307498695D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._var_preco_medio_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "164.21765914176294D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado.classificacao_precificacao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "122.56158275308584D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.grupo_fcia"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "98.31718708009866D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._rank_vendas_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "108.24999052399858D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(simulacao_precificacao_analise_mercado.percentual)"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_analise_mercado_simulacao"
+                        }
+                      },
+                      "Property": "cor_fundo_classificacao_precificacao_geral_simulacao"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_analise_mercado_simulacao"
+                        }
+                      },
+                      "Property": "cor_fonte_classificacao_precificacao_geral_simulacao"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "analise_mercado._var_preco_medio_regiao_geral_simulacao"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_analise_mercado_simulacao"
+                        }
+                      },
+                      "Property": "cor_fundo_classificacao_precificacao_geral_simulacao"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_analise_mercado_simulacao"
+                        }
+                      },
+                      "Property": "cor_fonte_classificacao_precificacao_geral_simulacao"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "analise_mercado.classificacao_precificacao_geral_simulacao"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_analise_mercado"
+                        }
+                      },
+                      "Property": "cor_fundo_classificacao_precificacao_geral"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_analise_mercado"
+                        }
+                      },
+                      "Property": "cor_fonte_classificacao_precificacao_geral"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "analise_mercado.classificacao_precificacao_geral"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_analise_mercado"
+                        }
+                      },
+                      "Property": "cor_fundo_classificacao_precificacao_geral"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_analise_mercado"
+                        }
+                      },
+                      "Property": "cor_fonte_classificacao_precificacao_geral"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "analise_mercado._var_preco_medio_regiao_geral"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.cod_barra"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._preco_medio_venda_simulado"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*preco_medio_venda"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._preco_medio_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._numero_lojas_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._var_preco_medio_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado.classificacao_precificacao_geral"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._var_preco_medio_regiao_geral_simulacao"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado.classificacao_precificacao_geral_simulacao"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._rank_vendas_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "analise_mercado._venda_liquida"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(simulacao_precificacao_analise_mercado.percentual)"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Análise de precificação (Loja vs Mercado)'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "divider": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "spacing": [
+        {
+          "properties": {
+            "verticalSpacing": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ff138157d06c21350d92",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_analise_mercado_simulacao"
+              }
+            },
+            "Property": "filtro_classificacao_precificacao"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "medidas_analise_mercado_simulacao",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "m"
+                        }
+                      },
+                      "Property": "filtro_classificacao_precificacao"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "1L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      },
+      {
+        "name": "6d8d1b0378e7ae769652",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_analise_mercado_simulacao"
+              }
+            },
+            "Property": "_var_preco_medio_regiao_geral_simulacao"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cdc4a2090992c9a94929",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_analise_mercado_simulacao"
+              }
+            },
+            "Property": "classificacao_precificacao_geral_simulacao"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "771a596523c669eaaadc",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "cod_barra"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4512dc40d00050ae1b75",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_analise_mercado_simulacao"
+              }
+            },
+            "Property": "_preco_medio_venda_simulacao"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "367b368f297d3e9d048c",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_analise_mercado"
+              }
+            },
+            "Property": "_preco_medio_regiao_geral"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f619947a869c91018ed7",
+        "ordinal": 6,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_vendas_produtos"
+              }
+            },
+            "Property": "*preco_medio_venda"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4260d1da3cced2b8d465",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "produto"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7344a3a9aebbe2d61e8a",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_analise_mercado"
+              }
+            },
+            "Property": "_numero_lojas_regiao_geral"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

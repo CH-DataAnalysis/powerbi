@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "74df92254f3871fa5763",
+  "position": {
+    "x": 597.12846347607058,
+    "y": 390.37783375314865,
+    "z": 6000,
+    "height": 74.811083123425689,
+    "width": 340.05037783375315,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "autoSelectVisualType": true,
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "geolocalizacao"
+                    }
+                  },
+                  "Property": "Meso_Cod"
+                }
+              },
+              "queryRef": "geolocalizacao.Meso_Cod",
+              "nativeQueryRef": "Meso_Cod"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "geolocalizacao"
+                  }
+                },
+                "Property": "Meso_Cod"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

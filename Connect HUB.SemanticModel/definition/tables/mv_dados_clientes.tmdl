@@ -1,0 +1,99 @@
+table mv_dados_clientes
+	lineageTag: 41ac238f-73b4-4bce-b7ad-42517cf9fe03
+
+	column num_cnpj
+		dataType: string
+		lineageTag: e16fb035-be1e-42c0-b901-92f3973136f0
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_cliente
+		dataType: int64
+		formatString: 0
+		lineageTag: ed6a29ab-0ad7-4cc7-bb04-b05043327323
+		summarizeBy: sum
+		sourceColumn: cod_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_nascto
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f9911aca-1295-4bc8-8cbc-1c3a5f709495
+		summarizeBy: none
+		sourceColumn: dat_nascto
+
+		variation Variation
+			isDefault
+			relationship: e224579e-2cc4-461c-af97-0323619035f6
+			defaultHierarchy: LocalDateTable_6628a35e-6b82-427e-9c46-eecc52a05f6d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dat_cadastro
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5d281686-b6b1-4106-a786-8df5e2009822
+		summarizeBy: none
+		sourceColumn: dat_cadastro
+
+		variation Variation
+			isDefault
+			relationship: 803e4421-c301-492d-8949-d7c744d5afd0
+			defaultHierarchy: LocalDateTable_84f776a1-1e9e-4895-9686-8a0e2975bd8f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dat_atualiza
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ddfd116a-6e92-4165-9bb6-7277b46e2377
+		summarizeBy: none
+		sourceColumn: dat_atualiza
+
+		variation Variation
+			isDefault
+			relationship: 004e0f89-1c2b-49cf-99da-eb1f4874a1b5
+			defaultHierarchy: LocalDateTable_7ec89307-b413-43bc-8159-657009be4714.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sex_cliente
+		dataType: string
+		lineageTag: 63b95e24-b576-4e01-bf23-c10cec8ac7e2
+		summarizeBy: none
+		sourceColumn: sex_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column faixas_idade
+		dataType: string
+		lineageTag: ddd3401d-b5cb-4c5d-846a-f48eb0ec3da9
+		summarizeBy: none
+		sourceColumn: faixas_idade
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_dados_clientes = m
+		mode: import
+		source =
+				let
+				    Fonte = AmazonRedshift.Database("bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439","business_connect"),
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				    mv_dados_clientes1 = associacao{[Name="mv_dados_clientes"]}[Data],
+				    #"Columns removed by Measure Killer"= Table.SelectColumns(mv_dados_clientes1,{"dat_cadastro","faixas_idade","cod_cliente","dat_atualiza","dat_nascto","sex_cliente","num_cnpj"})
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

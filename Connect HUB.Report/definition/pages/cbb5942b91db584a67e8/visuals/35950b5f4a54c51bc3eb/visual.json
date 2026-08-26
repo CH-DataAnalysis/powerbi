@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "35950b5f4a54c51bc3eb",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 16000,
+    "height": 1080,
+    "width": 1920,
+    "tabOrder": 9000
+  },
+  "visualGroup": {
+    "displayName": "fechar_mercado",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

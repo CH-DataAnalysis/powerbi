@@ -1,0 +1,35 @@
+table parceiros_pbm_padrao
+	lineageTag: 7ba54b7f-f7a7-420e-a8ae-a0776c5c78d1
+
+	column cod_parceiro
+		dataType: int64
+		formatString: 0
+		lineageTag: 5e5d4450-ac38-4e8c-b1af-55d14ebf7787
+		summarizeBy: none
+		sourceColumn: cod_parceiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column parceiro_pbm
+		dataType: string
+		lineageTag: 7628cf0a-1521-46db-bfba-2a6bf9a0057f
+		summarizeBy: none
+		sourceColumn: parceiro_pbm
+
+		annotation SummarizationSetBy = Automatic
+
+	partition parceiros_pbm_padrao = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\PowerBI\parceiros_pbm_padrao.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"cod_parceiro", Int64.Type}, {"parceiro_pbm", type text}, {"Programa", type text}}),
+				    #"Columns removed by Measure Killer"= Table.SelectColumns(#"Tipo Alterado",{"cod_parceiro","parceiro_pbm"})
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

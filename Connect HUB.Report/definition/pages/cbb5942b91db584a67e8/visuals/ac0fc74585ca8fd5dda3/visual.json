@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "ac0fc74585ca8fd5dda3",
+  "position": {
+    "x": 545.56205328135138,
+    "y": 70.424395601770982,
+    "z": 0,
+    "height": 417.08333333333337,
+    "width": 280,
+    "tabOrder": 4000
+  },
+  "visualGroup": {
+    "displayName": "mercado",
+    "groupMode": "ScaleMode"
+  },
+  "parentGroupName": "4326ddae01cc58843b83",
+  "isHidden": true
+}

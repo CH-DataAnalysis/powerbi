@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "be2661a042e65c9cd068",
+  "position": {
+    "x": 332.33722624204432,
+    "y": 58.800000000000011,
+    "z": 2000,
+    "height": 109.20000000000002,
+    "width": 108.37083464414491,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "cuidado_infantil8369464608017936.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "5753e1f0130de10591d0",
+  "howCreated": "InsertVisualButton"
+}

@@ -1,0 +1,304 @@
+table mv_curva_abc_90_dias
+	lineageTag: 09572ff5-d5ef-40ab-b1ce-86588a785a2f
+
+	measure *skus_estoque =
+			CALCULATE(
+			    DISTINCTCOUNT(mv_curva_abc_90_dias[cod_barra]),
+			    filter(mv_curva_abc_90_dias, mv_curva_abc_90_dias[qtd_estoque] > 0)
+			 )
+		formatString: #,0
+		lineageTag: 3c8e6d40-9033-4fb9-93fb-dada4fb59604
+
+	measure *qtd_produtos_risco_ruptura =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_curva_abc_90_dias[cod_barra]),
+			        mv_curva_abc_90_dias[status_produto] = "Risco de ruptura",
+			        mv_curva_abc_90_dias[qtd_estoque] > 0
+			    ),
+			    0
+			)
+		formatString: #,0
+		lineageTag: 8b57fc2f-57ff-43e9-8c85-e8a682deaa0a
+
+	measure *qtd_produtos_estoque_parado =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_curva_abc_90_dias[cod_barra]),
+			        mv_curva_abc_90_dias[status_produto] = "Estoque parado",
+			        mv_curva_abc_90_dias[qtd_estoque] > 0
+			    ),
+			    0
+			)
+		formatString: #,0
+		lineageTag: fbe7944c-a1d5-4753-82c4-9f9eed661b7d
+
+	measure *qtd_produtos_cobertura_alta =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_curva_abc_90_dias[cod_barra]),
+			        mv_curva_abc_90_dias[status_produto] = "Cobertura muito alta",
+			        mv_curva_abc_90_dias[qtd_estoque] > 0
+			    ),
+			    0
+			)
+		formatString: #,0
+		lineageTag: 590edb17-c523-471a-a9f9-e982dff9e062
+
+	measure *qtd_estoque_curva_abc = SUM(mv_curva_abc_90_dias[qtd_estoque])
+		formatString: #,0
+		lineageTag: c5fe9b5c-da0f-41fd-b078-7905b231efc9
+
+	measure *skus_estoque_curva_abc =
+			CALCULATE(
+			    DISTINCTCOUNT(mv_curva_abc_90_dias[cod_barra]),
+			    filter(mv_curva_abc_90_dias, mv_curva_abc_90_dias[qtd_estoque] > 0)
+			 )
+		formatString: #,0
+		lineageTag: 3dc8ec93-e6ac-4793-b109-df45d9a0030c
+
+	measure *vlr_total_curva_abc = SUM(mv_curva_abc_90_dias[vlr_total])
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 0e829de0-ac05-46a6-88ad-6973c2013b23
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *qtd_total_curva_abc = SUM(mv_curva_abc_90_dias[qtd_total])
+		formatString: #,0
+		lineageTag: 5fa0bd9f-f0a0-4570-9552-9598c2218fdb
+
+	column num_cnpj
+		dataType: string
+		lineageTag: 28abbb91-4045-4347-b290-d999ef9736ad
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra
+		dataType: double
+		lineageTag: 7691314e-a904-4d4f-a172-4c4bdf5bc4fb
+		summarizeBy: sum
+		sourceColumn: cod_barra
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_total
+		dataType: double
+		formatString: #,0
+		lineageTag: c117ec66-a6a8-4732-92bf-8f39b4a6bcc6
+		summarizeBy: sum
+		sourceColumn: qtd_total
+
+		annotation SummarizationSetBy = Automatic
+
+	column vlr_total
+		dataType: double
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: e82bbc67-17ff-4645-8e8c-9d9a804c650e
+		summarizeBy: sum
+		sourceColumn: vlr_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column pct_acumulado_valor
+		dataType: double
+		lineageTag: 589f0cfc-1a07-4566-99e1-a9f76d231873
+		summarizeBy: sum
+		sourceColumn: pct_acumulado_valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pct_acumulado_qtd
+		dataType: double
+		lineageTag: 0d70b4b3-6cd2-4217-8687-7b396a225bfb
+		summarizeBy: sum
+		sourceColumn: pct_acumulado_qtd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column curva_abc_valor
+		dataType: string
+		lineageTag: 4f1d6c15-da51-4fe9-8fa0-5a536959cd77
+		summarizeBy: none
+		sourceColumn: curva_abc_valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column curva_abc_qtd
+		dataType: string
+		lineageTag: d78be551-cd0d-4922-9c8c-3fb1fbd16737
+		summarizeBy: none
+		sourceColumn: curva_abc_qtd
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd_estoque
+		dataType: double
+		formatString: #,0
+		lineageTag: 08be01cc-e1bf-4497-8914-8ed9570cfbd4
+		summarizeBy: sum
+		sourceColumn: qtd_estoque
+
+		annotation SummarizationSetBy = Automatic
+
+	column vlr_custo_estoq
+		dataType: double
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: cb811386-aa38-4f40-95bf-eb58639bcd3b
+		summarizeBy: sum
+		sourceColumn: vlr_custo_estoq
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column dat_ultent
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 414c9515-d749-4c82-8d21-1843e64cdfb2
+		summarizeBy: none
+		sourceColumn: dat_ultent
+
+		variation Variation
+			isDefault
+			relationship: 1c5a44ea-0aee-4c39-a199-19a088211974
+			defaultHierarchy: LocalDateTable_e64e66d8-4ea3-431c-9599-02d6f0a50d0a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_ultima_venda
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: a5c21fb6-207e-427b-be5f-8fa62d17730d
+		summarizeBy: none
+		sourceColumn: data_ultima_venda
+
+		variation Variation
+			isDefault
+			relationship: 0151a5ad-dc46-4b05-b671-6d44dcf1ecf2
+			defaultHierarchy: LocalDateTable_9e61bed3-dc5b-48a3-a37a-0e08659893bb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dias_sem_venda
+		dataType: int64
+		formatString: #,0
+		lineageTag: e0a49ad9-fe80-449e-995f-eac2bf160b18
+		summarizeBy: sum
+		sourceColumn: dias_sem_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column cobertura_estoque_dias
+		dataType: double
+		lineageTag: e49ec78d-9c20-494b-8681-d83ace5d174d
+		summarizeBy: sum
+		sourceColumn: cobertura_estoque_dias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dat_ultent_formatada = FORMAT(mv_curva_abc_90_dias[dat_ultent],"DD/MM/YYYY")
+		lineageTag: 5d4a3055-f7d8-46cb-bdd8-24c6248ef508
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_ultven_formatada = FORMAT(mv_curva_abc_90_dias[data_ultima_venda],"DD/MM/YYYY")
+		lineageTag: f054b676-777a-4977-968c-d07572f4346b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_produto =
+			
+			SWITCH(TRUE(),
+			    mv_curva_abc_90_dias[dias_sem_venda] > 90 && mv_curva_abc_90_dias[vlr_total] > 1000, "Estoque parado crítico",
+			    mv_curva_abc_90_dias[dias_sem_venda] > 60, "Estoque parado",
+			    mv_curva_abc_90_dias[cobertura_estoque_dias] > 120, "Cobertura muito alta",
+			    mv_curva_abc_90_dias[cobertura_estoque_dias] < 15, "Risco de ruptura",
+			    "OK"
+			)
+		lineageTag: 6d2c791d-d4ac-4062-b7c6-aa3853108753
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra_tratado =
+			
+			VAR padrao = LOOKUPVALUE(
+			    produto_gcp[cod_barra],
+			    produto_gcp[cod_barra],
+			    mv_curva_abc_90_dias[cod_barra]
+			)
+			RETURN
+			IF(
+			    ISBLANK(padrao),
+			    0,
+			    padrao
+			)
+		formatString: 0
+		lineageTag: 0ed177da-dd89-4ae4-80a7-803e0f851f4a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_curva_abc_90_dias = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_curva_abc_90_dias_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(
+				        Resultado,
+				        {
+				            "dat_ultent",
+				            "dias_sem_venda",
+				            "qtd_estoque",
+				            "pct_acumulado_valor",
+				            "data_ultima_venda",
+				            "curva_abc_qtd",
+				            "qtd_total",
+				            "num_cnpj",
+				            "curva_abc_valor",
+				            "vlr_custo_estoq",
+				            "vlr_total",
+				            "cobertura_estoque_dias",
+				            "cod_barra",
+				            "pct_acumulado_qtd"
+				        }
+				    )
+				
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

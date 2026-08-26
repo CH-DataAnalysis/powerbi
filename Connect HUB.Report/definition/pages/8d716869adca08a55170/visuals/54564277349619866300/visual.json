@@ -1,0 +1,292 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "54564277349619866300",
+  "position": {
+    "x": 37.142857142857146,
+    "y": 667.14285714285722,
+    "z": 0,
+    "height": 381.42857142857144,
+    "width": 1090,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "cod_barra"
+                }
+              },
+              "queryRef": "produto_gcp.cod_barra",
+              "nativeQueryRef": "EAN",
+              "displayName": "EAN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "produto"
+                }
+              },
+              "queryRef": "produto_gcp.produto",
+              "nativeQueryRef": "Produto",
+              "displayName": "Produto"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**venda_liquida"
+                }
+              },
+              "queryRef": "vendas_produtos.**venda_liquida",
+              "nativeQueryRef": "Venda líquida",
+              "displayName": "Venda líquida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*valor_desconto_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*valor_desconto_venda",
+              "nativeQueryRef": "Desconto Venda",
+              "displayName": "Desconto Venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*%valor_total_descto_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*%valor_total_descto_venda",
+              "nativeQueryRef": "%Desconto Venda",
+              "displayName": "%Desconto Venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*valor_custo_aquisicao"
+                }
+              },
+              "queryRef": "vendas_produtos.*valor_custo_aquisicao",
+              "nativeQueryRef": "Custo aquisição",
+              "displayName": "Custo aquisição"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*qtd_produto_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*qtd_produto_venda",
+              "nativeQueryRef": "Qtd. produto venda",
+              "displayName": "Qtd. produto venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*qtd_atendimento_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*qtd_atendimento_venda",
+              "nativeQueryRef": "Qtd. atendimento venda",
+              "displayName": "Qtd. atendimento venda"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_vendas_produtos"
+                  }
+                },
+                "Property": "**venda_liquida"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "276.81827121567494D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.produto"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalhe por produto'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "1a2b98918ede93310515",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_vendas_produtos"
+              }
+            },
+            "Property": "filtro_alerta_desconto_venda"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "mv_vendas_produtos",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "v"
+                        }
+                      },
+                      "Property": "filtro_alerta_desconto_venda"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "1L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,65 @@
+table simulacao_precificacao_analise_mercado
+	lineageTag: c1f14111-05f7-460b-b781-dbc5544beda8
+
+	measure percentual_simulacao_selecionado = ```
+			
+			VAR classificacao_selecionada =
+			    SELECTEDVALUE(classificacao_precificacao[classificacao], "Todos")
+			VAR perc_simulacao_string = SELECTEDVALUE(simulacao_precificacao_analise_mercado[percentual], "0")
+			VAR perc_simulacao_number =
+			    VALUE(SUBSTITUTE(perc_simulacao_string, "%", ""))
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        classificacao_selecionada IN {"Avaliar competitividade"},
+			            -perc_simulacao_number,
+			        classificacao_selecionada IN {"Abaixo do mercado","Faixa normal","Todos"},
+			            perc_simulacao_number
+			    )    
+			```
+		lineageTag: 007b89da-e631-4fee-a298-d80d4b156b67
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column percentual
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4c03c455-3df5-4ef0-a312-e6ddb362bd35
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [percentual]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition simulacao_precificacao_analise_mercado = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "percentual", DOUBLE,
+				    {
+				        {0},
+				        {0.05},
+				        {0.10},
+				        {0.15},
+				        {0.20},
+				        {0.25},
+				        {0.30},
+				        {0.35},
+				        {0.40},
+				        {0.45},
+				        {0.50},
+				        {0.55},
+				        {0.60},
+				        {0.65},
+				        {0.70},
+				        {0.75},
+				        {0.80},
+				        {0.85},
+				        {0.90},
+				        {0.95},
+				        {1}
+				    }
+				)
+
+	annotation PBI_Id = 80af18fc4c6b46dbac1bc67c08767c60
+

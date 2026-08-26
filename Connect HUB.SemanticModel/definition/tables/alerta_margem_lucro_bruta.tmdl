@@ -1,0 +1,30 @@
+table alerta_margem_lucro_bruta
+	lineageTag: e80a90b9-cd61-413b-88e6-3de79f57c906
+
+	column alerta
+		lineageTag: 1be853f3-0d29-4460-8b36-dafe0d9d4b49
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [alerta]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition alerta_margem_lucro_bruta = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "alerta", STRING,
+				    {
+				        {"< que 0%"},
+				        {"< que 10%"},
+				        {"< que 20%"},
+				        {"< que 30%"},
+				        {"< que 40%"},
+				        {"< que 50%"},
+				        {"> que 50%"}
+				    }
+				)
+
+	annotation PBI_Id = 55987168c9504fc3ab4ef9995af29812
+

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "65f934bac7eceede2c26",
+  "position": {
+    "x": 474.76746606006327,
+    "y": 33.600000000000009,
+    "z": 1000,
+    "height": 134.40000000000003,
+    "width": 144.49444619219318,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "saude_sexual_masculina3515437979265914.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "66fcbb9f585b31a832ad",
+  "howCreated": "InsertVisualButton"
+}

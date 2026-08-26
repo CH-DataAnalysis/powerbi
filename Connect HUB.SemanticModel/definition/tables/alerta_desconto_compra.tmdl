@@ -1,0 +1,28 @@
+table alerta_desconto_compra
+	lineageTag: 2f45430d-8dfd-4948-93f7-e1147064f03d
+
+	column alerta
+		lineageTag: d0db93de-36c4-4f20-8e3f-72ac185658fe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [alerta]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition alerta_desconto_compra = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "alerta", STRING,
+				    {
+				        {"> que 10%"},
+				        {"> que 20%"},
+				        {"> que 30%"},
+				        {"> que 40%"},
+				        {"> que 50%"}
+				    }
+				)
+
+	annotation PBI_Id = 2b8b760707564216b87b5b4c95005495
+

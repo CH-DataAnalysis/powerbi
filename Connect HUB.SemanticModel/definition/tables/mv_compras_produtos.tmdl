@@ -1,0 +1,442 @@
+table mv_compras_produtos
+	lineageTag: 8f5c31a8-1143-49d3-a772-10ec5acc876f
+
+	refreshPolicy
+		policyType: basic
+		rollingWindowGranularity: year
+		rollingWindowPeriods: 2
+		incrementalGranularity: day
+		incrementalPeriods: 30
+		pollingExpression = let Maxdat_atualiza = List.Max(mv_compras_produtos[dat_atualiza]), accountForNull = if Maxdat_atualiza = null then #datetime(1901, 01, 01, 00, 00, 00) else Maxdat_atualiza in accountForNull
+		sourceExpression =
+			let
+			    NomeTabela = "mv_compras_produtos_" & Text.From(cliente),
+			
+			    Fonte = AmazonRedshift.Database(
+			        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+			        "business_connect"
+			    ),
+			
+			    associacao = Fonte{[Name="associacao"]}[Data],
+			
+			    Resultado = associacao{[Name=NomeTabela]}[Data],
+			
+			    #"Columns removed by Measure Killer" = Table.SelectColumns(Resultado,{"num_cnpj", "cod_barra", "dat_entrada", "num_cnpj_forncedor_formatado", "dat_atualiza", "vlr_total_compra_bruta", "vlr_total_despacess", "vlr_total_icmsret", "vlr_total_descto", "vlr_total_nfe", "qtd_produto_compra"}),
+			
+			    #"Tipo Alterado" = Table.TransformColumnTypes(
+			        #"Columns removed by Measure Killer",
+			        {{"dat_entrada", type datetime}}
+			    ),
+			
+			    #"Tipo Alterado1" = Table.TransformColumnTypes(
+			        #"Tipo Alterado",
+			        {{"dat_atualiza", type datetime}}
+			    ),
+			
+			    #"Linhas Filtradas" = Table.SelectRows(
+			        #"Tipo Alterado1",
+			        each [dat_entrada] >= RangeStart and [dat_entrada] < RangeEnd
+			    )
+			
+			in
+			    #"Linhas Filtradas"
+
+	measure **%var_sku_compra_ano_anterior = DIVIDE([**sku_compra_ano_atual] - [**sku_compra_ano_anterior],[**sku_compra_ano_anterior],0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b322d068-16c0-49c6-ad69-b49dab287901
+
+	measure **%var_sku_compra_mes_anterior = (([**sku_compra_mes_atual] - [**sku_compra_mes_anterior]) / [**sku_compra_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d818c939-c18e-4301-9e76-66ebeae98911
+
+	measure **sku_compra_ano_anterior = ```
+			
+			VAR DataAtual =
+			    TODAY()
+			
+			VAR AnoAnterior =
+			    YEAR(DataAtual) - 1
+			
+			VAR DataInicialAnoAnterior =
+			    DATE(AnoAnterior, 1, 1)
+			
+			VAR DataFinalAnoAnterior =
+			    DATE(AnoAnterior, MONTH(DataAtual), DAY(DataAtual))
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(mv_compras_produtos[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada]),    
+			    REMOVEFILTERS(calendario),
+			    calendario[Date] >= DataInicialAnoAnterior &&
+			    calendario[Date] <= DataFinalAnoAnterior
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 57eba659-339d-4ea5-a81c-59074eff3b4b
+
+	measure **sku_compra_ano_atual =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(mv_compras_produtos[cod_barra]),
+			    REMOVEFILTERS(calendario),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada]),
+			    calendario[ano] = AnoAtual
+			)
+		formatString: 0
+		lineageTag: da0e038e-f38b-46a2-bfac-26a497e982ed
+
+	measure **sku_compra_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_dados_vendas_compras[dat_emissao]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(mv_compras_produtos[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		formatString: 0
+		lineageTag: a6edf7a4-224f-487a-8539-cb5a4032af3c
+
+	measure **sku_compra_mes_atual = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_compras_produtos[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada]),    
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+			```
+		formatString: #,0
+		lineageTag: 64d3a590-bd69-4b0a-b3e2-ec6846db4ad8
+
+	measure *%valor_total_descto =
+			
+			CALCULATE(
+			DIVIDE(
+			SUM('mv_compras_produtos'[vlr_total_descto]), sum(mv_compras_produtos[vlr_total_compra_bruta])),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada])
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 72cc6cfd-79ad-4c03-86ca-b341bb73cfba
+
+	measure *qtd_produto_compra =
+			CALCULATE(
+			SUM('mv_compras_produtos'[qtd_produto_compra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada])
+			)
+		formatString: #,0
+		lineageTag: 969d289d-d9dd-43ac-a964-f3a3ba0513c0
+
+	measure *valor_total_descto =
+			CALCULATE(
+			SUM(mv_compras_produtos[vlr_total_descto]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: c9de4e5f-2a2d-4e83-9c62-9c367cffebbc
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *valor_total_despesas_acessorias =
+			CALCULATE(
+			    SUM(mv_compras_produtos[vlr_total_despacess]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 2195b228-04dc-4063-991a-05118ab09dd3
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *valor_total_icms_retido =
+			CALCULATE(
+			    SUM(mv_compras_produtos[vlr_total_icmsret]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: c1e21b38-df63-470a-9df7-255678374c5f
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *valor_total_nfe =
+			
+			CALCULATE(
+			sum(mv_compras_produtos[vlr_total_nfe]),
+			USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada]),
+			USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: cc3874dc-a565-49ff-8c7f-46e730431728
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure filtro_alerta_desconto_compra =
+			
+			VAR alertaselecionado = SELECTEDVALUE('alerta_desconto_compra'[alerta], "Todos")
+			VAR desconto = [*%valor_total_descto]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    alertaselecionado = "Todos", 1,
+			    alertaselecionado = "> que 10%" && desconto > 0.1, 1,
+				alertaselecionado = "> que 20%" && desconto > 0.2, 1,
+				alertaselecionado = "> que 30%" && desconto > 0.3, 1,
+				alertaselecionado = "> que 40%" && desconto > 0.4, 1,
+				alertaselecionado = "> que 50%" && desconto > 0.5, 1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 174d57a5-a254-4fd8-ba73-fe5ae4bc182e
+
+	measure *valor_total_produto =
+			CALCULATE(
+			    SUM(mv_compras_produtos[vlr_total_compra_bruta]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_compras_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_compras_produtos[dat_entrada])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 6586a577-cb24-4801-b5b6-be0325d9442f
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column num_cnpj
+		dataType: string
+		lineageTag: e50c0103-65ca-48c6-8afe-7ead4aec392d
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra
+		dataType: double
+		lineageTag: b81c5966-0a25-4eba-99e2-4bce79d6658e
+		summarizeBy: sum
+		sourceColumn: cod_barra
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dat_entrada
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 1f24743a-c0c1-48eb-988c-c094828654d3
+		summarizeBy: none
+		sourceColumn: dat_entrada
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_atualiza
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 40e23e72-47a9-4faf-9983-d6d6f14f31f3
+		summarizeBy: none
+		sourceColumn: dat_atualiza
+
+		variation Variation
+			isDefault
+			relationship: 0164bf37-155f-4345-8ad5-0c792ee71e5b
+			defaultHierarchy: LocalDateTable_032de7f0-b2d1-4c16-ba59-deada138b78f.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column vlr_total_compra_bruta
+		dataType: double
+		lineageTag: 9f175884-555d-47d8-af9e-c6476d1fde91
+		summarizeBy: sum
+		sourceColumn: vlr_total_compra_bruta
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_total_despacess
+		dataType: double
+		lineageTag: 0b239c03-17f4-485a-869d-5310d8eec53a
+		summarizeBy: sum
+		sourceColumn: vlr_total_despacess
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_total_icmsret
+		dataType: double
+		lineageTag: ee922ec5-02bd-4c80-82db-00ab7f0bd8ba
+		summarizeBy: sum
+		sourceColumn: vlr_total_icmsret
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_total_descto
+		dataType: double
+		lineageTag: 5778d2cf-dccd-4e9e-b668-0a9bf78116c9
+		summarizeBy: sum
+		sourceColumn: vlr_total_descto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_total_nfe
+		dataType: double
+		lineageTag: e4cb7dd6-ed62-4c40-b24b-4732c0fbc83a
+		summarizeBy: sum
+		sourceColumn: vlr_total_nfe
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_produto_compra
+		dataType: int64
+		formatString: 0
+		lineageTag: ae6eec15-c877-4772-9584-067897ae0302
+		summarizeBy: sum
+		sourceColumn: qtd_produto_compra
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra_tratado =
+			
+			VAR padrao = LOOKUPVALUE(
+			    produto_gcp[cod_barra],
+			    produto_gcp[cod_barra],
+			    mv_compras_produtos[cod_barra]
+			)
+			RETURN
+			IF(
+			    ISBLANK(padrao),
+			    0,
+			    padrao
+			)
+		formatString: 0
+		lineageTag: 3a43c63d-557e-46d2-9497-de2aa8b18ae3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_cnpj_forncedor_formatado
+		dataType: int64
+		formatString: 0
+		lineageTag: fdb79b48-a96c-40e9-81cb-d2b2a3bfc8ea
+		summarizeBy: sum
+		sourceColumn: num_cnpj_forncedor_formatado
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_cnpj_fornecedor_tratado =
+			
+			VAR padrao = LOOKUPVALUE(
+			    cadastro_fornecedor[cnpj_fornecedor],
+			    cadastro_fornecedor[cnpj_fornecedor],
+			    mv_compras_produtos[num_cnpj_forncedor_formatado]
+			)
+			RETURN
+			IF(
+			    ISBLANK(padrao),
+			    0,
+			    padrao
+			)
+		dataType: int64
+		formatString: 0
+		lineageTag: dece8768-cfa7-4e2c-b5be-573efade52e1
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_compras_produtos = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_compras_produtos_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(Resultado,{"num_cnpj", "cod_barra", "dat_entrada", "num_cnpj_forncedor_formatado", "dat_atualiza", "vlr_total_compra_bruta", "vlr_total_despacess", "vlr_total_icmsret", "vlr_total_descto", "vlr_total_nfe", "qtd_produto_compra"}),
+				
+				    #"Tipo Alterado" = Table.TransformColumnTypes(
+				        #"Columns removed by Measure Killer",
+				        {{"dat_entrada", type datetime}}
+				    ),
+				
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(
+				        #"Tipo Alterado",
+				        {{"dat_atualiza", type datetime}}
+				    ),
+				
+				    #"Linhas Filtradas" = Table.SelectRows(
+				        #"Tipo Alterado1",
+				        each [dat_entrada] >= RangeStart and [dat_entrada] < RangeEnd
+				    )
+				
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_IsMQueryFoldable = True
+

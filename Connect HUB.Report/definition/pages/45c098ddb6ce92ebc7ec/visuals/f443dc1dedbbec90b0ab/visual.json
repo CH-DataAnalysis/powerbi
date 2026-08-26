@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "f443dc1dedbbec90b0ab",
+  "position": {
+    "x": 652.203947368421,
+    "y": 12.536451402067181,
+    "z": 18000,
+    "height": 487.57625673608828,
+    "width": 825.56205328135138,
+    "tabOrder": 8000
+  },
+  "visualGroup": {
+    "displayName": "menu_retratil",
+    "groupMode": "ScaleMode"
+  }
+}

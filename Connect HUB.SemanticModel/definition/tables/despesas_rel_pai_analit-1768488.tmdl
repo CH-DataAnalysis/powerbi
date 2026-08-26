@@ -1,0 +1,335 @@
+table despesas_rel_pai_analit-1768488
+	lineageTag: cf6132cf-b04e-41b9-a6a5-d19d7bc8a709
+
+	column cod_filial
+		dataType: string
+		lineageTag: 4b6285ab-7b26-4de5-81e0-db8073fee12a
+		summarizeBy: none
+		sourceColumn: cod_filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_cnpj
+		dataType: string
+		lineageTag: fa7a31a5-2572-4d63-a70e-2c733f3fdbaa
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: c004a7c5-0b1e-4f69-bb24-83111400cb47
+		summarizeBy: none
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dinheiro
+		dataType: double
+		lineageTag: f9652c2e-a213-4ee5-b690-85eaab2d9ce9
+		summarizeBy: sum
+		sourceColumn: dinheiro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cheque
+		dataType: double
+		lineageTag: b62f179e-f63b-47dd-a2c3-a75faff366e2
+		summarizeBy: sum
+		sourceColumn: cheque
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cartao
+		dataType: double
+		lineageTag: 0915fa56-e42a-408c-9d46-7d140d3c9f22
+		summarizeBy: sum
+		sourceColumn: cartao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column crediario
+		dataType: double
+		lineageTag: 0a016b4f-735f-422c-bc7c-bc46820f3619
+		summarizeBy: sum
+		sourceColumn: crediario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column convenio
+		dataType: double
+		lineageTag: 123f4740-d5bb-485c-9d63-a7cda7e81cbd
+		summarizeBy: sum
+		sourceColumn: convenio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column venda_extraida_sistema_operacional
+		dataType: double
+		lineageTag: 8b66fc73-01d6-4de0-bd91-107535a72c96
+		summarizeBy: sum
+		sourceColumn: venda_extraida_sistema_operacional
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column desconto_concedido
+		dataType: double
+		lineageTag: fb0e280b-8110-4aab-9286-edc9041b207f
+		summarizeBy: sum
+		sourceColumn: desconto_concedido
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column despesas_com_pagamento_de_mercadorias
+		dataType: double
+		lineageTag: 85b76377-661c-46e5-bd29-c4a70ca2f329
+		summarizeBy: sum
+		sourceColumn: despesas_com_pagamento_de_mercadorias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_juros
+		dataType: double
+		lineageTag: 0778fd29-4911-4599-89d6-7953c339d6ec
+		summarizeBy: sum
+		sourceColumn: valor_juros
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column produtos_vencidos
+		dataType: int64
+		formatString: 0
+		lineageTag: 56f3bb4d-8fa7-40a5-b06c-458063f79bbf
+		summarizeBy: sum
+		sourceColumn: produtos_vencidos
+
+		annotation SummarizationSetBy = Automatic
+
+	column reembolso_fcia_popular
+		dataType: double
+		lineageTag: dd20b769-8a09-4ff2-bbf0-e05d981183bf
+		summarizeBy: sum
+		sourceColumn: reembolso_fcia_popular
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column num_clientes_atendidos
+		dataType: int64
+		formatString: 0
+		lineageTag: 189a374b-03e6-4370-9398-9e55f2bcece1
+		summarizeBy: sum
+		sourceColumn: num_clientes_atendidos
+
+		annotation SummarizationSetBy = Automatic
+
+	column estoque_preco_venda
+		dataType: double
+		lineageTag: d0ab6c81-1fe8-4185-a781-91d9cbe75c46
+		summarizeBy: sum
+		sourceColumn: estoque_preco_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column venda_delivery
+		dataType: double
+		lineageTag: f3101c10-43ad-4105-898a-092237866775
+		summarizeBy: sum
+		sourceColumn: venda_delivery
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column contas_pagar_fornec_aberto
+		dataType: double
+		lineageTag: 91fd8069-fad1-4c6e-9bb9-a63062a943ff
+		summarizeBy: sum
+		sourceColumn: contas_pagar_fornec_aberto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column unidades_vendidas
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ca4542d-3250-44f2-9420-5d59d063e549
+		summarizeBy: sum
+		sourceColumn: unidades_vendidas
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_colaboradores
+		dataType: int64
+		formatString: 0
+		lineageTag: aad37cdf-cec3-40ba-ad52-4144088a45d0
+		summarizeBy: sum
+		sourceColumn: num_colaboradores
+
+		annotation SummarizationSetBy = Automatic
+
+	column m2_area_venda
+		dataType: double
+		lineageTag: e50a9150-be70-41e3-9205-bd85df1d61df
+		summarizeBy: sum
+		sourceColumn: m2_area_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_propagados
+		dataType: double
+		lineageTag: 84a0ba2c-1979-4a18-b1b4-2097b2ba8b52
+		summarizeBy: sum
+		sourceColumn: valor_propagados
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_genericos
+		dataType: double
+		lineageTag: e65b8c84-ae73-454d-92c0-f789448825fd
+		summarizeBy: sum
+		sourceColumn: valor_genericos
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_similares
+		dataType: double
+		lineageTag: 26466ce1-7cfe-4ce0-8ea9-25aa047dff2c
+		summarizeBy: sum
+		sourceColumn: valor_similares
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_perfumarias
+		dataType: double
+		lineageTag: 415f2c1a-ab64-4673-96de-1ba237ccb823
+		summarizeBy: sum
+		sourceColumn: valor_perfumarias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column outros_valores
+		dataType: double
+		lineageTag: 1f054b9c-1a0a-4b04-8761-e3834d77c6e5
+		summarizeBy: sum
+		sourceColumn: outros_valores
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_sem_classificacao
+		dataType: double
+		lineageTag: ccb4ef9a-d7de-4ae0-bbde-ed1b9d3ba2eb
+		summarizeBy: sum
+		sourceColumn: valor_sem_classificacao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_propagados
+		dataType: int64
+		formatString: 0
+		lineageTag: da22efee-4065-4d81-af7f-1bf3da8fc3bf
+		summarizeBy: sum
+		sourceColumn: qtd_propagados
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd_genericos
+		dataType: int64
+		formatString: 0
+		lineageTag: 31d36544-788d-439c-97b5-c10d980ef08f
+		summarizeBy: sum
+		sourceColumn: qtd_genericos
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd_similares
+		dataType: int64
+		formatString: 0
+		lineageTag: b4e95843-9569-4f8e-bba8-d59006045f08
+		summarizeBy: sum
+		sourceColumn: qtd_similares
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd_perfumarias
+		dataType: int64
+		formatString: 0
+		lineageTag: fc221c53-e911-4a65-8776-9b60ba70342f
+		summarizeBy: sum
+		sourceColumn: qtd_perfumarias
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd_outros
+		dataType: int64
+		formatString: 0
+		lineageTag: 7dd6a2de-7582-4866-b71e-76298c3c9327
+		summarizeBy: sum
+		sourceColumn: qtd_outros
+
+		annotation SummarizationSetBy = Automatic
+
+	column qtd_sem_classificacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 0caed0e3-0a8c-44df-a443-48972c0e25a1
+		summarizeBy: sum
+		sourceColumn: qtd_sem_classificacao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition despesas_rel_pai_analit-1768488 = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\PowerBI\despesas_rel_pai_analit.xlsx"), null, true),
+				    #"despesas_rel_pai_analit-1768488_Sheet" = Fonte{[Item="despesas_rel_pai_analit-1768488",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"despesas_rel_pai_analit-1768488_Sheet", [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"mes", type date}, {"dinheiro", type number}, {"cheque", type number}, {"cartao", type number}, {"crediario", type number}, {"convenio", type number}, {"venda_extraida_sistema_operacional", type number}, {"desconto_concedido", type number}, {"despesas_com_pagamento_de_mercadorias", type number}, {"valor_juros", type number}, {"produtos_vencidos", Int64.Type}, {"reembolso_fcia_popular", type number}, {"num_clientes_atendidos", Int64.Type}, {"estoque_preco_venda", type number}, {"venda_delivery", type number}, {"contas_pagar_fornec_aberto", type number}, {"unidades_vendidas", Int64.Type}, {"num_colaboradores", Int64.Type}, {"m2_area_venda", type number}, {"valor_propagados", type number}, {"valor_genericos", type number}, {"valor_similares", type number}, {"valor_perfumarias", type number}, {"outros_valores", type number}, {"valor_sem_classificacao", type number}, {"qtd_propagados", Int64.Type}, {"qtd_genericos", Int64.Type}, {"qtd_similares", Int64.Type}, {"qtd_perfumarias", Int64.Type}, {"qtd_outros", Int64.Type}, {"qtd_sem_classificacao", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

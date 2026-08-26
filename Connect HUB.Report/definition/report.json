@@ -1,0 +1,719 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY24SU10",
+      "reportVersionAtImport": {
+        "visual": "1.8.99",
+        "report": "2.0.99",
+        "page": "1.3.99"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "3a170103100208e5e5ce",
+        "displayName": "Ano",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "calendario"
+              }
+            },
+            "Property": "ano"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "a8c777398b93b76ad52a",
+        "displayName": "Ano/mês",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "calendario"
+              }
+            },
+            "Property": "ano_mes"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "780c0fe875db6b0eb0ae",
+        "displayName": "Data",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "calendario"
+              }
+            },
+            "Property": "Date"
+          }
+        },
+        "type": "RelativeDate",
+        "howCreated": "User"
+      },
+      {
+        "name": "298b57054d00649adc0a",
+        "displayName": "CNPJ",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "num_cnpj"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "1d023ead47b70560d037",
+        "displayName": "Nome loja",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "nom_farmacia"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "4b2b68765b06689782e1",
+        "displayName": "Maturidade",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "status_loja"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "5aaff369e71d7ec2ceaa",
+        "displayName": "Grupo",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "grupo_fcia"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "6cbbffd4e187389030cd",
+        "displayName": "Código de barras",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "cod_barra_tratado"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "3e49e5e40a4b100449b6",
+        "displayName": "Produto",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "produto"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "529e4f8079be188400de",
+        "displayName": "Laboratório",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "laboratorio"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "47b419050ba799b1973b",
+        "displayName": "Área da farmácia",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "area_farmacia"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "6882af251632fb2b6547",
+        "displayName": "Categoria",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "nome_categoria"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "6d81c7b0610cac72e812",
+        "displayName": "Vendedor",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_vendas_produtos"
+              }
+            },
+            "Property": "cod_nom_vendedor"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "b874a6e5a25e6827a45b",
+        "displayName": "Estado",
+        "ordinal": 13,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "geolocalizacao"
+              }
+            },
+            "Property": "UF_Sigla"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "ad9eab3287858b4c0149",
+        "displayName": "Mesorregião",
+        "ordinal": 14,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "geolocalizacao"
+              }
+            },
+            "Property": "Meso_Regiao"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "ae104a6119f4ef3bc9bf",
+        "displayName": "Microrregião",
+        "ordinal": 15,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "geolocalizacao"
+              }
+            },
+            "Property": "Micro_Regiao"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "4d2b63611df363abf034",
+        "displayName": "Município",
+        "ordinal": 16,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "geolocalizacao"
+              }
+            },
+            "Property": "Municipio"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "47c7012b2c383fd0b557",
+        "displayName": "Associação",
+        "ordinal": 17,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "codigo_rede"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "1309c49bc6512443589b",
+        "displayName": "Sistema",
+        "ordinal": 18,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "sistema"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "simpleImageEBC4593F96F1425FB3D84C5BF02B5075",
+    "LinearGauge1450736844786",
+    "linearGauge8C105C35DD8E4826903041C089AF454F",
+    "sparklines50DB3783432B40A69C0B91926CE74CD9",
+    "PBI_CV_25997FEB_F466_44FA_B562_AC4063283C4C",
+    "annotatedBarByQueryOn10945130E24B4D6AAD5741C12ECB533D",
+    "routeMap"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY24SU10",
+          "path": "BaseThemes/CY24SU10.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "_rea_da_farm_cia35770668426590313.svg",
+          "path": "_rea_da_farm_cia35770668426590313.svg",
+          "type": "Image"
+        },
+        {
+          "name": "alert-sign05660158971819973.png",
+          "path": "alert-sign05660158971819973.png",
+          "type": "Image"
+        },
+        {
+          "name": "alimentos4328867123961637.png",
+          "path": "alimentos4328867123961637.png",
+          "type": "Image"
+        },
+        {
+          "name": "alvo2214259138951864.png",
+          "path": "alvo2214259138951864.png",
+          "type": "Image"
+        },
+        {
+          "name": "An_lise_de_cresc._vendas36213483041910943.svg",
+          "path": "An_lise_de_cresc._vendas36213483041910943.svg",
+          "type": "Image"
+        },
+        {
+          "name": "An_lise_de_ruptura9007459109866455.svg",
+          "path": "An_lise_de_ruptura9007459109866455.svg",
+          "type": "Image"
+        },
+        {
+          "name": "An_lise_mercado6037210579377706.svg",
+          "path": "An_lise_mercado6037210579377706.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Bem_vindo_An_lise_mercado027040940008968062.svg",
+          "path": "Bem_vindo_An_lise_mercado027040940008968062.svg",
+          "type": "Image"
+        },
+        {
+          "name": "checked4126651888777336.png",
+          "path": "checked4126651888777336.png",
+          "type": "Image"
+        },
+        {
+          "name": "checkout5652011576735974.png",
+          "path": "checkout5652011576735974.png",
+          "type": "Image"
+        },
+        {
+          "name": "close_(1)4547862754491706.png",
+          "path": "close_(1)4547862754491706.png",
+          "type": "Image"
+        },
+        {
+          "name": "connect_hub6014459131103548.png",
+          "path": "connect_hub6014459131103548.png",
+          "type": "Image"
+        },
+        {
+          "name": "Controle_de_capta__o6732046327496872.svg",
+          "path": "Controle_de_capta__o6732046327496872.svg",
+          "type": "Image"
+        },
+        {
+          "name": "conveniencia9235575575605353.png",
+          "path": "conveniencia9235575575605353.png",
+          "type": "Image"
+        },
+        {
+          "name": "cuidado_infantil8369464608017936.png",
+          "path": "cuidado_infantil8369464608017936.png",
+          "type": "Image"
+        },
+        {
+          "name": "cuidado_paciente2693365721488299.png",
+          "path": "cuidado_paciente2693365721488299.png",
+          "type": "Image"
+        },
+        {
+          "name": "Curva_ABC4213206653923667.svg",
+          "path": "Curva_ABC4213206653923667.svg",
+          "type": "Image"
+        },
+        {
+          "name": "delete-button18159580363894112.png",
+          "path": "delete-button18159580363894112.png",
+          "type": "Image"
+        },
+        {
+          "name": "dermatologico19636142321052397.png",
+          "path": "dermatologico19636142321052397.png",
+          "type": "Image"
+        },
+        {
+          "name": "dermocosmeticos07985536616783073.png",
+          "path": "dermocosmeticos07985536616783073.png",
+          "type": "Image"
+        },
+        {
+          "name": "Desconto_Compra6580224120813184.svg",
+          "path": "Desconto_Compra6580224120813184.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Desconto_venda03404409475383707.svg",
+          "path": "Desconto_venda03404409475383707.svg",
+          "type": "Image"
+        },
+        {
+          "name": "exclamacao10611828822507485.png",
+          "path": "exclamacao10611828822507485.png",
+          "type": "Image"
+        },
+        {
+          "name": "farmacia8026423391025722.png",
+          "path": "farmacia8026423391025722.png",
+          "type": "Image"
+        },
+        {
+          "name": "Gerencial_Compras461496214514174.svg",
+          "path": "Gerencial_Compras461496214514174.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Gerencial_vendas0005498460879774791.svg",
+          "path": "Gerencial_vendas0005498460879774791.svg",
+          "type": "Image"
+        },
+        {
+          "name": "higiene_beleza_perfumaria08449550965063879.png",
+          "path": "higiene_beleza_perfumaria08449550965063879.png",
+          "type": "Image"
+        },
+        {
+          "name": "icon_barra39324487081741566.png",
+          "path": "icon_barra39324487081741566.png",
+          "type": "Image"
+        },
+        {
+          "name": "icon_caixa5754709663721372.png",
+          "path": "icon_caixa5754709663721372.png",
+          "type": "Image"
+        },
+        {
+          "name": "icon_calendar5368404349254385.png",
+          "path": "icon_calendar5368404349254385.png",
+          "type": "Image"
+        },
+        {
+          "name": "icon_database2415212250014287.png",
+          "path": "icon_database2415212250014287.png",
+          "type": "Image"
+        },
+        {
+          "name": "icon_mapa2972120701299924.png",
+          "path": "icon_mapa2972120701299924.png",
+          "type": "Image"
+        },
+        {
+          "name": "icon_seta_crescimento21344350444714388.png",
+          "path": "icon_seta_crescimento21344350444714388.png",
+          "type": "Image"
+        },
+        {
+          "name": "info_(1)7587119279303896.png",
+          "path": "info_(1)7587119279303896.png",
+          "type": "Image"
+        },
+        {
+          "name": "LOGO_TRIER_SISTEMAS1073756419555022.png",
+          "path": "LOGO_TRIER_SISTEMAS1073756419555022.png",
+          "type": "Image"
+        },
+        {
+          "name": "Margem_de_lucro10316756765611901.svg",
+          "path": "Margem_de_lucro10316756765611901.svg",
+          "type": "Image"
+        },
+        {
+          "name": "mark4915448697522936.png",
+          "path": "mark4915448697522936.png",
+          "type": "Image"
+        },
+        {
+          "name": "nutricosmeticos11820702547282769.png",
+          "path": "nutricosmeticos11820702547282769.png",
+          "type": "Image"
+        },
+        {
+          "name": "otc_mip2854936133111532.png",
+          "path": "otc_mip2854936133111532.png",
+          "type": "Image"
+        },
+        {
+          "name": "Peformance_vendedores45252574885847363.svg",
+          "path": "Peformance_vendedores45252574885847363.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Performance_loja5831478110805729.svg",
+          "path": "Performance_loja5831478110805729.svg",
+          "type": "Image"
+        },
+        {
+          "name": "prescricao867431913654306.png",
+          "path": "prescricao867431913654306.png",
+          "type": "Image"
+        },
+        {
+          "name": "Produtos_sem_vendas_h__mais_de42375867032042125.svg",
+          "path": "Produtos_sem_vendas_h__mais_de42375867032042125.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Prospec__o7824396598030193.svg",
+          "path": "Prospec__o7824396598030193.svg",
+          "type": "Image"
+        },
+        {
+          "name": "saude_sexual_masculina3515437979265914.png",
+          "path": "saude_sexual_masculina3515437979265914.png",
+          "type": "Image"
+        },
+        {
+          "name": "seta_crescimento7175541059029232.png",
+          "path": "seta_crescimento7175541059029232.png",
+          "type": "Image"
+        },
+        {
+          "name": "seta_decrescente865721567528652.png",
+          "path": "seta_decrescente865721567528652.png",
+          "type": "Image"
+        },
+        {
+          "name": "Sugest_o_de_compra39193537734759765.svg",
+          "path": "Sugest_o_de_compra39193537734759765.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Sugest_o_de_transfer_ncia8124022045779749.svg",
+          "path": "Sugest_o_de_transfer_ncia8124022045779749.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tela_informativa9570225928121844.svg",
+          "path": "Tela_informativa9570225928121844.svg",
+          "type": "Image"
+        },
+        {
+          "name": "user19445488128388666.png",
+          "path": "user19445488128388666.png",
+          "type": "Image"
+        },
+        {
+          "name": "Vendas_PBM7891499224913526.svg",
+          "path": "Vendas_PBM7891499224913526.svg",
+          "type": "Image"
+        },
+        {
+          "name": "warning34157151437508393.png",
+          "path": "warning34157151437508393.png",
+          "type": "Image"
+        },
+        {
+          "name": "warning5389581098601012.png",
+          "path": "warning5389581098601012.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "useDefaultAggregateDisplayName": true
+  }
+}

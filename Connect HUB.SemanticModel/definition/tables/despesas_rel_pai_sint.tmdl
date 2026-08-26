@@ -1,0 +1,121 @@
+table despesas_rel_pai_sint
+	lineageTag: 7b4f0068-d62f-4b42-9c1a-2b90a949fed9
+
+	column cod_filial
+		dataType: string
+		lineageTag: b62ba40d-4a5b-4ed7-b319-65e229ea5e3d
+		summarizeBy: none
+		sourceColumn: cod_filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_cnpj
+		dataType: string
+		lineageTag: 2a3c69ec-423f-4012-8c52-05db0b692097
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_referencia
+		dataType: string
+		lineageTag: 72ba8a5c-e726-4319-a5d7-c093dbd06cb8
+		summarizeBy: none
+		sourceColumn: codigo_referencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c155f795-2f3d-4f92-ac46-113639c42c1d
+		summarizeBy: none
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column cod_contasint
+		dataType: string
+		lineageTag: 70286cb5-3a9c-4285-b995-9b78cdb5af71
+		summarizeBy: none
+		sourceColumn: cod_contasint
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_mascara
+		dataType: string
+		lineageTag: 9a66eb89-1544-4b2b-9f28-c9db09f6bf93
+		summarizeBy: none
+		sourceColumn: num_mascara
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_despesa
+		dataType: string
+		lineageTag: fc61547f-cede-4e34-91ad-1d3c28f896db
+		summarizeBy: none
+		sourceColumn: cod_despesa
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao_despesa
+		dataType: string
+		lineageTag: 73aea257-9c28-4eb4-b3a2-a938842745ff
+		summarizeBy: none
+		sourceColumn: descricao_despesa
+
+		annotation SummarizationSetBy = Automatic
+
+	column sub_descricao_despesa
+		dataType: string
+		lineageTag: 27bbc97a-cd9e-4444-a2b4-6796df911ad1
+		summarizeBy: none
+		sourceColumn: sub_descricao_despesa
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_contafb
+		dataType: string
+		lineageTag: 840b6211-bd96-4b40-90f7-f2752157f7cc
+		summarizeBy: none
+		sourceColumn: nom_contafb
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_pagar
+		dataType: double
+		lineageTag: 03cae01e-8ba5-4333-b189-b872804296d5
+		summarizeBy: sum
+		sourceColumn: valor_pagar
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_pago
+		dataType: double
+		lineageTag: e6c87ca3-5e7e-4a27-bb48-7acd6251d344
+		summarizeBy: sum
+		sourceColumn: valor_pago
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition despesas_rel_pai_sint = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\PowerBI\despesas_rel_pai_sint.xlsx"), null, true),
+				    despesas_rel_pai_sint_Sheet = Fonte{[Item="despesas_rel_pai_sint",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(despesas_rel_pai_sint_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"mes", type date}, {"valor_pagar", type number}, {"valor_pago", type number}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

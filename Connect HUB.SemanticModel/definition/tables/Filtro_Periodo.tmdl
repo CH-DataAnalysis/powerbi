@@ -1,0 +1,42 @@
+table Filtro_Periodo
+	lineageTag: d200e6f6-bf7e-4837-8e9b-7548f70f0a85
+
+	column Date
+		formatString: General Date
+		lineageTag: cb82f226-7092-4fad-a20b-5e4782b429e1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: a3ac5144-4597-4c9a-91a5-5c899888e816
+			defaultHierarchy: LocalDateTable_4b9edf5e-22cd-4fed-8230-5859e1970869.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnoMes
+		lineageTag: edde308d-56b5-493a-84d3-592413d00faf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnoMes]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Filtro_Periodo = calculated
+		mode: import
+		source = ```
+				
+				
+				ADDCOLUMNS(
+				
+				    CALENDAR(DATE(2024,1,1), TODAY()),
+				
+				    "AnoMes", FORMAT([Date], "YYYY-MM")
+				
+				)
+				 
+				```
+
+	annotation PBI_Id = df5626ec2a69470887fe7b9c9362b0e6
+

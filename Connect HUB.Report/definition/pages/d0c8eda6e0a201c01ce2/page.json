@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "d0c8eda6e0a201c01ce2",
+  "displayName": "info_produtos_sem_vendas_qtd_total_comprada",
+  "displayOption": "ActualSize",
+  "height": 95,
+  "width": 380,
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

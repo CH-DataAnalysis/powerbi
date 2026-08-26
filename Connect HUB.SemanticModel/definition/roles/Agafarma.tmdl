@@ -1,0 +1,9 @@
+role Agafarma
+	modelPermission: read
+
+	tablePermission logo_associacao = [codigo_rede] == 1
+
+	tablePermission tabela_cadastro_lojas = [codigo_rede] == 1 && [num_cnpj] <> "94817921000195"
+
+	annotation PBI_Id = a130eac498314adcaf16621bc85d43a8
+

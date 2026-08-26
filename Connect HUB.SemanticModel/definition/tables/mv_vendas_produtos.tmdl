@@ -1,0 +1,697 @@
+table mv_vendas_produtos
+	lineageTag: 823a7b57-ccb9-4d24-be4f-d865a3fd1478
+
+	refreshPolicy
+		policyType: basic
+		rollingWindowGranularity: year
+		rollingWindowPeriods: 2
+		incrementalGranularity: day
+		incrementalPeriods: 15
+		pollingExpression = let Maxdat_atualiza = List.Max(mv_vendas_produtos[dat_atualiza]), accountForNull = if Maxdat_atualiza = null then #datetime(1901, 01, 01, 00, 00, 00) else Maxdat_atualiza in accountForNull
+		sourceExpression =
+			let
+			    NomeTabela = "mv_vendas_produtos_" & Text.From(cliente),
+			
+			    Fonte = AmazonRedshift.Database(
+			        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+			        "business_connect"
+			    ),
+			
+			    associacao = Fonte{[Name="associacao"]}[Data],
+			
+			    Resultado = associacao{[Name=NomeTabela]}[Data],
+			
+			    #"Tipo Alterado" = Table.TransformColumnTypes(
+			        Resultado,
+			        {{"dat_emissao", type datetime}}
+			    ),
+			
+			    #"Linhas Filtradas" = Table.SelectRows(
+			        #"Tipo Alterado",
+			        each [dat_emissao] >= RangeStart and [dat_emissao] < RangeEnd
+			    ),
+			
+			    #"Tipo Alterado1" = Table.TransformColumnTypes(
+			        #"Linhas Filtradas",
+			        {{"dat_atualiza", type datetime}}
+			    )
+			
+			in
+			    #"Tipo Alterado1"
+
+	measure *venda_liquida_h = ```
+			CALCULATE(SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			)
+			 
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 43650bbb-47c4-488a-9ee4-77f05eb91e2f
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *ticket_medio_atual_h =
+			
+			VAR TotalVendas =
+			    CALCULATE(
+			        SUM(mv_vendas_produtos[vlr_total_venda]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			    )
+			VAR TotalAtendimentos =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			    )
+			RETURN
+			DIVIDE(TotalVendas, TotalAtendimentos, 0)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 54d5b11b-0f08-41d3-82e5-69d5382c29c5
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure **venda_liquida =
+			CALCULATE(
+			SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 9f21f057-bb1e-460b-a411-202e9fccb42f
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *%margem_lucro_bruta =
+			
+			COALESCE(
+			CALCULATE(
+			((SUM(mv_vendas_produtos[vlr_total_venda]) - sum(mv_vendas_produtos[vlr_custo_aquisicao])) / SUM(mv_vendas_produtos[vlr_total_venda])),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			),
+			0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d43aa507-1e2f-4a5b-a3f3-91d50210a691
+
+	measure *%valor_total_descto_venda =
+			
+			CALCULATE(
+			DIVIDE(
+			SUM('mv_vendas_produtos'[vlr_descto]), sum(mv_vendas_produtos[vlr_total_venda_bruta])),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f211929d-7e6d-4eec-a2e6-3c10f4e159ad
+
+	measure *lucro_bruto =
+			
+			CALCULATE(
+			SUM(mv_vendas_produtos[vlr_total_venda]) - SUM(mv_vendas_produtos[vlr_custo_aquisicao]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: e16a92d4-f93f-4cba-9b87-3b57197df7de
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *qtd_atendimento_venda = ```
+			
+			VAR QtdeVendas =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente])
+			    )
+			 
+			VAR QtdeDevolucoes =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente])
+			    )
+			 
+			RETURN
+			    QtdeVendas - QtdeDevolucoes
+			```
+		formatString: #,0
+		lineageTag: 2c94450a-53b4-45c5-b0f5-2ffe785f1d0b
+
+	measure *qtd_produto_venda =
+			CALCULATE(
+			SUM(mv_vendas_produtos[qtd_produto_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			)
+		formatString: #,0
+		lineageTag: f8bd5c95-b53b-47d7-b182-750f43c740d7
+
+	measure *sku_venda_ano_anterior = ```
+			
+			VAR DataAtual =
+			    TODAY()
+			
+			VAR AnoAnterior =
+			    YEAR(DataAtual) - 1
+			
+			VAR DataInicialAnoAnterior =
+			    DATE(AnoAnterior, 1, 1)
+			
+			VAR DataFinalAnoAnterior =
+			    DATE(AnoAnterior, MONTH(DataAtual), DAY(DataAtual))
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(mv_vendas_produtos[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),    
+			    REMOVEFILTERS(calendario),
+			    calendario[Date] >= DataInicialAnoAnterior &&
+			    calendario[Date] <= DataFinalAnoAnterior
+			)
+			```
+		formatString: 0
+		lineageTag: 5525c13f-02f3-42b4-ad35-ac5712f92d79
+
+	measure *sku_venda_ano_atual =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(mv_vendas_produtos[cod_barra]),
+			    REMOVEFILTERS(calendario),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    calendario[ano] = AnoAtual
+			)
+		formatString: 0
+		lineageTag: 1b15c53e-33c2-4c42-935e-ad69e217f4e8
+
+	measure *valor_custo_aquisicao =
+			CALCULATE(
+			SUM(mv_vendas_produtos[vlr_custo_aquisicao]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 4b4748a6-075a-414f-a3e2-d8e839d7f3f5
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *valor_desconto_venda =
+			CALCULATE(
+			SUM(mv_vendas_produtos[vlr_descto]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 29a5425a-2033-45fa-92e8-f1fb7cf33d09
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure filtro_alerta_desconto_venda =
+			
+			VAR alertaselecionado = SELECTEDVALUE('alerta_desconto_venda'[alerta], "Todos")
+			VAR desconto = [*%valor_total_descto_venda]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    alertaselecionado = "Todos", 1,
+			    alertaselecionado = "> que 10%" && desconto > 0.1, 1,
+				alertaselecionado = "> que 20%" && desconto > 0.2, 1,
+				alertaselecionado = "> que 30%" && desconto > 0.3, 1,
+				alertaselecionado = "> que 40%" && desconto > 0.4, 1,
+				alertaselecionado = "> que 50%" && desconto > 0.5, 1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 735c57af-5157-4849-a151-03382b1a6e65
+
+	measure filtro_alerta_margem_lucro_bruta =
+			
+			VAR alertaselecionado = SELECTEDVALUE('alerta_margem_lucro_bruta'[alerta], "Todos")
+			VAR margem = [*%margem_lucro_bruta]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    alertaselecionado = "Todos", 1,
+			    alertaselecionado = "< que 0%" && margem < 0, 1,
+			    alertaselecionado = "< que 10%" && margem < 0.1, 1,
+				alertaselecionado = "< que 20%" && margem < 0.2, 1,
+				alertaselecionado = "< que 30%" && margem < 0.3, 1,
+				alertaselecionado = "< que 40%" && margem < 0.4, 1,
+				alertaselecionado = "< que 50%" && margem < 0.5, 1,
+			    alertaselecionado = "> que 50%" && margem > 0.5, 1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 905a8b1d-e327-409b-b0bd-bf05acb07eb2
+
+	measure *%participacao = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			        SUM(mv_vendas_produtos[vlr_total_venda]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao])
+			    ),
+			    CALCULATE(
+			        SUM(mv_vendas_produtos[vlr_total_venda]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        ALL(produto_gcp),
+			        ALL(calendario)
+			    )
+			)
+			 
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 544f8414-1d18-457a-857e-03bc5e005b9e
+
+	measure filtro_alerta_margem_lucro_bruta_2 =
+			
+			VAR alertaselecionado = SELECTEDVALUE('alerta_margem_lucro_bruta_2'[alerta], "Todos")
+			VAR margem = [*%margem_lucro_bruta]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    alertaselecionado = "Todos", 1,
+			    alertaselecionado = "Margem negativa" && margem < 0, 1,
+			    alertaselecionado = "Margem positiva" && margem > 0, 1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 5ac09a2d-6585-471d-bd4a-b77bb8aabf50
+
+	measure **%cmv_liquido =
+			
+			CALCULATE(
+			    DIVIDE(
+			    SUM(mv_vendas_produtos[vlr_custo_aquisicao]),
+			    SUM(mv_vendas_produtos[vlr_total_venda])
+			),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6694f084-3feb-43e4-a429-bd581bd86485
+
+	measure *media_itens =
+			
+			CALCULATE(
+			    DIVIDE(
+			        SUM(mv_vendas_produtos[qtd_produto_venda]),
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento])
+			    ),
+			    USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			)
+		lineageTag: 9dad4687-e6db-4351-ac96-1e29ae45c873
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *preco_medio_venda = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			        SUM(mv_vendas_produtos[vlr_total_venda]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente])
+			    ),
+			    CALCULATE(
+			        SUM(mv_vendas_produtos[qtd_produto_venda]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente])
+			    )
+			)
+			
+			```
+		lineageTag: 8d9f3ca0-66c5-47c7-a4f5-311b08d77140
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **venda_bruta =
+			CALCULATE(
+			SUM(mv_vendas_produtos[vlr_total_venda_bruta]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: e12451a5-62cb-4946-a7cd-2fd063d90e8f
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column num_cnpj
+		dataType: string
+		lineageTag: c403ba81-0be1-462f-882c-176f26044930
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column tip_venda
+		dataType: string
+		lineageTag: d61d82c1-e6ee-4842-99a8-e1ea9a3907d0
+		summarizeBy: none
+		sourceColumn: tip_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_nota
+		dataType: int64
+		formatString: 0
+		lineageTag: 0613413d-1ef2-4726-a04c-beaceb6d7a72
+		summarizeBy: sum
+		sourceColumn: num_nota
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_parceiro
+		dataType: int64
+		formatString: 0
+		lineageTag: 59910b99-8e0d-4266-876e-f94440405200
+		summarizeBy: none
+		sourceColumn: cod_parceiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra
+		dataType: double
+		lineageTag: b7cc2ac5-7af9-4655-91ba-6f0796244012
+		summarizeBy: sum
+		sourceColumn: cod_barra
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dat_emissao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 46ed11fb-620b-4c74-b679-0078efea60e6
+		summarizeBy: none
+		sourceColumn: dat_emissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column hor_emissao
+		dataType: string
+		lineageTag: 96a45eb3-f880-4636-af7c-c07fa59350c4
+		summarizeBy: none
+		sourceColumn: hor_emissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_vendedor_ivend
+		dataType: int64
+		formatString: 0
+		lineageTag: 19584b93-da09-473a-ab87-ede8bb302c98
+		summarizeBy: sum
+		sourceColumn: cod_vendedor_ivend
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_vendedor_ivend
+		dataType: string
+		lineageTag: 3fedd392-6259-4eca-a666-082db4f1f7e9
+		summarizeBy: none
+		sourceColumn: nom_vendedor_ivend
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_cliente
+		dataType: string
+		lineageTag: f94de307-f8c4-489d-8093-68b80d5cc60d
+		summarizeBy: none
+		sourceColumn: cod_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_cliente
+		dataType: string
+		lineageTag: be1d0968-e7b0-4c63-84ae-7483e227e193
+		summarizeBy: none
+		sourceColumn: nom_cliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column vlr_total_venda
+		dataType: double
+		lineageTag: cfc7885b-13c6-4099-8ab6-42756ae78717
+		summarizeBy: sum
+		sourceColumn: vlr_total_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_produto_venda
+		dataType: double
+		lineageTag: cde98f93-f8c1-45da-919c-e1482dec527b
+		summarizeBy: sum
+		sourceColumn: qtd_produto_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_descto
+		dataType: double
+		lineageTag: 22a3e77b-472e-4798-af7a-ee4343694256
+		summarizeBy: sum
+		sourceColumn: vlr_descto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_custo_aquisicao
+		dataType: double
+		lineageTag: f41b1686-ffd6-4bae-a531-629fd28834b7
+		summarizeBy: sum
+		sourceColumn: vlr_custo_aquisicao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id_atendimento
+		dataType: double
+		formatString: 0
+		lineageTag: 71aa4b57-398a-431c-8a5e-ba1ff991989b
+		summarizeBy: sum
+		sourceColumn: id_atendimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_atualiza
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1c9957cb-fad5-4071-9bf1-0501788b027c
+		summarizeBy: none
+		sourceColumn: dat_atualiza
+
+		variation Variation
+			isDefault
+			relationship: ec9d6f9f-3b3e-42a7-a2ca-ef23ab70d6e0
+			defaultHierarchy: LocalDateTable_928f80f0-85bb-41bb-9a97-809475987576.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column max_data_atualizacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 792739d1-3a4c-428f-926d-c9103b1c68ff
+		summarizeBy: none
+		sourceColumn: max_data_atualizacao
+
+		variation Variation
+			isDefault
+			relationship: b5a450b1-5c9f-44e6-acac-f895ee98a257
+			defaultHierarchy: LocalDateTable_f3d2a559-6d28-4afc-919c-26d83979e346.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Hora_Num = VALUE(LEFT([hor_emissao], 2))
+		dataType: int64
+		formatString: 0
+		lineageTag: d4990d22-dd17-4341-bc93-b6238d2c1b76
+		summarizeBy: sum
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column vlr_total_venda_bruta = mv_vendas_produtos[vlr_total_venda] + mv_vendas_produtos[vlr_descto]
+		lineageTag: a48f2536-575a-408a-9501-e4fd16bb9d21
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cod_barra_tratado =
+			
+			VAR padrao = LOOKUPVALUE(
+			    produto_gcp[cod_barra],
+			    produto_gcp[cod_barra],
+			    mv_vendas_produtos[cod_barra]
+			)
+			RETURN
+			IF(
+			    ISBLANK(padrao),
+			    0,
+			    padrao
+			)
+		formatString: 0
+		lineageTag: 264af45e-0b73-4498-b0f5-678491db59a0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_nom_vendedor =
+			mv_vendas_produtos[cod_vendedor_ivend]&" - "&mv_vendas_produtos[nom_vendedor_ivend]
+			--cod_nom_vendedor = vendas_produtos[cod_vendedor_ivend]&" - "&LEFT(vendas_produtos[nom_vendedor_ivend],2)&"*******"&RIGHT(vendas_produtos[nom_vendedor_ivend],2)
+		lineageTag: 00af6b3c-fc58-4c2e-8818-ae193ea56f6d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnoMes = YEAR(mv_vendas_produtos[dat_emissao]) * 100 + MONTH(mv_vendas_produtos[dat_emissao])
+		formatString: 0
+		lineageTag: 7e244f91-82ea-4be0-a144-3eefefffd136
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_cliente_mascarado = LEFT([nom_cliente],2) & "**********" & RIGHT([nom_cliente],2)
+		lineageTag: 1f5b3861-1c4a-46be-bdd5-f4936b7712c1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column associacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 020c91c8-9407-4b37-bc44-407a57aeab7e
+		summarizeBy: sum
+		sourceColumn: associacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column flg_itemparceiro
+		dataType: string
+		lineageTag: 7111c93a-0709-426d-a395-65a80d91c6b0
+		summarizeBy: none
+		sourceColumn: flg_itemparceiro
+
+		annotation SummarizationSetBy = Automatic
+
+	column venda_delivery
+		dataType: string
+		lineageTag: 1f5e7f94-a950-4779-8d71-cfb109f39876
+		summarizeBy: none
+		sourceColumn: venda_delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column flg_ecommerce
+		dataType: string
+		lineageTag: 677fdc20-8f5d-44da-848d-2a6d44ea2158
+		summarizeBy: none
+		sourceColumn: flg_ecommerce
+
+		annotation SummarizationSetBy = Automatic
+
+	column flg_ifood
+		dataType: string
+		lineageTag: 8cb4c8fe-0c1e-4735-b4dd-403eacaba9c1
+		summarizeBy: none
+		sourceColumn: flg_ifood
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_cpf_vendedor_ivend
+		dataType: string
+		lineageTag: 8b8f3718-d731-49b8-acbe-5ce553358b96
+		summarizeBy: none
+		sourceColumn: num_cpf_vendedor_ivend
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_condpag
+		dataType: string
+		lineageTag: 2509f786-2b1f-4e0d-98fe-b9f43ae4a5bb
+		summarizeBy: none
+		sourceColumn: nom_condpag
+
+		annotation SummarizationSetBy = Automatic
+
+	column sistema
+		dataType: string
+		lineageTag: 1585c8e2-7601-427b-932b-e685a9243eca
+		summarizeBy: none
+		sourceColumn: sistema
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_vendas_produtos = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_vendas_produtos_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Tipo Alterado" = Table.TransformColumnTypes(
+				        Resultado,
+				        {{"dat_emissao", type datetime}}
+				    ),
+				
+				    #"Linhas Filtradas" = Table.SelectRows(
+				        #"Tipo Alterado",
+				        each [dat_emissao] >= RangeStart and [dat_emissao] < RangeEnd
+				    ),
+				
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(
+				        #"Linhas Filtradas",
+				        {{"dat_atualiza", type datetime}}
+				    )
+				
+				in
+				    #"Tipo Alterado1"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_IsMQueryFoldable = True
+

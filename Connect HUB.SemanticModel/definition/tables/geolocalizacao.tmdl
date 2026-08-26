@@ -1,0 +1,77 @@
+table geolocalizacao
+	lineageTag: d644a42c-cd78-40bd-969e-5c8a24b7d533
+
+	column Meso_Cod
+		dataType: int64
+		formatString: 0
+		lineageTag: 5753dfe9-2ad2-4d19-a595-a3164251dca8
+		summarizeBy: none
+		sourceColumn: Meso_Cod
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_municipio_filial
+		dataType: int64
+		formatString: 0
+		lineageTag: f490c5e5-55ad-4509-8ff2-61aa251160ba
+		summarizeBy: none
+		sourceColumn: cod_municipio_filial
+
+		annotation SummarizationSetBy = Automatic
+
+	column Municipio
+		dataType: string
+		lineageTag: d7595254-9b0c-4cb5-aaca-cbb120d98a84
+		summarizeBy: none
+		sourceColumn: Municipio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Micro_Regiao
+		dataType: string
+		lineageTag: aa6082f0-5745-4740-92f0-0d15b5c15f0a
+		summarizeBy: none
+		sourceColumn: Micro_Regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Meso_Regiao
+		dataType: string
+		lineageTag: 060ff6a0-18f8-4847-b217-0ec668905d17
+		summarizeBy: none
+		sourceColumn: Meso_Regiao
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF_Sigla
+		dataType: string
+		lineageTag: 3d03c35e-a16f-4e6a-9b14-49e306551c5b
+		summarizeBy: none
+		sourceColumn: UF_Sigla
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF_Nome
+		dataType: string
+		lineageTag: 622eb2a7-9507-453b-a430-536208d050da
+		summarizeBy: none
+		sourceColumn: UF_Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	partition geolocalizacao = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\PowerBI\geolocalizacao.csv"),[Delimiter=",", Columns=32, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Pais_Cod", type text}, {"Regiao_Cod", Int64.Type}, {"UF_Cod", Int64.Type}, {"Meso_Cod", Int64.Type}, {"Micro_Cod", Int64.Type}, {"Municipio_Cod", Int64.Type}, {"Municipio", type text}, {"Micro_Regiao", type text}, {"Meso_Regiao", type text}, {"UF_Sigla", type text}, {"UF_Nome", type text}, {"Regiao_Sigla", type text}, {"Regiao_Nome", type text}, {"Pais_Nome", type text}, {"Municipio_Area", type text}, {"Municipio_Ponto", type text}, {"Municipio_Area_Alta_Qualidade", type text}, {"Micro_Regiao_Area", type text}, {"Micro_Regiao_Ponto", type text}, {"Micro_Regiao_Area_Alta_Qualidade", type text}, {"Meso_Regiao_Area", type text}, {"Meso_Regiao_Ponto", type text}, {"Meso_Regiao_Area_Alta_Qualidade", type text}, {"UF_Area", type text}, {"UF_Ponto", type text}, {"UF_Area_Alta_Qualidade", type text}, {"Regiao_Area", type text}, {"Regiao_Ponto", type text}, {"Regiao_Area_Alta_Qualidade", type text}, {"Pais_Area", type text}, {"Pais_Ponto", type text}, {"Pais_Area_Alta_Qualidade", type text}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"Municipio_Cod", "cod_municipio_filial"}}),
+				    #"Columns removed by Measure Killer"= Table.SelectColumns(#"Colunas Renomeadas",{"Meso_Cod","cod_municipio_filial","Meso_Regiao","UF_Sigla","Micro_Regiao","UF_Nome","Municipio"})
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Exception
+

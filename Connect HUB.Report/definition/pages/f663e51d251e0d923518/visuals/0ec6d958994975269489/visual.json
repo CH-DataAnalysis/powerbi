@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "0ec6d958994975269489",
+  "position": {
+    "x": 0,
+    "y": 318.39285714285717,
+    "z": 12000,
+    "height": 148.08853118712273,
+    "width": 420,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*venda_liquida_mes_atual_"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*venda_liquida_mes_atual_",
+              "nativeQueryRef": "*venda_liquida_mes_atual_"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_dados_vendas_compras"
+                  }
+                },
+                "Property": "*venda_liquida_mes_atual_"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_dados_vendas_compras.*venda_liquida_mes_atual_"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

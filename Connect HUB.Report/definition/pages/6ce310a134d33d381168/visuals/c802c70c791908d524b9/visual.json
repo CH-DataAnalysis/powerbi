@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "c802c70c791908d524b9",
+  "position": {
+    "x": 11.722862503350179,
+    "y": 83.4285714285715,
+    "z": 5000,
+    "height": 40,
+    "width": 56.000000000000007,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "farmacia8026423391025722.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "8571a4b37991ec018b8c",
+  "howCreated": "InsertVisualButton"
+}

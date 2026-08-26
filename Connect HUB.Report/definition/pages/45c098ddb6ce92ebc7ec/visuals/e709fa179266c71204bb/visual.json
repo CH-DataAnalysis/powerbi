@@ -1,0 +1,482 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "e709fa179266c71204bb",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 331.42857142857144,
+    "width": 1045.7142857142858,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tabela_cadastro_lojas"
+                    }
+                  },
+                  "Property": "num_cnpj"
+                }
+              },
+              "queryRef": "tabela_cadastro_lojas.num_cnpj",
+              "nativeQueryRef": "num_cnpj",
+              "displayName": "CNPJ"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tabela_cadastro_lojas"
+                    }
+                  },
+                  "Property": "nom_farmacia"
+                }
+              },
+              "queryRef": "tabela_cadastro_lojas.nom_farmacia",
+              "nativeQueryRef": "Nome loja",
+              "displayName": "Nome loja"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "geolocalizacao"
+                    }
+                  },
+                  "Property": "Municipio"
+                }
+              },
+              "queryRef": "geolocalizacao.Municipio",
+              "nativeQueryRef": "Municipio"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "geolocalizacao"
+                    }
+                  },
+                  "Property": "Micro_Regiao"
+                }
+              },
+              "queryRef": "geolocalizacao.Micro_Regiao",
+              "nativeQueryRef": "Micro Região",
+              "displayName": "Micro Região"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "geolocalizacao"
+                    }
+                  },
+                  "Property": "Meso_Regiao"
+                }
+              },
+              "queryRef": "geolocalizacao.Meso_Regiao",
+              "nativeQueryRef": "Meso Região",
+              "displayName": "Meso Região"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "vlr_total_venda"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(dados_vendas_compras.vlr_total_venda)",
+              "nativeQueryRef": "Venda líquida",
+              "displayName": "Venda líquida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "**ticket_medio"
+                }
+              },
+              "queryRef": "dados_vendas_compras.**ticket_medio",
+              "nativeQueryRef": "Ticket médio",
+              "displayName": "Ticket médio"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*qtd_atendimentos"
+                }
+              },
+              "queryRef": "dados_vendas_compras.*qtd_atendimentos",
+              "nativeQueryRef": "Qtd. atendimentos",
+              "displayName": "Qtd. atendimentos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*qtd_produto_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*qtd_produto_venda",
+              "nativeQueryRef": "Qtd. produto vendido",
+              "displayName": "Qtd. produto vendido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*cmv_aquisicao"
+                }
+              },
+              "queryRef": "dados_vendas_compras.*cmv_aquisicao",
+              "nativeQueryRef": "CMV aquisição",
+              "displayName": "CMV aquisição"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*%cmv_liquido"
+                }
+              },
+              "queryRef": "dados_vendas_compras.*%cmv_liquido",
+              "nativeQueryRef": "% CMV líquido",
+              "displayName": "% CMV líquido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*desconto_venda"
+                }
+              },
+              "queryRef": "dados_vendas_compras.*desconto_venda",
+              "nativeQueryRef": "Desconto venda",
+              "displayName": "Desconto venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*%desconto_venda"
+                }
+              },
+              "queryRef": "dados_vendas_compras.*%desconto_venda",
+              "nativeQueryRef": "% Desconto venda",
+              "displayName": "% Desconto venda"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "geolocalizacao"
+                  }
+                },
+                "Property": "Meso_Regiao"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "173.37299649892665D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "geolocalizacao.Municipio"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "169.8948903583835D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "geolocalizacao.Micro_Regiao"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "272.1634519458745D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "geolocalizacao.Meso_Regiao"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Indicadores de vendas'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "ea7c0269b90d0d333aa9",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ee99b3d81ae119ecd5dc",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "num_cnpj"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "t",
+              "Entity": "tabela_cadastro_lojas",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "t"
+                              }
+                            },
+                            "Property": "num_cnpj"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "isLockedInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "3e1f64bc5680c5d00505",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_dados_vendas_compras"
+                  }
+                },
+                "Property": "vlr_total_venda"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "mv_dados_vendas_compras",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "vlr_total_venda"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "isLockedInViewMode": true
+      }
+    ]
+  }
+}

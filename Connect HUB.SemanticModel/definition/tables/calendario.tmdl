@@ -1,0 +1,199 @@
+table calendario
+	lineageTag: 0493642d-38d0-4451-a053-7162e9be2bd5
+
+	measure dt_max = MAX(calendario[Date])
+		formatString: General Date
+		lineageTag: 0c55f9e9-e288-4998-93b0-b1b89aaee0a8
+
+	column Date
+		formatString: Short Date
+		lineageTag: 175cc7f9-f846-4b49-9e7e-650ef0b3beb3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: ce7299b3-efb8-4e14-9782-25ed7613c8ce
+			defaultHierarchy: LocalDateTable_dba0c66f-e5c5-4ef1-89f3-99b015296fa8.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano
+		formatString: 0
+		lineageTag: a13e0d01-9f83-4cd5-97c2-c9054af7d675
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		formatString: 0
+		lineageTag: 11f07a3a-500b-4184-a71f-4b6b38b6de7d
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia
+		formatString: 0
+		lineageTag: a88b87b3-5f60-4fab-9e76-6883a073d04c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	column trimestre
+		formatString: 0
+		lineageTag: 4df1a4a5-92ec-403c-a2be-c3284f2d590a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_do_ano
+		lineageTag: d217b1c1-b776-4210-97af-8daa4371cdc3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [dia_do_ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column semana_do_ano
+		formatString: 0
+		lineageTag: dbbb194b-2d01-4a51-b814-84073da25cdc
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [semana_do_ano]
+
+		annotation SummarizationSetBy = Automatic
+
+	column dia_da_semana
+		formatString: 0
+		lineageTag: 71579b38-6218-44ea-8b43-d5b79bdebef0
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [dia_da_semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_mes
+		lineageTag: c1169fe1-2dd3-4423-90d2-564fdaa4076e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [nome_mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_curto_mes
+		lineageTag: c98d108f-e0a5-48bc-a9fa-0d4ce22c1c05
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [nome_curto_mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_do_dia
+		lineageTag: e4a1316a-e9cd-46b9-947c-d664465a70b9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [nome_do_dia]
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_do_trimestre
+		lineageTag: b7330031-f655-4c4f-9952-8a5b2240a3d9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [nome_do_trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_mes
+		lineageTag: 1ac69a43-7f56-4eb1-8ba0-c1bf8cfe22d6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ano_mes]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_trimestre
+		lineageTag: 0e2a90c2-76ad-40b2-b7f1-ca30c7b00239
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ano_trimestre]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_mes_numero
+		formatString: 0
+		lineageTag: bd0a1c23-5938-41e9-9ee1-e8f7569771d2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [ano_mes_numero]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_mes_formatado = FORMAT(calendario[ano_mes],"YYYYMM")
+		dataType: dateTime
+		formatString: yyyy
+		lineageTag: 0d1b47bc-e3e0-476e-a6eb-1be3cfeb6e9f
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: c11e3d84-441b-4e11-9333-4adbdba4b706
+			defaultHierarchy: LocalDateTable_cbdfac26-d02e-43cf-89c9-2e7dda722f75.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column nome_dia_semana
+		lineageTag: bcd7a723-f372-4a34-8d06-8dc7a0c4dce3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [nome_dia_semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition calendario = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS(
+				    CALENDAR(DATE(2024, 1, 1), TODAY()),
+				    
+				    -- Partes de data numéricas
+				    "ano", YEAR([Date]),
+				    "mes", MONTH([Date]),
+				    "dia", DAY([Date]),
+				    "trimestre", QUARTER([Date]),
+				    "dia_do_ano", FORMAT([Date], "DDD"),
+				    "semana_do_ano", WEEKNUM([Date], 2),
+				    "dia_da_semana", WEEKDAY([Date], 1), -- 1=Domingo, 2=Segunda
+				    "nome_dia_semana", FORMAT([Date], "ddd"),
+				
+				    -- Versões de texto
+				    "nome_mes", FORMAT([Date], "MMMM"),
+				    "nome_curto_mes", FORMAT([Date], "MMM"),
+				    "nome_do_dia", FORMAT([Date], "dddd"),
+				    "nome_do_trimestre", "Q" & FORMAT([Date], "Q"),
+				
+				    -- Chaves auxiliares
+				    "ano_mes", FORMAT([Date], "YYYY-MM"),
+				    "ano_trimestre", "Q" & FORMAT([Date], "Q") & " " & YEAR([Date]),
+				    
+				    -- Novo campo numérico
+				    "ano_mes_numero", YEAR([Date]) * 100 + MONTH([Date])
+				)
+				```
+
+	annotation PBI_Id = 6845eaef069c432ab65dd94b67a77ea7
+

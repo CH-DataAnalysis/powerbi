@@ -1,0 +1,90 @@
+table top_5_lojas_com_menor_faturamento
+	lineageTag: 6930c589-c51a-41e6-9b74-fdcb9069fa2f
+
+	column num_cnpj
+		lineageTag: bddd6f16-59d2-41aa-b225-f007637f9bf8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: mv_dados_vendas_compras[num_cnpj]
+
+		annotation SummarizationSetBy = Automatic
+
+	column venda_liquida
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 85b6d717-3245-4565-8757-cce13c455262
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [venda_liquida]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column rank_vendas
+		formatString: 0
+		lineageTag: 486e8814-9266-4ef4-91bf-a1a6c91704e3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [rank_vendas]
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_rede
+		formatString: 0
+		lineageTag: 633fdbd5-2328-43d1-87ca-77bd0ecd31d5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [codigo_rede]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition top_5_lojas_com_menor_faturamento = calculated
+		mode: import
+		source = ```
+				
+				VAR TabelaBase =
+				    ADDCOLUMNS(
+				        FILTER(
+				            SUMMARIZE(
+				                'mv_dados_vendas_compras',
+				                'mv_dados_vendas_compras'[num_cnpj]
+				            ),
+				            [*venda_liquida] > 0
+				        ),
+				        "venda_liquida", [*venda_liquida],
+				        "codigo_rede",
+				            CALCULATE(
+				                MAX('tabela_cadastro_lojas'[codigo_rede]),
+				                TREATAS(
+				                    VALUES('mv_dados_vendas_compras'[num_cnpj]),
+				                    'tabela_cadastro_lojas'[num_cnpj]
+				                )
+				            )
+				    )
+				
+				VAR TabelaComRank =
+				    ADDCOLUMNS(
+				        TabelaBase,
+				        "rank_vendas",
+				        RANKX(
+				            FILTER(
+				                TabelaBase,
+				                [codigo_rede] = EARLIER([codigo_rede])
+				            ),
+				            [venda_liquida],
+				            ,
+				            ASC,
+				            DENSE
+				        )
+				    )
+				
+				VAR Top5 =
+				    FILTER(TabelaComRank, [rank_vendas] <= 5)
+				
+				RETURN
+				    Top5
+				
+				```
+
+	annotation PBI_Id = 31bec0e95e7f47df85042359c8bbaa1f
+

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "5845a5243c8e110129ab",
+  "position": {
+    "x": 431,
+    "y": 912,
+    "z": 30000,
+    "height": 148,
+    "width": 350,
+    "tabOrder": 29000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*qtd_atendimentos_ano_atual"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*qtd_atendimentos_ano_atual",
+              "nativeQueryRef": "*qtd_atendimentos_ano_atual"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_dados_vendas_compras"
+                  }
+                },
+                "Property": "*qtd_atendimentos_ano_atual"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "value": [
+        {
+          "properties": {
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_dados_vendas_compras.*qtd_atendimentos_ano_atual"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

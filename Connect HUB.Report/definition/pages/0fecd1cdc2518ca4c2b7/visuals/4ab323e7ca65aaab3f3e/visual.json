@@ -1,0 +1,243 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "4ab323e7ca65aaab3f3e",
+  "position": {
+    "x": 1137.6334106728539,
+    "y": 677.81902552204178,
+    "z": 9000,
+    "height": 372.11136890951275,
+    "width": 478.60788863109047,
+    "tabOrder": 24000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "grupo_fcia"
+                }
+              },
+              "queryRef": "produto_gcp.grupo_fcia",
+              "nativeQueryRef": "Grupo",
+              "displayName": "Grupo"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_sugestao_transferencia_filiais"
+                    }
+                  },
+                  "Property": "*potencial_economia_total"
+                }
+              },
+              "queryRef": "sugestao_transferencia_filiais.*potencial_economia_total",
+              "nativeQueryRef": "Economia estimada",
+              "displayName": "Economia estimada"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_sugestao_transferencia_filiais"
+                    }
+                  },
+                  "Property": "*qtd_sugerida_transferencia"
+                }
+              },
+              "queryRef": "sugestao_transferencia_filiais.*qtd_sugerida_transferencia",
+              "nativeQueryRef": "Qtd. máxima sugerida para transferência",
+              "displayName": "Qtd. máxima sugerida para transferência"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_sugestao_transferencia_filiais"
+                  }
+                },
+                "Property": "*potencial_economia_total"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "98.10595130914828D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "sugestao_transferencia_filiais.*qtd_sugerida_transferencia"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127.50458964709418D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "sugestao_transferencia_filiais.*potencial_economia_total"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "233.5007143352393D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.grupo_fcia"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#a0d1ff'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#FFFFFF'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "sugestao_transferencia_filiais.*potencial_economia_total"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Economia estimada por grupo'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

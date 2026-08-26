@@ -1,0 +1,400 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "dc2c77d29eda2ae2e917",
+  "position": {
+    "x": 14.962216624685139,
+    "y": 515.5163727959698,
+    "z": 0,
+    "height": 564.4836272040302,
+    "width": 1334.3576826196474,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "produto"
+                }
+              },
+              "queryRef": "produto_gcp.produto",
+              "nativeQueryRef": "Produto",
+              "displayName": "Produto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "cod_barra"
+                }
+              },
+              "queryRef": "produto_gcp.cod_barra",
+              "nativeQueryRef": "EAN",
+              "displayName": "EAN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "geolocalizacao"
+                    }
+                  },
+                  "Property": "Meso_Regiao"
+                }
+              },
+              "queryRef": "geolocalizacao.Meso_Regiao",
+              "nativeQueryRef": "Mesorregião",
+              "displayName": "Mesorregião"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_rank_vendas_regiao_geral"
+                }
+              },
+              "queryRef": "medidas_analise_mercado._rank_vendas_regiao_geral",
+              "nativeQueryRef": "_rank_vendas_regiao_geral"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*preco_medio_venda"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*preco_medio_venda",
+              "nativeQueryRef": "*preco_medio_venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_preco_minimo_regiao_geral"
+                }
+              },
+              "queryRef": "medidas_analise_mercado._preco_minimo_regiao_geral",
+              "nativeQueryRef": "_preco_minimo_regiao_geral"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_preco_medio_regiao_geral"
+                }
+              },
+              "queryRef": "medidas_analise_mercado._preco_medio_regiao_geral",
+              "nativeQueryRef": "_preco_medio_regiao_geral"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_preco_maximo_regiao_geral"
+                }
+              },
+              "queryRef": "medidas_analise_mercado._preco_maximo_regiao_geral",
+              "nativeQueryRef": "_preco_maximo_regiao_geral"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "medidas_analise_mercado"
+                    }
+                  },
+                  "Property": "_numero_lojas_regiao_geral"
+                }
+              },
+              "queryRef": "medidas_analise_mercado._numero_lojas_regiao_geral",
+              "nativeQueryRef": "_numero_lojas_regiao_geral"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dimensao_sujeito_analise"
+                    }
+                  },
+                  "Property": "dimensao_produtos"
+                }
+              },
+              "index": 0,
+              "length": 3
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "medidas_analise_mercado"
+                  }
+                },
+                "Property": "_rank_vendas_regiao_geral"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "195.50000449700113D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "geolocalizacao.Micro_Regiao"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "303.2499976569209D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.produto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "170D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.grupo_fcia"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "132.57142138518748D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.cod_barra"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "230.285702195919D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "geolocalizacao.Meso_Regiao"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "103.03425555172166D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "medidas_analise_mercado._numero_lojas_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "medidas_analise_mercado._preco_maximo_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "99.57139943421356D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "medidas_analise_mercado._preco_medio_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "108.00002057364212D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "medidas_analise_mercado._preco_minimo_regiao_geral"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "102.5714244813475D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_vendas_produtos.*preco_medio_venda"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "95.57144348897556D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "medidas_analise_mercado._rank_vendas_regiao_geral"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ed533f20fcad2c7589c3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_analise_mercado"
+              }
+            },
+            "Property": "_rank_vendas_regiao_geral"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "medidas_analise_mercado",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "m"
+                            }
+                          },
+                          "Property": "_rank_vendas_regiao_geral"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

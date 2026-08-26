@@ -1,0 +1,102 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+/// Grupo de consultas para diagnóstico
+queryGroup Diagnósticos
+
+	annotation PBI_QueryGroupOrder = 0
+
+annotation PBI_QueryOrder = ["geolocalizacao","produto_gcp","produto_gcp_nao_identificado","cadastro_fornecedor","tabela_cadastro_lojas","lat_long","parceiros_pbm_padrao","reloadtime","mv_classificacao_faturamento","mv_cod_ibge_lojas","mv_compras_produtos","mv_controle_coleta_farmacias","mv_curva_abc_90_dias","mv_dados_clientes","mv_dados_vendas_compras","mv_estoque","mv_performance_loja","mv_performance_vendedores","mv_produtos_com_estoque_sem_vendas_mais_de_90_dias","mv_sugestao_compras","mv_sugestao_transferencia_filiais","mv_vendas_produtos","logo_associacao","portal_authorization","plano_de_contas","despesas_rel_pai_analit-1768488","despesas_rel_pai_sint","RangeStart","RangeEnd","cliente"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table geolocalizacao
+ref table DateTableTemplate_e8dc3f43-257d-4527-9762-6c5ec8fa9258
+ref table produto_gcp
+ref table calendario
+ref table top_5_lojas_com_maior_faturamento
+ref table top_5_lojas_com_menor_faturamento
+ref table tabela_de_horas
+ref table alerta_desconto_compra
+ref table alerta_desconto_venda
+ref table alerta_margem_lucro_bruta
+ref table cadastro_fornecedor
+ref table stock_out_botao_analise
+ref table medidas_areas_da_farmacia
+ref table alerta_margem_lucro_bruta_2
+ref table tabela_cadastro_lojas
+ref table LocalDateTable_5cd145cd-91ea-40cb-8106-48639c60b62d
+ref table medidas_performance_vendedor
+ref table classificacao_performance_vendedor
+ref table LocalDateTable_cbdfac26-d02e-43cf-89c9-2e7dda722f75
+ref table plano_acao_vendedores
+ref table LocalDateTable_dba0c66f-e5c5-4ef1-89f3-99b015296fa8
+ref table lat_long
+ref table parceiros_pbm_padrao
+ref table medidas_prospeccao_vendas_clientes
+ref table medidas_gerais_vendas
+ref table reloadtime
+ref table medidas_analise_mercado
+ref table dimensao_geolocalizacao
+ref table simulacao_precificacao_analise_mercado
+ref table medidas_analise_mercado_simulacao
+ref table classificacao_precificacao
+ref table dimensao_sujeito_analise
+ref table mv_classificacao_faturamento
+ref table mv_cod_ibge_lojas
+ref table mv_compras_produtos
+ref table LocalDateTable_032de7f0-b2d1-4c16-ba59-deada138b78f
+ref table mv_curva_abc_90_dias
+ref table LocalDateTable_e64e66d8-4ea3-431c-9599-02d6f0a50d0a
+ref table LocalDateTable_9e61bed3-dc5b-48a3-a37a-0e08659893bb
+ref table mv_dados_clientes
+ref table LocalDateTable_6628a35e-6b82-427e-9c46-eecc52a05f6d
+ref table LocalDateTable_84f776a1-1e9e-4895-9686-8a0e2975bd8f
+ref table LocalDateTable_7ec89307-b413-43bc-8159-657009be4714
+ref table mv_dados_vendas_compras
+ref table mv_estoque
+ref table LocalDateTable_9065b3e7-99f9-40a1-bb50-98e37b60880b
+ref table LocalDateTable_6ce09fbc-0b8b-460a-a1f4-9bb67da33a54
+ref table mv_performance_loja
+ref table mv_produtos_com_estoque_sem_vendas_mais_de_90_dias
+ref table LocalDateTable_b43f05b7-57ac-45a5-991c-7e457ddc23b0
+ref table LocalDateTable_c110d241-dabe-4390-8352-c1870dab0c41
+ref table mv_sugestao_compras
+ref table LocalDateTable_6e9a63ca-45f6-4b97-814b-33a7272bc99a
+ref table LocalDateTable_8c8150bc-ab7d-4553-a6c0-9c2305c371df
+ref table mv_sugestao_transferencia_filiais
+ref table LocalDateTable_787b8453-139e-48f8-a727-04ec175b52ff
+ref table LocalDateTable_5d84253a-812f-4f31-9fa8-5d7c67bf9ad2
+ref table mv_vendas_produtos
+ref table LocalDateTable_928f80f0-85bb-41bb-9a97-809475987576
+ref table LocalDateTable_f3d2a559-6d28-4afc-919c-26d83979e346
+ref table mv_controle_coleta_farmacias
+ref table LocalDateTable_525d03cf-5415-4956-9a70-e44aa0fc68d7
+ref table LocalDateTable_c2ed4c29-498e-476f-bc00-e675b16aed45
+ref table LocalDateTable_53d8450d-8f94-4667-b464-6a961204867a
+ref table logo_associacao
+ref table portal_authorization
+ref table plano_de_contas
+ref table despesas_rel_pai_analit-1768488
+ref table despesas_rel_pai_sint
+ref table mv_performance_vendedores
+ref table Filtro_Periodo
+ref table LocalDateTable_4b9edf5e-22cd-4fed-8230-5859e1970869
+ref table produto_gcp_nao_identificado
+
+ref role Dashpress
+ref role 'Nossafarma - 23172'
+ref role Asfar
+ref role Agafarma
+
+ref cultureInfo pt-BR
+

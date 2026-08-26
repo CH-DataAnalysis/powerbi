@@ -1,0 +1,354 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "a29765854616911dac01",
+  "position": {
+    "x": 35.714285714285715,
+    "y": 712.85714285714289,
+    "z": 3000,
+    "height": 334.28571428571433,
+    "width": 767.14285714285722,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tabela_cadastro_lojas"
+                    }
+                  },
+                  "Property": "nome_loja"
+                }
+              },
+              "queryRef": "tabela_cadastro_lojas.nome_loja",
+              "nativeQueryRef": "Nome loja",
+              "active": true,
+              "displayName": "Nome loja"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "parceiros_pbm_padrao"
+                    }
+                  },
+                  "Property": "parceiro_pbm"
+                }
+              },
+              "queryRef": "parceiros_pbm_padrao.parceiro_pbm",
+              "nativeQueryRef": "Parceiro",
+              "active": true,
+              "displayName": "Parceiro"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**venda_liquida"
+                }
+              },
+              "queryRef": "vendas_produtos.**venda_liquida",
+              "nativeQueryRef": "Venda líquida",
+              "displayName": "Venda líquida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*valor_desconto_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*valor_desconto_venda",
+              "nativeQueryRef": "Valor desconto",
+              "displayName": "Valor desconto"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*%valor_total_descto_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*%valor_total_descto_venda",
+              "nativeQueryRef": "%Valor total desconto",
+              "displayName": "%Valor total desconto"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*ticket_medio_atual_h"
+                }
+              },
+              "queryRef": "vendas_produtos.*ticket_medio_atual_h",
+              "nativeQueryRef": "Ticket médio",
+              "displayName": "Ticket médio"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*%margem_lucro_bruta"
+                }
+              },
+              "queryRef": "vendas_produtos.*%margem_lucro_bruta",
+              "nativeQueryRef": "%margem lucro bruta",
+              "displayName": "%margem lucro bruta"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**%cmv_liquido"
+                }
+              },
+              "queryRef": "vendas_produtos.**%cmv_liquido",
+              "nativeQueryRef": "%CMV liquido",
+              "displayName": "%CMV liquido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*qtd_atendimento_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*qtd_atendimento_venda",
+              "nativeQueryRef": "Qtd atendimento",
+              "displayName": "Qtd atendimento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*qtd_produto_venda"
+                }
+              },
+              "queryRef": "vendas_produtos.*qtd_produto_venda",
+              "nativeQueryRef": "Qtd produto venda",
+              "displayName": "Qtd produto venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*media_itens"
+                }
+              },
+              "queryRef": "vendas_produtos.*media_itens",
+              "nativeQueryRef": "Média itens venda",
+              "displayName": "Média itens venda"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_vendas_produtos"
+                  }
+                },
+                "Property": "**venda_liquida"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "expansionStates": [
+      {
+        "roles": [
+          "Rows"
+        ],
+        "levels": [
+          {
+            "queryRefs": [
+              "tabela_cadastro_lojas.nome_loja"
+            ],
+            "isPinned": true
+          },
+          {
+            "queryRefs": [
+              "parceiros_pbm_padrao.parceiro_pbm"
+            ],
+            "isCollapsed": true,
+            "isPinned": true
+          }
+        ],
+        "root": {}
+      }
+    ],
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {},
+          "selector": {
+            "metadata": "vendas_produtos.**venda_liquida"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Faturamento por loja e parceiro'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2a8294c88039a6032091",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_vendas_produtos"
+              }
+            },
+            "Property": "cod_parceiro"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "0275ed4636d66057b5e3",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_vendas_produtos"
+              }
+            },
+            "Property": "**venda_liquida"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "v",
+              "Entity": "mv_vendas_produtos",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "v"
+                        }
+                      },
+                      "Property": "**venda_liquida"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "isLockedInViewMode": true
+      }
+    ]
+  }
+}

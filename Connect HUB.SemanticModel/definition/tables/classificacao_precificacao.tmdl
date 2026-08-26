@@ -1,0 +1,27 @@
+table classificacao_precificacao
+	lineageTag: 2daf4ebd-bc14-441d-8a7f-a89416778bfb
+
+	column classificacao
+		lineageTag: 3733d176-05f7-4d9f-9ffb-649326a2c8f3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [classificacao]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition classificacao_precificacao = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "classificacao", STRING,
+				    {
+				        {"Todos"},
+				        {"Acima do mercado"},
+				        {"Na faixa competitiva"},
+				        {"Abaixo do mercado"}
+				    }
+				)
+
+	annotation PBI_Id = cf3e4a20ddd743ed95a3bbb990f3b50e
+

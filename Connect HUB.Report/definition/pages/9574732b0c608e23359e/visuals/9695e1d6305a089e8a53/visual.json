@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "9695e1d6305a089e8a53",
+  "position": {
+    "x": 191.42857142857144,
+    "y": 337.14285714285717,
+    "z": 3000,
+    "height": 137.14285714285714,
+    "width": 287.14285714285717,
+    "tabOrder": 0
+  },
+  "visualGroup": {
+    "displayName": "Info_Selecione_CNPJ",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

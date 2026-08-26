@@ -1,0 +1,1921 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Produtos sem vendas há 90 dias",
+  "name": "05c2a0440a230d899048",
+  "options": {
+    "targetVisualNames": [
+      "aa7f597b4533c032c50d",
+      "200f7a3fe972ab39e717",
+      "67e903ffd38469b2e864",
+      "97e9cd1836225b39daa1",
+      "9e3c13635c993512818d",
+      "abb7b2445a0d29070558",
+      "bf5ce40b107ce0640c07",
+      "c8db0d506d8d5b0510b2",
+      "cfbd48182ab8be5e4567",
+      "d05a8253aa1617c41d61",
+      "e7b272c6689c57364812"
+    ],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "55828dd84062e4f872d8",
+    "filters": {
+      "byExpr": [
+        {
+          "name": "3a170103100208e5e5ce",
+          "type": "Advanced",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "a8c777398b93b76ad52a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano_mes"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "780c0fe875db6b0eb0ae",
+          "type": "RelativeDate",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "Date"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "298b57054d00649adc0a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "num_cnpj"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "1d023ead47b70560d037",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "nom_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "4b2b68765b06689782e1",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "status_loja"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "5aaff369e71d7ec2ceaa",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "grupo_fcia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6cbbffd4e187389030cd",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "cod_barra_tratado"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "3e49e5e40a4b100449b6",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "produto"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "529e4f8079be188400de",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "laboratorio"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "47b419050ba799b1973b",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "area_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6882af251632fb2b6547",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "nome_categoria"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6d81c7b0610cac72e812",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "mv_vendas_produtos"
+                }
+              },
+              "Property": "cod_nom_vendedor"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "b874a6e5a25e6827a45b",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "geolocalizacao"
+                }
+              },
+              "Property": "UF_Sigla"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "ad9eab3287858b4c0149",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "geolocalizacao"
+                }
+              },
+              "Property": "Meso_Regiao"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "ae104a6119f4ef3bc9bf",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "geolocalizacao"
+                }
+              },
+              "Property": "Micro_Regiao"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "4d2b63611df363abf034",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "geolocalizacao"
+                }
+              },
+              "Property": "Municipio"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "47c7012b2c383fd0b557",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "codigo_rede"
+            }
+          },
+          "howCreated": 1
+        }
+      ]
+    },
+    "sections": {
+      "55828dd84062e4f872d8": {
+        "visualContainers": {
+          "1e8d346fed61e5a13c61": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d7e4492ee1b91b3e8cf9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_vendida"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_vendida"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "307e5914a318509be50b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "72ef83715f4d6c720ef9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_vendido"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_vendido"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "30a23c6c3ed300ec8ac0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c770c352a4629deefda1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_comprado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_comprado"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "01792928fc254b29b1f1": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "0ea5a90d10fa75866db1": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "262f947142603b53a02a": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "8c01d1ce13c05170dd82": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "a77e239414467e973026": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "e39a5cf98dad7d3b50b6": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "549be8703adc30fc3652": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "649b696aead92fd6e4f4": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "6f1c4f689aa194238192": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "893da5821e73ec14164e": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "8213717433af39ecd289": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a865ab759cda75198e9b": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "b245ceaaf45d6bb5928b": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "8e56da09362df9bdd486": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "f90cf3137a324e628bd6": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "fe4a01fd737a8ea048e0": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "db02e625ac0002ebbdc9": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "0c02436b678ffc9dbe09": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "2757c2bd647cd7c428fc": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "ceb7b89cd1a596ff3f08": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "2f6a44ed918607b600e7": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "696caa3f0ba2bb801ac7": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "7072b19025a450e2388a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_custo_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_custo_estoque"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "7005c5ff1023a6226b76": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f1884e0b675c523e5b1b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_lucro"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_lucro"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "782eb46c578028242ba9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cbb1deceb5bf2cc31690",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "reloadtime"
+                            }
+                          },
+                          "Property": "Ultima_Atualizacao"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "7f9ee1c7ce7219cad6c9": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "80123217aaccb88ea043": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a60824a87754570d4ab0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "59654c72425c39fecf23",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_custo_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredBarChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_custo_estoque"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "83177b436313e471abd5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5826684b6322bc79a66b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_comprada"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_comprada"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "32e8d173a4515898bcf5": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "a6cff14f5a59207577b6": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "a76ec1905a019ac87a04": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2f9fca6283a5e62dc647",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_estoque"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "200f7a3fe972ab39e717": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "646e78e708ffd406918d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "laboratorio"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "laboratorio"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "67e903ffd38469b2e864": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5f97455f6fa8dcff4e18",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "cod_barra"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "cod_barra"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "97e9cd1836225b39daa1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "eb0fb79d64eb76336ebd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "9e3c13635c993512818d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dffcd3b43078890c0851",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "diagnostico_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "diagnostico_estoque"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "abb7b2445a0d29070558": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2bd05fc69a9f4a39c80e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "classificacao_estrela"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "classificacao_estrela"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "bf5ce40b107ce0640c07": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8931db0f62a301803e23",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "cfbd48182ab8be5e4567": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "7932a8fe6f09d5555866",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d05a8253aa1617c41d61": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8700c0a60d1bd51b0835",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "grupo_fcia"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "e7b272c6689c57364812": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "075a80bfe985d1040723",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nome_loja"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nome_loja"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "af2093a51903301b19ab": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e58ac26e0a25af75751f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a85e36f6068cfb115337",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "qtd_dias_sem_vendas"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a9d143d4dee28708c5ae",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*skus_prod_com_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "scatterChart",
+              "objects": {},
+              "activeProjections": {
+                "X": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "qtd_dias_sem_vendas"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "bc42de6e20088baddcea": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "579e5cfac3192b8333d4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6c962fa437a6ecc13be5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_custo_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_custo_estoque"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "curva_abc"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ccb7188fbff66694e6fc": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4a1441a853875f55508f",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "p",
+                        "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "p"
+                                        }
+                                      },
+                                      "Property": "cod_barra_tratado"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "0L"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "cod_barra_tratado"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "fc75cc1e2c5f5662b127",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4b1cab2bcf3cfef644e5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "cod_barra"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5b398daf73d67a6dc743",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "produto_gcp"
+                        }
+                      },
+                      "Property": "produto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1d60d23b276e3ee55cb8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "icone_curva_abc"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f3392c776bbd484e6d10",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_custo_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "64842358f52c9f79d8b9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b61da1461b524b0e8cb5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_vendido"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c9cd76fb7b27f693cc8f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_vendida"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "453f43aa474dacdb366c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_lucro"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "eefa571d6606e3f7eb27",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "dat_ult_venda"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c73e118bf8a10c557751",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_dias_sem_vendas"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4188d8efe86d8f9fb3b4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*faturamento_potencial"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "15ec8da95f0eb6a50d80",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*vlr_total_comprado"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8cca13d0eed8891f6cc9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_comprada"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7a02e9b48e45ce4267ad",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "dat_ult_compra"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "709bfcc13443b7b8b251",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "classificacao_estrela"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9fe8fd1a6ae06f8f1131",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "icone_diagnostico_estoque"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_total_estoque"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "e514ef2331e02e405f9f": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "deef9990030340db7996": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "effe33ac42ebe394830b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "*qtd_cnpjs"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "6ee0742eda4e1766e375": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "f83d4a0acd66818d7ba6": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "38166f7e4d8c367a73c3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "logo_associacao"
+                        }
+                      },
+                      "Property": "link"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "simpleImageEBC4593F96F1425FB3D84C5BF02B5075",
+              "objects": {}
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "3c0d8aaa5baee141ed4b": {
+            "isHidden": false,
+            "children": {
+              "52a8952a6f041da84dff": {
+                "isHidden": true
+              },
+              "a88ab4a9a90f21f75447": {
+                "isHidden": true
+              },
+              "c65b0a4a1e7976512847": {
+                "isHidden": true
+              },
+              "f21a6e189e95f990ad77": {
+                "isHidden": true
+              }
+            }
+          },
+          "66684badf874c183696d": {
+            "isHidden": true
+          },
+          "8487a8cf55c004a18432": {
+            "isHidden": true
+          },
+          "d57d93efbd40a14b1a14": {
+            "isHidden": true
+          },
+          "f1581a779da3542d08a7": {
+            "isHidden": true
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

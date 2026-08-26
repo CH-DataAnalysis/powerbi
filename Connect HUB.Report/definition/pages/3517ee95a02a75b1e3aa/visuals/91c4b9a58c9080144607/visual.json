@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "91c4b9a58c9080144607",
+  "position": {
+    "x": 282.92528616024975,
+    "y": 50.399999999999984,
+    "z": 2000,
+    "height": 117.60000000000001,
+    "width": 111.85418290056386,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "conveniencia9235575575605353.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "498b5e200c5776ccddb5",
+  "howCreated": "InsertVisualButton"
+}

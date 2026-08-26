@@ -1,0 +1,68 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "93364ad66877a5ad9520",
+  "position": {
+    "x": 1747.1428571428573,
+    "y": 1.4285714285714286,
+    "z": 2000,
+    "height": 10,
+    "width": 172.85714285714286,
+    "tabOrder": 22000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Meses com compras %",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "O cálculo retorna a "
+                  },
+                  {
+                    "value": "proporção de meses com vendas em relação ao total de meses entre a primeira e a última venda",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": ". Em outras palavras, mede "
+                  },
+                  {
+                    "value": "em quantos meses houve movimentação dentro do período total de atividade",
+                    "textStyle": {
+                      "fontWeight": "bold"
+                    }
+                  },
+                  {
+                    "value": ", como um percentual de meses ativos com vendas."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

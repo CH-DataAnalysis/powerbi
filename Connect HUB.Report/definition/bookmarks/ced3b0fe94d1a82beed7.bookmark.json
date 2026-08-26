@@ -1,0 +1,2356 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Área da Farmácia",
+  "name": "ced3b0fe94d1a82beed7",
+  "options": {
+    "targetVisualNames": [],
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "3517ee95a02a75b1e3aa",
+    "filters": {
+      "byExpr": [
+        {
+          "name": "3a170103100208e5e5ce",
+          "type": "Advanced",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "a8c777398b93b76ad52a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "ano_mes"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "780c0fe875db6b0eb0ae",
+          "type": "RelativeDate",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "calendario"
+                }
+              },
+              "Property": "Date"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "298b57054d00649adc0a",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "num_cnpj"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "1d023ead47b70560d037",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "nom_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "4b2b68765b06689782e1",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "status_loja"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "5aaff369e71d7ec2ceaa",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "grupo_fcia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6cbbffd4e187389030cd",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "cod_barra_tratado"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "3e49e5e40a4b100449b6",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "produto"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "529e4f8079be188400de",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "laboratorio"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "47b419050ba799b1973b",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "area_farmacia"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6882af251632fb2b6547",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "produto_gcp"
+                }
+              },
+              "Property": "nome_categoria"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "6d81c7b0610cac72e812",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "mv_vendas_produtos"
+                }
+              },
+              "Property": "cod_nom_vendedor"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "b874a6e5a25e6827a45b",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "geolocalizacao"
+                }
+              },
+              "Property": "UF_Sigla"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "ad9eab3287858b4c0149",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "geolocalizacao"
+                }
+              },
+              "Property": "Meso_Regiao"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "ae104a6119f4ef3bc9bf",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "geolocalizacao"
+                }
+              },
+              "Property": "Micro_Regiao"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "4d2b63611df363abf034",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "geolocalizacao"
+                }
+              },
+              "Property": "Municipio"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "47c7012b2c383fd0b557",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "codigo_rede"
+            }
+          },
+          "howCreated": 1
+        }
+      ]
+    },
+    "sections": {
+      "3517ee95a02a75b1e3aa": {
+        "visualContainers": {
+          "fc694aa6a10dd33e6b9d": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "2546fadebea8eea9890e": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "293d6c908e4cb82d8d14": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "894f9c971dc0f9ab8119",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_nutricosmeticos_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_nutricosmeticos_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "2f7db397a3992239aa85": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "66017afa9189d917170a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5c0c6eb864969c2396d3",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*nutricosmeticos"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*nutricosmeticos"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "683d66fe435c000174c4": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "cfddfb877d82c360e267": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "63b0834914df7d9f1d55",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*nutricosmeticos_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*nutricosmeticos_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "cae4e37a6b48363d7ca6": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "0f9251a5d8297ad005e3": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "24c4535fedd6e92749c0": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "6e9ecf15b4ad85b06be5": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "145755f233b33f028d42": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "29bb86b6a3022892106d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "eabed1fa3bdcdfb3ff7d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*conveniencia_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*conveniencia_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "91c4b9a58c9080144607": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "927a64dce9a920026569": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "c9461da98d8336db60b7": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "a7dec8510c1b915257a3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "430d19b36122438b3fba",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*conveniencia"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*conveniencia"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "e88f0a70777708239079": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "643293fe2ee78b35fc8a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_conveniencia_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_conveniencia_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "67e465d744cf2de530c8": {
+            "filters": {
+              "byName": {
+                "725c28967e802a950a08": {
+                  "name": "725c28967e802a950a08",
+                  "type": "RelativeDate",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "dat_emissao"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              },
+              "byExpr": [
+                {
+                  "name": "432e8d92d7e903f716e9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "762a7de0d028602ab411": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "462237c00e1b55b6419e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1499c9d41e4e241fc5e2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_otc_mip_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_otc_mip_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "6d494004e39101a83968": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e9e204a8aa27d884d62a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*otc_mip"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*otc_mip"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "764b49ed7b29d5bd9e1d": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "7a46e0a6c909cac0be6b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c5587cf61e9794a27d09",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*otc_mip_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*otc_mip_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "d509a909377ccaccc172": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "f0f590ba2980ac005e63": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "23b0587f310d9a01e047": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "bc4b071f73e9c090ebac": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ed0b510a400f90909a80",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*cuidados_ao_paciente"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*cuidados_ao_paciente"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "c7d7b306b17063b94c49": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5020376df624a7038358",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_cuidados_ao_paciente_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_cuidados_ao_paciente_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "cc045ae81415bbae6949": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "eaf4e9c6d44d25dca225": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "fffe8249d30c37d06954": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "88ef1a7b3f2c2bf65109",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*cuidados_ao_paciente_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*cuidados_ao_paciente_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "9939af82655153a457d0": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "9d01b27fc09c79eb3059": {
+            "filters": {
+              "byName": {
+                "725c28967e802a950a08": {
+                  "name": "725c28967e802a950a08",
+                  "type": "RelativeDate",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "dat_emissao"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              },
+              "byExpr": [
+                {
+                  "name": "83d30f3b3381d596e1f6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "c",
+                                "Entity": "calendario",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "c"
+                                            }
+                                          },
+                                          "Property": "ano_mes"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "'2026-05'"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "3b34b80533603680a0aa": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4ef079d2e933673dcff1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_alimentos_bebidas_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_alimentos_bebidas_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "8f511e84c99a3d708086": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "983b5e8943756324121a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*alimentos_bebidas"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*alimentos_bebidas"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "e0bcfdf4c027b11000a9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5a37d1a41c1b2c008b8d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*alimentos_bebidas_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*alimentos_bebidas_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "445025c050376147143d": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "ab269f8420810b38c260": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "c095ada38544dd416091": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "b735a9d531f328fbcb15": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "2fafeb4359eae5ea3a61": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "415c383ccb547016e54a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a1ae2aaea7155e6f4dfe",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*higiene_pessoal_perfumaria_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*higiene_pessoal_perfumaria_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "4297c584c4d828c767bb": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "62c91a5d10da0a0d487d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "8b80a4285b9a982c0903": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "697e87c21cf838b382f5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*higiene_pessoal_perfumaria"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*higiene_pessoal_perfumaria"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "c594b6e91c32068e0550": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4b7a40c4866fd5466de8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_higiene_pessoal_perfumaria_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_higiene_pessoal_perfumaria_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "6d19d8bb6c8e11bd5bb4": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "09c4dd07dad2a230540b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8286a56457f1069718e9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_tratamento_dermatologicos_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_tratamento_dermatologicos_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "0d9d713f03d0ebd48da8": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "188fa850745072758c88": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "666c450133355cf6a46b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*tratamento_dermatologicos"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*tratamento_dermatologicos"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "7bdd64689984d7d7714b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b9d17b8e0cddf4c3453a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*tratamento_dermatologicos_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*tratamento_dermatologicos_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "b54bfd5e900a32a67090": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "fb8cda0636220ed5578a": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "7602bbf35e074660790e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "480ce56c56cba93d5a48",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_dermocosmeticos_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_dermocosmeticos_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "66125e89528370d4951b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "990c861e8cf245038146",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*dermocosmeticos_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*dermocosmeticos_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "a009fe6ee04dc4d4d5dd": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "2051cd571af700341d12",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*dermocosmeticos"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*dermocosmeticos"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "089b56f1981a7d176813": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "216a3223d1ae564aa704": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "a06007a151902323ac57": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "02b40f08a487c7752a06": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6f73f32ba82213bdc35a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_prescricao_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_prescricao_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ccba0cf4d5e41d85b3c4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ed48d0a1ef0d87fbec9a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*prescricao_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*prescricao_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f63d322e9e9788229a18": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "72ab3b7be5125c02ca1b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*prescricao"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*prescricao"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f652bfe2514869c811b0": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "01d0846373666c61507d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "05c02505105eaa3a0227",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*saude_sexual_masculina"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*saude_sexual_masculina"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "3cbd6b08475254c697d0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "517d57cc5262b94ab2c4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*saude_sexual_masculina_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*saude_sexual_masculina_%"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "65f934bac7eceede2c26": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "2fda225dea64ee092c10": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "c3487781c230d00e19d0": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "aabf8f5ae2683ec22875": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4fc7959730a425d4d3f8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_saude_sexual_masculina_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_saude_sexual_masculina_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f16188ad242894da5792": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "73911adfa6060c73270a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "logo_associacao"
+                        }
+                      },
+                      "Property": "link"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "simpleImageEBC4593F96F1425FB3D84C5BF02B5075",
+              "objects": {}
+            }
+          },
+          "f5d8d0485173a2089c71": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cb04bd2469be52476d2c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "reloadtime"
+                            }
+                          },
+                          "Property": "Ultima_Atualizacao"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "f601f22313f8850aac00": {
+            "filters": {
+              "byName": {
+                "725c28967e802a950a08": {
+                  "name": "725c28967e802a950a08",
+                  "type": "RelativeDate",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "dat_emissao"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              },
+              "byExpr": [
+                {
+                  "name": "790cb205d862159f9b50",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nome_loja"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "nome_loja"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "0ddd87f8f8937f3e5b55": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "3237eee87e143c1821b0": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "60b2d192fce1cef9fdb9": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "cc7b6e72a460b912c72c": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "469a2608518179d838c2": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "51f3d0ef036dcecba20c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "049938b5b943f73fa662": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "269d3f41169c7e620a75": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "5279631a23546d0485cc": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "1627e094128918589b82": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "17aef617af5415d3fc12": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "2e41a3fc94c6d6f3ccac": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "afce4bc5a099e6004d82": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "5126b930b2d6af73a748": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "9aad79cd80a82539e530": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "a20bbd97e1f1b6bcc626": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "c68d21a7cd2fb3c9b4b8": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "ce7b8673fdcea0b6e54b": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "ec9ed6bae5a384eb2d34": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "f96c394f2133aeb00feb": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "199af961ce776b4b1370": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fbdadbd3ce014bb48287",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*cuidado_infantil"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*cuidado_infantil"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "0e072effe09970d19580": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "8fa70fe8022883c3c035": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "be2661a042e65c9cd068": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "a9bf05f14975a2ed0ed0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d95512b454b16674f1fe",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_cuidado_infantil_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*%var_cuidado_infantil_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "b94ae799b7c3008e6778": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fa99aea4249f6ee95b56",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*cuidado_infantil_%"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "medidas_areas_da_farmacia"
+                        }
+                      },
+                      "Property": "*cuidado_infantil_%"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "287e32fd7e6ffd515612": {
+            "isHidden": true
+          },
+          "390f0bb092f998cb6fc8": {
+            "isHidden": true
+          },
+          "49d08829751d3f384fd8": {
+            "isHidden": true
+          },
+          "c7c24fa6c5adb65b31a7": {
+            "isHidden": true
+          },
+          "fb1f563638f004ec15bd": {
+            "children": {
+              "1c65a53e68039f2f682c": {
+                "isHidden": true
+              },
+              "7449cdd9a4182e6a3870": {
+                "isHidden": true
+              },
+              "7c2e6d19165c1198e42b": {
+                "isHidden": true
+              },
+              "c06abbb3d6d3317cafea": {
+                "isHidden": true
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

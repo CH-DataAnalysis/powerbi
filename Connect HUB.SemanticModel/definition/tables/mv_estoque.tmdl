@@ -1,0 +1,534 @@
+table mv_estoque
+	lineageTag: eeac4a1f-4530-4ffb-8b8d-c0e9265fbd7b
+
+	measure *qtd_produto_estoque =
+			CALCULATE(
+			SUM('mv_estoque'[qtd_estoque]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		formatString: #,0
+		lineageTag: a89c1ec4-b49a-4382-a522-591efbc82508
+
+	measure *qtd_produto_geral =
+			
+			VAR Selecionado = SELECTEDVALUE(stock_out_botao_analise[botao], "1 Mês")
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Selecionado = "1 Mês", [*qtd_produto_1m],
+			    Selecionado = "3 Meses", [*qtd_produto_3m],
+			    Selecionado = "6 Meses", [*qtd_produto_6m],
+			    BLANK()
+			)
+		formatString: #,0
+		lineageTag: 29a0633d-5aa2-4359-bbe4-3bb114fc2af6
+
+	measure *qtd_vendida_1m =
+			CALCULATE(
+			SUM('mv_estoque'[qtd_vendida_1m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		formatString: 0
+		lineageTag: 19349311-548f-411b-aa1a-ffa69ac4fe8b
+
+	measure *qtd_vendida_3m =
+			CALCULATE(
+			SUM('mv_estoque'[qtd_vendida_3m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		formatString: #,0
+		lineageTag: 2e2fdcd4-4b0c-4515-95b8-1955ca6953d1
+
+	measure *qtd_vendida_6m =
+			CALCULATE(
+			SUM('mv_estoque'[qtd_vendida_6m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		lineageTag: 73d47fba-82ff-42f9-98fe-26694a944df9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *valor_vendido_1m =
+			CALCULATE(
+			SUM('mv_estoque'[valor_vendido_1m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 3ae1cbf8-12c8-4e93-9c3b-b51c2b7ece1d
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *valor_vendido_3m =
+			CALCULATE(
+			SUM('mv_estoque'[valor_vendido_3m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 8cc27fde-34a5-4e8e-b7a4-f62686944282
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *valor_vendido_6m =
+			CALCULATE(
+			SUM('mv_estoque'[valor_vendido_6m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 48088dad-1750-4314-842c-16543f8ab025
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *nivel_servico = (([*qtd_produto_geral] - [*qtd_produto_com_ruptura_geral]) / [*qtd_produto_geral])
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: c2fba450-286b-4534-a366-6c443b204b85
+
+	measure *perda_por_stockout_1m =
+			CALCULATE(
+			SUM('mv_estoque'[perda_stockout_1m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		lineageTag: a4915252-7b00-4dc2-b37e-169b81a25415
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *perda_por_stockout_3m =
+			CALCULATE(
+			SUM('mv_estoque'[perda_stockout_3m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		lineageTag: 565c20cf-1893-4049-a3d4-244a1128df32
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *perda_por_stockout_6m =
+			CALCULATE(
+			SUM('mv_estoque'[perda_stockout_6m]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda])
+			)
+		lineageTag: 6102a755-4191-48b3-a025-1b9f4ea57b44
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *perda_stockout_geral =
+			
+			VAR Selecionado = SELECTEDVALUE(stock_out_botao_analise[botao], "1 Mês")
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Selecionado = "1 Mês", [*perda_por_stockout_1m],
+			    Selecionado = "3 Meses", [*perda_por_stockout_3m],
+			    Selecionado = "6 Meses", [*perda_por_stockout_6m],
+			    BLANK()
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: f5e64666-d606-4b58-aeef-4b1871554c95
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *qtd_produto_1m =
+			CALCULATE(
+			DISTINCTCOUNT('mv_estoque'[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda]),
+			    FILTER(mv_estoque, mv_estoque[*qtd_vendida_1m] > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: f93a94eb-d37e-457f-a815-98d56306a179
+
+	measure *qtd_produto_3m =
+			CALCULATE(
+			DISTINCTCOUNT('mv_estoque'[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda]),
+			    FILTER(mv_estoque, mv_estoque[*qtd_vendida_3m] > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: f5f966a1-82ee-4e4f-ad3c-bc53249d36c4
+
+	measure *qtd_produto_6m =
+			CALCULATE(
+			DISTINCTCOUNT('mv_estoque'[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda]),
+			    FILTER(mv_estoque, mv_estoque[*qtd_vendida_6m] > 0
+			    )
+			)
+		formatString: 0
+		lineageTag: 16dda407-0cc1-4a74-9b17-9ca20459e325
+
+	measure *qtd_produto_com_ruptura_1m =
+			CALCULATE(
+			DISTINCTCOUNT('mv_estoque'[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda]),
+			    FILTER(
+			        mv_estoque, mv_estoque[em_ruptura_1m] = "Ruptura"
+			    )
+			)
+		formatString: 0
+		lineageTag: 3e26ffd3-024c-4463-a352-0ba65f64ae61
+
+	measure *qtd_produto_com_ruptura_3m =
+			CALCULATE(
+			DISTINCTCOUNT('mv_estoque'[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda]),
+			    FILTER(
+			        mv_estoque, mv_estoque[em_ruptura_3m] = "Ruptura"
+			    )
+			)
+		formatString: 0
+		lineageTag: b86caa02-ef34-420c-b37e-605b6199bfe5
+
+	measure *qtd_produto_com_ruptura_6m =
+			CALCULATE(
+			DISTINCTCOUNT('mv_estoque'[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_estoque[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_estoque[ultima_venda]),
+			    FILTER(
+			        mv_estoque, mv_estoque[em_ruptura_6m] = "Ruptura"
+			    )
+			)
+		formatString: 0
+		lineageTag: 135e8815-f3f6-4f33-866d-43508066450f
+
+	measure *qtd_produto_com_ruptura_geral =
+			
+			VAR Selecionado = SELECTEDVALUE(stock_out_botao_analise[botao], "1 Mês")
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Selecionado = "1 Mês", [*qtd_produto_com_ruptura_1m],
+			    Selecionado = "3 Meses", [*qtd_produto_com_ruptura_3m],
+			    Selecionado = "6 Meses", [*qtd_produto_com_ruptura_6m],
+			    BLANK()
+			)
+		formatString: #,0
+		lineageTag: e7747a8d-463e-4fb0-ba57-8b7e6941ad6b
+
+	measure *qtd_vendida_geral =
+			
+			VAR Selecionado = SELECTEDVALUE(stock_out_botao_analise[botao], "1 Mês")
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Selecionado = "1 Mês", [*qtd_vendida_1m],
+			    Selecionado = "3 Meses", [*qtd_vendida_3m],
+			    Selecionado = "6 Meses", [*qtd_vendida_6m],
+			    BLANK()
+			)
+		formatString: #,0
+		lineageTag: 3b9c8395-9cc3-42ab-88e4-58f66fbab2a8
+
+	measure *valor_vendido_geral =
+			
+			VAR Selecionado = SELECTEDVALUE(stock_out_botao_analise[botao], "1 Mês")
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    Selecionado = "1 Mês", [*valor_vendido_1m],
+			    Selecionado = "3 Meses", [*valor_vendido_3m],
+			    Selecionado = "6 Meses", [*valor_vendido_6m],
+			    BLANK()
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: db35b9b5-942a-40d8-8470-396ee6f22f61
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *nivel_servico_cor =
+			
+			VAR ns = [*nivel_servico]
+			RETURN
+			    SWITCH (
+			        TRUE(),
+			        ns > 0.90, "#4CAF50",   -- verde
+			        ns > 0.80, "#FDD663",   -- amarelo
+			        ns <= 0.80, "#e8756f"   -- vermelho
+			    )
+		lineageTag: 8c329e18-270c-4f5b-857e-03cb5adddcaa
+
+	column num_cnpj
+		dataType: string
+		lineageTag: ed8cc621-a341-41c2-bad2-83394a70e961
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra
+		dataType: int64
+		lineageTag: 507e083e-5aa9-44fd-a1b1-8705578a7be6
+		summarizeBy: none
+		sourceColumn: cod_barra
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_estoque
+		dataType: double
+		lineageTag: b13ea8b5-3626-4add-af46-ddefc4ada1c9
+		summarizeBy: sum
+		sourceColumn: qtd_estoque
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_vendida_1m
+		dataType: double
+		lineageTag: 1e43ac45-1911-4e60-9f6c-154a12295111
+		summarizeBy: sum
+		sourceColumn: qtd_vendida_1m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_vendido_1m
+		dataType: double
+		lineageTag: 5945a420-df4b-48bf-a3a7-9b2d077c241e
+		summarizeBy: sum
+		sourceColumn: valor_vendido_1m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_vendida_3m
+		dataType: double
+		lineageTag: 783b9766-fb2b-4987-8282-f47bf8987058
+		summarizeBy: sum
+		sourceColumn: qtd_vendida_3m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_vendido_3m
+		dataType: double
+		lineageTag: ba31606e-ab45-4146-bb6d-a23036b38095
+		summarizeBy: sum
+		sourceColumn: valor_vendido_3m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_vendida_6m
+		dataType: double
+		lineageTag: d16e2b2d-1293-4f52-b7c5-6fe2b3d10391
+		summarizeBy: sum
+		sourceColumn: qtd_vendida_6m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_vendido_6m
+		dataType: double
+		lineageTag: 34bae837-6699-40e1-b61d-de6df2bab217
+		summarizeBy: sum
+		sourceColumn: valor_vendido_6m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ultima_venda
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7a7d20e2-0e4e-4767-933d-77f40b8cf88d
+		summarizeBy: none
+		sourceColumn: ultima_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ultima_compra
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: cb8946f4-6e1c-4813-a6b7-c1a234b3621b
+		summarizeBy: none
+		sourceColumn: ultima_compra
+
+		variation Variation
+			isDefault
+			relationship: df59f71a-d85f-4344-871a-12df08240ee8
+			defaultHierarchy: LocalDateTable_9065b3e7-99f9-40a1-bb50-98e37b60880b.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_generica
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 424df085-ac30-44f6-b260-66d37d0c5452
+		summarizeBy: none
+		sourceColumn: data_generica
+
+		variation Variation
+			isDefault
+			relationship: b072ee5a-3b2e-40f0-9015-563fc231bb62
+			defaultHierarchy: LocalDateTable_6ce09fbc-0b8b-460a-a1f4-9bb67da33a54.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dias_sem_venda
+		dataType: int64
+		formatString: 0
+		lineageTag: 43faeb54-42e6-4ef9-86fc-9f81ebceedfa
+		summarizeBy: sum
+		sourceColumn: dias_sem_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_sem_compra
+		dataType: int64
+		formatString: 0
+		lineageTag: 995c9a2c-5dc3-4461-a597-fd17c9764377
+		summarizeBy: sum
+		sourceColumn: dias_sem_compra
+
+		annotation SummarizationSetBy = Automatic
+
+	column em_ruptura_1m
+		dataType: string
+		lineageTag: 48aed82c-75ce-4849-a3ae-f61ec9eb7138
+		summarizeBy: none
+		sourceColumn: em_ruptura_1m
+
+		annotation SummarizationSetBy = Automatic
+
+	column em_ruptura_3m
+		dataType: string
+		lineageTag: 1639764e-cda8-4c30-93e0-f157907f38a1
+		summarizeBy: none
+		sourceColumn: em_ruptura_3m
+
+		annotation SummarizationSetBy = Automatic
+
+	column em_ruptura_6m
+		dataType: string
+		lineageTag: 0cf67848-5eaa-49a5-8ba8-057abc7b3497
+		summarizeBy: none
+		sourceColumn: em_ruptura_6m
+
+		annotation SummarizationSetBy = Automatic
+
+	column perda_stockout_1m
+		dataType: double
+		lineageTag: 5fd5eaad-28c1-466b-83a4-edf86266afa3
+		summarizeBy: sum
+		sourceColumn: perda_stockout_1m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perda_stockout_3m
+		dataType: double
+		lineageTag: 85db37ce-9d82-4b6a-a175-96d04f7513d2
+		summarizeBy: sum
+		sourceColumn: perda_stockout_3m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perda_stockout_6m
+		dataType: double
+		lineageTag: 71e7f546-7c8a-4eec-9626-edf7fa755771
+		summarizeBy: sum
+		sourceColumn: perda_stockout_6m
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column cod_barra_tratado =
+			
+			VAR padrao = LOOKUPVALUE(
+			    produto_gcp[cod_barra],
+			    produto_gcp[cod_barra],
+			    mv_estoque[cod_barra]
+			)
+			RETURN
+			IF(
+			    ISBLANK(padrao),
+			    0,
+			    padrao
+			)
+		formatString: 0
+		lineageTag: 7a460575-1ed8-4fcf-89d2-f652051e4788
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_estoque = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_estoque_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(
+				        Resultado,
+				        {
+				            "perda_stockout_6m",
+				            "em_ruptura_1m",
+				            "ultima_compra",
+				            "valor_vendido_3m",
+				            "qtd_vendida_1m",
+				            "data_generica",
+				            "em_ruptura_3m",
+				            "num_cnpj",
+				            "valor_vendido_6m",
+				            "qtd_vendida_3m",
+				            "cod_barra",
+				            "valor_vendido_1m",
+				            "ultima_venda",
+				            "perda_stockout_1m",
+				            "perda_stockout_3m",
+				            "dias_sem_compra",
+				            "dias_sem_venda",
+				            "qtd_vendida_6m",
+				            "qtd_estoque",
+				            "em_ruptura_6m"
+				        }
+				    )
+				
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "ef42bb3f2e939d327452",
+  "position": {
+    "x": 874.106728538283,
+    "y": 101.48491879350348,
+    "z": 7000,
+    "height": 254.33874709976797,
+    "width": 373.36426914153134,
+    "tabOrder": 5000
+  },
+  "visualGroup": {
+    "displayName": "avaliar_competitividade",
+    "groupMode": "ScaleMode"
+  }
+}

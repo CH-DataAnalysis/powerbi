@@ -1,0 +1,135 @@
+table tabela_cadastro_lojas
+	lineageTag: db9751b8-2276-467d-8aef-1eb99f86d00a
+
+	measure *qtd_cnpjs = DISTINCTCOUNT(tabela_cadastro_lojas[num_cnpj])
+		formatString: #,0
+		lineageTag: 7b107123-b994-476b-96d5-f329239f7967
+
+	column nom_farmacia
+		dataType: string
+		lineageTag: 15fe13f5-9563-44df-81d6-1a015a69e5de
+		summarizeBy: none
+		sourceColumn: nom_farmacia
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_cnpj
+		dataType: string
+		lineageTag: 6f819606-47bf-44c0-90aa-1acd5c81223e
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cep_farmacia
+		dataType: string
+		lineageTag: e61df9a1-dd5d-4a9f-b04a-88fa7ba88e8f
+		summarizeBy: none
+		sourceColumn: cep_farmacia
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_matrizpac
+		dataType: int64
+		formatString: 0
+		lineageTag: 55a9e5ea-738b-4b3a-b176-167a0124dbd6
+		summarizeBy: sum
+		sourceColumn: cod_matrizpac
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_sit_contrato
+		dataType: int64
+		formatString: 0
+		lineageTag: d73666c7-d012-4507-a9aa-e90f3579fad5
+		summarizeBy: sum
+		sourceColumn: cod_sit_contrato
+
+		annotation SummarizationSetBy = Automatic
+
+	column codigo_rede
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a335784-8349-4557-a612-09fd922326be
+		summarizeBy: none
+		sourceColumn: codigo_rede
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_rede
+		dataType: string
+		lineageTag: 29c9b925-b809-4653-b12e-2dfe61bfe98d
+		summarizeBy: none
+		sourceColumn: nome_rede
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_cadastro
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ae486f3c-2f75-4dc6-b3e5-87cac0761890
+		summarizeBy: none
+		sourceColumn: data_cadastro
+
+		variation Variation
+			isDefault
+			relationship: ed99d898-7e99-4df3-95ec-e21ade6066c5
+			defaultHierarchy: LocalDateTable_5cd145cd-91ea-40cb-8106-48639c60b62d.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_loja
+		dataType: string
+		lineageTag: aba493fe-0cb3-43ad-a8b7-b3f80baa3fe6
+		summarizeBy: none
+		sourceColumn: status_loja
+
+		annotation SummarizationSetBy = Automatic
+
+	column num_cnpj_mascarado = LEFT([num_cnpj],2) & ".***.***/****-" & RIGHT([num_cnpj],2)
+		lineageTag: fb429477-eeb0-4228-9abe-337908d75b59
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_farmacia_mascarado = LEFT([nom_farmacia],2) & "**********" & RIGHT([nom_farmacia],2)
+		lineageTag: 602b0366-6c14-4f46-806f-57349c93858e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_loja = [nom_farmacia] & " | " & [num_cnpj]
+		lineageTag: 5b36a634-d21d-49ed-9560-80552e43904e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_admin
+		dataType: string
+		lineageTag: 294ea01c-13dc-4e69-9bb8-81cda2b50f3d
+		summarizeBy: none
+		sourceColumn: cod_admin
+
+		annotation SummarizationSetBy = Automatic
+
+	column sistema
+		dataType: string
+		lineageTag: dc3dbcdd-11e0-4529-962b-a3397c5b8193
+		summarizeBy: none
+		sourceColumn: sistema
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tabela_cadastro_lojas = m
+		mode: import
+		source =
+				let
+				    Fonte = Value.NativeQuery(PostgreSQL.Database("dbneo.triersistemas.com.br", "trier"), "WITH tabela_cadastro_lojas AS (#(lf)SELECT#(lf)    a.id_clientes AS id_farmacia,#(lf)    a.codcli AS cod_farmacia,#(lf)    a.razsoccli AS nom_farmacia,#(lf)    a.fantascli AS nom_fantasia,#(lf)    a.cnpjcpfcli AS num_cnpj,#(lf)    cepnum.numcep AS cep_farmacia,#(lf)    (((substr(a.endcli::text, 1, 90) || ', '::text) || COALESCE(a.numcli, 'S/N'::character varying)::text))::character varying(100) AS end_farmacia,#(lf)    a.bairrocli AS bai_farmacia,#(lf)    cidade.nomecid AS cid_farmacia,#(lf)    estado.coduf AS est_farmacia,#(lf)    b.fantascli AS nome_matrizpac,#(lf)    b.codcli AS cod_matrizpac,#(lf)    tabfixas.itemtbf AS cod_sit_contrato,#(lf)    tabfixas.descittbf AS sit_contrato,#(lf)    a.empcli AS empresa,#(lf)    CASE#(lf)        WHEN a.empcli::text = '001'::text THEN COALESCE(tab.descittbf, 'TRIER'::character varying)#(lf)        WHEN a.empcli::text = '013'::text THEN COALESCE(tab.descittbf, NULL::character varying)#(lf)        ELSE NULL::character varying#(lf)    END AS sistema,#(lf)    CASE#(lf)#(tab)#(tab)WHEN grupocli.codgru IN ('32','66','156') THEN '32'#(lf)#(tab)#(tab)ELSE grupocli.codgru#(lf)#(tab)END AS codigo_rede,#(lf)    grupocli.nomegru AS nome_rede,#(lf)    date(contrato.dtinictr) AS data_cadastro,#(lf)    CASE#(lf)#(tab)#(tab)WHEN contrato.dtinictr > CURRENT_DATE - INTERVAL '3 months' THEN 'EM ABERTURA'#(lf)#(tab)#(tab)WHEN contrato.dtinictr > CURRENT_DATE - INTERVAL '12 months' THEN 'NOVA'#(lf)#(tab)#(tab)WHEN contrato.dtinictr > CURRENT_DATE - INTERVAL '24 months' THEN 'EM CONSOLIDAÇÃO'#(lf)#(tab)#(tab)WHEN contrato.dtinictr > CURRENT_DATE - INTERVAL '60 months' THEN 'ESTÁVEL'#(lf)#(tab)#(tab)ELSE 'ESTABELECIDA'#(lf)#(tab)END AS status_loja,#(lf)#(tab)DATE_PART('year', AGE(CURRENT_DATE, contrato.dtinictr)) * 12 +#(lf)#(tab)DATE_PART('month', AGE(CURRENT_DATE, contrato.dtinictr)) AS meses_atividade,#(lf)    ROW_NUMBER() OVER (#(lf)    PARTITION BY grupocli.codgru#(lf)    ORDER BY a.codcli ASC, a.cnpjcpfcli ASC#(lf)    ) AS sequencial,#(lf)#(tab)ROW_NUMBER() OVER (#(lf)            PARTITION BY a.cnpjcpfcli#(lf)            ORDER BY contrato.dtinictr DESC, a.codcli#(lf)        ) AS rn#(lf)   FROM clientes a#(lf)     LEFT JOIN cepnum ON cepnum.id_cepnum = a.cepcli_id#(lf)     LEFT JOIN cidade ON cidade.id_cidade = cepnum.codcidcep_id#(lf)     LEFT JOIN estado ON estado.id_estado = a.ufcli_id#(lf)     LEFT JOIN clientesdefinicoes ON clientesdefinicoes.clientes_id = a.id_clientes AND a.empcli::text = '001'::text#(lf)     LEFT JOIN clientes b ON b.id_clientes = clientesdefinicoes.clienteatendimento_id AND b.empcli::text = a.empcli::text#(lf)     LEFT JOIN clientes c ON c.codcli = NULLIF(a.codempclicli::text, ''::text)::bigint AND c.empcli::text = a.empcli::text#(lf)     LEFT JOIN clientes d ON d.empcli::text = a.empcli::text AND d.id_clientes = clientesdefinicoes.clienteduplicata_id#(lf)     LEFT JOIN contrato ON contrato.codclictr_id = a.id_clientes AND contrato.empctr::text = a.empcli::text#(lf)     LEFT JOIN tabfixas ON tabfixas.codtbf = 15 AND tabfixas.id_tabfixas = contrato.statusctr_id#(lf)     LEFT JOIN tabfixas tab ON tab.codtbf = 310 AND tab.id_tabfixas = a.origemcttptacli_id#(lf)     LEFT JOIN grupocli ON grupocli.id_grupocli = a.grupocli_id AND grupocli.empgru::text = a.empcli::text#(lf)  WHERE a.empcli::text = ANY (ARRAY['001'::text, '013'::text])#(lf)  AND tabfixas.itemtbf is not null#(lf)AND tabfixas.itemtbf <> '1'#(lf)  ORDER BY a.cnpjcpfcli, a.empcli, a.codcli#(lf))#(lf)SELECT *,#(lf)'99999' as cod_admin#(lf)FROM tabela_cadastro_lojas#(lf)WHERE rn = '1'#(lf)ORDER BY#(lf)    codigo_rede ASC,#(lf)    sequencial ASC", null, [EnableFolding=true]),
+				    #"Columns removed by Measure Killer"= Table.SelectColumns(Fonte,{"nom_farmacia", "num_cnpj", "cep_farmacia", "cod_matrizpac", "cod_sit_contrato", "sistema", "codigo_rede", "nome_rede", "data_cadastro", "status_loja", "cod_admin"})
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

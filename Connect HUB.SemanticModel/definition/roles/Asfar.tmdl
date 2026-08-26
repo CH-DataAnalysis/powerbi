@@ -1,0 +1,9 @@
+role Asfar
+	modelPermission: read
+
+	tablePermission tabela_cadastro_lojas = [codigo_rede] IN {32,66,156}
+
+	tablePermission logo_associacao = [codigo_rede] IN {32,66,156}
+
+	annotation PBI_Id = 8ff0d8cafadf432caa749d8e75d88937
+

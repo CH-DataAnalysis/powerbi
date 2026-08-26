@@ -1,0 +1,344 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "d13394d02e0de20a8c57",
+  "position": {
+    "x": 43.851508120649655,
+    "y": 747.98143851508121,
+    "z": 3000,
+    "height": 301.94895591647332,
+    "width": 1057.447795823666,
+    "tabOrder": 18000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_sugestao_transferencia_filiais"
+                    }
+                  },
+                  "Property": "loja_destino"
+                }
+              },
+              "queryRef": "mv_sugestao_transferencia_filiais.loja_destino",
+              "nativeQueryRef": "CNPJ de destino",
+              "displayName": "CNPJ de destino"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "cod_barra"
+                }
+              },
+              "queryRef": "produto_gcp.cod_barra",
+              "nativeQueryRef": "EAN",
+              "displayName": "EAN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "produto"
+                }
+              },
+              "queryRef": "produto_gcp.produto",
+              "nativeQueryRef": "Produto",
+              "displayName": "Produto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_sugestao_transferencia_filiais"
+                    }
+                  },
+                  "Property": "curva_abc_destino"
+                }
+              },
+              "queryRef": "sugestao_transferencia_filiais.curva_abc_destino",
+              "nativeQueryRef": "Curva ABC (Qtd.) (Destino)",
+              "displayName": "Curva ABC (Qtd.) (Destino)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_sugestao_transferencia_filiais"
+                    }
+                  },
+                  "Property": "*qtd_disponivel_origem"
+                }
+              },
+              "queryRef": "sugestao_transferencia_filiais.*qtd_disponivel_origem",
+              "nativeQueryRef": "Qtd. disponível em estoque (Origem)",
+              "displayName": "Qtd. disponível em estoque (Origem)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_sugestao_transferencia_filiais"
+                    }
+                  },
+                  "Property": "*demanda_90d_destino"
+                }
+              },
+              "queryRef": "sugestao_transferencia_filiais.*demanda_90d_destino",
+              "nativeQueryRef": "Demanda necessária (Destino)",
+              "displayName": "Demanda necessária (Destino)"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_sugestao_transferencia_filiais"
+                    }
+                  },
+                  "Property": "*perc_demanda_atendida"
+                }
+              },
+              "queryRef": "Sum(sugestao_transferencia_filiais.*perc_demanda_atendida)",
+              "nativeQueryRef": "% Demanda atendida",
+              "displayName": "% Demanda atendida"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "produto_gcp"
+                  }
+                },
+                "Property": "produto"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "345.5796754246842D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.produto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "91.51994475983025D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "sugestao_transferencia_filiais.*demanda_90d_destino"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "101.8346926865124D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "sugestao_transferencia_filiais.*qtd_disponivel_origem"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "95.14284631141585D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(sugestao_transferencia_filiais.*perc_demanda_atendida)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "137.42852229598645D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.cod_barra"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "92.71426244290026D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "sugestao_transferencia_filiais.curva_abc_destino"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'CNPJ de destino'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "94a6f862575c26006378",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "produto_gcp"
+              }
+            },
+            "Property": "cod_barra"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "9db48afb8c5c0c1c0368",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "nom_farmacia"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "isLockedInViewMode": true,
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

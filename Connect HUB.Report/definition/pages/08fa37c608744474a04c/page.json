@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "08fa37c608744474a04c",
+  "displayName": "info_nivel_servico",
+  "displayOption": "ActualSize",
+  "height": 160,
+  "width": 380,
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

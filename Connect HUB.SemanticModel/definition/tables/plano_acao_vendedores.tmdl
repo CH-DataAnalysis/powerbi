@@ -1,0 +1,141 @@
+table plano_acao_vendedores
+	lineageTag: 05547af9-2525-4615-ab2a-3d481cf9b96e
+
+	measure *gargalo_principal =
+			
+			VAR t = [**ticket_score]
+			VAR i = [**itens_score]
+			VAR a = [**atendimentos_score]
+			VAR l = [**lucro_score]
+			VAR minv = MIN( MIN(t,i), MIN(a,l) )
+			RETURN
+			SWITCH(TRUE(),
+			    l = minv, "Lucro",
+			    t = minv, "Ticket",
+			    i = minv, "Itens",
+			    "Atendimentos"
+			)
+		lineageTag: 6f63cbe9-6726-4f58-8d8a-4b7029d85f94
+
+	measure *plano_acao_base = ```
+			
+			VAR g = [*gargalo_principal]
+			RETURN
+			SWITCH(
+			    g,
+			    
+			    "Lucro",
+			    "
+			    • Evitar descontos fora da política para proteger a margem
+			    • Oferecer genéricos e similares com maior rentabilidade
+			    • Sugerir produtos de marca própria sempre que possível
+			    • Explicar ao cliente o custo-benefício do produto sem reduzir preço
+			    • Analisar mix de produtos e identificar itens com maior margem potencial
+			    • Incentivar o uso de programas de fidelidade para aumentar recompra
+			    • Treinar vendedores para argumentação de valor sem ceder descontos
+			    • Monitorar margens por categoria e ajustar estratégias de compra
+			    ",
+			    
+			    "Ticket",
+			    "
+			    • Incentivar compra de medicamentos de uso contínuo em embalagens maiores (30 dias ou mais)
+			    • Combinar produtos de higiene e beleza com medicamentos para aumentar ticket médio
+			    • Criar kits promocionais atrativos (ex.: remédio + vitamina, dermocosmético + protetor solar)
+			    • Definir meta de ticket médio por atendimento
+			    • Sugerir produtos premium ou complementares que aumentem valor agregado
+			    • Identificar oportunidades de venda digital (ex.: pedidos online, WhatsApp) para aumentar ticket
+			    • Realizar acompanhamento diário do ticket médio por loja e por vendedor
+			    ",
+			    
+			    "Itens",
+			    "
+			    • Sempre oferecer produtos complementares (vitaminas, hidratantes, protetor solar)
+			    • Utilizar kits prontos para aumentar quantidade de itens por venda
+			    • Estabelecer meta mínima de pelo menos 2 itens por atendimento
+			    • Incentivar promoções de segunda unidade com desconto estratégico
+			    • Monitorar mix de categorias e garantir que produtos de maior giro estejam destacados
+			    • Treinar vendedores para sugerir produtos de forma natural, sem pressionar o cliente
+			    ",
+			    
+			    "Atendimentos",
+			    "
+			    • Realizar abordagem ativa no balcão e por telefone
+			    • Estabelecer meta mínima de atendimentos por turno
+			    • Monitorar se o vendedor está aproveitando todo o fluxo de clientes
+			    • Incentivar contato proativo com clientes frequentes (ligação, WhatsApp, app, aniversariantes...)
+			    • Avaliar tempo de atendimento e qualidade do serviço
+			    • Implementar checklists de atendimento para garantir padrão de excelência
+			    • Utilizar indicadores de conversão (clientes atendidos x clientes que compram) para ajustes
+			    ",
+			    
+			    "Sem ponto de atenção relevante: manter acompanhamento normal"
+			)
+			```
+		lineageTag: 03732f24-2a9d-4178-b1c5-1e9ba9795c1a
+
+	measure *plano_acao_contextual = ```
+			
+			VAR t = [**ticket_score]
+			VAR i = [**itens_score]
+			VAR a = [**atendimentos_score]
+			VAR l = [**lucro_score]
+			RETURN
+			SWITCH(TRUE(),
+			    l < 40 && t >= 60,
+			    "• Rever descontos dados em remédios de alto valor
+			• Incentivar substituição por similares/genéricos mais rentáveis
+			• Oferecer produtos de marca própria na finalização da venda",
+			
+			    l < 40 && i >= 60,
+			    "• Orientar equipe a priorizar itens de maior margem (ex.: dermocosméticos, vitaminas)
+			• Montar kits onde o produto principal seja de boa rentabilidade
+			• Evitar foco apenas em itens populares de baixa margem",
+			
+			    l < 40 && a >= 60,
+			    "• Monitorar descontos excessivos em vendas de alto volume
+			• Definir meta mínima de margem por atendimento
+			• Usar alerta no caixa para autorizar descontos acima do limite",
+			
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 95fdc49b-e504-4377-bfa5-86b1d7262f71
+
+	measure *plano_acao =
+			
+			VAR base = [*plano_acao_base]
+			VAR ctx  = [*plano_acao_contextual]
+			RETURN
+			IF( NOT ISBLANK(ctx), ctx, base )
+		lineageTag: 6f3b423d-e0be-4777-aa06-ec002ab20636
+
+	measure *resumo_acao = ```
+			
+			VAR vend = SELECTEDVALUE( mv_vendas_produtos[cod_nom_vendedor], "Vendedor" )
+			VAR garg = [*gargalo_principal]
+			RETURN
+			vend & UNICHAR(10) & UNICHAR(10) & 
+			"Ponto de atenção: " & garg & UNICHAR(10) & UNICHAR(10) & 
+			"Ações recomendadas: " & UNICHAR(10) & [*plano_acao]
+			```
+		lineageTag: 51b814c0-0660-4a0e-b763-de4d11cb5174
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 37871537-7b34-4f89-be1c-8964b8d3bfa9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition plano_acao_vendedores = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = b8dcafae27074b85a379da77fc37a323
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

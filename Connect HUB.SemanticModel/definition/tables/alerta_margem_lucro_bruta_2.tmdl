@@ -1,0 +1,25 @@
+table alerta_margem_lucro_bruta_2
+	lineageTag: 2f775b6a-4df8-4633-894e-81f0d4217c78
+
+	column alerta
+		lineageTag: e6b91852-bbd3-4ebf-b05e-d24b5de55af3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [alerta]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition alerta_margem_lucro_bruta_2 = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "alerta", STRING,
+				    {
+				        {"Margem positiva"},
+				        {"Margem negativa"}
+				    }
+				)
+
+	annotation PBI_Id = eaf76b784c12497d88152b57dd59b58e
+

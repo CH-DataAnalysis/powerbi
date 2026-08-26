@@ -1,0 +1,13 @@
+role Dashpress
+	modelPermission: read
+
+	tablePermission portal_authorization =
+			[username] = [usuario_logado]
+			&& [tagvalue] = [tagvalue_logada]
+
+	tablePermission logo_associacao = [link] == "https://github.com/gruopotrier-connect-hub/logos_connect_hub/blob/main/connect%20hub.png?raw=true"
+
+	tablePermission tabela_cadastro_lojas = [cod_sit_contrato] <> 1 && [num_cnpj] <> "94817921000195"
+
+	annotation PBI_Id = 43380cd2e1344c108d2bd5cedb104e40
+

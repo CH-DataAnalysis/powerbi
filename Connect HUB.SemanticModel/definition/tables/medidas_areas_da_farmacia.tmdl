@@ -1,0 +1,1103 @@
+table medidas_areas_da_farmacia
+	lineageTag: daa2ddb7-0eaf-4104-b165-2d69fec3d107
+
+	measure *%var_alimentos_bebidas_mes_anterior = (([*alimentos_bebidas_mes_atual] - [*alimentos_bebidas_mes_anterior]) / [*alimentos_bebidas_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 84d2e0d8-4700-4254-9d8f-a3e1469a9102
+
+	measure *%var_conveniencia_mes_anterior = (([*conveniencia_mes_atual] - [*conveniencia_mes_anterior]) / [*conveniencia_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 17a47c68-235f-4ac7-8fa5-22015dde9117
+
+	measure *%var_cuidado_infantil_mes_anterior = (([*cuidado_infantil_mes_atual] - [*cuidado_infantil_mes_anterior]) / [*cuidado_infantil_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e7d52071-63c9-4275-ab14-103601ee7eab
+
+	measure *%var_cuidados_ao_paciente_mes_anterior = (([*cuidados_ao_paciente_mes_atual] - [*cuidados_ao_paciente_mes_anterior]) / [*cuidados_ao_paciente_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f0f52c69-01a0-42f1-ba8a-a4909589abde
+
+	measure *%var_dermocosmeticos_mes_anterior = (([*dermocosmeticos_mes_atual] - [*dermocosmeticos_mes_anterior]) / [*dermocosmeticos_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f63792dc-5dc7-4b67-904e-4956135e4995
+
+	measure *%var_higiene_pessoal_perfumaria_mes_anterior = (([*higiene_pessoal_perfumaria_mes_atual] - [*higiene_pessoal_perfumaria_mes_anterior]) / [*higiene_pessoal_perfumaria_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d3c953ad-0de4-4e01-9a39-972d4e4c909c
+
+	measure *%var_nutricosmeticos_mes_anterior = (([*nutricosmeticos_mes_atual] - [*nutricosmeticos_mes_anterior]) / [*nutricosmeticos_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1f14d8d3-5504-4cc3-8af6-f23eb5ac3b69
+
+	measure *%var_otc_mip_mes_anterior = (([*otc_mip_mes_atual] - [*otc_mip_mes_anterior]) / [*otc_mip_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a61c8db1-4d81-4b32-845c-bb228153e2af
+
+	measure *%var_prescricao_mes_anterior = (([*prescricao_mes_atual] - [*prescricao_mes_anterior]) / [*prescricao_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d006906d-d1ef-47c2-9906-ebf3003cd8a6
+
+	measure *%var_saude_sexual_masculina_mes_anterior = (([*saude_sexual_masculina_mes_atual] - [*saude_sexual_masculina_mes_anterior]) / [*saude_sexual_masculina_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5e25de41-7aeb-4453-bbba-dfdab708fa8c
+
+	measure *%var_tratamento_dermatologicos_mes_anterior = (([*tratamento_dermatologicos_mes_atual] - [*tratamento_dermatologicos_mes_anterior]) / [*tratamento_dermatologicos_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dc6c06d4-459b-4ea4-b455-4ca28df2d5c8
+
+	measure *alimentos_bebidas = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "ALIMENTOS E BEBIDAS"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 84afd22d-2512-49eb-9e25-add0f3689998
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *alimentos_bebidas_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "ALIMENTOS E BEBIDAS")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4fe233e0-9525-4f19-84c0-071e561d1ae4
+
+	measure *alimentos_bebidas_mes_anterior = ```
+			
+			VAR DataAtual =
+			    MAX ( calendario[Date] )
+			VAR DataMesAnterior =
+			    EDATE ( DataAtual, -1 )
+			-- Último dia carregado do mês atual
+			VAR DataLimiteMesAtual =
+			    CALCULATE (
+			        MAX ( mv_vendas_produtos[dat_emissao] ),
+			        USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			        USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        FILTER (
+			            ALL ( calendario ),
+			            calendario[ano_mes_numero] = MAX ( calendario[ano_mes_numero] )
+			        )
+			    )
+			-- Último dia do calendário no mês atual
+			VAR UltimoDiaMesAtual =
+			    CALCULATE (
+			        MAX ( calendario[Date] ),
+			        FILTER (
+			            ALL ( calendario ),
+			            calendario[ano_mes_numero] = MAX ( calendario[ano_mes_numero] )
+			        )
+			    )
+			-- Definição de até qual dia usar no mês anterior
+			VAR DiaLimiteMesAnterior =
+			    IF (
+			        DataLimiteMesAtual = UltimoDiaMesAtual,
+			        DAY ( EOMONTH ( DataMesAnterior, 0 ) ), -- mês fechado → usa último dia real
+			        DAY ( DataLimiteMesAtual )             -- mês aberto → usa mesmo dia limite
+			    )
+			RETURN
+			    CALCULATE (
+			        SUM ( mv_vendas_produtos[vlr_total_venda] ),
+			        USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			        USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        KEEPFILTERS ( produto_gcp[area_farmacia] = "ALIMENTOS E BEBIDAS" ),
+			        FILTER (
+			            ALL ( calendario ),
+			            calendario[Date] >= DATE ( YEAR ( DataMesAnterior ), MONTH ( DataMesAnterior ), 1 )
+			                && calendario[Date] <= DATE ( YEAR ( DataMesAnterior ), MONTH ( DataMesAnterior ), DiaLimiteMesAnterior )
+			        )
+			    )
+			
+			```
+		lineageTag: 6fddefb0-d1e6-47e2-b3c9-c57e38afcbdc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *alimentos_bebidas_mes_atual =
+			
+			CALCULATE(
+			    [*alimentos_bebidas],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: 318df584-9a81-433f-ae38-bdfd907124a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *conveniencia = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "CONVENIÊNCIA"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 2ccf19f7-099e-4109-903b-ff13a4114a64
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *conveniencia_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "CONVENIÊNCIA")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: db0a2191-8598-4ea9-82b7-63d6f8699bdc
+
+	measure *conveniencia_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*conveniencia],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: a3978b58-4390-41be-824f-6a27b0d4e9ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *conveniencia_mes_atual =
+			
+			CALCULATE(
+			    [*conveniencia],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: 3b0eb41c-b972-466d-a4bc-1be753acb15b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *cuidado_infantil = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "CUIDADO BEBÊ/INFANTIL"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: be7f3ddb-8db8-4164-8631-d5066a18f725
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *cuidado_infantil_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "CUIDADO BEBÊ/INFANTIL")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 11e540b7-3970-4598-b1ab-c0dceb34f205
+
+	measure *cuidado_infantil_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*cuidado_infantil],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: e8c3b12e-ec8c-484d-9e90-ab9cc97e5f0b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *cuidado_infantil_mes_atual =
+			
+			CALCULATE(
+			    [*cuidado_infantil],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: da352db8-c926-4bcb-b1ff-b8bcd50cf3b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *cuidados_ao_paciente = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "CUIDADOS AO PACIENTE"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 52a05f03-ea5b-4f46-8507-3b1e48701d0b
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *cuidados_ao_paciente_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "CUIDADOS AO PACIENTE")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 9bfc08b3-e08c-4000-8792-7c7d6da90de2
+
+	measure *cuidados_ao_paciente_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*cuidados_ao_paciente],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: 4512ee28-c48b-43bd-837d-dba476eea8d0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *cuidados_ao_paciente_mes_atual =
+			
+			CALCULATE(
+			    [*cuidados_ao_paciente],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: 88d09d09-dabd-4b06-92f9-8e0ade6c5073
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *dermocosmeticos = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "DERMOCOSMETICOS"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 842a33a7-7143-4730-b24b-c6f790490e89
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *dermocosmeticos_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "DERMOCOSMETICOS")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 21ee1144-b4af-4246-bd18-7350981f5371
+
+	measure *dermocosmeticos_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*dermocosmeticos],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: a70135a7-3f71-4c74-892a-1459f031aeb8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *dermocosmeticos_mes_atual =
+			
+			CALCULATE(
+			    [*dermocosmeticos],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: 119ac76f-8795-4fdb-b47e-9895476fbe91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *higiene_pessoal_perfumaria = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "HIGIENE PESSOAL, PERFUMARIA E COSMÉTICOS"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 948e5c83-bdf9-48c6-b2f5-095bb675ec0d
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *higiene_pessoal_perfumaria_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "HIGIENE PESSOAL, PERFUMARIA E COSMÉTICOS")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fd08d1c8-7cc9-4483-bcf4-f1d468493f44
+
+	measure *higiene_pessoal_perfumaria_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*higiene_pessoal_perfumaria],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: 8f907f28-17ff-4d45-8c06-225983085798
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *higiene_pessoal_perfumaria_mes_atual =
+			
+			CALCULATE(
+			    [*higiene_pessoal_perfumaria],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: 546d6329-bec2-4721-a066-bf5de1a3d970
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *nutricosmeticos = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "NUTRICOSMÉTICOS"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 49a76353-e5b1-437e-9652-15cfa5028c41
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *nutricosmeticos_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "NUTRICOSMÉTICOS")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7fd7c71a-4f35-4693-b747-6f888efa52bd
+
+	measure *nutricosmeticos_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*nutricosmeticos],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: 67bf4c06-7148-4c00-a42b-afc940e2882c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *nutricosmeticos_mes_atual =
+			
+			CALCULATE(
+			    [*nutricosmeticos],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: b0f5e443-b3bf-4618-83ab-3315433d312b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *otc_mip = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "OTC"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 0771316f-941b-479c-9315-95b073f524d6
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *otc_mip_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "OTC")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0b350518-0fc2-4c1a-9a28-6e8418579c4f
+
+	measure *otc_mip_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*otc_mip],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: ec6b28d0-e95c-4562-828d-c3f41cb4e55d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *otc_mip_mes_atual =
+			
+			CALCULATE(
+			    [*otc_mip],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: 0fefe9bd-eb18-417a-a3a1-aef11e4abc05
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *prescricao = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "PRESCRIÇÃO"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 3fad7534-6575-44ef-a4d9-800048ee2eea
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *prescricao_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "PRESCRIÇÃO")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 3eb88aa4-c784-4474-b645-7ed428e6fc28
+
+	measure *prescricao_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*prescricao],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: 62490aa4-23bf-44d6-b60c-7dc20e8a0cd9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *prescricao_mes_atual =
+			
+			CALCULATE(
+			    [*prescricao],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: f7d4aaad-a406-4e05-8de3-9e0949780cd5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *saude_sexual_masculina = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "SAÚDE SEXUAL E SAÚDE MASCULINA"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 215a3491-1b13-467b-86f9-7f86ddec2341
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *saude_sexual_masculina_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "SAÚDE SEXUAL E SAÚDE MASCULINA")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e175f958-efe7-4a21-a505-9fd943c34eb0
+
+	measure *saude_sexual_masculina_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*saude_sexual_masculina],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: 09d884cc-7335-44c8-81a3-864ce2d3d0ef
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *saude_sexual_masculina_mes_atual =
+			
+			CALCULATE(
+			    [*saude_sexual_masculina],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: f9ea229c-03f8-495a-8b5b-953ee33578ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *tratamento_dermatologicos = ```
+			CALCULATE( 
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "TRATAMENTOS DERMATOLÓGICOS"
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 73524300-b6fd-449f-a996-563bd821bed5
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *tratamento_dermatologicos_% = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    FILTER(produto_gcp, produto_gcp[area_farmacia] = "TRATAMENTOS DERMATOLÓGICOS")
+			    ),
+			    CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			        
+			    )
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d1dc0943-2cfb-41e9-8372-2bd318f28d48
+
+	measure *tratamento_dermatologicos_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP ( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    [*tratamento_dermatologicos],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+		lineageTag: 54c52fd6-b7bf-4af1-b554-44de72764ad0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *tratamento_dermatologicos_mes_atual =
+			
+			CALCULATE(
+			    [*tratamento_dermatologicos],
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: e5d388ae-331a-4846-a825-ba1a06cdd2ed
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 5180ed11-4044-4793-9ae7-3f805a98f886
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition medidas_areas_da_farmacia = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 4e9a382d62ae4c47856f21c824395639
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "3cb0ae9a08723cd427e4",
+  "position": {
+    "x": 784.16666666666674,
+    "y": 615,
+    "z": 1000,
+    "height": 65,
+    "width": 350.83333333333337,
+    "tabOrder": 1000
+  },
+  "visualGroup": {
+    "displayName": "Botão gerencial vendas",
+    "groupMode": "ScaleMode"
+  }
+}

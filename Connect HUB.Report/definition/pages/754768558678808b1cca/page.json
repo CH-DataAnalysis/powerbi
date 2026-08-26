@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "754768558678808b1cca",
+  "displayName": "info_economia",
+  "displayOption": "ActualSize",
+  "height": 160,
+  "width": 380,
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

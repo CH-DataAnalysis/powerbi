@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "9c4b3ad4ad403a90592e",
+  "position": {
+    "x": 274.22335650796447,
+    "y": 0,
+    "z": 4000,
+    "height": 43.034482758620683,
+    "width": 41.566487723312534,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "delete-button18159580363894112.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "992884d519687026d601",
+  "howCreated": "InsertVisualButton"
+}

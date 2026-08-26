@@ -1,0 +1,391 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "c2e2e2afe02050e7248c",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 0,
+    "height": 365.84686774941997,
+    "width": 1063.7122969837587,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "cod_barra"
+                }
+              },
+              "queryRef": "Sum(estoque.cod_barra)",
+              "nativeQueryRef": "EAN",
+              "displayName": "EAN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "produto"
+                }
+              },
+              "queryRef": "produto_gcp.produto",
+              "nativeQueryRef": "Produto",
+              "displayName": "Produto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "laboratorio"
+                }
+              },
+              "queryRef": "produto_gcp.laboratorio",
+              "nativeQueryRef": "Laboratório",
+              "displayName": "Laboratório"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "ultima_venda"
+                }
+              },
+              "queryRef": "estoque.ultima_venda",
+              "nativeQueryRef": "Últ. venda",
+              "displayName": "Últ. venda"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "ultima_compra"
+                }
+              },
+              "queryRef": "estoque.ultima_compra",
+              "nativeQueryRef": "Últ. compra",
+              "displayName": "Últ. compra"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "*qtd_produto_estoque"
+                }
+              },
+              "queryRef": "estoque.*qtd_produto_estoque",
+              "nativeQueryRef": "Qtd. estoque",
+              "displayName": "Qtd. estoque"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "*valor_vendido_geral"
+                }
+              },
+              "queryRef": "estoque.*valor_vendido_geral",
+              "nativeQueryRef": "Valor vendido",
+              "displayName": "Valor vendido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "*qtd_vendida_geral"
+                }
+              },
+              "queryRef": "estoque.*qtd_vendida_geral",
+              "nativeQueryRef": "Qtd. vendida",
+              "displayName": "Qtd. vendida"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "dias_sem_compra"
+                }
+              },
+              "queryRef": "Sum(estoque.dias_sem_compra)",
+              "nativeQueryRef": "Dias sem compra",
+              "displayName": "Dias sem compra"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "dias_sem_venda"
+                }
+              },
+              "queryRef": "Sum(estoque.dias_sem_venda)",
+              "nativeQueryRef": "Dias sem venda",
+              "displayName": "Dias sem venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_estoque"
+                    }
+                  },
+                  "Property": "*perda_stockout_geral"
+                }
+              },
+              "queryRef": "estoque.*perda_stockout_geral",
+              "nativeQueryRef": "Perda por stock out",
+              "displayName": "Perda por stock out"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_estoque"
+                  }
+                },
+                "Property": "*perda_stockout_geral"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnFormatting": [
+        {
+          "properties": {
+            "dataBars": {
+              "positiveColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#E8756F'"
+                      }
+                    }
+                  }
+                }
+              },
+              "negativeColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'#FFFFFF'"
+                      }
+                    }
+                  }
+                }
+              },
+              "axisColor": {
+                "solid": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'foreground'"
+                      }
+                    }
+                  }
+                }
+              },
+              "reverseDirection": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "hideText": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              },
+              "totalMatchingOption": {
+                "expr": {
+                  "Literal": {
+                    "Value": "1L"
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estoque.*perda_stockout_geral"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "75.85713366619092D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estoque.dias_sem_venda)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "73.42858343985937D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(estoque.dias_sem_compra)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "76.9768002974456D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "estoque.*qtd_produto_estoque"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "285.5254200841813D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.produto"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Análise detalhada de produtos'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "25621825d82b07a68295"
+}

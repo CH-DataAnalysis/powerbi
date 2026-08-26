@@ -1,0 +1,40 @@
+table medidas_performance_vendedor
+	lineageTag: 484595bc-6030-4d18-8768-5fbebb36f492
+
+	measure filtro_classificacao_performance_vendedor = ```
+			
+			VAR classificacao_selecionada = SELECTEDVALUE('classificacao_performance_vendedor'[classificacao], "Todos")
+			VAR classificacao_geral = [_score_final]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    classificacao_selecionada = "Todos", 1,
+			    classificacao_selecionada = "1 - Ruim" && classificacao_geral >= 0 && classificacao_geral < 40, 1,
+			    classificacao_selecionada = "3 - Regular" && classificacao_geral >= 40 && classificacao_geral < 60, 1,
+			    classificacao_selecionada = "2 - Bom" && classificacao_geral >= 60 && classificacao_geral < 80, 1,
+			    classificacao_selecionada = "4 - Excelente" && classificacao_geral >= 80 && classificacao_geral <= 100, 1,
+			    0
+			)
+			
+			```
+		formatString: 0
+		lineageTag: eab21c42-c1df-446b-aed8-25c5b8aa4a15
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 7d1d2dfc-91ef-400f-823b-cff0b51bfa25
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition medidas_performance_vendedor = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 135b52e1cb6e498ba46b41f78cb73a7a
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

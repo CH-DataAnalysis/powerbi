@@ -1,0 +1,27 @@
+table classificacao_performance_vendedor
+	lineageTag: 8a64933b-8539-4d77-bab7-baf293c265d3
+
+	column classificacao
+		lineageTag: 79d7cd89-608d-4701-83ca-cdb6dab881e1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [classificacao]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition classificacao_performance_vendedor = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "classificacao", STRING,
+				    {
+				        {"1 - Ruim"},
+				        {"2 - Bom"},
+				        {"3 - Regular"},
+				        {"4 - Excelente"}
+				    }
+				)
+
+	annotation PBI_Id = 5e148afe622747c08b255dc680cefb1a
+

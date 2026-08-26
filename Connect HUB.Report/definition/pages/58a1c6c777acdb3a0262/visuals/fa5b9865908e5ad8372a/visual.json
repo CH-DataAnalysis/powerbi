@@ -1,0 +1,397 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "fa5b9865908e5ad8372a",
+  "position": {
+    "x": 45.714285714285715,
+    "y": 711.42857142857144,
+    "z": 4000,
+    "height": 327.14285714285717,
+    "width": 1564.2857142857144,
+    "tabOrder": 15000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_vendedores"
+                    }
+                  },
+                  "Property": "_cod_nom_vendedor"
+                }
+              },
+              "queryRef": "mv_performance_vendedores._cod_nom_vendedor",
+              "nativeQueryRef": "Vendedor",
+              "displayName": "Vendedor"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_vendedores"
+                    }
+                  },
+                  "Property": "_score_final"
+                }
+              },
+              "queryRef": "mv_performance_vendedores._score_final",
+              "nativeQueryRef": "Índice geral performance",
+              "displayName": "Índice geral performance"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_vendedores"
+                    }
+                  },
+                  "Property": "indicador_critico"
+                }
+              },
+              "queryRef": "mv_performance_vendedores.indicador_critico",
+              "nativeQueryRef": "Ponto de atenção",
+              "displayName": "Ponto de atenção"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_vendedores"
+                    }
+                  },
+                  "Property": "_score_medidas"
+                }
+              },
+              "queryRef": "mv_performance_vendedores._score_medidas",
+              "nativeQueryRef": "Score's",
+              "displayName": "Score's"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_vendedores"
+                    }
+                  },
+                  "Property": "plano_acao"
+                }
+              },
+              "queryRef": "mv_performance_vendedores.plano_acao",
+              "nativeQueryRef": "Resumo ação",
+              "displayName": "Resumo ação"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_vendedores"
+                    }
+                  },
+                  "Property": "classificacao_performance"
+                }
+              },
+              "queryRef": "mv_performance_vendedores.classificacao_performance",
+              "nativeQueryRef": "Classificação",
+              "displayName": "Classificação"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_performance_vendedores"
+                  }
+                },
+                "Property": "_score_final"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Left'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "570.1937179283517D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_performance_vendedores.plano_acao"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "151.1428486202272D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_performance_vendedores.indicador_critico"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "217.71427644459135D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_performance_vendedores._score_medidas"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "336.1428548108831D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_performance_vendedores._cod_nom_vendedor"
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_performance_vendedores"
+                        }
+                      },
+                      "Property": "_classificacao_performance_cor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "mv_performance_vendedores.classificacao_performance"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Plano de ação'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "72fd95cecae0de5e142b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_performance_vendedor"
+              }
+            },
+            "Property": "filtro_classificacao_performance_vendedor"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "medidas_performance_vendedor",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "p"
+                        }
+                      },
+                      "Property": "filtro_classificacao_performance_vendedor"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "1L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      },
+      {
+        "name": "4dea71c64804c4a04070",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_vendedores"
+              }
+            },
+            "Property": "_score_final"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "mv_performance_vendedores",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "m"
+                            }
+                          },
+                          "Property": "_score_final"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "isLockedInViewMode": true
+      }
+    ]
+  }
+}

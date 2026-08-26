@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "d1fe516017c8dc6b4664",
+  "position": {
+    "x": 1152.8571428571429,
+    "y": 708.57142857142867,
+    "z": 6000,
+    "height": 335.71428571428572,
+    "width": 447.14285714285717,
+    "tabOrder": 13000
+  },
+  "visualGroup": {
+    "displayName": "Alertas e Notificacoes",
+    "groupMode": "ScaleMode"
+  }
+}

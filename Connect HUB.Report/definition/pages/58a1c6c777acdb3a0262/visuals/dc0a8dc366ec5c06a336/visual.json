@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "dc0a8dc366ec5c06a336",
+  "position": {
+    "x": -0.09523809523818727,
+    "y": 0,
+    "z": 14000,
+    "height": 1080,
+    "width": 1920,
+    "tabOrder": 11000
+  },
+  "visualGroup": {
+    "displayName": "fechar_performance",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

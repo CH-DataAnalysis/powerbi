@@ -1,0 +1,344 @@
+table mv_sugestao_compras
+	lineageTag: 39911c13-976b-4a6c-b4a5-3bbfa2f490ed
+
+	measure *qtd_compra_ultima_entrada =
+			CALCULATE(
+			SUM('mv_sugestao_compras'[qtd_compra_ultima_entrada]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_compras[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_sugestao_compras[data_ultima_entrada])
+			)
+		formatString: #,0
+		lineageTag: 36801e21-0119-4425-b496-d04278e30820
+
+	measure *qtd_estoque =
+			CALCULATE(
+			SUM('mv_sugestao_compras'[qtd_estoque]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_compras[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_sugestao_compras[data_ultima_entrada])
+			)
+		formatString: #,0
+		lineageTag: 2e17485c-3298-437e-a2eb-9d4952a87766
+
+	measure *%var_valor_atual_x_menor_valor = (([*valor_ultima_entrada] - [*menor_valor_negociado]) / [*menor_valor_negociado])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 085bc5fc-469c-4a63-9c19-9eb549c866aa
+
+	measure *menor_valor_negociado =
+			CALCULATE(
+			SUM('mv_sugestao_compras'[menor_valor_negociado]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_compras[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_sugestao_compras[data_ultima_entrada])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: e2c95918-ca61-45f4-bcaf-dcd930124cff
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *potencial_economia = [*valor_ultima_entrada] - [*menor_valor_negociado]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 286781dd-89ea-4593-96ce-ceba1cce08f1
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *qtd_produtos =
+			CALCULATE(
+			DISTINCTCOUNT(mv_sugestao_compras[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_compras[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_sugestao_compras[data_ultima_entrada])
+			)
+		formatString: #,0
+		lineageTag: 43a1fed6-84e8-49ec-b81c-813a4637c776
+
+	measure *qtd_produtos_acima_melhor_preco =
+			CALCULATE(
+			DISTINCTCOUNT(mv_sugestao_compras[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_compras[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_sugestao_compras[data_ultima_entrada]),
+			    FILTER(mv_sugestao_compras,mv_sugestao_compras[classificacao_valor] <> "Melhor preço")
+			)
+		formatString: #,0
+		lineageTag: 8f80585c-5ce0-4bd0-b880-b0efec6ffef4
+
+	measure cor_linha = ```
+			
+			VAR menor_valor_negociado = 'mv_sugestao_compras'[*menor_valor_negociado]
+			VAR valor_ultima_entrada = 'mv_sugestao_compras'[*valor_ultima_entrada]
+			VAR classificacao =
+			    SWITCH(
+			        TRUE(),
+			        menor_valor_negociado > 0 && ABS(valor_ultima_entrada - menor_valor_negociado) < 0.001, "Melhor preço",
+			        menor_valor_negociado > 0 && valor_ultima_entrada > 0 && valor_ultima_entrada <= menor_valor_negociado * 1.10, "Acima do menor",
+			        "Crítico + 10%"
+			    )
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    classificacao = "Melhor preço", "#ECFDF5",       // Verde claro
+			    classificacao = "Acima do menor", "#FEF2F2",     // Vermelho claro
+			    classificacao = "Crítico + 10%", "#FEE2E2",      // Vermelho mais forte
+			    BLANK()
+			)
+			
+			```
+		lineageTag: 779360d4-8a28-4c06-b3db-e7c5c8d004c5
+
+	measure *valor_ultima_entrada =
+			CALCULATE(
+			SUM('mv_sugestao_compras'[valor_ultima_entrada]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_compras[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_sugestao_compras[data_ultima_entrada])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 11f4320d-97eb-4110-847a-751bc250aaf8
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure cor_fonte =
+			
+			VAR menor_valor_negociado = 'mv_sugestao_compras'[*menor_valor_negociado]
+			VAR valor_ultima_entrada = 'mv_sugestao_compras'[*valor_ultima_entrada]
+			VAR classificacao =
+			    SWITCH(
+			        TRUE(),
+			        menor_valor_negociado > 0 && ABS(valor_ultima_entrada - menor_valor_negociado) < 0.001, "Melhor preço",
+			        menor_valor_negociado > 0 && valor_ultima_entrada > 0 && valor_ultima_entrada <= menor_valor_negociado * 1.10, "Acima do menor",
+			        "Crítico + 10%"
+			    )
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    classificacao = "Melhor preço", "#059669",       // Verde claro
+			    classificacao = "Acima do menor", "#DC2626",     // Vermelho claro
+			    classificacao = "Crítico + 10%", "#DC2626",      // Vermelho mais forte
+			    BLANK()
+			)
+		lineageTag: 6120d671-d5b1-4c3d-9b08-0b781173bcb2
+
+	measure cor_fonte_status =
+			
+			VAR menor_valor_negociado = 'mv_sugestao_compras'[*menor_valor_negociado]
+			VAR valor_ultima_entrada = 'mv_sugestao_compras'[*valor_ultima_entrada]
+			VAR classificacao =
+			    SWITCH(
+			        TRUE(),
+			        menor_valor_negociado > 0 && ABS(valor_ultima_entrada - menor_valor_negociado) < 0.001, "Melhor preço",
+			        menor_valor_negociado > 0 && valor_ultima_entrada > 0 && valor_ultima_entrada <= menor_valor_negociado * 1.10, "Acima do menor",
+			        "Crítico + 10%"
+			    )
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    classificacao = "Melhor preço", "#ECFDF5",       // Verde claro
+			    classificacao = "Acima do menor", "#DC2626",     // Vermelho claro
+			    classificacao = "Crítico + 10%", "#DC2626",      // Vermelho mais forte
+			    BLANK()
+			)
+		lineageTag: 58854b0f-f272-4b79-86f8-4347f3639e86
+
+	column num_cnpj
+		dataType: string
+		lineageTag: ddc4b437-277e-4e3b-81c4-7de9f94ff3d8
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra
+		dataType: double
+		lineageTag: 0096ca5e-85e5-4eb8-8155-5cd78665335e
+		summarizeBy: sum
+		sourceColumn: cod_barra
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column data_ultima_entrada
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 3f27f3cb-ee1e-475a-9c76-850a4df0c7cf
+		summarizeBy: none
+		sourceColumn: data_ultima_entrada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column qtd_estoque
+		dataType: double
+		lineageTag: 1f986a25-7f49-470a-8fd1-5461992ba52b
+		summarizeBy: sum
+		sourceColumn: qtd_estoque
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_compra_ultima_entrada
+		dataType: double
+		lineageTag: 1e4cdbaf-c821-4598-9037-7f1513ab1917
+		summarizeBy: sum
+		sourceColumn: qtd_compra_ultima_entrada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column valor_ultima_entrada
+		dataType: double
+		lineageTag: 6ac128ec-445c-4fb3-b5be-f9510386d4d3
+		summarizeBy: sum
+		sourceColumn: valor_ultima_entrada
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column fornecedor_ultima_entrada
+		dataType: string
+		lineageTag: ce815b61-6072-421b-b9cc-faebe1aeefef
+		summarizeBy: none
+		sourceColumn: fornecedor_ultima_entrada
+
+		annotation SummarizationSetBy = Automatic
+
+	column menor_valor_negociado
+		dataType: double
+		lineageTag: d54e9dd6-22a3-4698-b9be-a389b7822171
+		summarizeBy: sum
+		sourceColumn: menor_valor_negociado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_menor_valor_negociado
+		dataType: double
+		lineageTag: e2f513b1-5e3d-472f-9344-dc8bbeda4298
+		summarizeBy: sum
+		sourceColumn: qtd_menor_valor_negociado
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column nome_fornecedor
+		dataType: string
+		lineageTag: a5326eb8-7a7d-4bc4-90e0-11f956b07276
+		summarizeBy: none
+		sourceColumn: nome_fornecedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_menor_valor
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ad5577fb-6f9e-46d5-b73d-e1e8812b890a
+		summarizeBy: none
+		sourceColumn: data_menor_valor
+
+		variation Variation
+			isDefault
+			relationship: b28c2214-d7d4-4170-ac88-013c2ce02a3f
+			defaultHierarchy: LocalDateTable_6e9a63ca-45f6-4b97-814b-33a7272bc99a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column data_maior_valor
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2ce453da-b1a0-4f31-87d7-0138f36f7fe4
+		summarizeBy: none
+		sourceColumn: data_maior_valor
+
+		variation Variation
+			isDefault
+			relationship: 1505841c-de41-4bf4-90b1-905a145707c3
+			defaultHierarchy: LocalDateTable_8c8150bc-ab7d-4553-a6c0-9c2305c371df.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column classificacao_valor
+		dataType: string
+		lineageTag: 95adb92c-5dab-439f-8f76-55639c2524b1
+		summarizeBy: none
+		sourceColumn: classificacao_valor
+
+		annotation SummarizationSetBy = Automatic
+
+	column melhor_fornecedor =
+			
+			mv_sugestao_compras[nome_fornecedor]
+			    & UNICHAR(10) &
+			FORMAT(mv_sugestao_compras[data_menor_valor], "dd/MM/yyyy")
+			    & UNICHAR(10) &
+			FORMAT(mv_sugestao_compras[qtd_menor_valor_negociado], "#,##0")& " Un."
+		lineageTag: 8ca01364-7702-4a5e-bbe2-2cb7a5be281a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra_tratado =
+			
+			VAR padrao = LOOKUPVALUE(
+			    produto_gcp[cod_barra],
+			    produto_gcp[cod_barra],
+			    mv_sugestao_compras[cod_barra]
+			)
+			RETURN
+			IF(
+			    ISBLANK(padrao),
+			    0,
+			    padrao
+			)
+		formatString: 0
+		lineageTag: 6e229777-2eab-446a-8cf1-da2cc7d36755
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_sugestao_compras = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_sugestao_compras_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(
+				        Resultado,
+				        {
+				            "fornecedor_ultima_entrada",
+				            "data_menor_valor",
+				            "qtd_estoque",
+				            "valor_ultima_entrada",
+				            "classificacao_valor",
+				            "qtd_compra_ultima_entrada",
+				            "num_cnpj",
+				            "cod_barra",
+				            "menor_valor_negociado",
+				            "data_maior_valor",
+				            "data_ultima_entrada",
+				            "qtd_menor_valor_negociado",
+				            "nome_fornecedor"
+				        }
+				    )
+				
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

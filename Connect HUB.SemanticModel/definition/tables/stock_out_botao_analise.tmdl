@@ -1,0 +1,26 @@
+table stock_out_botao_analise
+	lineageTag: 6cbf6d3e-5414-4ad6-9183-2dad60f0e29d
+
+	column botao
+		lineageTag: 0b0b7e49-31e7-4957-9ee5-b4df87ba3341
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [botao]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition stock_out_botao_analise = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "botao", STRING,
+				    {
+				        {"1 Mês"},
+				        {"3 Meses"},
+				        {"6 Meses"}
+				    }
+				)
+
+	annotation PBI_Id = d073d3490583497baa2c2908734d54cf
+

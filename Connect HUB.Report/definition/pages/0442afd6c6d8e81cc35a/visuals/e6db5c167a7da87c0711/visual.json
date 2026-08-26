@@ -1,0 +1,59 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "e6db5c167a7da87c0711",
+  "position": {
+    "x": 577.42857142857144,
+    "y": 564.2857142857149,
+    "z": 4000,
+    "height": 144,
+    "width": 272,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "diagnostico_farmacias"
+                    }
+                  },
+                  "Property": "curva_xyz"
+                }
+              },
+              "queryRef": "diagnostico_farmacias.curva_xyz",
+              "nativeQueryRef": "curva_xyz",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Basic'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

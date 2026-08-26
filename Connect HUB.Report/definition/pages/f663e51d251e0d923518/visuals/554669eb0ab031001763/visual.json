@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "name": "554669eb0ab031001763",
+  "position": {
+    "x": 0,
+    "y": 1075,
+    "z": 26000,
+    "height": 149,
+    "width": 420,
+    "tabOrder": 25000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*%var_venda_liquida_ano_anterior"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*%var_venda_liquida_ano_anterior",
+              "nativeQueryRef": "*%var_venda_liquida_ano_anterior"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_dados_vendas_compras"
+                  }
+                },
+                "Property": "*%var_venda_liquida_ano_anterior"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

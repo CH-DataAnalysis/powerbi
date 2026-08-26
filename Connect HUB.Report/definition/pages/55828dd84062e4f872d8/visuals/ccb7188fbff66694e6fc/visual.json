@@ -1,0 +1,521 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "ccb7188fbff66694e6fc",
+  "position": {
+    "x": 40.399002493765586,
+    "y": 561.5461346633416,
+    "z": 7000,
+    "height": 486.13466334164588,
+    "width": 1587.6807980049875,
+    "tabOrder": 19000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "num_cnpj"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.num_cnpj",
+              "nativeQueryRef": "CNPJ",
+              "displayName": "CNPJ"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "cod_barra"
+                }
+              },
+              "queryRef": "produto_gcp.cod_barra",
+              "nativeQueryRef": "EAN",
+              "displayName": "EAN"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "produto"
+                }
+              },
+              "queryRef": "produto_gcp.produto",
+              "nativeQueryRef": "Produto",
+              "displayName": "Produto"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "icone_curva_abc"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.icone_curva_abc",
+              "nativeQueryRef": "Curva ABC (R$)",
+              "displayName": "Curva ABC (R$)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*vlr_custo_estoque"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*vlr_custo_estoque",
+              "nativeQueryRef": "Valor custo estoque",
+              "displayName": "Valor custo estoque"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*qtd_total_estoque"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_total_estoque",
+              "nativeQueryRef": "Qtd. total em estoque",
+              "displayName": "Qtd. total em estoque"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*vlr_total_vendido"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*vlr_total_vendido",
+              "nativeQueryRef": "Valor total vendido",
+              "displayName": "Valor total vendido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*qtd_total_vendida"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_total_vendida",
+              "nativeQueryRef": "Qtd. total vendida",
+              "displayName": "Qtd. total vendida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*vlr_total_lucro"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*vlr_total_lucro",
+              "nativeQueryRef": "Valor total lucro",
+              "displayName": "Valor total lucro"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "dat_ult_venda"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.dat_ult_venda",
+              "nativeQueryRef": "Data últ. venda",
+              "displayName": "Data últ. venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*qtd_dias_sem_vendas"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_dias_sem_vendas",
+              "nativeQueryRef": "Qtd. dias sem vendas",
+              "displayName": "Qtd. dias sem vendas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*faturamento_potencial"
+                }
+              },
+              "queryRef": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias.*faturamento_potencial",
+              "nativeQueryRef": "Faturamento potencial",
+              "displayName": "Faturamento potencial"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*vlr_total_comprado"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*vlr_total_comprado",
+              "nativeQueryRef": "Valor total comprado",
+              "displayName": "Valor total comprado"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*qtd_total_comprada"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_total_comprada",
+              "nativeQueryRef": "Qtd. total comprada",
+              "displayName": "Qtd. total comprada"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "dat_ult_compra"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.dat_ult_compra",
+              "nativeQueryRef": "Data últ. compra",
+              "displayName": "Data últ. compra"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "classificacao_estrela"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.classificacao_estrela",
+              "nativeQueryRef": "Classificação estrela",
+              "displayName": "Classificação estrela"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "icone_diagnostico_estoque"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.IconeEstoque",
+              "nativeQueryRef": "Diagnóstico estoque",
+              "displayName": "Diagnóstico estoque"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                  }
+                },
+                "Property": "*qtd_total_estoque"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "78.69000878066079D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_total_estoque"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "97.7551832815709D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_total_vendida"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "79.00001670115708D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_total_comprada"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "117.75572479014016D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produtos_com_estoque_sem_vendas_mais_90_dias.*vlr_total_comprado"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "100.33333930312475D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_dias_sem_vendas"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "258.55555778701114D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.produto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "125.53846202463143D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "produto_gcp.cod_barra"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Produtos com estoque e sem vendas há mais de 90 dias'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4a1441a853875f55508f",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+              }
+            },
+            "Property": "cod_barra_tratado"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "p"
+                              }
+                            },
+                            "Property": "cod_barra_tratado"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "0L"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,322 @@
+table medidas_prospeccao_vendas_clientes
+	lineageTag: 703018c2-6739-454a-89f7-816f2137b83a
+
+	measure pvc_frequencia =
+			
+			VAR QtdCompras =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente])
+			    )
+			VAR MesesAtivos =
+			    CALCULATE(
+			        DISTINCTCOUNT(calendario[ano_mes_numero]),
+			        DATESBETWEEN(
+			            calendario[Date],
+			            MINX(ALLSELECTED(calendario), calendario[Date]),
+			            MAXX(ALLSELECTED(calendario), calendario[Date])
+			        )
+			    )
+			RETURN
+			DIVIDE(QtdCompras, MesesAtivos,0)
+		lineageTag: 65db706e-d2aa-45e4-9c28-3e19fc6ce5aa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure pvc_meses_analisados =
+			
+			VAR MesesAtivos =
+			    CALCULATE(
+			        DISTINCTCOUNT(calendario[ano_mes_numero]),
+			        DATESBETWEEN(
+			            calendario[Date],
+			            MINX(ALLSELECTED(calendario), calendario[Date]),
+			            MAXX(ALLSELECTED(calendario), calendario[Date])
+			        )
+			    )
+			RETURN
+			MesesAtivos
+		formatString: 0
+		lineageTag: 50de2c86-9dea-4728-acca-f28a631c98ec
+
+	measure pvc_meses_com_compras =
+			
+			VAR MesesComCompra =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[AnoMes]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente])
+			    )
+			RETURN
+			    MesesComCompra
+		formatString: 0
+		lineageTag: 272da7e4-10e6-4e96-94bf-76e2d77d0b7b
+
+	measure pvc_meses_com_compras_pct = ```
+			
+			VAR MesesComCompra =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[AnoMes]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente])
+			        
+			    )
+			VAR MesesAtivos =
+			    CALCULATE(
+			        DISTINCTCOUNT(calendario[ano_mes_numero]),
+			        DATESBETWEEN(
+			            calendario[Date],
+			            MINX(ALLSELECTED(calendario), calendario[Date]),
+			            MAXX(ALLSELECTED(calendario), calendario[Date])
+			        )
+			    )
+			RETURN
+			DIVIDE(MesesComCompra, MesesAtivos, 0)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8c052a01-a5f3-4441-8946-93e82f5ab84d
+
+	measure pvc_ticket_medio = ```
+			
+			VAR TotalVendas =
+			    CALCULATE(
+			        SUM(mv_vendas_produtos[vlr_total_venda]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente])
+			    )
+			VAR TotalAtendimentos =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente]) 
+			    )
+			RETURN
+			DIVIDE(TotalVendas, TotalAtendimentos, 0)
+			```
+		lineageTag: cdca1467-8e8c-499b-b667-24ef10295a26
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure pvc_qtd_clientes =
+			
+			CALCULATE(
+			DISTINCTCOUNT(mv_vendas_produtos[cod_cliente]),
+			USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			)
+		formatString: 0
+		lineageTag: 56d3935f-7df7-42b3-9091-f9da805bb00c
+
+	measure _frequencia =
+			
+			VAR QtdCompras =
+			    CALCULATE(
+			        DISTINCTCOUNT( mv_vendas_produtos[id_atendimento] ),
+			        USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        USERELATIONSHIP( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			        USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] )
+			    )
+			VAR Clientes =
+			    CALCULATE(
+			        DISTINCTCOUNT( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] )
+			    )
+			VAR MesesAtivos =
+			    CALCULATE(
+			        DISTINCTCOUNT( calendario[ano_mes_numero] ),
+			        DATESBETWEEN(
+			            calendario[Date],
+			            MINX( ALLSELECTED(calendario), calendario[Date] ),
+			            MAXX( ALLSELECTED(calendario), calendario[Date] )
+			        )
+			    )
+			RETURN
+			DIVIDE( DIVIDE(QtdCompras, Clientes, 0), MesesAtivos, 0 )
+		lineageTag: dbca6ebe-7d71-46c6-8b6e-25b8c6df17a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _clientes_retidos =
+			
+			VAR MesAtual =
+			    MAX( calendario[ano_mes_numero] )
+			VAR MesAnterior =
+			    MesAtual - 1
+			VAR ClientesPeriodoAtual =
+			    CALCULATETABLE(
+			        VALUES( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] ),
+			        calendario[ano_mes_numero] = MesAtual
+			    )
+			VAR ClientesPeriodoAnterior =
+			    CALCULATETABLE(
+			        VALUES( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] ),
+			        calendario[ano_mes_numero] = MesAnterior
+			    )
+			RETURN
+			COUNTROWS( INTERSECT( ClientesPeriodoAtual, ClientesPeriodoAnterior ) )
+		formatString: 0
+		lineageTag: 10e9b937-bd6d-408d-9ae4-298fb570f05a
+
+	measure _taxa_retencao =
+			
+			DIVIDE(
+			    [_clientes_retidos],
+			    CALCULATE(
+			        DISTINCTCOUNT( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        USERELATIONSHIP( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			        USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] )
+			    ),
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fbb2dcf8-0d42-4c83-9dfa-9e07595d5415
+
+	measure _clientes_recorrentes =
+			
+			CALCULATE(
+			    DISTINCTCOUNT( mv_vendas_produtos[cod_cliente] ),
+			    FILTER(
+			        VALUES( mv_vendas_produtos[cod_cliente] ),
+			        CALCULATE(
+			            COUNTROWS( mv_vendas_produtos ),
+			            USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            USERELATIONSHIP( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] )
+			        ) > 1
+			    )
+			)
+		formatString: #,0
+		lineageTag: e0e1f755-7b12-4e99-8a8f-ddd5674de1d7
+
+	measure _%clientes_recorrentes =
+			
+			DIVIDE(
+			    [_clientes_recorrentes],
+			    CALCULATE(
+			        DISTINCTCOUNT( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        USERELATIONSHIP( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			        USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] )
+			    ),
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 14120dc3-1052-4f70-bcaf-c67010c4ce6c
+
+	measure _relacionamento_medio =
+			
+			AVERAGEX(
+			    VALUES( mv_vendas_produtos[cod_cliente] ),
+			    DATEDIFF(
+			        CALCULATE(
+			            MIN( mv_vendas_produtos[dat_emissao] ),
+			            USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            USERELATIONSHIP( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] )
+			        ),
+			        CALCULATE(
+			            MAX( mv_vendas_produtos[dat_emissao] ),
+			            USERELATIONSHIP( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			            USERELATIONSHIP( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] )
+			        ),
+			        MONTH
+			    )
+			)
+		lineageTag: e8491aaa-6d72-46a5-843a-1fcd5a7aae1a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _clientes_novos = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_vendas_produtos[cod_cliente]),
+			    FILTER(
+			        VALUES(mv_vendas_produtos[cod_cliente]),
+			        CALCULATE(
+			            COUNTROWS(mv_vendas_produtos),
+			            USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			            USERELATIONSHIP( produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado] ),
+			            USERELATIONSHIP( mv_dados_clientes[cod_cliente], mv_vendas_produtos[cod_cliente] )            
+			        ) = 1
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: b7d104a4-0b30-4978-b5ed-e33961d234a8
+
+	measure _clientes_retidos_mes =
+			
+			VAR MesAtual =
+			    SELECTEDVALUE ( calendario[ano_mes_numero] )
+			VAR MesAnterior =
+			    MesAtual - 1
+			VAR ClientesAtual =
+			    CALCULATETABLE (
+			        VALUES ( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        FILTER ( ALL ( calendario ), calendario[ano_mes_numero] = MesAtual )
+			    )
+			VAR ClientesAnterior =
+			    CALCULATETABLE (
+			        VALUES ( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        FILTER ( ALL ( calendario ), calendario[ano_mes_numero] = MesAnterior )
+			    )
+			RETURN
+			COUNTROWS ( INTERSECT ( ClientesAtual, ClientesAnterior ) )
+		formatString: 0
+		lineageTag: 977d5f76-97fd-4f88-9bc7-b51f70ceff8a
+
+	measure __clientes_retidos_mes =
+			
+			VAR MesAtual = MAX ( calendario[ano_mes_numero] )
+			VAR MesAnterior = MesAtual - 1
+			VAR ClientesPeriodo =
+			    CALCULATETABLE (
+			        VALUES ( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        FILTER ( ALL ( calendario ), calendario[ano_mes_numero] = MesAtual )
+			    )
+			VAR ClientesPeriodoAnterior =
+			    CALCULATETABLE (
+			        VALUES ( mv_vendas_produtos[cod_cliente] ),
+			        USERELATIONSHIP ( calendario[Date], mv_vendas_produtos[dat_emissao] ),
+			        FILTER ( ALL ( calendario ), calendario[ano_mes_numero] = MesAnterior )
+			    )
+			RETURN
+			COUNTROWS ( INTERSECT ( ClientesPeriodo, ClientesPeriodoAnterior ) )
+		formatString: 0
+		lineageTag: a0682218-df99-4b1a-ab1b-9f74575ae020
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 0a2599aa-1bb0-4f4d-bdb7-b0084841c3f3
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition medidas_prospeccao_vendas_clientes = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = f9fe0a2d0ff34e3bbc640b70bb91ddde
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

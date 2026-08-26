@@ -1,0 +1,766 @@
+table medidas_analise_mercado
+	lineageTag: 96144288-b77c-453b-8725-2c0864d17662
+
+	measure _preco_medio_regiao_geral =
+			
+			IF(
+			    NOT(ISBLANK([*preco_medio_venda])),
+			    VAR Selecionado = SELECTEDVALUE(medidas_analise_mercado[botao], "Município")
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            Selecionado = "Município", [_preco_medio_municipio],
+			            Selecionado = "Microrregião", [_preco_medio_microrregiao],
+			            Selecionado = "Mesorregião", [_preco_medio_mesorregiao],
+			            Selecionado = "Estado", [_preco_medio_estado],
+			            BLANK()
+			        ),
+			    BLANK()
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 0b9ca0f8-758c-4604-9f74-15ae84e4a0ba
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure _preco_minimo_regiao_geral =
+			
+			IF(
+			    NOT(ISBLANK([*preco_medio_venda])),
+			    VAR Selecionado = SELECTEDVALUE(medidas_analise_mercado[botao], "Município")
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            Selecionado = "Município", [_preco_minimo_municipio],
+			            Selecionado = "Microrregião", [_preco_minimo_microrregiao],
+			            Selecionado = "Mesorregião", [_preco_minimo_mesorregiao],
+			            Selecionado = "Estado", [_preco_minimo_estado],
+			            BLANK()
+			        ),
+			    BLANK()
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: a5cfa1fe-e1aa-42cd-83bb-ac5ebed39eb4
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure _preco_maximo_regiao_geral =
+			
+			IF(
+			    NOT(ISBLANK([*preco_medio_venda])),
+			    VAR Selecionado = SELECTEDVALUE(medidas_analise_mercado[botao], "Município")
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            Selecionado = "Município", [_preco_maximo_municipio],
+			            Selecionado = "Microrregião", [_preco_maximo_microrregiao],
+			            Selecionado = "Mesorregião", [_preco_maximo_mesorregiao],
+			            Selecionado = "Estado", [_preco_maximo_estado],
+			            BLANK()
+			        ),
+			    BLANK()
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: fc46a28b-cd6d-4a1d-9d24-396096d28456
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure _var_preco_medio_regiao_geral =
+			
+			IF(
+			    NOT(ISBLANK([*preco_medio_venda])),
+			    VAR Selecionado = SELECTEDVALUE(medidas_analise_mercado[botao], "Município")
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            Selecionado = "Município", [_var_preco_medio_municipio],
+			            Selecionado = "Microrregião", [_var_preco_medio_microrregiao],
+			            Selecionado = "Mesorregião", [_var_preco_medio_mesorregiao],
+			            Selecionado = "Estado", [_var_preco_medio_estado],
+			            BLANK()
+			        ),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 987fb194-7f73-4e28-8e11-76ddda44d779
+
+	measure classificacao_precificacao_geral =
+			
+			VAR preco_medio_venda = [*preco_medio_venda]
+			VAR preco_medio_regiao_geral = [_preco_medio_regiao_geral]
+			VAR var_preco_medio_regiao_geral = [_var_preco_medio_regiao_geral]
+			
+			RETURN
+			    IF(
+			        NOT ISBLANK(preco_medio_venda) &&
+			        NOT ISBLANK(preco_medio_regiao_geral) &&
+			        NOT ISBLANK(var_preco_medio_regiao_geral),
+			        SWITCH(
+			            TRUE(),
+			            var_preco_medio_regiao_geral < -0.10, "Abaixo do mercado",
+			            var_preco_medio_regiao_geral >= -0.10 && var_preco_medio_regiao_geral <= 0.10, "Na faixa competitiva",
+			            var_preco_medio_regiao_geral > 0.10, "Acima do mercado"
+			        )
+			    )
+		lineageTag: 58655bb5-c0a1-4a26-8531-a879312933af
+
+	measure _numero_lojas_regiao_geral =
+			
+			IF(
+			    NOT(ISBLANK([*preco_medio_venda])),
+			    VAR Selecionado = SELECTEDVALUE(medidas_analise_mercado[botao], "Município")
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            Selecionado = "Município", [_numero_lojas_municipio],
+			            Selecionado = "Microrregião", [_numero_lojas_microrregiao],
+			            Selecionado = "Mesorregião", [_numero_lojas_mesorregiao],
+			            Selecionado = "Estado", [_numero_lojas_estado],
+			            BLANK()
+			        ),
+			    BLANK()
+			)
+		formatString: #,0
+		lineageTag: a5497762-870a-4db4-b3f5-4e950edd832e
+
+	measure qtd_produtos_faixa_normal =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            VALUES(produto_gcp[cod_barra]),
+			            "@classificacao", [classificacao_precificacao_geral]
+			        ),
+			        [@classificacao] = "Na faixa competitiva"
+			    )
+			)
+		formatString: #,0
+		lineageTag: 29bc52a8-c313-4326-94dc-2200fbf55807
+
+	measure qtd_produtos_preco_competitivo =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            VALUES(produto_gcp[cod_barra]),
+			            "@classificacao", [classificacao_precificacao_geral]
+			        ),
+			        [@classificacao] = "Abaixo do mercado"
+			    )
+			)
+		formatString: #,0
+		lineageTag: 212dca16-266b-40ed-ae8a-47a94f4a423f
+
+	measure qtd_produtos_avaliar_competitividade =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            VALUES(produto_gcp[cod_barra]),
+			            "@classificacao", [classificacao_precificacao_geral]
+			        ),
+			        [@classificacao] = "Acima do mercado"
+			    )
+			)
+		formatString: #,0
+		lineageTag: 42e53a98-d62e-428b-8a76-b1d113eaf85e
+
+	measure qtd_total_produtos =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            VALUES(produto_gcp[cod_barra]),
+			            "@classificacao", [classificacao_precificacao_geral]
+			        ),
+			        [@classificacao] in {"abaixo do mercado","Na faixa competitiva","Acima do mercado"}
+			    )
+			)
+		formatString: #,0
+		lineageTag: 7e03ba3e-d40e-4114-b2e4-f68e1c433b91
+
+	measure %_qtd_produtos_preco_competitivo =
+			
+			DIVIDE(
+			    COALESCE([qtd_produtos_preco_competitivo], 0),
+			    [qtd_total_produtos],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7dcc18e7-e0e1-4bf4-bb00-9ea9ecd2f4b2
+
+	measure %_qtd_produtos_faixa_normal =
+			
+			DIVIDE(
+			    COALESCE([qtd_produtos_faixa_normal], 0),
+			    [qtd_total_produtos],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: bda7c1d6-750f-4468-bacc-1a4fa9544539
+
+	measure %_qtd_produtos_avaliar_competitividade =
+			
+			DIVIDE(
+			    COALESCE([qtd_produtos_avaliar_competitividade], 0),
+			    [qtd_total_produtos],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fae923a0-1c41-4a42-9ca0-d8bdb1a65c05
+
+	measure cor_fonte_classificacao_precificacao_geral =
+			
+			VAR preco_medio_venda = [*preco_medio_venda]
+			VAR preco_medio_regiao_geral = [_preco_medio_regiao_geral]
+			VAR var_preco_medio_regiao_geral = [_var_preco_medio_regiao_geral]
+			
+			RETURN
+			    IF(
+			        NOT ISBLANK(preco_medio_venda) &&
+			        NOT ISBLANK(preco_medio_regiao_geral) &&
+			        NOT ISBLANK(var_preco_medio_regiao_geral),
+			        SWITCH(
+			            TRUE(),
+			            var_preco_medio_regiao_geral < -0.10, "#3c83f6",
+			            var_preco_medio_regiao_geral >= -0.10 && var_preco_medio_regiao_geral <= 0.10, "#16a249",
+			            var_preco_medio_regiao_geral > 0.10, "#f59f0a"
+			        )
+			    )
+		lineageTag: ecda7f18-b4f1-429c-b017-75d832153364
+
+	measure cor_fundo_classificacao_precificacao_geral =
+			
+			VAR preco_medio_venda = [*preco_medio_venda]
+			VAR preco_medio_regiao_geral = [_preco_medio_regiao_geral]
+			VAR var_preco_medio_regiao_geral = [_var_preco_medio_regiao_geral]
+			
+			RETURN
+			    IF(
+			        NOT ISBLANK(preco_medio_venda) &&
+			        NOT ISBLANK(preco_medio_regiao_geral) &&
+			        NOT ISBLANK(var_preco_medio_regiao_geral),
+			        SWITCH(
+			            TRUE(),
+			            var_preco_medio_regiao_geral < -0.10, "#f5f8fb",
+			            var_preco_medio_regiao_geral >= -0.10 && var_preco_medio_regiao_geral <= 0.10, "#f5fbf8",
+			            var_preco_medio_regiao_geral > 0.10, "#faf9f6"
+			        )
+			    )
+		lineageTag: d952205f-9c44-4548-ae70-542f80dd0e06
+
+	measure qtd_total_produtos_fora_da_faixa = ```
+			
+			VAR ForaFaixa =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral]
+			            ),
+			            [@classificacao] IN {"Abaixo do mercado", "Acima do mercado"}
+			        )
+			    )
+			VAR Total =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral]
+			            ),
+			            [@classificacao] IN {"Abaixo do mercado", "Na faixa competitiva", "Acima do mercado"}
+			        )
+			    )
+			RETURN
+			IF(
+			    ISBLANK(ForaFaixa) || ISBLANK(Total),
+			    "0 de 0",
+			    FORMAT(ForaFaixa, "#,##0") & " de " & FORMAT(Total, "#,##0")
+			)
+			
+			```
+		lineageTag: a09bdc4e-999f-4200-a49f-6b561df31b7e
+
+	measure qtd_produtos_acima_e_abaixo_da_faixa =
+			
+			VAR Acima =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral]
+			            ),
+			            [@classificacao] = "Acima do mercado"
+			        )
+			    )
+			VAR Abaixo =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral]
+			            ),
+			            [@classificacao] = "Abaixo do mercado"
+			        )
+			    )
+			RETURN
+			IF(
+			    ISBLANK(Acima) && ISBLANK(Abaixo),
+			    "0 acima, 0 abaixo",
+			    FORMAT(Acima, "#,##0") & " acima, " & FORMAT(Abaixo, "#,##0") & " abaixo"
+			)
+		lineageTag: 652584fa-54c0-4d3e-8ad8-f20d2a00c579
+
+	measure _var_qtd_produtos_fora_da_faixa =
+			
+			VAR ForaFaixa =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral]
+			            ),
+			            [@classificacao] IN {"Abaixo do mercado", "Acimado mercado"}
+			        )
+			    )
+			VAR Total =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral]
+			            ),
+			            [@classificacao] IN {"Abaixo do mercado", "Na faixa competitiva", "Acima do mercado"}
+			        )
+			    )
+			VAR Resultado = DIVIDE(ForaFaixa, Total, 0)
+			RETURN
+			IF(
+			    ISBLANK(Resultado) || Total = 0,
+			    "0.00",
+			    (Resultado)
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 71c4898c-5eda-4f84-b40d-7ecc0d9f62d9
+
+	measure _rank_vendas_regiao_geral =
+			
+			IF(
+			    NOT(ISBLANK([*preco_medio_venda])),
+			    VAR Selecionado = SELECTEDVALUE(medidas_analise_mercado[botao], "Município")
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            Selecionado = "Município", [_rank_vendas_municipio],
+			            Selecionado = "Microrregião", [_rank_vendas_microrregiao],
+			            Selecionado = "Mesorregião", [_rank_vendas_mesorregiao],
+			            Selecionado = "Estado", [_rank_vendas_estado],
+			            BLANK()
+			        ),
+			    BLANK()
+			)
+		formatString: #,0
+		lineageTag: 53dff954-e23a-43e8-9564-d2a5ab0cd4d8
+
+	measure _venda_liquida = ```
+			
+			CALCULATE(
+			    SUM(mv_vendas_produtos[vlr_total_venda]),
+			    --USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_municipio[cod_barra]),
+			    --USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_microrregiao[cod_barra]),
+			    --USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_mesorregiao[cod_barra]),
+			    --USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_uf[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_por_municipio[id_municipio]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_por_microrregiao[id_micro_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_por_mesorregiao[id_meso_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_por_uf[id_uf])
+			    
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 419b0d46-f10f-41be-bae6-8a0397d4be4d
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure _media_itens_mesorregiao =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_mesorregiao[media_vendas]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_mesorregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_por_mesorregiao[id_meso_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 046f7e20-974a-4c04-b18a-fd0085957259
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _numero_lojas_mesorregiao = ```
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_mesorregiao[numero_lojas]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_mesorregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_por_mesorregiao[id_meso_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+			
+			```
+		lineageTag: f4ce0350-8613-4c20-85cb-ab26825da0fa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_maximo_mesorregiao =
+			
+			CALCULATE(
+			    MAX(mv_analise_mercado_por_mesorregiao[preco_maximo]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_mesorregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_por_mesorregiao[id_meso_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 93f92b2b-b42e-4ebc-9df3-fa9fbd3752f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_medio_mesorregiao =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_mesorregiao[preco_medio_simples]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_mesorregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_por_mesorregiao[id_meso_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: a3bbaa34-4748-4c73-a57c-eee3701da4b2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_minimo_mesorregiao = ```
+			
+			CALCULATE(
+			    MIN(mv_analise_mercado_por_mesorregiao[preco_minimo]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_mesorregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_por_mesorregiao[id_meso_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)   
+			```
+		lineageTag: b1bd2e5d-11d3-4b26-b14f-5dbe1d4db909
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _rank_vendas_mesorregiao =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_mesorregiao[rank_qtd]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_mesorregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_por_mesorregiao[id_meso_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_meso_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 502e91eb-7911-4e03-803f-bc1697e44a4f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _var_preco_medio_mesorregiao =
+			
+			VAR PrecoVenda = [*preco_medio_venda]
+			VAR PrecoMercado = [_preco_medio_mesorregiao]
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PrecoMercado),
+			    DIVIDE(PrecoVenda - PrecoMercado, PrecoMercado),
+			    BLANK()
+			)
+		lineageTag: 4e04f2e7-448f-445b-b999-f162690c0fb5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _media_itens_microrregiao =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_microrregiao[media_vendas]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_microrregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_por_microrregiao[id_micro_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 0261f30a-27bd-4633-ba20-2bde8bfa6d0c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _numero_lojas_microrregiao =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_microrregiao[numero_lojas]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_microrregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_por_microrregiao[id_micro_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 2415a582-d336-4b43-bf82-4c08d88df1b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_maximo_microrregiao =
+			
+			CALCULATE(
+			    MAX(mv_analise_mercado_por_microrregiao[preco_maximo]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_microrregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_por_microrregiao[id_micro_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 909c393b-880a-48d1-8d4f-ce0bb8918e52
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_medio_microrregiao =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_microrregiao[preco_medio_simples]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_microrregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_por_microrregiao[id_micro_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: e48f7a57-3488-4fef-9c3a-98e0e3b65a20
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_minimo_microrregiao = ```
+			
+			CALCULATE(
+			    MIN(mv_analise_mercado_por_microrregiao[preco_minimo]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_microrregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_por_microrregiao[id_micro_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)   
+			```
+		lineageTag: b5e4ebdd-3689-48fe-ad4e-6e1b3fa8959f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _rank_vendas_microrregiao =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_microrregiao[rank_qtd]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_microrregiao[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_por_microrregiao[id_micro_regiao]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_micro_regiao],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 167bf783-acfb-4a99-a634-dc0cca0fc697
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _var_preco_medio_microrregiao =
+			
+			VAR PrecoVenda = [*preco_medio_venda]
+			VAR PrecoMercado = [_preco_medio_microrregiao]
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PrecoMercado),
+			    DIVIDE(PrecoVenda - PrecoMercado, PrecoMercado),
+			    BLANK()
+			)
+		lineageTag: b7a7b7d4-4300-4db8-94d0-434fa16ae286
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _media_itens_municipio =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_municipio[media_vendas]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_municipio[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_por_municipio[id_municipio]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: aa0a0630-4bdb-4ff5-b502-dfc59fb76daf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _numero_lojas_municipio =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_municipio[numero_lojas]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_municipio[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_por_municipio[id_municipio]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: c10167b5-bd7b-4894-b2aa-74b20cf16006
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_maximo_municipio =
+			
+			CALCULATE(
+			    MAX(mv_analise_mercado_por_municipio[preco_maximo]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_municipio[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_por_municipio[id_municipio]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 1c268cd8-1887-4d6c-8ae4-84be03b591e5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_medio_municipio =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_municipio[preco_medio_simples]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_municipio[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_por_municipio[id_municipio]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 236a2876-666f-48f5-800a-209557aae2c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_minimo_municipio = ```
+			
+			CALCULATE(
+			    MIN(mv_analise_mercado_por_municipio[preco_minimo]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_municipio[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_por_municipio[id_municipio]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_classificacao[id_regiao])
+			)   
+			```
+		lineageTag: 4d631e6c-547c-4a23-bbbc-3e2fa612811d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _rank_vendas_municipio =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_municipio[rank_qtd]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_municipio[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_por_municipio[id_municipio]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_municipio],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 22305fda-9b1b-4c06-8cb2-9de07ae87017
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _var_preco_medio_municipio =
+			
+			VAR PrecoVenda = [*preco_medio_venda]
+			VAR PrecoMercado = [_preco_medio_municipio]
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PrecoMercado),
+			    DIVIDE(PrecoVenda - PrecoMercado, PrecoMercado),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 532dcd1e-dd14-46a9-8164-f2ef438d8635
+
+	measure _media_itens_estado = ```
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_uf[media_vendas]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_uf[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_por_uf[id_uf]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_classificacao[id_regiao])
+			)
+			
+			```
+		lineageTag: 016ddcda-44e5-43dc-a2f3-e59cbd08c710
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _numero_lojas_estado =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_uf[numero_lojas]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_uf[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_por_uf[id_uf]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_classificacao[id_regiao])
+			)
+		lineageTag: 4161dcb8-fd71-42aa-ac02-381c87cef359
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_maximo_estado = ```
+			
+			CALCULATE(
+			    MAX(mv_analise_mercado_por_uf[preco_maximo]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_uf[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_por_uf[id_uf]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_classificacao[id_regiao])    
+			)
+			```
+		lineageTag: f3ed218f-2a27-47fc-aa62-9fb2256fe880
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_medio_estado = ```
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_uf[preco_medio_simples]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_uf[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_por_uf[id_uf]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_classificacao[id_regiao])
+			)
+			
+			```
+		lineageTag: da725456-d5f3-49f2-9378-f296a968070a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _preco_minimo_estado = ```
+			
+			CALCULATE(
+			    MIN(mv_analise_mercado_por_uf[preco_minimo]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_uf[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_por_uf[id_uf]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_classificacao[id_regiao])
+			)   
+			```
+		lineageTag: 55d2d8bf-c65a-466f-a608-3ddac8b007a7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _rank_vendas_estado =
+			
+			CALCULATE(
+			    AVERAGE(mv_analise_mercado_por_uf[rank_qtd]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_analise_mercado_por_uf[cod_barra]),
+			    USERELATIONSHIP(mv_vendas_produtos[id_uf],mv_analise_mercado_por_uf[id_uf]),
+			    USERELATIONSHIP(mv_analise_mercado_classificacao[id_regiao],mv_vendas_produtos[id_uf])
+			)
+		lineageTag: c4c5c2e2-5c70-4eaf-a093-068d2c781c8c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _var_preco_medio_estado =
+			
+			VAR PrecoVenda = [*preco_medio_venda]
+			VAR PrecoMercado = [_preco_medio_estado]
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PrecoMercado),
+			    DIVIDE(PrecoVenda - PrecoMercado, PrecoMercado),
+			    BLANK()
+			)
+		lineageTag: 03db091a-301a-4e60-a744-1c457234a9f5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column botao
+		lineageTag: e5b3faf1-ea3c-49d2-9132-b279001e842b
+		summarizeBy: none
+		sourceColumn: [botao_regiao]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition medidas_analise_mercado = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "botao_regiao", STRING,
+				    {
+				        {"Município"},
+				        {"Microrregião"},
+				        {"Mesorregião"},
+				        {"Estado"}
+				    }
+				)
+
+	annotation PBI_Id = 959bc604a12c4c12905108ff012362ce
+

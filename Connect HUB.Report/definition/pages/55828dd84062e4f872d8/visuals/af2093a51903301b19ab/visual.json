@@ -1,0 +1,154 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "af2093a51903301b19ab",
+  "position": {
+    "x": 849.72568578553614,
+    "y": 220.84788029925187,
+    "z": 11000,
+    "height": 312.41895261845389,
+    "width": 778.354114713217,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*qtd_total_estoque"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*qtd_total_estoque",
+              "nativeQueryRef": "Qtd. total em estoque",
+              "displayName": "Qtd. total em estoque"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "qtd_dias_sem_vendas"
+                }
+              },
+              "queryRef": "Sum(produtos_com_estoque_sem_vendas_mais_90_dias.qtd_dias_sem_vendas)",
+              "nativeQueryRef": "Qtd. dias sem vendas",
+              "active": true,
+              "displayName": "Qtd. dias sem vendas"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias"
+                    }
+                  },
+                  "Property": "*skus_prod_com_estoque"
+                }
+              },
+              "queryRef": "produtos_com_estoque_sem_vendas_mais_90_dias.*skus_prod_com_estoque",
+              "nativeQueryRef": "SKU's",
+              "displayName": "SKU's"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "zoom": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "markers": [
+        {
+          "properties": {
+            "borderShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "borderColorMatchFill": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "borderColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 2,
+                      "Percent": -0.5
+                    }
+                  }
+                }
+              }
+            },
+            "borderTransparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "25D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'SKU''s estoque x dias sem vendas'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

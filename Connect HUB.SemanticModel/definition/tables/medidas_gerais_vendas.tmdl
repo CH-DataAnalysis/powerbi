@@ -1,0 +1,53 @@
+table medidas_gerais_vendas
+	lineageTag: 281a507e-87b5-495c-86d5-ba4d8c9d61e7
+
+	column metricas_gerais_vendas
+		lineageTag: 3e72dbcc-0c15-4b4d-a319-9d29f014ad9e
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'metricas_gerais_vendas Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'metricas_gerais_vendas Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'metricas_gerais_vendas Campos'
+		isHidden
+		lineageTag: cfb6bc4c-2f89-4944-a23b-51e7c968a038
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'metricas_gerais_vendas Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'metricas_gerais_vendas Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: d971f8a6-9bbd-46a1-a345-569db0450cae
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition medidas_gerais_vendas = calculated
+		mode: import
+		source =
+				{
+				    ("% CMV líquido", NAMEOF('mv_vendas_produtos'[**%cmv_liquido]), 0),
+				    ("Venda líquida", NAMEOF('mv_vendas_produtos'[**venda_liquida]), 1),
+				    ("% Margem de lucro bruta", NAMEOF('mv_vendas_produtos'[*%margem_lucro_bruta]), 2),
+				    ("Média de itens por venda", NAMEOF('mv_vendas_produtos'[*media_itens]), 3),
+				    ("Qtd. un. vendidas", NAMEOF('mv_vendas_produtos'[*qtd_produto_venda]), 4),
+				    ("Qtd. atendimentos", NAMEOF('mv_vendas_produtos'[*qtd_atendimento_venda]), 5),
+				    ("Ticket médio", NAMEOF('mv_vendas_produtos'[*ticket_medio_atual_h]), 6)
+				}
+
+	annotation PBI_Id = d44f85ca28214d2ea03947756a96f2bb
+

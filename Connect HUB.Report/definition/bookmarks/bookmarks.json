@@ -1,0 +1,292 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmarksMetadata/1.0.0/schema.json",
+  "items": [
+    {
+      "name": "4a2d1e84cd927dab8929",
+      "displayName": "Vendas",
+      "children": [
+        "cd8805417e929c006606",
+        "575d3fb52dca08a385b8",
+        "7a2c9b0f85ab931f051b",
+        "fb1be15d0b7aa4a0b0da",
+        "fe8e3e72644d4171a0c7",
+        "252899ab49b633b89ea1",
+        "ced3b0fe94d1a82beed7",
+        "05c2a0440a230d899048"
+      ]
+    },
+    {
+      "name": "acd15345da66b4c99980",
+      "displayName": "Compras",
+      "children": [
+        "497a57024a331cd31ab2",
+        "cbbd3d54944ec8615b7a",
+        "314e703fa8712a5ad09a",
+        "67a9458fdb89e8bc820e",
+        "b19ceb474e86e9b13235"
+      ]
+    },
+    {
+      "name": "c667ef5bdac63bb60701",
+      "displayName": "Performance",
+      "children": [
+        "6643774ded1d3e7b91f6",
+        "a5e8b2c0adfccfc99ab4",
+        "04626d92a2546296f0d3"
+      ]
+    },
+    {
+      "name": "deace2275c666fb7c3f1",
+      "displayName": "Análise Mercado",
+      "children": [
+        "f9408659a82c785942a5",
+        "dda8334eddab13a5a637"
+      ]
+    },
+    {
+      "name": "123799795450157e2c99"
+    },
+    {
+      "name": "d533743ce601a64aad2a"
+    },
+    {
+      "name": "6696aa3eb0a20cbee88c"
+    },
+    {
+      "name": "3cbdd12eeeb08a95ac7e",
+      "displayName": "status produtos",
+      "children": [
+        "7f5c917574370e60530c",
+        "aab2a2966b0206a77050",
+        "e252390b5a1300a627aa"
+      ]
+    },
+    {
+      "name": "40b08573d962791e1bc7",
+      "displayName": "Grupo 1",
+      "children": [
+        "d612e10f580c13620949",
+        "2ff8a6005cc35103d5c4",
+        "ad6ec831c81ee8567012",
+        "ca174f42c6e605037124",
+        "4811b2190ae7514e0748",
+        "8315654ba2ae804d5a2d"
+      ]
+    },
+    {
+      "name": "f55850c0a631607968a5",
+      "displayName": "menu_gerencial_vendas",
+      "children": [
+        "7eca57aadeb1cd6a6222",
+        "3c22a0c6c310ac8987a0",
+        "19718cfb0a147ff1689a",
+        "f0f0c5e36c10c4c08fd0",
+        "f5ba1564a295b3f7ed39"
+      ]
+    },
+    {
+      "name": "188d44dde03b04529ca6",
+      "displayName": "menu_curva_abc",
+      "children": [
+        "0b8f387388b0e2f1de78",
+        "9191e57a3b55778054c6",
+        "48ee6003a1f108cc8ff9",
+        "39487933b4e677cd9625",
+        "687f954270b260f7e6c1"
+      ]
+    },
+    {
+      "name": "df64aadb110803b475d3",
+      "displayName": "menu_vendas_pbm",
+      "children": [
+        "ec5ef4ded0d73cca5320",
+        "bc6d907473db08ef4b29",
+        "4be03b75628dbfad3775",
+        "10d02475f4568a44af16",
+        "b76b24c9a4faa55eac40"
+      ]
+    },
+    {
+      "name": "9c625c218db90c20e1fe",
+      "displayName": "menu_analise_crescimento",
+      "children": [
+        "1184657127112c8ec14c",
+        "6f01fe33032612745a6d",
+        "25dc0fc7dac0746e36f1",
+        "2773a6f79af0227ab243",
+        "07924372aea040ab6d18"
+      ]
+    },
+    {
+      "name": "b79337f94e89b5cbccd2",
+      "displayName": "menu_margem",
+      "children": [
+        "b583b8e5da17cabe2a0d",
+        "d10c5b86f3528bd3c116",
+        "76368d4a9e83ddcb5369",
+        "37fa5aef68246d8a43fb",
+        "3c1e4669a093d4970c90"
+      ]
+    },
+    {
+      "name": "8c478bf78ed5c9f65df5",
+      "displayName": "menu_desconto_venda",
+      "children": [
+        "def1951b35e47e053d4f",
+        "1ea1771162a5672a71e3",
+        "2a30e3095ef2da83c674",
+        "30208aa21e8eaef18f0c",
+        "932b94a50411286bd489"
+      ]
+    },
+    {
+      "name": "ec71c3eb19dcc7ddeadc",
+      "displayName": "menu_performance_loja",
+      "children": [
+        "fc2593908e21be4d9226",
+        "471352ce4950c3eac810",
+        "00ffb2e1a09e3b3da24e",
+        "c86b4ea0ef144066637c",
+        "25bf793a19a06ee01556"
+      ]
+    },
+    {
+      "name": "33cc4bb04698e5facb70",
+      "displayName": "menu_performance_vendedores",
+      "children": [
+        "5110fcd45d5fad8282e8",
+        "f01ee889b1284a106947",
+        "4c67d2a8170e3254a799",
+        "8f6d6f1ed246a1990b8a",
+        "ff65f14c6754002b6e55"
+      ]
+    },
+    {
+      "name": "e67c84cb1ac91b1556ba",
+      "displayName": "menu_area_farmacia",
+      "children": [
+        "e679e34d0b9f72c9bd42",
+        "a559e9dd312a642ea72f",
+        "f1731db4f7d7593af208",
+        "bfb76084d93cbbfdb513",
+        "546f9e8e796cea57dbfa"
+      ]
+    },
+    {
+      "name": "eb22b4ef4268d7d5cd68",
+      "displayName": "menu_gerencial_compra",
+      "children": [
+        "4686b133620228a51a75",
+        "dd4dcfde53bd0e0434b3",
+        "3a8bf1a2d2772ae9ce13",
+        "a6977d134f4e52cd0b40",
+        "fd43f5ad9b51a7fc64c0"
+      ]
+    },
+    {
+      "name": "fb2e08e8637f122a467c",
+      "displayName": "menu_sugestao_compra",
+      "children": [
+        "813c9bf3811507ce7c86",
+        "1c1709fd226c504678af",
+        "bf055a445e4960af1057",
+        "2848bdc98f2fffe7b1fb",
+        "72d2ffd58fac461a83c1"
+      ]
+    },
+    {
+      "name": "7c7d50a838b6c3af72e1",
+      "displayName": "menu_sug_transferencia",
+      "children": [
+        "0d34453f6f2215462d53",
+        "a16ef828319a8eae9d1e",
+        "8ab35978ea03ba3d00bc",
+        "43157c5cf780de9c9de8",
+        "d629960e3130f6e0fb61"
+      ]
+    },
+    {
+      "name": "aa394fb38e6bab302b2e",
+      "displayName": "menu_desc_compra",
+      "children": [
+        "532b23db32977627ab39",
+        "ecd845c3a10c165144e4",
+        "b91d6f99fbf416cce780",
+        "68bf0aa585b8ed440752",
+        "4cb5b64a634b3ef99a16"
+      ]
+    },
+    {
+      "name": "caa8bad03749f41a15a7",
+      "displayName": "menu_analise_ruptura",
+      "children": [
+        "916af2ef4d20dfa7ddb4",
+        "1310bbd2095c90ee6483",
+        "9b7eb9b5d65b3be3f07e",
+        "fed30175df0f7a3e418b",
+        "8273c00369c8b047b7c8"
+      ]
+    },
+    {
+      "name": "6bfa1d1d3a708a161107",
+      "displayName": "menu_controle_captacao",
+      "children": [
+        "bdfb7e25a324230ea0ad",
+        "7252e45a926273542cd0",
+        "b1fa250602ab9af6fe75",
+        "021aa474d4476b5acd26",
+        "67e21d6d97e810a270a4"
+      ]
+    },
+    {
+      "name": "aec7beef453de4b5819e",
+      "displayName": "menu_90_dias",
+      "children": [
+        "9cdec436217bae01402e",
+        "ce3281b012709cddaa00",
+        "4a66120d5603bb870e00",
+        "1227342db280dda95a62",
+        "221d051d82aee2c25c63"
+      ]
+    },
+    {
+      "name": "160beb8569286b9f3a61",
+      "displayName": "menu_analise_mercado",
+      "children": [
+        "c5e5a82b0f59aeb52e70",
+        "af5c28c228308eb5da5a",
+        "0d4f516c2e5074844fe8",
+        "d948abc5140c9cc068ca",
+        "7aaa239830c16f4de1d7"
+      ]
+    },
+    {
+      "name": "e93d8d9e14e4ceb696e5",
+      "displayName": "menu_analise_precificacao",
+      "children": [
+        "fbf25edcc0050a1b8d35",
+        "fed7434c3cb504c505cb",
+        "d46ae11c423e8c9e4411",
+        "4904befa5749045bd80d",
+        "2bb24c4f4da49420b5a9"
+      ]
+    },
+    {
+      "name": "545b5827d19f3015e6b3",
+      "displayName": "menu_prospeccao",
+      "children": [
+        "fcc91f26e57d647aaf63",
+        "6539ba57dc684dcfb1c9",
+        "e3806b564701f61abbe7",
+        "7179225032be00030b49",
+        "17c83a86ed91e429218e"
+      ]
+    },
+    {
+      "name": "eb3fc3e3bbeacdb34fed"
+    },
+    {
+      "name": "e75efaebb41e2ef0ab3c"
+    }
+  ]
+}

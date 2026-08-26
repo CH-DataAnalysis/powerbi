@@ -1,0 +1,469 @@
+table mv_performance_vendedores
+	lineageTag: 43f13965-d427-42a6-9887-a0c27812efb7
+
+	measure _qtd_vendedor_excelente =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_vendedores[cod_vendedor_ivend]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes]),
+			    FILTER(
+			        mv_performance_vendedores,
+			        mv_performance_vendedores[classificacao_performance] = "Excelente"
+			    )
+			)
+		formatString: 0
+		lineageTag: 25213caa-3356-424c-876a-3681a9aeacbc
+
+	measure _qtd_vendedor_bom =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_vendedores[cod_vendedor_ivend]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes]),
+			    FILTER(
+			        mv_performance_vendedores,
+			        mv_performance_vendedores[classificacao_performance] = "Bom"
+			    )
+			)
+		formatString: 0
+		lineageTag: 8b4a4a55-cf34-4784-85b5-ca94d60c8b8c
+
+	measure _qtd_vendedor_regular =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_vendedores[cod_vendedor_ivend]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes]),
+			    FILTER(
+			        mv_performance_vendedores,
+			        mv_performance_vendedores[classificacao_performance] = "Regular"
+			    )
+			)
+		formatString: 0
+		lineageTag: 4551d91b-b8ea-4048-85eb-932efa7ae320
+
+	measure _qtd_vendedor_precisa_melhorar =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_vendedores[cod_vendedor_ivend]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes]),
+			    mv_performance_vendedores[classificacao_performance] IN {
+			        "Precisa Melhorar",
+			        "Baixa Amostra"
+			    }
+			)
+		formatString: 0
+		lineageTag: 2602c728-7076-4a90-904d-dcbd9ba3c802
+
+	measure _score_final =
+			
+			CALCULATE(
+			    AVERAGE(mv_performance_vendedores[score_final]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		lineageTag: 7c1dbf8e-469b-4bd4-ac23-a96f445f705f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _classificacao_performance_cor =
+			
+			SWITCH(
+			    TRUE(),
+			    [_score_final] < 40, "#F28B82",   -- vermelho suave
+			    [_score_final] < 60, "#FDD663",   -- amarelo suave
+			    [_score_final] < 80, "#81C995",   -- verde suave
+			    "#8AB4F8"                                -- azul suave
+			)
+		lineageTag: 3bc16974-f391-4250-b8a9-bfa89f83cac5
+
+	measure _score_atendimento =
+			
+			CALCULATE(
+			    AVERAGE(mv_performance_vendedores[score_atendimento]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: #,0.00
+		lineageTag: 2ac9a0b1-db81-46df-af92-9159cd024606
+
+	measure _score_ticket_medio =
+			
+			CALCULATE(
+			    AVERAGE(mv_performance_vendedores[score_ticket_medio]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: #,0.00
+		lineageTag: 5c8126ee-0c55-4a1a-a21b-252a7925ff82
+
+	measure _score_lucro =
+			
+			CALCULATE(
+			    AVERAGE(mv_performance_vendedores[score_lucro]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: #,0.00
+		lineageTag: 6826c3f5-9692-4bb3-89f9-fed003131b7f
+
+	measure _score_media_itens =
+			
+			CALCULATE(
+			    AVERAGE(mv_performance_vendedores[score_media_itens]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: #,0.00
+		lineageTag: 88aa7457-e1b9-4588-97ce-dd4f37c6d956
+
+	measure _qtd_atendimento =
+			
+			CALCULATE(
+			    SUM(mv_performance_vendedores[qtd_atendimento]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: #,0
+		lineageTag: 5f6cfa1e-ea3f-40e8-a1b9-a0989682fd3d
+
+	measure _media_itens =
+			
+			CALCULATE(
+			    AVERAGE(mv_performance_vendedores[media_itens]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		lineageTag: 46c2fe3e-2e58-409a-b023-9a89233f84f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _lucro =
+			
+			CALCULATE(
+			    SUM(mv_performance_vendedores[lucro]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 8b57f282-a068-43b3-b3a5-9eed42682a37
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure _total_vendas =
+			
+			CALCULATE(
+			    AVERAGE(mv_performance_vendedores[total_vendas]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 9d6bf737-10db-4ebd-a570-53e57a1166f1
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure _ticket_medio =
+			
+			CALCULATE(
+			    SUM(mv_performance_vendedores[ticket_medio]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: d5e92ffb-3a7f-4a20-ba6c-4a569c249a3c
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure _score_medidas =
+			
+			"Score Ticket médio: " &[_score_ticket_medio]
+			    & UNICHAR(10) &
+			"Score Média de itens: " &[_score_media_itens]
+			    & UNICHAR(10) &
+			"Score Lucro: " &[_score_lucro]
+			    & UNICHAR(10) &
+			"Score Atendimentos: " &[_score_atendimento]
+		lineageTag: 0c1fb1e6-343a-4500-9cf2-d57a82094074
+
+	measure _%qtd_vendedores_excelente =
+			
+			DIVIDE(
+			    COALESCE([_qtd_vendedor_excelente], 0),
+			    [_qtd_vendedor],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0f4c384b-1c3c-4e4d-b61a-1c41d0821922
+
+	measure _qtd_vendedor =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_vendedores[cod_vendedor_ivend]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: 0
+		lineageTag: 8501777b-0596-4c7a-a90a-e80424924f75
+
+	measure _%qtd_vendedores_bom =
+			
+			DIVIDE(
+			    COALESCE([_qtd_vendedor_bom], 0),
+			    [_qtd_vendedor],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 420f8ebe-2482-405a-b648-066fa5fff73d
+
+	measure _%qtd_vendedores_regular =
+			
+			DIVIDE(
+			    COALESCE([_qtd_vendedor_regular], 0),
+			    [_qtd_vendedor],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2c89134b-7315-4209-8297-adefcb716ac4
+
+	measure _%qtd_vendedores_precisa_melhorar =
+			
+			DIVIDE(
+			    COALESCE([_qtd_vendedor_precisa_melhorar], 0),
+			    [_qtd_vendedor],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 42db7223-ab91-442a-8cdc-e8c777fed214
+
+	column cod_associacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ca8379a-4ea3-4621-b995-213e89e6478d
+		summarizeBy: sum
+		sourceColumn: cod_associacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column cnpj
+		dataType: string
+		lineageTag: 5d988aed-aab5-4dca-ab55-ed4e716cba47
+		summarizeBy: none
+		sourceColumn: cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_vendedor_ivend
+		dataType: int64
+		formatString: 0
+		lineageTag: 5f3799ff-2cdd-4f85-bce3-271934f54caa
+		summarizeBy: sum
+		sourceColumn: cod_vendedor_ivend
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_vendedor_ivend
+		dataType: string
+		lineageTag: 92db01df-714f-45ef-be69-107dfb278770
+		summarizeBy: none
+		sourceColumn: nom_vendedor_ivend
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1e2d415d-3737-4481-a3f5-730404c6728c
+		summarizeBy: none
+		sourceColumn: mes
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_vendas
+		dataType: double
+		lineageTag: fcd9e36e-eeee-4173-b7f5-ca8f87d56ebd
+		summarizeBy: sum
+		sourceColumn: total_vendas
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_atendimento
+		dataType: int64
+		formatString: 0
+		lineageTag: 4b5583e4-7b93-4166-946e-4f84555f5def
+		summarizeBy: sum
+		sourceColumn: qtd_atendimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column ticket_medio
+		dataType: double
+		lineageTag: cc3fafd5-b4ea-41a5-af99-f79c4ec4a362
+		summarizeBy: sum
+		sourceColumn: ticket_medio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column media_itens
+		dataType: double
+		lineageTag: 34cd84b3-bf7e-4597-9768-c8541fdf9d31
+		summarizeBy: sum
+		sourceColumn: media_itens
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lucro
+		dataType: double
+		lineageTag: 8b6c18e4-1b65-4e2f-b5ea-88276de4c190
+		summarizeBy: sum
+		sourceColumn: lucro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column lucratividade
+		dataType: double
+		lineageTag: 6e30eaeb-2e7b-405e-9954-1d8754b68e56
+		summarizeBy: sum
+		sourceColumn: lucratividade
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column total_vendedores_loja
+		dataType: int64
+		formatString: 0
+		lineageTag: a3cbd391-533a-4af3-b09b-29fbeed63e6c
+		summarizeBy: sum
+		sourceColumn: total_vendedores_loja
+
+		annotation SummarizationSetBy = Automatic
+
+	column score_atendimento
+		dataType: double
+		lineageTag: db46d85c-8556-4f93-be84-cb5ffe1762e8
+		summarizeBy: sum
+		sourceColumn: score_atendimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_lucro
+		dataType: double
+		lineageTag: 8df57109-6892-40da-a6c1-f630a01917b7
+		summarizeBy: sum
+		sourceColumn: score_lucro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_ticket_medio
+		dataType: double
+		lineageTag: 6c07f095-1d6a-4bef-a01a-d1da2128f81d
+		summarizeBy: sum
+		sourceColumn: score_ticket_medio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_media_itens
+		dataType: double
+		lineageTag: 1a80b30e-26df-4e29-9e2e-80fd82a3ab34
+		summarizeBy: sum
+		sourceColumn: score_media_itens
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column pior_score
+		dataType: double
+		lineageTag: 74b952f2-37d6-4c9a-9e3f-224b7bc9d179
+		summarizeBy: sum
+		sourceColumn: pior_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_final
+		dataType: double
+		lineageTag: dba9ba25-9dbf-42e7-9588-c1ec303b3213
+		summarizeBy: sum
+		sourceColumn: score_final
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ranking_vendedor
+		dataType: int64
+		formatString: 0
+		lineageTag: f085346b-9299-4b59-8ea9-779c963fffec
+		summarizeBy: sum
+		sourceColumn: ranking_vendedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column classificacao_performance
+		dataType: string
+		lineageTag: 9405ecad-3d1d-4d75-ae7a-050f7739a22a
+		summarizeBy: none
+		sourceColumn: classificacao_performance
+
+		annotation SummarizationSetBy = Automatic
+
+	column indicador_critico
+		dataType: string
+		lineageTag: 78667e93-b063-49d1-b07b-c0232ff381ad
+		summarizeBy: none
+		sourceColumn: indicador_critico
+
+		annotation SummarizationSetBy = Automatic
+
+	column plano_acao
+		dataType: string
+		lineageTag: 92361d3a-399b-4a64-b086-fa1675346144
+		summarizeBy: none
+		sourceColumn: plano_acao
+
+		annotation SummarizationSetBy = Automatic
+
+	column _cod_nom_vendedor = COALESCE(mv_performance_vendedores[cod_vendedor_ivend],0)&" - "&COALESCE(mv_performance_vendedores[nom_vendedor_ivend],"NÃO INFORMADO")
+		lineageTag: 2532b900-d75d-4b58-b715-bd6a65c130e5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column total_itens_vendidos
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c3e9490-66df-4d5d-bb57-5ba3c38520df
+		summarizeBy: sum
+		sourceColumn: total_itens_vendidos
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_performance_vendedores = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_performance_vendedores_bi_estrategico_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data]
+				
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

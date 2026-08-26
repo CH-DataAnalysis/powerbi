@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "cc045ae81415bbae6949",
+  "position": {
+    "x": 339.56194855165404,
+    "y": 42.000000000000021,
+    "z": 4000,
+    "height": 134.40000000000003,
+    "width": 93.921390024925572,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "cuidado_paciente2693365721488299.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "937b17313f3c446cce6f",
+  "howCreated": "InsertVisualButton"
+}

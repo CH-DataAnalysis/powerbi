@@ -1,0 +1,1668 @@
+table mv_dados_vendas_compras
+	lineageTag: 1e2f80e5-b02c-4710-91d3-b15ed99f530b
+
+	measure *venda_liquida_mes_atual_ =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_venda]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: e8eacb5e-0929-4ae0-b145-0d1b11e12261
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *venda_liquida_mes_anterior =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataInicioMesAnterior =
+			    EOMONTH(UltimaDataMesAtual, -2) + 1
+			
+			VAR DataFimMesAnterior =
+			    MIN(
+			        EOMONTH(UltimaDataMesAtual, -1),
+			        DATE(
+			            YEAR(EOMONTH(UltimaDataMesAtual, -1)),
+			            MONTH(EOMONTH(UltimaDataMesAtual, -1)),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_venda]),
+			    calendario[Date] >= DataInicioMesAnterior &&
+			    calendario[Date] <= DataFimMesAnterior
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: b417209c-1999-4b9c-911f-a84a2b01e619
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *%var_venda_liquida_mes_anterior =
+			
+			DIVIDE(
+			    mv_dados_vendas_compras[*venda_liquida_mes_atual_] - mv_dados_vendas_compras[*venda_liquida_mes_anterior],
+			     mv_dados_vendas_compras[*venda_liquida_mes_anterior],
+			    0
+			    )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4b6f6559-9e13-4603-9cf0-bedea29aac97
+
+	measure *qtd_atendimentos_mes_atual =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[qtd_atendimento]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: #,0
+		lineageTag: 52533804-52e1-4565-9b27-4f1c87f05990
+
+	measure *qtd_atendimentos_mes_anterior = ```
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataInicioMesAnterior =
+			    EOMONTH(UltimaDataMesAtual, -2) + 1
+			
+			VAR DataFimMesAnterior =
+			    MIN(
+			        EOMONTH(UltimaDataMesAtual, -1),
+			        DATE(
+			            YEAR(EOMONTH(UltimaDataMesAtual, -1)),
+			            MONTH(EOMONTH(UltimaDataMesAtual, -1)),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[qtd_atendimento]),
+			    calendario[Date] >= DataInicioMesAnterior &&
+			    calendario[Date] <= DataFimMesAnterior
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 2bcf328c-504d-4662-b84a-68bf667ed18c
+
+	measure *%var_qtd_atendimentos_mes_anterior =
+			
+			DIVIDE(
+			    mv_dados_vendas_compras[*qtd_atendimentos_mes_atual] - mv_dados_vendas_compras[*qtd_atendimentos_mes_anterior],
+			    mv_dados_vendas_compras[*qtd_atendimentos_mes_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 809dde3a-623e-456a-b2f9-1f9bb5eaf312
+
+	measure *ticket_medio_mes_atual = mv_dados_vendas_compras[*venda_liquida_mes_atual_] / mv_dados_vendas_compras[*qtd_atendimentos_mes_atual]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 46000d8d-383d-4bbd-8d18-4aacb20166bd
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *ticket_medio_mes_anterior = mv_dados_vendas_compras[*venda_liquida_mes_anterior] / mv_dados_vendas_compras[*qtd_atendimentos_mes_anterior]
+		lineageTag: c915ed0c-5025-43a8-8113-d27bb31db8f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *%var_ticket_medio_mes_anterior =
+			DIVIDE(
+			    mv_dados_vendas_compras[*ticket_medio_mes_atual] - mv_dados_vendas_compras[*ticket_medio_mes_anterior] ,
+			     mv_dados_vendas_compras[*ticket_medio_mes_anterior],
+			     0
+			     )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 25760e57-3878-4c63-a45f-bcff72a55e79
+
+	measure *cmv_aquisicao_mes_atual =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[vlr_custo_aquisicao]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: a8dc031a-dc45-48e8-86ae-0a7ecda8cf8f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *cmv_aquisicao_mes_anterior = ```
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_dados_vendas_compras[dat_emissao]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_custo_aquisicao]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+			
+			```
+		lineageTag: 26b40913-7a07-4374-b6eb-7fc84155a60d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *%cmv_liquido_mes_atual =
+			
+			CALCULATE(
+			    DIVIDE(
+			    SUM(mv_dados_vendas_compras[vlr_custo_aquisicao]),
+			    SUM(mv_dados_vendas_compras[vlr_total_venda])
+			),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f864b58a-d46a-4e1c-81d7-ee1d1b365b66
+
+	measure *%cmv_liquido_mes_anterior =
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataInicioMesAnterior =
+			    EOMONTH(UltimaDataMesAtual, -2) + 1
+			
+			VAR DataFimMesAnterior =
+			    MIN(
+			        EOMONTH(UltimaDataMesAtual, -1),
+			        DATE(
+			            YEAR(EOMONTH(UltimaDataMesAtual, -1)),
+			            MONTH(EOMONTH(UltimaDataMesAtual, -1)),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			        SUM(mv_dados_vendas_compras[vlr_custo_aquisicao]),
+			        SUM(mv_dados_vendas_compras[vlr_total_venda])
+			    ),
+			    calendario[Date] >= DataInicioMesAnterior &&
+			    calendario[Date] <= DataFimMesAnterior
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d47ca5bf-1184-4228-9d2b-c985fa28a8bf
+
+	measure *%var_%cmv_liquido_mes_anterior = ((mv_dados_vendas_compras[*%cmv_liquido_mes_atual] - mv_dados_vendas_compras[*%cmv_liquido_mes_anterior]) / mv_dados_vendas_compras[*%cmv_liquido_mes_anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7a8aa62b-738e-4ced-8842-872d3892801b
+
+	measure *venda_liquida = SUM(mv_dados_vendas_compras[vlr_total_venda])
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: a69a0f85-6934-4106-b0a1-7a191097f055
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure **valor_total_nfe_mes_atual =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_nfe]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 5eedf2ed-c5d5-4134-8f72-19184658b5b9
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure **valor_total_nfe_mes_anterior = ```
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_dados_vendas_compras[dat_emissao]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_nfe]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+			
+			```
+		lineageTag: ecde396c-d32a-49fa-be8c-2a258e87d67e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **%var_valor_total_nfe_mes_anterior =
+			
+			DIVIDE(
+			    mv_dados_vendas_compras[**valor_total_nfe_mes_atual] - mv_dados_vendas_compras[**valor_total_nfe_mes_anterior],
+			    mv_dados_vendas_compras[**valor_total_nfe_mes_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5b3bbe7b-12be-4edd-85c3-90a3da228620
+
+	measure **valor_total_descto_mes_atual =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_descto]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 7dfd17e2-b326-48c3-9813-24423217ff46
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure **valor_total_descto_mes_anterior = ```
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_dados_vendas_compras[dat_emissao]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_descto]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+			
+			```
+		lineageTag: 4defb13e-3f3f-4753-9205-c99081e3ca87
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **%var_valor_total_descto_mes_anterior =
+			
+			DIVIDE(
+			    mv_dados_vendas_compras[**valor_total_descto_mes_atual] - mv_dados_vendas_compras[**valor_total_descto_mes_anterior],
+			    mv_dados_vendas_compras[**valor_total_descto_mes_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: eb794f5f-9134-454e-80d3-e6763996fa1a
+
+	measure **%valor_total_descto_mes_atual =
+			
+			CALCULATE(
+			    DIVIDE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_descto]), sum(mv_dados_vendas_compras[vlr_total_compra_bruta])
+			),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 33f3dc3b-96b2-4599-8245-9b92992481d4
+
+	measure **%valor_total_descto_mes_anterior = ```
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_dados_vendas_compras[dat_emissao]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_descto]), sum(mv_dados_vendas_compras[vlr_total_compra_bruta])
+			),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+			
+			```
+		formatString: 0%;-0%;0%
+		lineageTag: c545764c-e94e-410f-93a5-b70a04b90682
+
+	measure **%var_%valor_total_descto_mes_anterior =
+			
+			DIVIDE(
+			    mv_dados_vendas_compras[**%valor_total_descto_mes_atual] - mv_dados_vendas_compras[**%valor_total_descto_mes_anterior],
+			    mv_dados_vendas_compras[**%valor_total_descto_mes_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c9ce56b0-aa8d-49d8-9304-c831dc737abf
+
+	measure **qtd_produto_compra_mes_atual =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[qtd_produto_compra]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: #,0
+		lineageTag: 868b68c6-ce7c-4ef0-9c2e-eeda5e8daa60
+
+	measure **qtd_produto_compra_mes_anterior = ```
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR DataMesAnterior =
+			    EDATE(DataAtual, -1)
+			
+			VAR DiaLimiteMesAnterior =
+			    VAR DataLimiteMesAtual =
+			        CALCULATE(
+			            MAX(mv_dados_vendas_compras[dat_emissao]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    VAR UltimoDiaMesAtual =
+			        CALCULATE(
+			            MAX(calendario[Date]),
+			            FILTER(
+			                ALL(calendario),
+			                calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			            )
+			        )
+			    RETURN
+			        IF(
+			            DataLimiteMesAtual = UltimoDiaMesAtual,
+			            31,
+			            DAY(DataLimiteMesAtual)
+			        )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[qtd_produto_compra]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), 1) &&
+			        calendario[Date] <= DATE(YEAR(DataMesAnterior), MONTH(DataMesAnterior), DiaLimiteMesAnterior)
+			    )
+			)
+			
+			```
+		lineageTag: ffd50df4-73f7-4729-8236-d7b0099269b4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **%var_qtd_produto_compra_mes_anterior =
+			
+			DIVIDE(
+			    mv_dados_vendas_compras[**qtd_produto_compra_mes_atual] - mv_dados_vendas_compras[**qtd_produto_compra_mes_anterior],
+			    mv_dados_vendas_compras[**qtd_produto_compra_mes_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: b0d70e8a-de2d-44db-880e-5f4d8dcbcec6
+
+	measure *venda_liquida_ano_atual =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_venda]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 893a8483-7650-4ab3-9132-e9f4493cb842
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *venda_liquida_ano_anterior =
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataBaseAnoAnterior =
+			    EDATE(UltimaDataMesAtual, -12)
+			
+			VAR DataInicio =
+			    EOMONTH(DataBaseAnoAnterior, -1) + 1
+			
+			VAR DataFim =
+			    MIN(
+			        EOMONTH(DataBaseAnoAnterior, 0),
+			        DATE(
+			            YEAR(DataBaseAnoAnterior),
+			            MONTH(DataBaseAnoAnterior),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_venda]),
+			    calendario[Date] >= DataInicio &&
+			    calendario[Date] <= DataFim
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 765321e1-a650-48f0-b340-6979e5b57ded
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *%var_venda_liquida_ano_anterior =
+			
+			COALESCE(
+			    DIVIDE(
+			        mv_dados_vendas_compras[*venda_liquida_ano_atual]
+			        - mv_dados_vendas_compras[*venda_liquida_ano_anterior],
+			        mv_dados_vendas_compras[*venda_liquida_ano_anterior],
+			        0
+			    ),
+			0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 10869986-435a-43f7-9065-9481d897ee45
+
+	measure *qtd_atendimentos_ano_atual =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[qtd_atendimento]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: 4b1d92fd-49b9-4543-a3b9-b4e7a827f4f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *qtd_atendimentos_ano_anterior =
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataBaseAnoAnterior =
+			    EDATE(UltimaDataMesAtual, -12)
+			
+			VAR DataInicio =
+			    EOMONTH(DataBaseAnoAnterior, -1) + 1
+			
+			VAR DataFim =
+			    MIN(
+			        EOMONTH(DataBaseAnoAnterior, 0),
+			        DATE(
+			            YEAR(DataBaseAnoAnterior),
+			            MONTH(DataBaseAnoAnterior),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[qtd_atendimento]),
+			    calendario[Date] >= DataInicio &&
+			    calendario[Date] <= DataFim
+			)
+		formatString: 0
+		lineageTag: f74c9137-af2d-4294-8f47-aa92c6db72af
+
+	measure *%var_qtd_atendimentos_ano_anterior =
+			
+			DIVIDE (
+			    mv_dados_vendas_compras[*qtd_atendimentos_ano_atual] - mv_dados_vendas_compras[*qtd_atendimentos_ano_anterior],
+			    mv_dados_vendas_compras[*qtd_atendimentos_ano_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 33ea6ba5-4d59-49f1-8f36-eddcebc5eba5
+
+	measure *ticket_medio_ano_atual = mv_dados_vendas_compras[*venda_liquida_mes_atual_] / mv_dados_vendas_compras[*qtd_atendimentos_mes_atual]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 2f97fd6a-b7cd-4ca8-8c70-585027c9cbcb
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *ticket_medio_ano_anterior = mv_dados_vendas_compras[*venda_liquida_ano_anterior] / mv_dados_vendas_compras[*qtd_atendimentos_ano_anterior]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 173ac447-37aa-4cc1-9552-c5735eb5eae0
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *%var_ticket_medio_ano_anterior =
+			
+			DIVIDE (
+			    [*ticket_medio_ano_atual] - [*ticket_medio_ano_anterior],
+			    [*ticket_medio_ano_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 98cdc11d-1251-42d4-b7d5-68aff3cb4286
+
+	measure *cmv_aquisicao_ano_atual =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_custo_aquisicao]),
+			    REMOVEFILTERS(calendario),
+			    calendario[ano] = AnoAtual
+			)
+		lineageTag: 15f70ecd-9491-46a8-8373-3ebf57c65d22
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *cmv_aquisicao_ano_anterior =
+			
+			VAR DataAtual =
+			    TODAY()
+			
+			VAR AnoAnterior =
+			    YEAR(DataAtual) - 1
+			
+			VAR DataInicialAnoAnterior =
+			    DATE(AnoAnterior, 1, 1)
+			
+			VAR DataFinalAnoAnterior =
+			    DATE(AnoAnterior, MONTH(DataAtual), DAY(DataAtual))
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_custo_aquisicao]),
+			    REMOVEFILTERS(calendario),
+			    calendario[Date] >= DataInicialAnoAnterior &&
+			    calendario[Date] <= DataFinalAnoAnterior
+			)
+		lineageTag: de3b6ac4-758b-4bd3-9a6e-ad396c4ebb53
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *%cmv_liquido_ano_atual =
+			
+			CALCULATE(
+			    DIVIDE(
+			    SUM(mv_dados_vendas_compras[vlr_custo_aquisicao]),
+			    SUM(mv_dados_vendas_compras[vlr_total_venda])
+			),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4462035f-6e4e-4310-a0c4-53d67e6f2808
+
+	measure *%cmv_liquido_ano_anterior =
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataBaseAnoAnterior =
+			    EDATE(UltimaDataMesAtual, -12)
+			
+			VAR DataInicio =
+			    EOMONTH(DataBaseAnoAnterior, -1) + 1
+			
+			VAR DataFim =
+			    MIN(
+			        EOMONTH(DataBaseAnoAnterior, 0),
+			        DATE(
+			            YEAR(DataBaseAnoAnterior),
+			            MONTH(DataBaseAnoAnterior),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			        SUM(mv_dados_vendas_compras[vlr_custo_aquisicao]),
+			        SUM(mv_dados_vendas_compras[vlr_total_venda])
+			    ),
+			    calendario[Date] >= DataInicio &&
+			    calendario[Date] <= DataFim
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: acd4e533-08d4-4826-83f7-f36a68f1fbff
+
+	measure *%var_%cmv_liquido_ano_anterior =
+			
+			COALESCE(
+			    DIVIDE(
+			        mv_dados_vendas_compras[*%cmv_liquido_ano_atual]
+			        - mv_dados_vendas_compras[*%cmv_liquido_ano_anterior],
+			        mv_dados_vendas_compras[*%cmv_liquido_ano_anterior],
+			        0
+			    ),
+			0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 19aa4e9c-9dd2-4f51-a32b-d31dfcc708c2
+
+	measure *desconto_venda_mes_atual =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[vlr_descto]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		lineageTag: 1b71bc39-290e-4494-86fa-eca509f446b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *desconto_venda_mes_anterior =
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataInicioMesAnterior =
+			    EOMONTH(UltimaDataMesAtual, -2) + 1
+			
+			VAR DataFimMesAnterior =
+			    MIN(
+			        EOMONTH(UltimaDataMesAtual, -1),
+			        DATE(
+			            YEAR(EOMONTH(UltimaDataMesAtual, -1)),
+			            MONTH(EOMONTH(UltimaDataMesAtual, -1)),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_descto]),
+			    calendario[Date] >= DataInicioMesAnterior &&
+			    calendario[Date] <= DataFimMesAnterior
+			)
+		lineageTag: b670afef-0fc1-4187-9ec1-55d0e9375481
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *desconto_venda_ano_atual =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_descto]),
+			    REMOVEFILTERS(calendario),
+			    calendario[ano] = AnoAtual
+			)
+		lineageTag: 68c9aa72-1f1e-4e09-ae59-3d30a3600669
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *desconto_venda_ano_anterior =
+			
+			VAR DataAtual =
+			    TODAY()
+			
+			VAR AnoAnterior =
+			    YEAR(DataAtual) - 1
+			
+			VAR DataInicialAnoAnterior =
+			    DATE(AnoAnterior, 1, 1)
+			
+			VAR DataFinalAnoAnterior =
+			    DATE(AnoAnterior, MONTH(DataAtual), DAY(DataAtual))
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_descto]),
+			    REMOVEFILTERS(calendario), -- remove todos os filtros da tabela calendário
+			    calendario[Date] >= DataInicialAnoAnterior &&
+			    calendario[Date] <= DataFinalAnoAnterior
+			)
+		lineageTag: b6ca1fa6-b3e6-4ced-945c-ceabc17ec860
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *%desconto_venda_mes_atual =
+			
+			CALCULATE(
+			    DIVIDE(SUM(mv_dados_vendas_compras[vlr_descto]),sum(mv_dados_vendas_compras[vlr_total_venda_bruta])),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 463440c7-d5bb-4a19-8c2c-1fb726cb39fe
+
+	measure *%desconto_venda_mes_anterior =
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataInicioMesAnterior =
+			    EOMONTH(UltimaDataMesAtual, -2) + 1
+			
+			VAR DataFimMesAnterior =
+			    MIN(
+			        EOMONTH(UltimaDataMesAtual, -1),
+			        DATE(
+			            YEAR(EOMONTH(UltimaDataMesAtual, -1)),
+			            MONTH(EOMONTH(UltimaDataMesAtual, -1)),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			        SUM(mv_dados_vendas_compras[vlr_descto]),
+			        SUM(mv_dados_vendas_compras[vlr_total_venda_bruta])
+			    ),
+			    calendario[Date] >= DataInicioMesAnterior &&
+			    calendario[Date] <= DataFimMesAnterior
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 93007af5-5569-472a-8cb1-4c40d44f1b6a
+
+	measure *%var_%desconto_venda_mes_anterior =
+			
+			DIVIDE(
+			    [*%desconto_venda_mes_atual] - [*%desconto_venda_mes_anterior],
+			    [*%desconto_venda_mes_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 14eeba7f-c1d2-4dd1-aa2b-32b545fe400d
+
+	measure **%valor_total_descto_ano_atual_linhadotempo =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_descto]), sum(mv_dados_vendas_compras[vlr_total_compra_bruta])
+			),
+			   calendario[ano] = AnoAtual
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e5b82ed2-df19-4d49-bc26-159e38490f61
+
+	measure *%desconto_venda_ano_anterior =
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataBaseAnoAnterior =
+			    EDATE(UltimaDataMesAtual, -12)
+			
+			VAR DataInicio =
+			    EOMONTH(DataBaseAnoAnterior, -1) + 1
+			
+			VAR DataFim =
+			    MIN(
+			        EOMONTH(DataBaseAnoAnterior, 0),
+			        DATE(
+			            YEAR(DataBaseAnoAnterior),
+			            MONTH(DataBaseAnoAnterior),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			        SUM(mv_dados_vendas_compras[vlr_descto]),
+			        SUM(mv_dados_vendas_compras[vlr_total_venda_bruta])
+			    ),
+			    calendario[Date] >= DataInicio &&
+			    calendario[Date] <= DataFim
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 4a02e5d1-33c5-4881-9757-e033f8ef6e70
+
+	measure *%var_%desconto_venda_ano_anterior =
+			
+			COALESCE(
+			    DIVIDE(
+			        mv_dados_vendas_compras[*%desconto_venda_ano_atual]
+			        - mv_dados_vendas_compras[*%desconto_venda_ano_anterior],
+			        mv_dados_vendas_compras[*%desconto_venda_ano_anterior],
+			        0
+			    ),
+			0)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 50bc9210-2b47-400f-98a5-e853645d1b23
+
+	measure **%var_qtd_produto_compra_ano_anterior =
+			
+			DIVIDE(
+			    [**qtd_produto_compra_ano_atual] - [**qtd_produto_compra_ano_anterior],
+			     [**qtd_produto_compra_ano_anterior],
+			     0
+			     )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 24359356-7a4d-4b08-b117-2dfef2e5b8d2
+
+	measure **%valor_total_descto_ano_anterior =
+			
+			VAR DataAtual =
+			    TODAY()
+			
+			VAR AnoAnterior =
+			    YEAR(DataAtual) - 1
+			
+			VAR DataInicialAnoAnterior =
+			    DATE(AnoAnterior, 1, 1)
+			
+			VAR DataFinalAnoAnterior =
+			    DATE(AnoAnterior, MONTH(DataAtual), DAY(DataAtual))
+			
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_descto]), sum(mv_dados_vendas_compras[vlr_total_compra_bruta])
+			),
+			    REMOVEFILTERS(calendario),
+			    calendario[Date] >= DataInicialAnoAnterior &&
+			    calendario[Date] <= DataFinalAnoAnterior
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d7ef5eac-afbf-42f4-9070-d9d1c447c965
+
+	measure **%valor_total_descto_ano_atual =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_descto]), sum(mv_dados_vendas_compras[vlr_total_compra_bruta])
+			),
+			    REMOVEFILTERS(calendario),
+			    calendario[ano] = AnoAtual
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 834cdd72-2515-4bd0-83af-f15f0cfd959e
+
+	measure **%var_%valor_total_desconto_ano_anterior =
+			
+			DIVIDE(
+			    [**%valor_total_descto_ano_atual] - [**%valor_total_descto_ano_anterior],
+			    [**%valor_total_descto_ano_anterior],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 121f1cc3-ea2a-4a09-83f7-2520e5cf1d3e
+
+	measure **%var_valor_total_descto_ano_anterior =
+			
+			DIVIDE(
+			    [**valor_total_descto_ano_atual] - [**valor_total_descto_ano_anterior],
+			     [**valor_total_descto_ano_anterior],
+			     0
+			     )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7b955d3e-cfe7-4a7d-9a0e-1d3ab2475f70
+
+	measure **%var_valor_total_nfe_ano_anterior =
+			
+			DIVIDE(
+			    [**valor_total_nfe_ano_atual] - [*valor_total_nfe_ano_anterior],
+			     [*valor_total_nfe_ano_anterior],
+			     0
+			     )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 71250e02-b9bb-421c-ba9b-ba0664ab9022
+
+	measure **qtd_produto_compra_ano_anterior =
+			
+			VAR DataAtual =
+			    TODAY()
+			
+			VAR AnoAnterior =
+			    YEAR(DataAtual) - 1
+			
+			VAR DataInicialAnoAnterior =
+			    DATE(AnoAnterior, 1, 1)
+			
+			VAR DataFinalAnoAnterior =
+			    DATE(AnoAnterior, MONTH(DataAtual), DAY(DataAtual))
+			
+			RETURN
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[qtd_produto_compra]),
+			    REMOVEFILTERS(calendario),
+			    calendario[Date] >= DataInicialAnoAnterior &&
+			    calendario[Date] <= DataFinalAnoAnterior
+			)
+		lineageTag: 9b62a3d6-3097-4281-98ed-3562131e5f68
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **qtd_produto_compra_ano_atual =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[qtd_produto_compra]),
+			    REMOVEFILTERS(calendario),
+			    calendario[ano] = AnoAtual
+			)
+		lineageTag: cd5dacb5-7e37-41fd-86e2-33bc6b8d254e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **valor_total_descto_ano_anterior =
+			
+			VAR DataAtual =
+			    TODAY()
+			
+			VAR AnoAnterior =
+			    YEAR(DataAtual) - 1
+			
+			VAR DataInicialAnoAnterior =
+			    DATE(AnoAnterior, 1, 1)
+			
+			VAR DataFinalAnoAnterior =
+			    DATE(AnoAnterior, MONTH(DataAtual), DAY(DataAtual))
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_descto]),
+			    REMOVEFILTERS(calendario),
+			    calendario[Date] >= DataInicialAnoAnterior &&
+			    calendario[Date] <= DataFinalAnoAnterior
+			)
+		lineageTag: 705ab706-04f9-422d-8d01-d63bb50ae98e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **valor_total_nfe_ano_atual =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_nfe]),
+			    REMOVEFILTERS(calendario),
+			    calendario[ano] = AnoAtual
+			)
+		lineageTag: e19c118a-239d-431c-ab08-b68a14e77e59
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **valor_total_descto_ano_atual =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_descto]),
+			    REMOVEFILTERS(calendario),
+			    calendario[ano] = AnoAtual
+			)
+		lineageTag: 04e74753-e48d-4f52-91ec-bf4bfd1dacbc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *valor_total_nfe_ano_anterior =
+			
+			VAR DataAtual =
+			    TODAY()
+			
+			VAR AnoAnterior =
+			    YEAR(DataAtual) - 1
+			
+			VAR DataInicialAnoAnterior =
+			    DATE(AnoAnterior, 1, 1)
+			
+			VAR DataFinalAnoAnterior =
+			    DATE(AnoAnterior, MONTH(DataAtual), DAY(DataAtual))
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_nfe]),
+			    REMOVEFILTERS(calendario),
+			    calendario[Date] >= DataInicialAnoAnterior &&
+			    calendario[Date] <= DataFinalAnoAnterior
+			)
+		lineageTag: 889162c3-7cb1-4e77-a715-060cbeef27f6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *%crescimento_mensal_vendas_linha_do_tempo = (([*venda_liquida_ano_atual_linha_do_tempo] - [*venda_liquida_ano_anterior_linha_do_tempo]) / [*venda_liquida_ano_anterior_linha_do_tempo])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0dd9d3f1-385f-4066-ab35-aa99bf996666
+
+	measure *venda_liquida_ano_anterior_linha_do_tempo = ```
+			
+			VAR DataAtualLinha = MAX('calendario'[Date]) 
+			VAR AnoAnterior = YEAR(DataAtualLinha) - 1 
+			VAR MesAtual = MONTH(DataAtualLinha) 
+			VAR DataInicialMesAnoAnterior = DATE(AnoAnterior, MesAtual, 1)
+			VAR DataFinalMesAnoAnterior = CALCULATE( MAX('calendario'[Date]), 'calendario'[ano] = AnoAnterior, 'calendario'[mes] = MesAtual ) 
+			RETURN 
+			CALCULATE( SUM(mv_dados_vendas_compras[vlr_total_venda]), 'calendario'[Date] >= DataInicialMesAnoAnterior, 'calendario'[Date] <= DataFinalMesAnoAnterior )
+			
+			```
+		lineageTag: 9e9be428-c39e-479e-bca1-611b5907aa63
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *venda_liquida_ano_atual_linha_do_tempo =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_venda]),
+			    calendario[ano] = AnoAtual
+			)
+		lineageTag: d0d96b8b-c7bc-450e-aaec-1d8ccf4a55b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *ticket_medio_ano_atual_linha_do_tempo = ```
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			 
+			RETURN
+			CALCULATE(
+			    DIVIDE([*venda_liquida], [*qtd_atendimentos]),
+			    calendario[ano] = AnoAtual
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 9baf204e-0ce0-4b2e-a96f-f2e5d5f2c27d
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *ticket_medio_ano_anterior_linha_do_tempo = ```
+			
+			VAR DataAtualLinha = MAX('calendario'[Date]) 
+			VAR AnoAnterior = YEAR(DataAtualLinha) - 1 
+			VAR MesAtual = MONTH(DataAtualLinha) 
+			VAR DataInicialMesAnoAnterior = DATE(AnoAnterior, MesAtual, 1)
+			VAR DataFinalMesAnoAnterior = CALCULATE( MAX('calendario'[Date]), 'calendario'[ano] = AnoAnterior, 'calendario'[mes] = MesAtual ) 
+			 
+			RETURN
+			CALCULATE(
+			    DIVIDE([*venda_liquida], [*qtd_atendimentos]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DataInicialMesAnoAnterior &&
+			        calendario[Date] <= DataFinalMesAnoAnterior
+			    )
+			)
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 69f027d8-60c3-460d-a7f0-9c21049ecad3
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *%crescimento_mensal_ticket_medio_linha_do_tempo = (([*ticket_medio_ano_atual_linha_do_tempo] - [*ticket_medio_ano_anterior_linha_do_tempo]) / [*ticket_medio_ano_anterior_linha_do_tempo])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8fb0ae86-2e93-4842-8d2b-3ab45bba291b
+
+	measure *qtd_atendimentos = SUM(mv_dados_vendas_compras[qtd_atendimento])
+		formatString: #,0
+		lineageTag: e9c2cdaa-8425-4460-a898-b9f6fa2f062f
+
+	measure *valor_desconto_ano_anterior_linha_do_tempo = ```
+			
+			VAR DataAtualLinha = MAX('calendario'[Date]) 
+			VAR AnoAnterior = YEAR(DataAtualLinha) - 1 
+			VAR MesAtual = MONTH(DataAtualLinha) 
+			VAR DataInicialMesAnoAnterior = DATE(AnoAnterior, MesAtual, 1)
+			VAR DataFinalMesAnoAnterior = CALCULATE( MAX('calendario'[Date]), 'calendario'[ano] = AnoAnterior, 'calendario'[mes] = MesAtual ) 
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_descto]),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DataInicialMesAnoAnterior &&
+			        calendario[Date] <= DataFinalMesAnoAnterior
+			    )
+			)
+			
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: bccb21df-3eeb-4ff0-af40-96e75c27d97f
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *valor_desconto_ano_atual_linha_do_tempo =
+			
+			VAR AnoAtual =
+			    MAXX(ALL(calendario), calendario[ano])
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_descto]),
+			    calendario[ano] = AnoAtual
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 6a39d5c6-2d16-4c08-b9be-ef9b2ce7fa84
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *%crescimento_descontos_linha_do_tempo =
+			
+			DIVIDE(
+			    [*valor_desconto_ano_atual_linha_do_tempo] - [*valor_desconto_ano_anterior_linha_do_tempo],
+			     [*valor_desconto_ano_atual_linha_do_tempo],
+			     0
+			     )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e3fe0769-6ad8-402d-ba6b-7228309c1790
+
+	measure **%valor_total_descto_ano_anterior_linhadotempo = ```
+			
+			VAR DataAtualLinha = MAX('calendario'[Date]) 
+			VAR AnoAnterior = YEAR(DataAtualLinha) - 1 
+			VAR MesAtual = MONTH(DataAtualLinha) 
+			VAR DataInicialMesAnoAnterior = DATE(AnoAnterior, MesAtual, 1)
+			VAR DataFinalMesAnoAnterior = CALCULATE( MAX('calendario'[Date]), 'calendario'[ano] = AnoAnterior, 'calendario'[mes] = MesAtual ) 
+			
+			RETURN
+			CALCULATE(
+			    DIVIDE(
+			    SUM('mv_dados_vendas_compras'[vlr_total_descto]), sum(mv_dados_vendas_compras[vlr_total_compra_bruta])
+			),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[Date] >= DataInicialMesAnoAnterior &&
+			        calendario[Date] <= DataFinalMesAnoAnterior
+			    )
+			)
+			
+			
+			
+			
+			
+			
+			
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1547bada-9fa0-4911-bfd6-fe755beaae1c
+
+	measure **%var_%descontos_ano_ano =
+			
+			DIVIDE(
+			    [**%valor_total_descto_ano_atual_linhadotempo] - [**%valor_total_descto_ano_anterior_linhadotempo],
+			    [**%valor_total_descto_ano_anterior_linhadotempo],
+			     0
+			     )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d3d43d7a-7838-4854-b3b9-111eabca3f09
+
+	measure *%cmv_liquido =
+			
+			CALCULATE(
+			    DIVIDE(
+			    SUM(mv_dados_vendas_compras[vlr_custo_aquisicao]),
+			    SUM(mv_dados_vendas_compras[vlr_total_venda])
+			))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 5b8fbffe-2b8f-4eb3-b524-2859ba822610
+
+	measure *%desconto_venda =
+			
+			CALCULATE(
+			    DIVIDE(SUM(mv_dados_vendas_compras[vlr_descto]),sum(mv_dados_vendas_compras[vlr_total_venda_bruta]))
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 18b30c7d-8b94-49a0-b70f-92f0439257a8
+
+	measure *desconto_venda =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[vlr_descto])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 679c4d72-9f13-421c-b522-bf4b3251beda
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure **ticket_medio = mv_dados_vendas_compras[*venda_liquida] / mv_dados_vendas_compras[*qtd_atendimentos]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 910bcf90-3d4e-410d-98d2-4ec2d0960358
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *cmv_aquisicao =
+			
+			CALCULATE(
+			    SUM('mv_dados_vendas_compras'[vlr_custo_aquisicao])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 133e8c93-4796-4429-9844-d41c936550b0
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure venda_liquida_mes_anterior_corrigida =
+			
+			VAR DataAtual =
+			    MAX(calendario[Date])
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataInicioMesAnterior =
+			    EOMONTH(UltimaDataMesAtual, -2) + 1
+			
+			VAR DataFimMesAnterior =
+			    MIN(
+			        EOMONTH(UltimaDataMesAtual, -1),
+			        DATE(
+			            YEAR(EOMONTH(UltimaDataMesAtual, -1)),
+			            MONTH(EOMONTH(UltimaDataMesAtual, -1)),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_venda]),
+			    calendario[Date] >= DataInicioMesAnterior &&
+			    calendario[Date] <= DataFimMesAnterior
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 382b995c-0018-477f-8e16-431c52e5c8b0
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *venda_liquida_mes_ano_anterior =
+			
+			VAR UltimaDataMesAtual =
+			    CALCULATE(
+			        MAX(calendario[Date]),
+			        ALL(calendario),
+			        calendario[ano_mes_numero] = MAX(calendario[ano_mes_numero])
+			    )
+			
+			VAR DiaAtual =
+			    DAY(UltimaDataMesAtual)
+			
+			VAR DataBaseAnoAnterior =
+			    EDATE(UltimaDataMesAtual, -12)
+			
+			VAR DataInicio =
+			    EOMONTH(DataBaseAnoAnterior, -1) + 1
+			
+			VAR DataFim =
+			    MIN(
+			        EOMONTH(DataBaseAnoAnterior, 0),
+			        DATE(
+			            YEAR(DataBaseAnoAnterior),
+			            MONTH(DataBaseAnoAnterior),
+			            DiaAtual
+			        )
+			    )
+			
+			RETURN
+			CALCULATE(
+			    SUM(mv_dados_vendas_compras[vlr_total_venda]),
+			    calendario[Date] >= DataInicio &&
+			    calendario[Date] <= DataFim
+			)
+		lineageTag: 3067db35-2ece-4546-a617-42988c7b78ec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *%desconto_venda_ano_atual =
+			
+			CALCULATE(
+			    DIVIDE(SUM(mv_dados_vendas_compras[vlr_descto]),sum(mv_dados_vendas_compras[vlr_total_venda_bruta])),
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    )
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a3458c03-4143-457d-910f-0b02fb4c1187
+
+	column num_cnpj
+		dataType: string
+		lineageTag: aadcb87a-a37d-4dc7-b599-a9bfa20809f7
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column dat_emissao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 917c60f0-11fd-456e-a42f-2a8744c0178d
+		summarizeBy: none
+		sourceColumn: dat_emissao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column vlr_total_venda
+		dataType: double
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 94b52851-632b-4f47-ac90-cc8789c5aaef
+		summarizeBy: sum
+		sourceColumn: vlr_total_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column qtd_atendimento
+		dataType: int64
+		formatString: 0
+		lineageTag: b8fe0254-d12e-4bf8-84a4-fd1ed10f48b5
+		summarizeBy: sum
+		sourceColumn: qtd_atendimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column vlr_descto
+		dataType: double
+		lineageTag: 876c38af-a0ee-4563-9a97-2ebe08c01bef
+		summarizeBy: sum
+		sourceColumn: vlr_descto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_custo_aquisicao
+		dataType: double
+		lineageTag: ab45ca5d-a161-4c3d-a8bc-1b0f9eee4722
+		summarizeBy: sum
+		sourceColumn: vlr_custo_aquisicao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_total_compra_bruta
+		dataType: double
+		lineageTag: b3c07ebc-996b-4d79-865a-a03a35326283
+		summarizeBy: sum
+		sourceColumn: vlr_total_compra_bruta
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_total_descto
+		dataType: double
+		lineageTag: 10afaf29-6fbd-49fa-8079-a212af20c340
+		summarizeBy: sum
+		sourceColumn: vlr_total_descto
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column vlr_total_nfe
+		dataType: double
+		lineageTag: 053b83cc-ca50-49c5-a0af-d2cc956f1af9
+		summarizeBy: sum
+		sourceColumn: vlr_total_nfe
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_produto_compra
+		dataType: int64
+		formatString: 0
+		lineageTag: ead1b41f-5dee-4591-9d49-5abb2a4c59b0
+		summarizeBy: sum
+		sourceColumn: qtd_produto_compra
+
+		annotation SummarizationSetBy = Automatic
+
+	column vlr_total_venda_bruta = mv_dados_vendas_compras[vlr_total_venda] + mv_dados_vendas_compras[vlr_descto]
+		lineageTag: 067e329f-6122-4f4a-ae0e-0b71a83960fb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mv_dados_vendas_compras = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_dados_vendas_compras_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(
+				        Resultado,
+				        {
+				            "vlr_total_descto",
+				            "vlr_total_nfe",
+				            "dat_emissao",
+				            "qtd_atendimento",
+				            "vlr_custo_aquisicao",
+				            "num_cnpj",
+				            "qtd_produto_compra",
+				            "vlr_descto",
+				            "vlr_total_compra_bruta",
+				            "vlr_total_venda"
+				        }
+				    )
+				
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

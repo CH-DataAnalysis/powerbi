@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "32d9d359b005a56db2e6",
+  "position": {
+    "x": 274.22335650796452,
+    "y": 0,
+    "z": 3000,
+    "height": 43.0344827586207,
+    "width": 51.958109654140642,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "alvo2214259138951864.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "8571a4b37991ec018b8c",
+  "howCreated": "InsertVisualButton"
+}

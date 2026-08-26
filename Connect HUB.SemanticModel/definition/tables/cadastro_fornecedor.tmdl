@@ -1,0 +1,37 @@
+table cadastro_fornecedor
+	lineageTag: 98e95532-8e06-4819-92fb-da531ac041d8
+
+	column cnpj_fornecedor
+		dataType: int64
+		formatString: 0
+		lineageTag: 779bd012-1f1f-4b12-ae61-f7d32e504d4b
+		summarizeBy: none
+		sourceColumn: cnpj_fornecedor
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome_comercial
+		dataType: string
+		lineageTag: d5333078-e6dd-40e8-8264-fb6aa1412f84
+		summarizeBy: none
+		sourceColumn: nome_comercial
+
+		annotation SummarizationSetBy = Automatic
+
+	partition cadastro_fornecedor = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\PowerBI\cadastro_fornecedor.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"cnpj_fornecedor", Int64.Type}, {"nome_fornecedor", type text}, {"nome_comercial", type text}}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Tipo Alterado", {"cnpj_fornecedor"}),
+				    #"Linhas em Branco Removidas" = Table.SelectRows(#"Duplicatas Removidas", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Columns removed by Measure Killer"= Table.SelectColumns(#"Linhas em Branco Removidas",{"nome_comercial","cnpj_fornecedor"})
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

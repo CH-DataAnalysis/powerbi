@@ -1,0 +1,50 @@
+table dimensao_geolocalizacao
+	lineageTag: 5f7e4cf1-d950-40eb-974a-b1dc200cebde
+
+	column dimensao_geolocalizacao
+		lineageTag: cadf9a2b-1375-4f10-a87f-7547cd5c89c2
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'dimensao_geolocalizacao Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'dimensao_geolocalizacao Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'dimensao_geolocalizacao Campos'
+		isHidden
+		lineageTag: d5dcf048-3f32-4517-a426-c94ff97d6fe7
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'dimensao_geolocalizacao Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'dimensao_geolocalizacao Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 6939e79a-73b6-478d-8ea6-88261f166133
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimensao_geolocalizacao = calculated
+		mode: import
+		source =
+				{
+				    ("Município", NAMEOF('geolocalizacao'[Municipio]), 0),
+				    ("Microrregião", NAMEOF('geolocalizacao'[Micro_Regiao]), 1),
+				    ("Mesorregião", NAMEOF('geolocalizacao'[Meso_Regiao]), 2),
+				    ("Estado", NAMEOF('geolocalizacao'[UF_Sigla]), 3)
+				}
+
+	annotation PBI_Id = 35ba91517524490eb99413239a79c6e7
+

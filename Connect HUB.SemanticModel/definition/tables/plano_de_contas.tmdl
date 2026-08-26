@@ -1,0 +1,215 @@
+table plano_de_contas
+	lineageTag: 8ba83eee-de64-4ca1-af78-d2adbf858a04
+
+	measure valor_por_subcodigo = ```
+			
+			VAR _codigo    = SELECTEDVALUE(plano_de_contas[codigo])
+			VAR _subcodigo = SELECTEDVALUE(plano_de_contas[subcodigo])
+			
+			RETURN
+			SWITCH(
+			    TRUE(),
+			
+			    _codigo = "1.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[dinheiro]),0) +
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[cheque]),0) +
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[cartao]),0) +
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[crediario]),0) +
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[convenio]),0),
+			
+			    _subcodigo = "1.1", COALESCE(SUM('despesas_rel_pai_analit-1768488'[dinheiro]),0),
+			    _subcodigo = "1.2", COALESCE(SUM('despesas_rel_pai_analit-1768488'[cheque]),0),
+			    _subcodigo = "1.3", COALESCE(SUM('despesas_rel_pai_analit-1768488'[cartao]),0),
+			    _subcodigo = "1.4", COALESCE(SUM('despesas_rel_pai_analit-1768488'[crediario]),0),
+			    _subcodigo = "1.5", COALESCE(SUM('despesas_rel_pai_analit-1768488'[convenio]),0),
+			
+			    _codigo = "2.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[venda_extraida_sistema_operacional]),0),
+			    _subcodigo = "2.0", COALESCE(SUM('despesas_rel_pai_analit-1768488'[venda_extraida_sistema_operacional]),0),
+			
+			    _codigo = "3.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[desconto_concedido]),0),
+			    _subcodigo = "3.0", COALESCE(SUM('despesas_rel_pai_analit-1768488'[desconto_concedido]),0),
+			
+			    _codigo = "4.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "4.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "4.2", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "6.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[despesas_com_pagamento_de_mercadorias]),0) +
+			        100 +
+			        100 +
+			        100,
+			
+			    _subcodigo = "6.1", COALESCE(SUM('despesas_rel_pai_analit-1768488'[despesas_com_pagamento_de_mercadorias]),0),
+			    _subcodigo = "6.2", 100,
+			    _subcodigo = "6.3", 100,
+			    _subcodigo = "6.4", 100,
+			
+			    _codigo = "7.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _subcodigo = "7.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "7.2", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "7.3", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "7.4", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "7.5", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "7.6", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "8.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _subcodigo = "8.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "9.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _subcodigo = "9.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "9.2", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "9.3", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "9.4", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "9.5", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "9.6", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "9.7", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "10.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _subcodigo = "10.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "10.2", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "10.3", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "11.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _subcodigo = "11.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "11.2", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "11.3", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "11.4", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "11.5", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "11.6", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "11.7", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "12.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _subcodigo = "12.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "12.2", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "12.3", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "13.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _subcodigo = "13.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "13.2", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "13.3", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "14.0" && ISBLANK(_subcodigo),
+			        100,                    --COALESCE(SUM('despesas_rel_pai_analit-1768488'[lucro]),0),
+			    _subcodigo = "14.0", 100,   --COALESCE(SUM('despesas_rel_pai_analit-1768488'[lucro]),0),
+			
+			    _codigo = "15.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _subcodigo = "15.1", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "15.2", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "15.3", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "15.4", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "15.5", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			    _subcodigo = "15.6", COALESCE(SUM('despesas_rel_pai_sint'[valor_pagar]),0),
+			
+			    _codigo = "16.0" && ISBLANK(_subcodigo),
+			        COALESCE(SUM('despesas_rel_pai_analit-1768488'[reembolso_fcia_popular]),0),
+			
+			    _subcodigo = "16.0", COALESCE(SUM('despesas_rel_pai_analit-1768488'[reembolso_fcia_popular]),0),
+			
+			    _subcodigo = "17.1", COALESCE(SUM('despesas_rel_pai_analit-1768488'[num_clientes_atendidos]),0),
+			    _subcodigo = "17.3", COALESCE(SUM('despesas_rel_pai_analit-1768488'[estoque_preco_venda]),0),
+			    _subcodigo = "17.5", COALESCE(SUM('despesas_rel_pai_analit-1768488'[venda_delivery]),0),
+			    _subcodigo = "17.6", COALESCE(SUM('despesas_rel_pai_analit-1768488'[contas_pagar_fornec_aberto]),0),
+			    _subcodigo = "17.7", COALESCE(SUM('despesas_rel_pai_analit-1768488'[unidades_vendidas]),0),
+			    _subcodigo = "17.8", COALESCE(SUM('despesas_rel_pai_analit-1768488'[num_colaboradores]),0),
+			    _subcodigo = "17.9", COALESCE(SUM('despesas_rel_pai_analit-1768488'[m2_area_venda]),0),
+			
+			    _subcodigo = "18.1", COALESCE(SUM('despesas_rel_pai_analit-1768488'[valor_propagados]),0),
+			    _subcodigo = "18.2", COALESCE(SUM('despesas_rel_pai_analit-1768488'[valor_genericos]),0),
+			    _subcodigo = "18.3", COALESCE(SUM('despesas_rel_pai_analit-1768488'[valor_similares]),0),
+			    _subcodigo = "18.4", COALESCE(SUM('despesas_rel_pai_analit-1768488'[valor_perfumarias]),0),
+			    _subcodigo = "18.5", COALESCE(SUM('despesas_rel_pai_analit-1768488'[outros_valores]),0),
+			    _subcodigo = "18.6", COALESCE(SUM('despesas_rel_pai_analit-1768488'[valor_sem_classificacao]),0),
+			
+			    _subcodigo = "19.1", COALESCE(SUM('despesas_rel_pai_analit-1768488'[qtd_propagados]),0),
+			    _subcodigo = "19.2", COALESCE(SUM('despesas_rel_pai_analit-1768488'[qtd_genericos]),0),
+			    _subcodigo = "19.3", COALESCE(SUM('despesas_rel_pai_analit-1768488'[qtd_similares]),0),
+			    _subcodigo = "19.4", COALESCE(SUM('despesas_rel_pai_analit-1768488'[qtd_perfumarias]),0),
+			    _subcodigo = "19.5", COALESCE(SUM('despesas_rel_pai_analit-1768488'[qtd_outros]),0),
+			    _subcodigo = "19.6", COALESCE(SUM('despesas_rel_pai_analit-1768488'[qtd_sem_classificacao]),0),
+			
+			
+			    BLANK()
+			)
+			
+			```
+		lineageTag: a2a86300-f08a-4f05-890d-a74ca7230973
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column codigo
+		dataType: string
+		lineageTag: c6641839-4a0b-4a63-b508-5cdcc127a3c5
+		summarizeBy: none
+		sourceColumn: codigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao
+		dataType: string
+		lineageTag: 557cdf9c-3c25-4c6f-b280-88c575f08bca
+		summarizeBy: none
+		sourceColumn: descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column subcodigo
+		dataType: string
+		lineageTag: 6e46e8a1-3c63-436b-961b-aedb101d21d4
+		summarizeBy: none
+		sourceColumn: subcodigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column subdescricao
+		dataType: string
+		lineageTag: cd646789-a032-4a9a-8b67-6d4e1faf21e3
+		summarizeBy: none
+		sourceColumn: subdescricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_desc = (plano_de_contas[codigo]&" "&plano_de_contas[descricao])
+		lineageTag: 80d6eb31-b09c-4c41-b909-16a4b317eb1d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column subcod_subdesc = (plano_de_contas[subcodigo]&" "&plano_de_contas[subdescricao])
+		lineageTag: bcc155ad-f9e9-4423-a5f3-f863b73402db
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition plano_de_contas = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\PowerBI\plano_de_contas.xlsx"), null, true),
+				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true])
+				in
+				    #"Cabeçalhos Promovidos"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

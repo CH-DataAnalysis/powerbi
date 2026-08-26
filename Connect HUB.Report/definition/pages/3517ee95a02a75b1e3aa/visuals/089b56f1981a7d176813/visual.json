@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "089b56f1981a7d176813",
+  "position": {
+    "x": 383.94238559639905,
+    "y": 42,
+    "z": 2000,
+    "height": 126.00000000000001,
+    "width": 119.9819954988747,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "dermocosmeticos07985536616783073.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "de44bf0c41324159b2d0",
+  "howCreated": "InsertVisualButton"
+}

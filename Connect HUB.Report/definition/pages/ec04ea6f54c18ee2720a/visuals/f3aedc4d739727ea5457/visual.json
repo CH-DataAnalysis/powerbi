@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "f3aedc4d739727ea5457",
+  "position": {
+    "x": 489.04872389791177,
+    "y": 101.48491879350348,
+    "z": 9000,
+    "height": 254.33874709976797,
+    "width": 373.36426914153134,
+    "tabOrder": 18000
+  },
+  "visualGroup": {
+    "displayName": "abaixo_do_mercado",
+    "groupMode": "ScaleMode"
+  }
+}

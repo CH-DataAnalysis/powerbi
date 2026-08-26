@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "fb8cda0636220ed5578a",
+  "position": {
+    "x": 448.7068605861142,
+    "y": 41.999999999999979,
+    "z": 4000,
+    "height": 117.60000000000005,
+    "width": 124.11040824722309,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "dermatologico19636142321052397.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "cd3e9e048148853f2133",
+  "howCreated": "InsertVisualButton"
+}

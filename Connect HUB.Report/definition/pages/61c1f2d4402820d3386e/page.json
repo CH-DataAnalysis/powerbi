@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "61c1f2d4402820d3386e",
+  "displayName": "info_classificacao_mercado_abaixo",
+  "displayOption": "ActualSize",
+  "height": 95,
+  "width": 380,
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

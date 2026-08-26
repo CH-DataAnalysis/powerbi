@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
+  "name": "547cc7852d8518e5cb07",
+  "position": {
+    "x": -0.941176470588232,
+    "y": 0,
+    "z": 17000,
+    "height": 1080,
+    "width": 1920,
+    "tabOrder": 7000
+  },
+  "visualGroup": {
+    "displayName": "fechar_compras",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

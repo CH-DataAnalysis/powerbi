@@ -1,0 +1,9 @@
+role 'Nossafarma - 23172'
+	modelPermission: read
+
+	tablePermission logo_associacao = [link] == "https://github.com/gruopotrier-connect-hub/logos_connect_hub/blob/main/connect_hub_logo_branca.png?raw=true"
+
+	tablePermission tabela_cadastro_lojas = [cod_matrizpac] == 23172 && [cod_sit_contrato] <> 1
+
+	annotation PBI_Id = 7d8590f112f14db78ac4dd07cf7d9a47
+

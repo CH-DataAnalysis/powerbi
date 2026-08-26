@@ -1,0 +1,60 @@
+table mv_classificacao_faturamento
+	lineageTag: dfd2d5e6-7681-4b92-a1e4-6988ba0d929e
+
+	column num_cnpj
+		dataType: string
+		lineageTag: e2f63de6-bac2-4419-8f3e-0c04ca56ba3e
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column associacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 026e8ca4-d4c5-45d6-b29f-851d9b54fdad
+		summarizeBy: sum
+		sourceColumn: associacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column media_mensal_venda
+		dataType: double
+		lineageTag: 1e2fa7ae-1620-4928-a9e7-898ba4cbdbf0
+		summarizeBy: sum
+		sourceColumn: media_mensal_venda
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column classificacao
+		dataType: string
+		lineageTag: 7018fce7-a5b6-4ad3-add5-4cd729ff15ce
+		summarizeBy: none
+		sourceColumn: classificacao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_classificacao_faturamento = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_classificacao_faturamento_" & cliente,
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data]
+				
+				in
+				    Resultado
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

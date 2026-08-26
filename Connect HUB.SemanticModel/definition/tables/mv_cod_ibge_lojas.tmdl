@@ -1,0 +1,50 @@
+table mv_cod_ibge_lojas
+	lineageTag: 867c9d23-fb30-4211-a00f-202a5e772ca0
+
+	column num_cnpj
+		dataType: string
+		lineageTag: eaddc010-3258-4488-bb9b-ec4cc18a922c
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_municipio_filial
+		dataType: int64
+		formatString: 0
+		lineageTag: 515e3e17-fa93-4dbc-a54f-73eebb0b30ef
+		summarizeBy: none
+		sourceColumn: cod_municipio_filial
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_cod_ibge_lojas = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_cod_ibge_lojas_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Duplicatas Removidas" = Table.Distinct(Resultado, {"num_cnpj"}),
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(
+				        #"Duplicatas Removidas",
+				        {"num_cnpj","cod_municipio_filial"}
+				    ),
+				    #"Linhas Classificadas" = Table.Sort(#"Columns removed by Measure Killer",{{"num_cnpj", Order.Ascending}})
+				
+				in
+				    #"Linhas Classificadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

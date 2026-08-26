@@ -1,0 +1,150 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "739133bd638ba4adae33",
+  "position": {
+    "x": 10,
+    "y": 0,
+    "z": 0,
+    "height": 309,
+    "width": 950,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "num_cnpj"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.num_cnpj",
+              "nativeQueryRef": "num_cnpj"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "calendario"
+                    }
+                  },
+                  "Property": "ano_mes"
+                }
+              },
+              "queryRef": "calendario.ano_mes",
+              "nativeQueryRef": "ano_mes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*venda_liquida"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*venda_liquida",
+              "nativeQueryRef": "*venda_liquida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*qtd_atendimentos"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*qtd_atendimentos",
+              "nativeQueryRef": "*qtd_atendimentos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*desconto_venda"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*desconto_venda",
+              "nativeQueryRef": "*desconto_venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*cmv_aquisicao"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*cmv_aquisicao",
+              "nativeQueryRef": "*cmv_aquisicao"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*%cmv_liquido"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*%cmv_liquido",
+              "nativeQueryRef": "*%cmv_liquido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "*%desconto_venda"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.*%desconto_venda",
+              "nativeQueryRef": "*%desconto_venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_dados_vendas_compras"
+                    }
+                  },
+                  "Property": "**ticket_medio"
+                }
+              },
+              "queryRef": "mv_dados_vendas_compras.**ticket_medio",
+              "nativeQueryRef": "**ticket_medio"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

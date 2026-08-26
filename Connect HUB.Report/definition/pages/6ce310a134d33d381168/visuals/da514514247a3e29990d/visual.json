@@ -1,0 +1,646 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "da514514247a3e29990d",
+  "position": {
+    "x": 550,
+    "y": 432.85714285714289,
+    "z": 5000,
+    "height": 251.42857142857144,
+    "width": 1067.1428571428571,
+    "tabOrder": 15000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tabela_cadastro_lojas"
+                    }
+                  },
+                  "Property": "num_cnpj"
+                }
+              },
+              "queryRef": "tabela_cadastro_lojas.num_cnpj",
+              "nativeQueryRef": "CNPJ",
+              "displayName": "CNPJ"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tabela_cadastro_lojas"
+                    }
+                  },
+                  "Property": "nom_farmacia"
+                }
+              },
+              "queryRef": "tabela_cadastro_lojas.nom_farmacia",
+              "nativeQueryRef": "Nome loja",
+              "displayName": "Nome loja"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_loja"
+                    }
+                  },
+                  "Property": "**score_ticket"
+                }
+              },
+              "queryRef": "performance_loja.**score_ticket",
+              "nativeQueryRef": "Score ticket médio",
+              "displayName": "Score ticket médio"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_loja"
+                    }
+                  },
+                  "Property": "**score_media_itens"
+                }
+              },
+              "queryRef": "performance_loja.**score_media_itens",
+              "nativeQueryRef": "Score média de itens",
+              "displayName": "Score média de itens"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_loja"
+                    }
+                  },
+                  "Property": "**score_lucro"
+                }
+              },
+              "queryRef": "performance_loja.**score_lucro",
+              "nativeQueryRef": "Score lucro",
+              "displayName": "Score lucro"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_loja"
+                    }
+                  },
+                  "Property": "**score_atendimento"
+                }
+              },
+              "queryRef": "performance_loja.**score_atendimento",
+              "nativeQueryRef": "Score atendimento",
+              "displayName": "Score atendimento"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_loja"
+                    }
+                  },
+                  "Property": "**score_final"
+                }
+              },
+              "queryRef": "performance_loja.**score_final",
+              "nativeQueryRef": "Score Final",
+              "displayName": "Score Final"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_loja"
+                    }
+                  },
+                  "Property": "**classificacao_performance_loja"
+                }
+              },
+              "queryRef": "performance_loja.**classificacao_performance_loja",
+              "nativeQueryRef": "Classificação",
+              "displayName": "Classificação"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_performance_loja"
+                  }
+                },
+                "Property": "**score_final"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {},
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "performance_loja.**score_final"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_performance_loja"
+                        }
+                      },
+                      "Property": "**classificacao_performance_loja_cor"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "performance_loja.**classificacao_performance_loja"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124.30841573767705D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "performance_loja.**score_ticket"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "141.74147639379618D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "performance_loja.**score_media_itens"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "86.9999907025905D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "performance_loja.**score_lucro"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "127.55143628439083D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "performance_loja.**score_atendimento"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "80.69781302832158D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "performance_loja.**score_final"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "performance_loja.**classificacao_performance_loja"
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Performance por loja'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "4e91fa47a1403078b625",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "***qtd_lojas_performance_ruim"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "1b462317785e0bbbdd04",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "medidas_performance_vendedor"
+              }
+            },
+            "Property": "**indice_performance"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      },
+      {
+        "name": "fac7a6f6cb7c9c0a6952",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "**classificacao_performance_loja"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1f1d9056b51827a82350",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "num_cnpj"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "fca420b29b7e217382b1",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "codigo_rede"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "bcdbec1057162d950cd9",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "nom_farmacia"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "73d0fb7c8a280a7acc59",
+        "ordinal": 6,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "filtro_classificacao_performance_loja"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "mv_performance_loja",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "p"
+                        }
+                      },
+                      "Property": "filtro_classificacao_performance_loja"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "1L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "isLockedInViewMode": true
+      },
+      {
+        "name": "a5d5462c06e007066150",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "mes"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "e7d78d53b1a5d55eb9b3",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "**score_atendimento"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "03180b872c70b70709d7",
+        "ordinal": 9,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "**score_lucro"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "31b38012568b56c7e139",
+        "ordinal": 10,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "**score_media_itens"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "802f31896d333e5eb938",
+        "ordinal": 11,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "**score_ticket"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4b6b2ba2b220d12090d1",
+        "ordinal": 12,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_performance_loja"
+              }
+            },
+            "Property": "**score_final"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "p",
+              "Entity": "mv_performance_loja",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "p"
+                        }
+                      },
+                      "Property": "**score_final"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "isLockedInViewMode": true
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

@@ -1,0 +1,259 @@
+table mv_sugestao_transferencia_filiais
+	lineageTag: b81a4fb4-04af-4197-9bf0-78cfe2a9d8df
+
+	measure *qtd_disponivel_origem =
+			CALCULATE(
+			    SUM(mv_sugestao_transferencia_filiais[qtd_disponivel_origem]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_transferencia_filiais[cod_barra_tratado])
+			)
+		formatString: #,0
+		lineageTag: 808073d3-a6be-40f2-a7d2-da8420aed287
+
+	measure *qtd_sugerida_transferencia =
+			CALCULATE(
+			    SUM(mv_sugestao_transferencia_filiais[qtd_sugerida_transferencia]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_transferencia_filiais[cod_barra_tratado])
+			)
+		formatString: #,0
+		lineageTag: 4ec0231f-c064-4566-948e-c4972068db21
+
+	measure *demanda_90d_destino =
+			CALCULATE(
+			    SUM(mv_sugestao_transferencia_filiais[demanda_90d_destino]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_transferencia_filiais[cod_barra_tratado])
+			)
+		formatString: #,0
+		lineageTag: c6cdb00f-7f4c-4cfb-b7e3-52357c223880
+
+	measure *potencial_economia_total =
+			CALCULATE(
+			    SUM(mv_sugestao_transferencia_filiais[potencial_economia_total]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_transferencia_filiais[cod_barra_tratado])
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: eb3e85b9-f53b-4bb0-9f2a-589c6f20c703
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure *skus_sugestao_transferencia =
+			CALCULATE(
+			    DISTINCTCOUNT(mv_sugestao_transferencia_filiais[cod_barra_tratado]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_transferencia_filiais[cod_barra_tratado])
+			)
+		formatString: #,0
+		lineageTag: a91e8b5d-1df7-431d-8e80-c9105f81e5e5
+
+	measure *dias_cobertura =
+			CALCULATE(
+			    SUM(mv_sugestao_transferencia_filiais[dias_cobertura]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_sugestao_transferencia_filiais[cod_barra_tratado])
+			)
+		lineageTag: 75a3b8bf-1f0e-433b-94f9-0a2688c651cf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *perc_demanda_atendida_media = AVERAGE(mv_sugestao_transferencia_filiais[*perc_demanda_atendida])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 8bbe7ab6-bb06-409e-8727-5cb7230c3b7a
+
+	column loja_origem
+		dataType: string
+		lineageTag: 2b858a42-91f5-422d-92a6-ff9b439ada66
+		summarizeBy: none
+		sourceColumn: loja_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column curva_abc_origem
+		dataType: string
+		lineageTag: 2f0f9a5b-540b-4ce2-b563-7ed4df6eea03
+		summarizeBy: none
+		sourceColumn: curva_abc_origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column loja_destino
+		dataType: string
+		lineageTag: 7c672236-900e-493d-b7b5-9be40b85a38f
+		summarizeBy: none
+		sourceColumn: loja_destino
+
+		annotation SummarizationSetBy = Automatic
+
+	column curva_abc_destino
+		dataType: string
+		lineageTag: 15940049-da40-499d-9550-b30b3efa11a8
+		summarizeBy: none
+		sourceColumn: curva_abc_destino
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra
+		dataType: double
+		lineageTag: 765a4712-f318-4911-a8ca-ef4f5f1ae73b
+		summarizeBy: sum
+		sourceColumn: cod_barra
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_disponivel_origem
+		dataType: double
+		lineageTag: 906c0211-4c48-405e-8e26-b256f655e32f
+		summarizeBy: sum
+		sourceColumn: qtd_disponivel_origem
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column demanda_90d_destino
+		dataType: double
+		lineageTag: fe003c03-fa46-410a-9839-12b0d756db2c
+		summarizeBy: sum
+		sourceColumn: demanda_90d_destino
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column qtd_sugerida_transferencia
+		dataType: double
+		lineageTag: 7cf4e77f-f85b-45db-8921-5297342a4c24
+		summarizeBy: sum
+		sourceColumn: qtd_sugerida_transferencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column potencial_economia_total
+		dataType: double
+		lineageTag: e8b00f25-ed18-41d3-9484-5a839fb88d27
+		summarizeBy: sum
+		sourceColumn: potencial_economia_total
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_demanda_atendida
+		dataType: double
+		lineageTag: abd55ed8-5f47-4bee-8752-e79b86a344d9
+		summarizeBy: sum
+		sourceColumn: perc_demanda_atendida
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column dt_ultima_venda_origem
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2f19b413-6284-46b8-9aa7-712f73495a7d
+		summarizeBy: none
+		sourceColumn: dt_ultima_venda_origem
+
+		variation Variation
+			isDefault
+			relationship: 7b16f168-2595-42f3-a187-63c20da2c6e6
+			defaultHierarchy: LocalDateTable_787b8453-139e-48f8-a727-04ec175b52ff.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dt_ultima_venda_destino
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7f202dad-be6d-417e-998e-fd60ce6ca913
+		summarizeBy: none
+		sourceColumn: dt_ultima_venda_destino
+
+		variation Variation
+			isDefault
+			relationship: 0be93c69-9733-466b-94e5-96507fa3a590
+			defaultHierarchy: LocalDateTable_5d84253a-812f-4f31-9fa8-5d7c67bf9ad2.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dias_cobertura
+		dataType: double
+		lineageTag: 8ee09c6d-43de-4140-a8ee-858958972f78
+		summarizeBy: sum
+		sourceColumn: dias_cobertura
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column *perc_demanda_atendida = mv_sugestao_transferencia_filiais[perc_demanda_atendida] / 100
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: fa83546a-7a3c-42ea-86b3-31bfe1805668
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra_tratado =
+			
+			VAR padrao = LOOKUPVALUE(
+			    produto_gcp[cod_barra],
+			    produto_gcp[cod_barra],
+			    mv_sugestao_transferencia_filiais[cod_barra]
+			)
+			RETURN
+			IF(
+			    ISBLANK(padrao),
+			    0,
+			    padrao
+			)
+		formatString: 0
+		lineageTag: 7f65f7b0-7e72-471b-8f41-2c8d0ca2f002
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_sugestao_transferencia_filiais = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_sugestao_transferencia_filiais_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(
+				        Resultado,
+				        {
+				            "cod_barra",
+				            "loja_origem",
+				            "loja_destino",
+				            "dias_cobertura",
+				            "demanda_90d_destino",
+				            "curva_abc_origem",
+				            "dt_ultima_venda_origem",
+				            "qtd_disponivel_origem",
+				            "potencial_economia_total",
+				            "perc_demanda_atendida",
+				            "dt_ultima_venda_destino",
+				            "qtd_sugerida_transferencia",
+				            "curva_abc_destino"
+				        }
+				    )
+				
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

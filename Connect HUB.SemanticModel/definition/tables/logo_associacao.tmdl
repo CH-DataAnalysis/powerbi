@@ -1,0 +1,35 @@
+table logo_associacao
+	lineageTag: 864228ab-ed42-42c5-9593-f1393380d08e
+
+	column codigo_rede
+		dataType: int64
+		formatString: 0
+		lineageTag: 64b8ea46-444c-4f7f-af9d-3d82bd0ab037
+		summarizeBy: sum
+		sourceColumn: codigo_rede
+
+		annotation SummarizationSetBy = Automatic
+
+	column link
+		dataType: string
+		lineageTag: 4647d65e-6913-4cbe-a7b8-725b27520ba8
+		summarizeBy: none
+		sourceColumn: link
+
+		annotation SummarizationSetBy = Automatic
+
+	partition logo_associacao = m
+		mode: import
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("C:\PowerBI\logos.xlsx"), null, true),
+				    Associação_Sheet = Fonte{[Item="Associação",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Associação_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"codigo_rede", Int64.Type}, {"link", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

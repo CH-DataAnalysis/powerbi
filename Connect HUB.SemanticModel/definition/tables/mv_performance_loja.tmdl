@@ -1,0 +1,390 @@
+table mv_performance_loja
+	lineageTag: ecc62cb0-3ef3-40e3-9dab-feeaaba672cd
+
+	measure **score_final =
+			
+			CALCULATE(
+			AVERAGE(mv_performance_loja[score_final]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_loja[mes])
+			)
+		formatString: #,0.00
+		lineageTag: b5a5601d-0689-49a8-adf1-03ee37fadc5a
+
+	measure **classificacao_performance_loja =
+			
+			SWITCH(
+			    TRUE(),
+			    [**score_final] < 40, "Ruim",
+			    [**score_final] < 60, "Regular",
+			    [**score_final] < 80, "Bom",
+			    "Excelente"
+			)
+		lineageTag: 0e4bd115-8c1f-4dbd-97cd-22924fb7bda1
+
+	measure ***qtd_lojas_performance_bom =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_loja[num_cnpj]),
+			    USERELATIONSHIP(calendario[Date], mv_performance_loja[mes]),
+			    KEEPFILTERS(
+			        ADDCOLUMNS(
+			            VALUES(mv_performance_loja[num_cnpj]),
+			            "@classificacao", [**classificacao_performance_loja]
+			        )
+			    ),
+			    FILTER(
+			        VALUES(mv_performance_loja[num_cnpj]),
+			        [**classificacao_performance_loja] = "Bom"
+			    )
+			)
+		formatString: 0
+		lineageTag: 29fd75de-4309-4227-8b91-a88e13c60a40
+
+	measure ***qtd_lojas_performance_ruim =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_loja[num_cnpj]),
+			    USERELATIONSHIP(calendario[Date], mv_performance_loja[mes]),
+			    KEEPFILTERS(
+			        ADDCOLUMNS(
+			            VALUES(mv_performance_loja[num_cnpj]),
+			            "@classificacao", [**classificacao_performance_loja]
+			        )
+			    ),
+			    FILTER(
+			        VALUES(mv_performance_loja[num_cnpj]),
+			        [**classificacao_performance_loja] = "Ruim"
+			    )
+			)
+		formatString: 0
+		lineageTag: 3595eba5-d18c-4714-867e-6b9c2013ae7c
+
+	measure ***qtd_lojas_performance_regular =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_loja[num_cnpj]),
+			    USERELATIONSHIP(calendario[Date], mv_performance_loja[mes]),
+			    KEEPFILTERS(
+			        ADDCOLUMNS(
+			            VALUES(mv_performance_loja[num_cnpj]),
+			            "@classificacao", [**classificacao_performance_loja]
+			        )
+			    ),
+			    FILTER(
+			        VALUES(mv_performance_loja[num_cnpj]),
+			        [**classificacao_performance_loja] = "Regular"
+			    )
+			)
+		formatString: 0
+		lineageTag: 896d390d-3f36-456d-acc2-6957a8be3ecb
+
+	measure ***qtd_lojas_performance_excelente =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_performance_loja[num_cnpj]),
+			    USERELATIONSHIP(calendario[Date], mv_performance_loja[mes]),
+			    KEEPFILTERS(
+			        ADDCOLUMNS(
+			            VALUES(mv_performance_loja[num_cnpj]),
+			            "@classificacao", [**classificacao_performance_loja]
+			        )
+			    ),
+			    FILTER(
+			        VALUES(mv_performance_loja[num_cnpj]),
+			        [**classificacao_performance_loja] = "Excelente"
+			    )
+			)
+		formatString: 0
+		lineageTag: b0016991-276c-4315-9532-797e37c5266d
+
+	measure %_qtd_lojas_performance_bom =
+			
+			DIVIDE(
+			    COALESCE([***qtd_lojas_performance_bom], 0),
+			    [*qtd_total_lojas],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 03f36629-6bed-4e3a-94e8-01154a488080
+
+	measure *qtd_total_lojas =
+			
+			CALCULATE(
+			DISTINCTCOUNT(mv_performance_loja[num_cnpj]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_loja[mes])
+			)
+		formatString: 0
+		lineageTag: 4a24af42-64a3-4efd-9f98-fb42eeb3bc2d
+
+	measure %_qtd_lojas_performance_ruim =
+			
+			DIVIDE(
+			    COALESCE([***qtd_lojas_performance_ruim], 0),
+			    [*qtd_total_lojas],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 89971b71-9575-43fd-b042-6c73a54f697e
+
+	measure %_qtd_lojas_performance_regular =
+			
+			DIVIDE(
+			    COALESCE([***qtd_lojas_performance_regular], 0),
+			    [*qtd_total_lojas],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 0d3fa624-22c1-4b54-adcf-8613673500d1
+
+	measure %_qtd_lojas_performance_excelente =
+			
+			DIVIDE(
+			    COALESCE([***qtd_lojas_performance_excelente], 0),
+			    [*qtd_total_lojas],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 24caf262-0df2-44a0-9a0e-705c2d2f20fa
+
+	measure **classificacao_performance_loja_cor =
+			
+			SWITCH(
+			    TRUE(),
+			    [**score_final] < 40, "#F28B82",
+			    [**score_final] < 60, "#FDD663",
+			    [**score_final] < 80, "#81C995",
+			    "#8AB4F8"
+			)
+		lineageTag: 44e81625-1354-4988-b43c-708e977623c8
+
+	measure dica_acao_2 = ```
+			
+			VAR classificacao = [**classificacao_performance_loja]
+			RETURN
+			SWITCH(
+			    classificacao,
+			    
+				"Ruim",
+				"
+				• Revisar a política de descontos para evitar perdas de margem
+			
+				• Incentivar a venda de genéricos, similares e marca própria (maior rentabilidade)
+			
+				• Reforçar treinamento em argumentação de valor e custo-benefício
+			
+				• Oferecer kits atrativos (ex.: medicamento + vitamina, protetor solar + hidratante)
+			
+				• Estabelecer meta mínima de atendimentos por colaborador
+			
+				• Acompanhar de perto ticket médio, itens por venda e margem da loja
+				",
+					
+				"Regular",
+				"
+				• Atuar de forma ativa na venda consultiva, sugerindo itens complementares que agreguem valor à compra do cliente e contribuam para o aumento do ticket médio
+			
+				• Sugerir a compra de uma versão mais completa ou maior do produto que o cliente está levando
+			
+				• Incentivar a escolha de genéricos ou similares que tragam maior lucro para a loja em comparação ao produto de referência
+			
+				• Definir metas de ticket médio e itens por cliente
+			
+				• Direcionar esforços para produtos de maior margem
+			    
+				• Monitorar de perto concessão de descontos e impacto na rentabilidade
+				",
+					
+				"Bom",
+				"
+				• Manter consistência nas boas práticas de abordagem ativa
+			
+				• Buscar pequenos ganhos de ticket médio sugerindo complementos úteis
+			
+				• Monitorar indicadores de margem e quantidade de itens vendidos
+			
+				• Oferecer ao cliente uma versão maior ou mais completa do produto que está comprando
+			
+				• Incentivar compartilhamento de boas práticas entre os vendedores
+				",
+					
+				"Excelente",
+				"
+				• Reforçar a rotina que já gera alta performance
+			
+				• Reconhecer e valorizar publicamente os resultados da equipe
+			
+				• Estimular que vendedores de alta performance sejam multiplicadores de conhecimento
+			
+				• Investir em melhorias contínuas em atendimento, ticket médio, mix de produtos e margem
+			
+				• Criar desafios pontuais para manter o engajamento elevado
+				",
+				
+				"Sem classificação definida"
+			)
+			```
+		lineageTag: 39fb8381-71fe-47fd-bd36-c3e16e4ff628
+
+	measure **score_ticket =
+			
+			CALCULATE(
+			AVERAGE(mv_performance_loja[score_ticket_medio]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_loja[mes])
+			)
+		lineageTag: 4069d84c-5a4b-4679-8014-44794ed3a95c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **score_media_itens =
+			
+			CALCULATE(
+			AVERAGE(mv_performance_loja[score_media_itens]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_loja[mes])
+			)
+		lineageTag: 49f84c0b-be2b-49b8-969c-7e71731e9c16
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **score_lucro =
+			
+			CALCULATE(
+			AVERAGE(mv_performance_loja[score_lucro]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_loja[mes])
+			)
+		lineageTag: 5153cc85-586f-4858-90d3-6f5912229ed7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **score_atendimento =
+			
+			CALCULATE(
+			AVERAGE(mv_performance_loja[score_atendimento]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_loja[mes])
+			)
+		lineageTag: ee148d48-9323-4212-b2e8-eb2237b80116
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure filtro_classificacao_performance_loja =
+			
+			VAR classificacao_selecionada = SELECTEDVALUE('classificacao_performance_vendedor'[classificacao], "Todos")
+			VAR classificacao_geral = [**score_final]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    classificacao_selecionada = "Todos", 1,
+			    classificacao_selecionada = "1 - Ruim" && classificacao_geral >= 0 && classificacao_geral < 40, 1,
+			    classificacao_selecionada = "3 - Regular" && classificacao_geral >= 40 && classificacao_geral < 60, 1,
+			    classificacao_selecionada = "2 - Bom" && classificacao_geral >= 60 && classificacao_geral < 80, 1,
+			    classificacao_selecionada = "4 - Excelente" && classificacao_geral >= 80 && classificacao_geral <= 100, 1,
+			    0
+			)
+		formatString: 0
+		lineageTag: f8d1e5eb-3f61-479c-b287-753a1762ff9e
+
+	column num_cnpj
+		dataType: string
+		lineageTag: a6552892-e404-4d22-9fc8-27fada42f283
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column mes
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 968745c3-e6b6-4185-9af8-269c5722f9bb
+		summarizeBy: none
+		sourceColumn: mes
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column score_atendimento
+		dataType: double
+		lineageTag: 4ea08742-d740-4d1d-a0a3-1e931e7acf9f
+		summarizeBy: sum
+		sourceColumn: score_atendimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_ticket_medio
+		dataType: double
+		lineageTag: b9763032-8039-4495-aeab-2cb19622527e
+		summarizeBy: sum
+		sourceColumn: score_ticket_medio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_media_itens
+		dataType: double
+		lineageTag: 62ab779a-546a-4bcd-9408-04d7bf06c88d
+		summarizeBy: sum
+		sourceColumn: score_media_itens
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_lucro
+		dataType: double
+		lineageTag: 7928ef88-0437-4f95-a7ad-16d10a623e73
+		summarizeBy: sum
+		sourceColumn: score_lucro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column score_final
+		dataType: double
+		lineageTag: e65630d8-1441-4031-86d0-73a24b068294
+		summarizeBy: sum
+		sourceColumn: score_final
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mv_performance_loja = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_performance_loja_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(
+				        Resultado,
+				        {
+				            "mes",
+				            "score_media_itens",
+				            "score_atendimento",
+				            "num_cnpj",
+				            "score_final",
+				            "score_ticket_medio",
+				            "score_lucro"
+				        }
+				    )
+				
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

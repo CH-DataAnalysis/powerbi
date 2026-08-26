@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "c740c2a4eb9774393ede",
+  "position": {
+    "x": 301.72377622377621,
+    "y": 66.050699300699279,
+    "z": 4000,
+    "height": 50,
+    "width": 45.38461538461538,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "seta_crescimento7175541059029232.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "ef42bb3f2e939d327452",
+  "howCreated": "InsertVisualButton"
+}

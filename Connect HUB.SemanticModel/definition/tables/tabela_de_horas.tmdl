@@ -1,0 +1,29 @@
+table tabela_de_horas
+	lineageTag: ae3cfe3b-52af-4787-b5e8-14440e921ebf
+
+	column hora_valor
+		formatString: 0
+		lineageTag: a2693f49-b23d-43d6-a193-60ab2f12be78
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		annotation SummarizationSetBy = Automatic
+
+	column hora_texto
+		lineageTag: 3881e879-d20f-424e-a85a-74ec304911b3
+		summarizeBy: none
+		sourceColumn: [Hora_Texto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition tabela_de_horas = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    GENERATESERIES(0, 23, 1),
+				    "Hora_Texto", FORMAT([Value], "00") & "h"
+				)
+
+	annotation PBI_Id = e8ee6dd1babc452b9440f10620dc92ff
+

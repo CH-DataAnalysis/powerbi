@@ -1,0 +1,363 @@
+table medidas_analise_mercado_simulacao
+	lineageTag: 775315fa-22e2-405f-9eba-d8f0f0001376
+
+	measure _preco_medio_venda_simulacao =
+			
+			VAR preco_medio_original = [*preco_medio_venda]
+			VAR ajuste = [percentual_simulacao_selecionado]
+			RETURN
+			    preco_medio_original * (1 + (ajuste))
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 6dbace35-d1a3-4385-b604-d86b0239c25a
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure _var_preco_medio_regiao_geral_simulacao =
+			
+			IF(
+			    NOT(ISBLANK([_preco_medio_venda_simulacao])),
+			    VAR Selecionado = SELECTEDVALUE(medidas_analise_mercado[botao], "Município")
+			    RETURN
+			        SWITCH(
+			            TRUE(),
+			            Selecionado = "Município", [_var_preco_medio_municipio_simulacao],
+			            Selecionado = "Microrregião", [_var_preco_medio_microrregiao_simulacao],
+			            Selecionado = "Mesorregião", [_var_preco_medio_mesorregiao_simulacao],
+			            Selecionado = "Estado", [_var_preco_medio_estado_simulacao],
+			            BLANK()
+			        ),
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a835a57e-e69f-47ad-83f0-61207f6f2904
+
+	measure classificacao_precificacao_geral_simulacao =
+			
+			VAR preco_medio_venda = [_preco_medio_venda_simulacao]
+			VAR preco_medio_regiao_geral = [_preco_medio_regiao_geral]
+			VAR var_preco_medio_regiao_geral_simulacao = [_var_preco_medio_regiao_geral_simulacao]
+			
+			RETURN
+			    IF(
+			        NOT ISBLANK(preco_medio_venda) &&
+			        NOT ISBLANK(preco_medio_regiao_geral) &&
+			        NOT ISBLANK(var_preco_medio_regiao_geral_simulacao),
+			        SWITCH(
+			            TRUE(),
+			            var_preco_medio_regiao_geral_simulacao < -0.10, "Abaixo do mercado",
+			            var_preco_medio_regiao_geral_simulacao >= -0.10 && var_preco_medio_regiao_geral_simulacao <= 0.10, "Na faixa competitiva",
+			            var_preco_medio_regiao_geral_simulacao > 0.10, "Acima do mercado"
+			        )
+			    )
+		lineageTag: bf121bf0-6d4e-428d-9e7a-dcb11271b228
+
+	measure qtd_total_produtos_fora_da_faixa_simulacao =
+			
+			VAR ForaFaixa =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral_simulacao]
+			            ),
+			            [@classificacao] IN {"Abaixo do mercado", "Acima do mercado"}
+			        )
+			    )
+			VAR Total =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral_simulacao]
+			            ),
+			            [@classificacao] IN {"Abaixo do mercado", "Na faixa competitiva", "Acima do mercado"}
+			        )
+			    )
+			RETURN
+			IF(
+			    ISBLANK(ForaFaixa) || ISBLANK(Total),
+			    "0 de 0",
+			    FORMAT(ForaFaixa, "#,##0") & " de " & FORMAT(Total, "#,##0")
+			)
+		lineageTag: f6a93fac-d0fb-4826-9c59-db9dc3838d92
+
+	measure qtd_total_produtos_simulacao =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            VALUES(produto_gcp[cod_barra]),
+			            "@classificacao", [classificacao_precificacao_geral_simulacao]
+			        ),
+			        [@classificacao] in {"abaixo do mercado","Na faixa competitiva","Acima do mercado"}
+			    )
+			)
+		formatString: #,0
+		lineageTag: 68de6d4e-a67a-4987-9d41-57fd0677783c
+
+	measure qtd_produtos_preco_competitivo_simulacao =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            VALUES(produto_gcp[cod_barra]),
+			            "@classificacao", [classificacao_precificacao_geral_simulacao]
+			        ),
+			        [@classificacao] = "Abaixo do mercado"
+			    )
+			)
+		formatString: #,0
+		lineageTag: 7da2b79b-a954-47cf-9128-a547591fad39
+
+	measure qtd_produtos_faixa_normal_simulacao =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            VALUES(produto_gcp[cod_barra]),
+			            "@classificacao", [classificacao_precificacao_geral_simulacao]
+			        ),
+			        [@classificacao] = "Na faixa competitiva"
+			    )
+			)
+		formatString: #,0
+		lineageTag: 8630cbfd-c26b-4754-af68-866fd23a2442
+
+	measure qtd_produtos_avaliar_competitividade_simulacao =
+			
+			COUNTROWS(
+			    FILTER(
+			        ADDCOLUMNS(
+			            VALUES(produto_gcp[cod_barra]),
+			            "@classificacao", [classificacao_precificacao_geral_simulacao]
+			        ),
+			        [@classificacao] = "Acima do mercado"
+			    )
+			)
+		formatString: #,0
+		lineageTag: bb640a1b-b268-45b1-8010-0ed461cc28de
+
+	measure qtd_produtos_acima_e_abaixo_da_faixa_simulacao =
+			
+			VAR Acima =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral_simulacao]
+			            ),
+			            [@classificacao] = "Acima do mercado"
+			        )
+			    )
+			VAR Abaixo =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral_simulacao]
+			            ),
+			            [@classificacao] = "Abaixo do mercado"
+			        )
+			    )
+			RETURN
+			IF(
+			    ISBLANK(Acima) && ISBLANK(Abaixo),
+			    "0 acima, 0 abaixo",
+			    FORMAT(Acima, "#,##0") & " acima, " & FORMAT(Abaixo, "#,##0") & " abaixo"
+			)
+		lineageTag: 3bd70e5c-4c45-4a24-8698-31cf70c25cba
+
+	measure cor_fundo_classificacao_precificacao_geral_simulacao =
+			
+			VAR preco_medio_venda = [_preco_medio_venda_simulacao]
+			VAR preco_medio_regiao_geral = [_preco_medio_regiao_geral]
+			VAR var_preco_medio_regiao_geral = [_var_preco_medio_regiao_geral_simulacao]
+			
+			RETURN
+			    IF(
+			        NOT ISBLANK(preco_medio_venda) &&
+			        NOT ISBLANK(preco_medio_regiao_geral) &&
+			        NOT ISBLANK(var_preco_medio_regiao_geral),
+			        SWITCH(
+			            TRUE(),
+			            var_preco_medio_regiao_geral < -0.10, "#f5f8fb",
+			            var_preco_medio_regiao_geral >= -0.10 && var_preco_medio_regiao_geral <= 0.10, "#f5fbf8",
+			            var_preco_medio_regiao_geral > 0.10, "#faf9f6"
+			        )
+			    )
+		lineageTag: c3e72efd-c646-4108-9a07-6b6a6ee97f38
+
+	measure cor_fonte_classificacao_precificacao_geral_simulacao =
+			
+			VAR preco_medio_venda = [_preco_medio_venda_simulacao]
+			VAR preco_medio_regiao_geral = [_preco_medio_regiao_geral]
+			VAR var_preco_medio_regiao_geral = [_var_preco_medio_regiao_geral_simulacao]
+			
+			RETURN
+			    IF(
+			        NOT ISBLANK(preco_medio_venda) &&
+			        NOT ISBLANK(preco_medio_regiao_geral) &&
+			        NOT ISBLANK(var_preco_medio_regiao_geral),
+			        SWITCH(
+			            TRUE(),
+			            var_preco_medio_regiao_geral < -0.10, "#3c83f6",
+			            var_preco_medio_regiao_geral >= -0.10 && var_preco_medio_regiao_geral <= 0.10, "#16a249",
+			            var_preco_medio_regiao_geral > 0.10, "#f59f0a"
+			        )
+			    )
+		lineageTag: 36217b7b-7de4-40df-bf6d-bd91293289cd
+
+	measure _var_qtd_produtos_fora_da_faixa_simulacao =
+			
+			VAR ForaFaixa =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral_simulacao]
+			            ),
+			            [@classificacao] IN {"Abaixo do mercado", "Acima do mercado"}
+			        )
+			    )
+			VAR Total =
+			    COUNTROWS(
+			        FILTER(
+			            ADDCOLUMNS(
+			                VALUES(produto_gcp[cod_barra]),
+			                "@classificacao", [classificacao_precificacao_geral_simulacao]
+			            ),
+			            [@classificacao] IN {"Abaixo do mercado", "Na faixa competitiva", "Acima do mercado"}
+			        )
+			    )
+			VAR Resultado = DIVIDE(ForaFaixa, Total, 0)
+			RETURN
+			IF(
+			    ISBLANK(Resultado) || Total = 0,
+			    "0.00%",
+			    FORMAT(Resultado, "0.00%")
+			)
+		lineageTag: ccba08c5-eb08-4cc3-9d2f-3d04c451c131
+
+	measure %_qtd_produtos_avaliar_competitividade_simulacao =
+			
+			DIVIDE(
+			    COALESCE([qtd_produtos_avaliar_competitividade_simulacao], 0),
+			    [qtd_total_produtos_simulacao],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dfb2f9c2-254f-4ff9-a62e-a8f7da82f001
+
+	measure %_qtd_produtos_faixa_normal_simulacao =
+			
+			DIVIDE(
+			    COALESCE([qtd_produtos_faixa_normal_simulacao], 0),
+			    [qtd_total_produtos_simulacao],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: aced27c6-128a-43d5-beae-58b0acf0229a
+
+	measure %_qtd_produtos_preco_competitivo_simmulacao =
+			
+			DIVIDE(
+			    COALESCE([qtd_produtos_preco_competitivo_simulacao], 0),
+			    [qtd_total_produtos_simulacao],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 00cbdc66-def9-4684-a880-958a74e1416d
+
+	measure filtro_classificacao_precificacao =
+			
+			VAR classificacao_selecionada = SELECTEDVALUE('classificacao_precificacao'[classificacao], "Todos")
+			VAR classificacao_precificacao = [_var_preco_medio_regiao_geral]
+			RETURN
+			SWITCH(
+			    TRUE(),
+			    classificacao_selecionada = "Todos", 1,
+			    classificacao_selecionada = "Abaixo do mercado" && classificacao_precificacao < -0.10, 1,
+			    classificacao_selecionada = "Faixa normal" && classificacao_precificacao >= -0.10 && classificacao_precificacao <= 0.10, 1,
+			    classificacao_selecionada = "Avaliar competitividade" && classificacao_precificacao > 0.10, 1
+			)
+		formatString: 0
+		lineageTag: 1b8f600e-1269-4de9-8fb2-348cd979d1a4
+
+	measure _var_preco_medio_mesorregiao_simulacao =
+			
+			VAR PrecoVenda = [_preco_medio_venda_simulacao]
+			VAR PrecoMercado = [_preco_medio_mesorregiao]
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PrecoMercado),
+			    DIVIDE(PrecoVenda - PrecoMercado, PrecoMercado),
+			    BLANK()
+			)
+		lineageTag: b3a134ed-5cd8-4f8f-b93d-3b18b215aa6a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _var_preco_medio_microrregiao_simulacao =
+			
+			VAR PrecoVenda = [_preco_medio_venda_simulacao]
+			VAR PrecoMercado = [_preco_medio_microrregiao]
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PrecoMercado),
+			    DIVIDE(PrecoVenda - PrecoMercado, PrecoMercado),
+			    BLANK()
+			)
+		lineageTag: ebb11cf3-2b9c-4ac3-978a-1b2c7fab5740
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _var_preco_medio_municipio_simulacao =
+			
+			VAR PrecoVenda = [_preco_medio_venda_simulacao]
+			VAR PrecoMercado = [_preco_medio_municipio]
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PrecoMercado),
+			    DIVIDE(PrecoVenda - PrecoMercado, PrecoMercado),
+			    BLANK()
+			)
+		lineageTag: a8b66078-7b03-40f8-ba5b-f22dad6cf561
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _var_preco_medio_estado_simulacao =
+			
+			VAR PrecoVenda = [_preco_medio_venda_simulacao]
+			VAR PrecoMercado = [_preco_medio_estado]
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(PrecoMercado),
+			    DIVIDE(PrecoVenda - PrecoMercado, PrecoMercado),
+			    BLANK()
+			)
+		lineageTag: f1bc31be-96c4-4ed7-ad1a-9c85b4614ad4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 671536a4-6d8e-4fbf-92a7-41a44ed56bfb
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition medidas_analise_mercado_simulacao = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 37d9460489d6450abd151e8d6ebdf597
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

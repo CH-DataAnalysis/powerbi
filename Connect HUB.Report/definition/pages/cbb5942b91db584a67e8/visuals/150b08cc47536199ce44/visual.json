@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "150b08cc47536199ce44",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 19000,
+    "height": 1080,
+    "width": 1920.2992518703243,
+    "tabOrder": 0
+  },
+  "visualGroup": {
+    "displayName": "fechar_vendas",
+    "groupMode": "ScaleMode"
+  }
+}

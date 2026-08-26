@@ -1,0 +1,674 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 1059.5813482241408
+          },
+          "nodeIndex": "geolocalizacao",
+          "nodeLineageTag": "d644a42c-cd78-40bd-969e-5c8a24b7d533",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 32
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1942.1661534729196
+          },
+          "nodeIndex": "produto_gcp",
+          "nodeLineageTag": "7eb89980-f7b6-4a15-8860-a85bb58e1d03",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 31
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 1397.8637734239194
+          },
+          "nodeIndex": "calendario",
+          "nodeLineageTag": "0493642d-38d0-4451-a053-7162e9be2bd5",
+          "size": {
+            "height": 470,
+            "width": 234
+          },
+          "zIndex": 24
+        },
+        {
+          "location": {
+            "x": 1109.72229441026,
+            "y": 0
+          },
+          "nodeIndex": "top_5_lojas_com_maior_faturamento",
+          "nodeLineageTag": "f89daeac-7c1c-4c9e-8c20-e68113363cb8",
+          "size": {
+            "height": 200,
+            "width": 391.28868879173569
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 718.60757014716671,
+            "y": 0
+          },
+          "nodeIndex": "top_5_lojas_com_menor_faturamento",
+          "nodeLineageTag": "6930c589-c51a-41e6-9b74-fdcb9069fa2f",
+          "size": {
+            "height": 200,
+            "width": 381.20608053585534
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 2851.9092895633735
+          },
+          "nodeIndex": "alerta_desconto_compra",
+          "nodeLineageTag": "2f45430d-8dfd-4948-93f7-e1147064f03d",
+          "size": {
+            "height": 72,
+            "width": 322.84670421115715
+          },
+          "zIndex": 44,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 359.9044458723144,
+            "y": 2851.4891315918512
+          },
+          "nodeIndex": "alerta_desconto_venda",
+          "nodeLineageTag": "386e3a3a-095f-41f5-b312-9dc8db206f7b",
+          "size": {
+            "height": 72,
+            "width": 325.8584568962811
+          },
+          "zIndex": 21,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 2970.2883449194269
+          },
+          "nodeIndex": "alerta_margem_lucro_bruta",
+          "nodeLineageTag": "e80a90b9-cd61-413b-88e6-3de79f57c906",
+          "size": {
+            "height": 72,
+            "width": 327.36433323884307
+          },
+          "zIndex": 34,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 2280.3023265865177
+          },
+          "nodeIndex": "cadastro_fornecedor",
+          "nodeLineageTag": "98e95532-8e06-4819-92fb-da531ac041d8",
+          "size": {
+            "height": 145,
+            "width": 234
+          },
+          "zIndex": 27
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 3093.1174265600007
+          },
+          "nodeIndex": "stock_out_botao_analise",
+          "nodeLineageTag": "6cbf6d3e-5414-4ad6-9183-2dad60f0e29d",
+          "size": {
+            "height": 72,
+            "width": 327.36433323884307
+          },
+          "zIndex": 20,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 362.91619855743841,
+            "y": 2972.4552946135113
+          },
+          "nodeIndex": "alerta_margem_lucro_bruta_2",
+          "nodeLineageTag": "2f775b6a-4df8-4633-894e-81f0d4217c78",
+          "size": {
+            "height": 72,
+            "width": 324.35258055371906
+          },
+          "zIndex": 19,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "tabela_cadastro_lojas",
+          "nodeLineageTag": "db9751b8-2276-467d-8aef-1eb99f86d00a",
+          "size": {
+            "height": 556.43223158983665,
+            "width": 234
+          },
+          "zIndex": 48
+        },
+        {
+          "location": {
+            "x": 360.34181946553554,
+            "y": 3087.3891327088686
+          },
+          "nodeIndex": "classificacao_performance_vendedor",
+          "nodeLineageTag": "8a64933b-8539-4d77-bab7-baf293c265d3",
+          "size": {
+            "height": 72,
+            "width": 324.35258055371912
+          },
+          "zIndex": 18,
+          "expandedHeight": 145
+        },
+        {
+          "location": {
+            "x": 357.68981030374061,
+            "y": 3297.8517596097277
+          },
+          "nodeIndex": "plano_acao_vendedores",
+          "nodeLineageTag": "05547af9-2525-4615-ab2a-3d481cf9b96e",
+          "size": {
+            "height": 72,
+            "width": 326.24388620069624
+          },
+          "zIndex": 36,
+          "expandedHeight": 517.46272523616244
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 618.51362238061688
+          },
+          "nodeIndex": "lat_long",
+          "nodeLineageTag": "61c85a1a-f211-4074-9db5-8e57e45d26e7",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 33
+        },
+        {
+          "location": {
+            "x": 1522.1925808800977,
+            "y": 0
+          },
+          "nodeIndex": "parceiros_pbm_padrao",
+          "nodeLineageTag": "7ba54b7f-f7a7-420e-a8ae-a0776c5c78d1",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 3195.324924379137
+          },
+          "nodeIndex": "reloadtime",
+          "nodeLineageTag": "f95ceb67-a443-45b9-a994-7ffeefc5f0d0",
+          "size": {
+            "height": 104,
+            "width": 325.8584568962811
+          },
+          "zIndex": 46
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 3501.1714383331127
+          },
+          "nodeIndex": "dimensao_geolocalizacao",
+          "nodeLineageTag": "5f7e4cf1-d950-40eb-974a-b1dc200cebde",
+          "size": {
+            "height": 72,
+            "width": 369.68829756324
+          },
+          "zIndex": 16,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 355.75407771321858,
+            "y": 3192.3630341614366
+          },
+          "nodeIndex": "classificacao_precificacao",
+          "nodeLineageTag": "2daf4ebd-bc14-441d-8a7f-a89416778bfb",
+          "size": {
+            "height": 72,
+            "width": 327.36433323884307
+          },
+          "zIndex": 15,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 3294.712762988228
+          },
+          "nodeIndex": "simulacao_precificacao_analise_mercado",
+          "nodeLineageTag": "c1f14111-05f7-460b-b781-dbc5544beda8",
+          "size": {
+            "height": 72,
+            "width": 327.36433323884307
+          },
+          "zIndex": 35,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 2103.4493281838973,
+            "y": 0
+          },
+          "nodeIndex": "mv_classificacao_faturamento",
+          "nodeLineageTag": "dfd2d5e6-7681-4b92-a1e4-6988ba0d929e",
+          "size": {
+            "height": 297.67085813183826,
+            "width": 296.94587075675736
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 836.38111383389378
+          },
+          "nodeIndex": "mv_cod_ibge_lojas",
+          "nodeLineageTag": "867c9d23-fb30-4211-a00f-202a5e772ca0",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 43
+        },
+        {
+          "location": {
+            "x": 3527.4333110503503,
+            "y": 843.25716434364642
+          },
+          "nodeIndex": "mv_compras_produtos",
+          "nodeLineageTag": "8f5c31a8-1143-49d3-a772-10ec5acc876f",
+          "size": {
+            "height": 304.02939035990357,
+            "width": 353.32388929524586
+          },
+          "zIndex": 49
+        },
+        {
+          "location": {
+            "x": 3541.3732018967003,
+            "y": 2560.4551952621146
+          },
+          "nodeIndex": "mv_curva_abc_90_dias",
+          "nodeLineageTag": "09572ff5-d5ef-40ab-b1ce-86588a785a2f",
+          "size": {
+            "height": 301.34313011996744,
+            "width": 346.6934137741946
+          },
+          "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 1771.1129386267125,
+            "y": 0
+          },
+          "nodeIndex": "mv_dados_clientes",
+          "nodeLineageTag": "41ac238f-73b4-4bce-b7ad-42517cf9fe03",
+          "size": {
+            "height": 300,
+            "width": 286.42956293057887
+          },
+          "zIndex": 41
+        },
+        {
+          "location": {
+            "x": 3538.1143897133688,
+            "y": 2890.2685711250292
+          },
+          "nodeIndex": "mv_dados_vendas_compras",
+          "nodeLineageTag": "1e2f80e5-b02c-4710-91d3-b15ed99f530b",
+          "size": {
+            "height": 300,
+            "width": 350.9040490158086
+          },
+          "zIndex": 25
+        },
+        {
+          "location": {
+            "x": 3536.790764058218,
+            "y": 1860.6495863579264
+          },
+          "nodeIndex": "mv_estoque",
+          "nodeLineageTag": "eeac4a1f-4530-4ffb-8b8d-c0e9265fbd7b",
+          "size": {
+            "height": 300,
+            "width": 350.44443618796686
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 3532.65424060047,
+            "y": 3557.3011710925921
+          },
+          "nodeIndex": "mv_performance_loja",
+          "nodeLineageTag": "ecc62cb0-3ef3-40e3-9dab-feeaaba672cd",
+          "size": {
+            "height": 300,
+            "width": 356.84597357367147
+          },
+          "zIndex": 26
+        },
+        {
+          "location": {
+            "x": 3534.3588320283015,
+            "y": 3894.4321436987766
+          },
+          "nodeIndex": "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias",
+          "nodeLineageTag": "0bbcb54f-5c27-44ca-ab36-d08b08377109",
+          "size": {
+            "height": 300,
+            "width": 353.80020563382823
+          },
+          "zIndex": 37
+        },
+        {
+          "location": {
+            "x": 3530.8816607030449,
+            "y": 1522.1670787985731
+          },
+          "nodeIndex": "mv_sugestao_compras",
+          "nodeLineageTag": "39911c13-976b-4a6c-b4a5-3bbfa2f490ed",
+          "size": {
+            "height": 300,
+            "width": 353.72168192443678
+          },
+          "zIndex": 38
+        },
+        {
+          "location": {
+            "x": 3528.907247427147,
+            "y": 1178.5803997146027
+          },
+          "nodeIndex": "mv_sugestao_transferencia_filiais",
+          "nodeLineageTag": "b81a4fb4-04af-4197-9bf0-78cfe2a9d8df",
+          "size": {
+            "height": 300,
+            "width": 352.72380839944162
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 3527.7346443123315,
+            "y": 492.84324140366942
+          },
+          "nodeIndex": "mv_vendas_produtos",
+          "nodeLineageTag": "823a7b57-ccb9-4d24-be4f-d865a3fd1478",
+          "size": {
+            "height": 300,
+            "width": 355.56198879721342
+          },
+          "zIndex": 28
+        },
+        {
+          "location": {
+            "x": 3538.026297199247,
+            "y": 3229.97537683119
+          },
+          "nodeIndex": "mv_controle_coleta_farmacias",
+          "nodeLineageTag": "e7e866c7-a317-4b0d-8c35-2921c4643832",
+          "size": {
+            "height": 300,
+            "width": 351.70399247095747
+          },
+          "zIndex": 29
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 2464.3978061677872
+          },
+          "nodeIndex": "tabela_de_horas",
+          "nodeLineageTag": "ae3cfe3b-52af-4787-b5e8-14440e921ebf",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 42
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 3714.7529714405969
+          },
+          "nodeIndex": "medidas_areas_da_farmacia",
+          "nodeLineageTag": "daa2ddb7-0eaf-4104-b165-2d69fec3d107",
+          "size": {
+            "height": 72,
+            "width": 375.36076067119689
+          },
+          "zIndex": 39,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 3824.9664458622078
+          },
+          "nodeIndex": "medidas_performance_vendedor",
+          "nodeLineageTag": "484595bc-6030-4d18-8768-5fbebb36f492",
+          "size": {
+            "height": 72,
+            "width": 374.1627881231359
+          },
+          "zIndex": 11,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 3931.5860026396358
+          },
+          "nodeIndex": "medidas_prospeccao_vendas_clientes",
+          "nodeLineageTag": "703018c2-6739-454a-89f7-816f2137b83a",
+          "size": {
+            "height": 72,
+            "width": 376.55873321925787
+          },
+          "zIndex": 10,
+          "expandedHeight": 200
+        },
+        {
+          "location": {
+            "x": 390.65617514933228,
+            "y": 3717.0067274998241
+          },
+          "nodeIndex": "medidas_gerais_vendas",
+          "nodeLineageTag": "281a507e-87b5-495c-86d5-ba4d8c9d61e7",
+          "size": {
+            "height": 72,
+            "width": 374.1627881231359
+          },
+          "zIndex": 40,
+          "expandedHeight": 250.23374894100107
+        },
+        {
+          "location": {
+            "x": 390.65617514933228,
+            "y": 3823.6262842772521
+          },
+          "nodeIndex": "medidas_analise_mercado",
+          "nodeLineageTag": "96144288-b77c-453b-8725-2c0864d17662",
+          "size": {
+            "height": 72,
+            "width": 372.96481557507491
+          },
+          "zIndex": 9,
+          "expandedHeight": 179.63446668296314
+        },
+        {
+          "location": {
+            "x": 390.65617514933228,
+            "y": 3935.4540977320667
+          },
+          "nodeIndex": "medidas_analise_mercado_simulacao",
+          "nodeLineageTag": "775315fa-22e2-405f-9eba-d8f0f0001376",
+          "size": {
+            "height": 72,
+            "width": 372.43327121273182
+          },
+          "zIndex": 8,
+          "expandedHeight": 642.36013822712448
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 3408.1792295676555
+          },
+          "nodeIndex": "dimensao_sujeito_analise",
+          "nodeLineageTag": "315ea096-efa2-41ef-b609-c0cd10fcb18c",
+          "size": {
+            "height": 72,
+            "width": 368.01378935309685
+          },
+          "zIndex": 7,
+          "expandedHeight": 152
+        },
+        {
+          "location": {
+            "x": 536.56271455229262,
+            "y": 0
+          },
+          "nodeIndex": "logo_associacao",
+          "nodeLineageTag": "864228ab-ed42-42c5-9593-f1393380d08e",
+          "size": {
+            "height": 162.17000686567337,
+            "width": 146.71913176616044
+          },
+          "zIndex": 45
+        },
+        {
+          "location": {
+            "x": 266.3931633783929,
+            "y": 0
+          },
+          "nodeIndex": "portal_authorization",
+          "nodeLineageTag": "272c37de-98c7-4a9f-8016-905f66ee5b47",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 47
+        },
+        {
+          "location": {
+            "x": 4347.3241383668619,
+            "y": 2009.2160718493883
+          },
+          "nodeIndex": "plano_de_contas",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 5479.7922710665662,
+            "y": 131.68175830065502
+          },
+          "nodeIndex": "despesas_rel_pai_analit-1768488",
+          "nodeLineageTag": "cf6132cf-b04e-41b9-a6a5-d19d7bc8a709",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 5890.5669063168134,
+            "y": 0
+          },
+          "nodeIndex": "despesas_rel_pai_sint",
+          "nodeLineageTag": "7b4f0068-d62f-4b42-9c1a-2b90a949fed9",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 4118.4585841524286,
+            "y": 2286.3237074464369
+          },
+          "nodeIndex": "mv_performance_vendedores",
+          "nodeLineageTag": "43f13965-d427-42a6-9887-a0c27812efb7",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 6174.5669063168134,
+            "y": 1997.2160718493883
+          },
+          "nodeIndex": "Filtro_Periodo",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 6458.5669063168134,
+            "y": 1973.2160718493883
+          },
+          "nodeIndex": "produto_gcp_nao_identificado",
+          "nodeLineageTag": "0c97b8a4-3f54-4cb3-ad37-b917c31ccafe",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 2
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 62.336089590425438,
+      "pinKeyFieldsToTop": true,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

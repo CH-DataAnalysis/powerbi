@@ -1,0 +1,27 @@
+table lat_long
+	lineageTag: 61c85a1a-f211-4074-9db5-8e57e45d26e7
+
+	column CEP_1
+		dataType: int64
+		formatString: 0
+		lineageTag: d0c0b97c-7d26-4d8c-9fa1-f77803ed8494
+		summarizeBy: none
+		sourceColumn: CEP_1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition lat_long = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\PowerBI\lat_long.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"CEP_1", Int64.Type}, {"CEP_2", type text}, {"Latitude", type text}, {"Longitude", type text}}),
+				    #"Columns removed by Measure Killer"= Table.SelectColumns(#"Tipo Alterado",{"CEP_1"})
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "b02bf1a150270bb8414f",
+  "position": {
+    "x": 0,
+    "y": 0,
+    "z": 1000,
+    "height": 165.03778337531486,
+    "width": 957.58186397984878,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "portal_authorization"
+                    }
+                  },
+                  "Property": "usuario_logado"
+                }
+              },
+              "queryRef": "portal_authorization.usuario_logado",
+              "nativeQueryRef": "usuario_logado"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

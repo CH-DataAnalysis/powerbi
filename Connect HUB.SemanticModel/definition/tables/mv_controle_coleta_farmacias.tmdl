@@ -1,0 +1,233 @@
+table mv_controle_coleta_farmacias
+	lineageTag: e7e866c7-a317-4b0d-8c35-2921c4643832
+
+	measure *qtd_cnpjs_controle_coleta = DISTINCTCOUNT(mv_controle_coleta_farmacias[num_cnpj])
+		formatString: #,0
+		lineageTag: 66b445f2-9a41-4ec2-89d6-3b3091f330b0
+
+	measure *qtd_cnpjs_captacao_ok =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_controle_coleta_farmacias[num_cnpj]),
+			    FILTER(
+			        mv_controle_coleta_farmacias, mv_controle_coleta_farmacias[status_venda] = "CAPTAÇÃO OK"
+			    )
+			)
+		formatString: #,0
+		lineageTag: b3f89f3d-4159-4e91-a88a-f4a39dad80a6
+
+	measure *qtd_cnpjs_captacao_problema =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(mv_controle_coleta_farmacias[num_cnpj]),
+			    FILTER(
+			        mv_controle_coleta_farmacias, mv_controle_coleta_farmacias[status_venda] = "CAPTAÇÃO APRESENTANDO PROBLEMA"
+			    )
+			)
+		formatString: #,0
+		lineageTag: bcf92e3b-c68b-4193-be33-2e3ee068a2f7
+
+	measure *%var_qtd_cnpjs_captacao_ok = ```
+			
+			    DIVIDE(
+			        mv_controle_coleta_farmacias[*qtd_cnpjs_captacao_ok],
+			        mv_controle_coleta_farmacias[*qtd_cnpjs_controle_coleta]
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 32013c93-77cc-4a7c-8006-e71237e03f5f
+
+	measure *%var_qtd_cnpjs_captacao_problema = ```
+			
+			    DIVIDE(
+			        mv_controle_coleta_farmacias[*qtd_cnpjs_captacao_problema],
+			        mv_controle_coleta_farmacias[*qtd_cnpjs_controle_coleta]
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: da993ed3-87e1-4212-93b4-3871a7168e5b
+
+	column num_cnpj
+		dataType: string
+		lineageTag: 0471d567-163b-4f00-9971-3984aa5684d5
+		summarizeBy: none
+		sourceColumn: num_cnpj
+
+		annotation SummarizationSetBy = Automatic
+
+	column ult_registro_venda
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 8bfb5f68-b417-4652-93cf-f06c252ec765
+		summarizeBy: none
+		sourceColumn: ult_registro_venda
+
+		variation Variation
+			isDefault
+			relationship: 729b90b7-7f75-459a-a655-5ce173b36d71
+			defaultHierarchy: LocalDateTable_525d03cf-5415-4956-9a70-e44aa0fc68d7.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dias_sem_venda
+		dataType: int64
+		formatString: 0
+		lineageTag: 317e0138-1361-4632-a409-2764262fe37b
+		summarizeBy: sum
+		sourceColumn: dias_sem_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_venda
+		dataType: string
+		lineageTag: 7e72121e-62b5-43da-8a19-e2aa82c144fd
+		summarizeBy: none
+		sourceColumn: status_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column classificacao_captacao_venda
+		dataType: string
+		lineageTag: be5fd271-19a1-49f1-ad52-01d1e9652431
+		summarizeBy: none
+		sourceColumn: classificacao_captacao_venda
+
+		annotation SummarizationSetBy = Automatic
+
+	column ult_registro_compra
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 53ca888e-d897-40e5-ab32-5429ce4f6712
+		summarizeBy: none
+		sourceColumn: ult_registro_compra
+
+		variation Variation
+			isDefault
+			relationship: 8c234552-10cc-4331-8c13-b930583288d4
+			defaultHierarchy: LocalDateTable_c2ed4c29-498e-476f-bc00-e675b16aed45.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column dias_sem_compra
+		dataType: int64
+		formatString: 0
+		lineageTag: 8133b22f-15eb-43ad-8056-498aa55d6c1b
+		summarizeBy: sum
+		sourceColumn: dias_sem_compra
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_compra
+		dataType: string
+		lineageTag: 55bbe1c7-b444-4f03-b0a4-2400036089f4
+		summarizeBy: none
+		sourceColumn: status_compra
+
+		annotation SummarizationSetBy = Automatic
+
+	column ult_registro_estoque
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e299e203-6df7-4d55-b514-dc36e98817ea
+		summarizeBy: none
+		sourceColumn: ult_registro_estoque
+
+		variation Variation
+			isDefault
+			relationship: 0ee41093-1e34-4f65-849a-b8bd917aa13a
+			defaultHierarchy: LocalDateTable_53d8450d-8f94-4667-b464-6a961204867a.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column status_captacao_venda_cor =
+			
+			SWITCH(
+			    [status_venda],
+			    "SEM REGISTRO", "#FFD95E",
+			    "CAPTAÇÃO OK", "#A8E6A3",
+			    "CAPTAÇÃO APRESENTANDO PROBLEMA", "#FFB3B3",
+			    BLANK()
+			)
+		lineageTag: 2f7b8dc4-7859-423f-964f-3cc9282efa8c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column classificacao_captacao_cor =
+			
+			SWITCH(
+			    [classificacao_captacao_venda],
+			    "SEM REGISTRO", "#FFD95E",     // amarelo escuro
+			    "CAPTAÇÃO OK", "#A8E6A3",      // verde claro
+			    "2 A 7 DIAS", "#FFF3B0",       // amarelo claro
+			    "8 A 15 DIAS", "#FFB3B3",      // vermelho claro
+			    "> 15 DIAS", "#E57373",        // vermelho escuro
+			    BLANK()
+			)
+		lineageTag: 88cec0a2-c494-424e-bc2e-671c223186fd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column status_captacao_compra_cor =
+			
+			SWITCH(
+			    [status_compra],
+			    "SEM REGISTRO", "#FFD95E",
+			    "CAPTAÇÃO OK", "#A8E6A3",
+			    "CAPTAÇÃO APRESENTANDO PROBLEMA", "#FFB3B3",
+			    BLANK()
+			)
+		lineageTag: f3d7fea5-78e9-4e28-8e02-3d592438acd6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition mv_controle_coleta_farmacias = m
+		mode: import
+		source =
+				let
+				    NomeTabela = "mv_controle_coleta_farmacias_" & Text.From(cliente),
+				
+				    Fonte = AmazonRedshift.Database(
+				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				        "business_connect"
+				    ),
+				
+				    associacao = Fonte{[Name="associacao"]}[Data],
+				
+				    Resultado = associacao{[Name=NomeTabela]}[Data],
+				
+				    #"Duplicatas Removidas" = Table.Distinct(
+				        Resultado,
+				        {"num_cnpj"}
+				    ),
+				
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(
+				        #"Duplicatas Removidas",
+				        {
+				            "dias_sem_compra",
+				            "ult_registro_venda",
+				            "dias_sem_venda",
+				            "classificacao_captacao_venda",
+				            "status_compra",
+				            "ult_registro_compra",
+				            "ult_registro_estoque",
+				            "status_venda",
+				            "num_cnpj"
+				        }
+				    )
+				
+				in
+				    #"Columns removed by Measure Killer"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

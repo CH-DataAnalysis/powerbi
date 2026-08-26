@@ -1,0 +1,170 @@
+table produto_gcp
+	lineageTag: 7eb89980-f7b6-4a15-8860-a85bb58e1d03
+
+	column nome_categoria
+		dataType: string
+		lineageTag: 2400690b-b16d-43e3-b3d7-5bda67abdb90
+		summarizeBy: none
+		sourceColumn: nome_categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column principio_ativo
+		dataType: string
+		lineageTag: a1294b60-6a56-4ab0-8e6c-d3f6daa24067
+		summarizeBy: none
+		sourceColumn: principio_ativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra_tratado = produto_gcp[cod_barra]
+		dataType: string
+		lineageTag: 1be8ee1a-015b-41e5-9f80-89ebe58c603d
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column area_farmacia
+		dataType: string
+		lineageTag: 8dfb101a-59e6-458c-bceb-7194da649c32
+		summarizeBy: none
+		sourceColumn: area_farmacia
+
+		annotation SummarizationSetBy = Automatic
+
+	column produto
+		dataType: string
+		lineageTag: 9aa62e2e-7bbd-4667-b705-82efde6679ab
+		summarizeBy: none
+		sourceColumn: produto
+
+		annotation SummarizationSetBy = Automatic
+
+	column laboratorio
+		dataType: string
+		lineageTag: 22531270-1eda-4721-8e93-b06da378e9cd
+		summarizeBy: none
+		sourceColumn: laboratorio
+
+		annotation SummarizationSetBy = Automatic
+
+	column cod_barra
+		dataType: int64
+		formatString: 0
+		lineageTag: e1f09abe-681d-4309-8231-9e6e97ac37cc
+		summarizeBy: none
+		sourceColumn: cod_barra
+
+		annotation SummarizationSetBy = Automatic
+
+	column grupo_fcia
+		dataType: string
+		lineageTag: 63a5e0eb-db6c-4e93-bf0f-3fe006768619
+		summarizeBy: none
+		sourceColumn: grupo_fcia
+
+		annotation SummarizationSetBy = Automatic
+
+	partition produto_gcp = m
+		mode: import
+		source =
+				let
+				    Fonte =
+				        AmazonRedshift.Database(
+				            "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
+				            "business_connect"
+				        ),
+				
+				    associacao =
+				        Fonte{[Name = "associacao"]}[Data],
+				
+				    dimensao_cadastro_gcp =
+				        associacao{[Name = "dimensao_cadastro_gcp"]}[Data],
+				
+				    #"Tipo Alterado" =
+				        Table.TransformColumnTypes(
+				            dimensao_cadastro_gcp,
+				            {
+				                {"codigo_barras", Int64.Type},
+				                {"cnpj", Int64.Type},
+				                {"quantidade_fator", Int64.Type},
+				                {"volume", Int64.Type}
+				            }
+				        ),
+				
+				    #"Colunas Renomeadas" =
+				        Table.RenameColumns(
+				            #"Tipo Alterado",
+				            {
+				                {"codigo_barras", "cod_barra"},
+				                {"nome_produto", "produto"},
+				                {"cnpj", "cnpj_laboratorio"},
+				                {"nome_laboratorio", "laboratorio"},
+				                {"nome_grupo", "grupo"}
+				            }
+				        ),
+				
+				    #"Linhas em Branco Removidas" =
+				        Table.SelectRows(
+				            #"Colunas Renomeadas",
+				            each
+				                not List.IsEmpty(
+				                    List.RemoveMatchingItems(
+				                        Record.FieldValues(_),
+				                        {"", null}
+				                    )
+				                )
+				        ),
+				
+				    #"Duplicatas Removidas" =
+				        Table.Distinct(
+				            #"Linhas em Branco Removidas",
+				            {"cod_barra"}
+				        ),
+				
+				    #"Columns removed by Measure Killer" =
+				        Table.SelectColumns(
+				            #"Duplicatas Removidas",
+				            {
+				                "nome_categoria",
+				                "descricao_area_estabelecimento",
+				                "principio_ativo",
+				                "produto",
+				                "laboratorio",
+				                "grupo",
+				                "cod_barra"
+				            }
+				        ),
+				
+				    #"Colunas Renomeadas Finais" =
+				        Table.RenameColumns(
+				            #"Columns removed by Measure Killer",
+				            {
+				                {"descricao_area_estabelecimento", "area_farmacia"},
+				                {"grupo", "grupo_fcia"}
+				            }
+				        ),
+				
+				    #"Consulta Acrescentada" =
+				        Table.Combine(
+				            {
+				                #"Colunas Renomeadas Finais",
+				                produto_gcp_nao_identificado
+				            }
+				        ),
+				
+				    #"Linhas Classificadas" =
+				        Table.Sort(
+				            #"Consulta Acrescentada",
+				            {{"cod_barra", Order.Ascending}}
+				        )
+				
+				in
+				    #"Linhas Classificadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

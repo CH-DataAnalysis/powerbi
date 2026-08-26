@@ -1,0 +1,35 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "4297c584c4d828c767bb",
+  "position": {
+    "x": 391.68315949955218,
+    "y": 40.320000000000014,
+    "z": 4000,
+    "height": 120.96,
+    "width": 119.2079181085594,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "image",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "imageUrl": {
+              "expr": {
+                "ResourcePackageItem": {
+                  "PackageName": "RegisteredResources",
+                  "PackageType": 1,
+                  "ItemName": "higiene_beleza_perfumaria08449550965063879.png"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "b99a944aa92a84a0e3c9",
+  "howCreated": "InsertVisualButton"
+}

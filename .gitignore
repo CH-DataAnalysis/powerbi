@@ -1,0 +1,11 @@
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+
+*.pbix
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.agents
