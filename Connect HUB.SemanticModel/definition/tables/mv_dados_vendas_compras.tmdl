@@ -1613,7 +1613,7 @@ table mv_dados_vendas_compras
 
 	column qtd_produto_compra
 		dataType: int64
-		formatString: 0
+		formatString: #,0
 		lineageTag: ead1b41f-5dee-4591-9d49-5abb2a4c59b0
 		summarizeBy: sum
 		sourceColumn: qtd_produto_compra

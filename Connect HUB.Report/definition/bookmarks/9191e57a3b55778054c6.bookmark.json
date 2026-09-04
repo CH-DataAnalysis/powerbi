@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
   "displayName": "menu_curva_vendas",
   "name": "9191e57a3b55778054c6",
   "options": {
@@ -1056,61 +1056,6 @@
                         }
                       },
                       "Property": "dat_ultven_formatada"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "7ece81b8c19d511a7d3e": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "d853993f379b53e8e6ee",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "tabela_cadastro_lojas"
-                        }
-                      },
-                      "Property": "nom_farmacia"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "tabela_cadastro_lojas"
-                        }
-                      },
-                      "Property": "nom_farmacia"
                     }
                   }
                 ]

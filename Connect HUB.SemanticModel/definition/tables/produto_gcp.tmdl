@@ -67,6 +67,28 @@ table produto_gcp
 
 		annotation SummarizationSetBy = Automatic
 
+	column nome_subgrupo
+		dataType: string
+		lineageTag: 5c67d1be-8312-4e8c-86da-7c20c7a8fceb
+		summarizeBy: none
+		sourceColumn: nome_subgrupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column classe_terapeutica
+		dataType: string
+		lineageTag: 8037a4ca-0a29-4726-bd19-51bae2a0c093
+		summarizeBy: none
+		sourceColumn: classe_terapeutica
+
+		annotation SummarizationSetBy = Automatic
+
+	column produto_cod_barras = [produto] & " | " & [cod_barra_tratado]
+		lineageTag: b2f71dcc-28a5-4982-b880-c5844711f3da
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
 	partition produto_gcp = m
 		mode: import
 		source =
@@ -125,18 +147,7 @@ table produto_gcp
 				        ),
 				
 				    #"Columns removed by Measure Killer" =
-				        Table.SelectColumns(
-				            #"Duplicatas Removidas",
-				            {
-				                "nome_categoria",
-				                "descricao_area_estabelecimento",
-				                "principio_ativo",
-				                "produto",
-				                "laboratorio",
-				                "grupo",
-				                "cod_barra"
-				            }
-				        ),
+				        Table.SelectColumns(#"Duplicatas Removidas",{"cod_barra", "produto", "classe_terapeutica", "nome_categoria", "laboratorio", "descricao_area_estabelecimento", "grupo", "nome_subgrupo", "principio_ativo"}),
 				
 				    #"Colunas Renomeadas Finais" =
 				        Table.RenameColumns(

@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "4f64b5814039825367a2",
   "position": {
     "x": 0,
     "y": 0,
-    "z": 3250,
+    "z": 4000,
     "height": 285,
     "width": 1045,
     "tabOrder": 3000
@@ -57,8 +57,8 @@
                 }
               },
               "queryRef": "tabela_cadastro_lojas.nome_loja",
-              "nativeQueryRef": "Nome Filial",
-              "displayName": "Nome Filial"
+              "nativeQueryRef": "Nome loja",
+              "displayName": "Nome loja"
             },
             {
               "field": {
@@ -191,21 +191,14 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Left'"
+                  "Value": "'Center'"
                 }
               }
-            }
-          },
-          "selector": {
-            "metadata": "tabela_cadastro_lojas.nome_loja"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
+            },
+            "styleTotal": {
               "expr": {
                 "Literal": {
-                  "Value": "'Center'"
+                  "Value": "true"
                 }
               }
             }
@@ -250,26 +243,17 @@
                   "Value": "'Center'"
                 }
               }
-            }
-          },
-          "selector": {
-            "metadata": "mv_vendas_produtos.*qtd_produto_venda"
-          }
-        }
-      ],
-      "columnWidth": [
-        {
-          "properties": {
-            "value": {
+            },
+            "styleTotal": {
               "expr": {
                 "Literal": {
-                  "Value": "419D"
+                  "Value": "true"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "tabela_cadastro_lojas.nome_loja"
+            "metadata": "mv_vendas_produtos.*qtd_produto_venda"
           }
         }
       ],

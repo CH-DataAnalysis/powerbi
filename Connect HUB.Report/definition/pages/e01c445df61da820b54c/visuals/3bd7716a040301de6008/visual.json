@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "3bd7716a040301de6008",
   "position": {
     "x": 0,
@@ -53,10 +53,10 @@
                       "Entity": "tabela_cadastro_lojas"
                     }
                   },
-                  "Property": "nom_farmacia"
+                  "Property": "nome_loja"
                 }
               },
-              "queryRef": "tabela_cadastro_lojas.nom_farmacia",
+              "queryRef": "tabela_cadastro_lojas.nome_loja",
               "nativeQueryRef": "Nome loja",
               "displayName": "Nome loja"
             },
@@ -104,6 +104,21 @@
               "queryRef": "produto_gcp.grupo_fcia",
               "nativeQueryRef": "Grupo",
               "displayName": "Grupo"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "produto_gcp"
+                    }
+                  },
+                  "Property": "laboratorio"
+                }
+              },
+              "queryRef": "produto_gcp.laboratorio",
+              "nativeQueryRef": "Laboratório",
+              "displayName": "Laboratório"
             },
             {
               "field": {
@@ -488,20 +503,6 @@
           },
           "selector": {
             "metadata": "produto_gcp.cod_barra"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "302.1672093332084D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "tabela_cadastro_lojas.nom_farmacia"
           }
         }
       ],
@@ -1146,13 +1147,48 @@
             "styleTotal": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
                 }
               }
             }
           },
           "selector": {
             "metadata": "Sum(curva_abc_90_dias.pct_acumulado_qtd)"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "styleHeader": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(curva_abc_90_dias.pct_acumulado_valor)"
           }
         }
       ]
@@ -1249,49 +1285,6 @@
           }
         },
         "type": "Categorical",
-        "filter": {
-          "Version": 2,
-          "From": [
-            {
-              "Name": "t",
-              "Entity": "tabela_cadastro_lojas",
-              "Type": 0
-            }
-          ],
-          "Where": [
-            {
-              "Condition": {
-                "Not": {
-                  "Expression": {
-                    "In": {
-                      "Expressions": [
-                        {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "t"
-                              }
-                            },
-                            "Property": "num_cnpj"
-                          }
-                        }
-                      ],
-                      "Values": [
-                        [
-                          {
-                            "Literal": {
-                              "Value": "null"
-                            }
-                          }
-                        ]
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          ]
-        },
         "isLockedInViewMode": true,
         "objects": {
           "general": [

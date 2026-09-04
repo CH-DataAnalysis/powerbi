@@ -4,7 +4,7 @@
   "name": "cd8805417e929c006606",
   "options": {
     "targetVisualNames": [
-      "80dbbfef2b00e497bbbc"
+      "781e3562ae38767a61f3"
     ],
     "suppressData": true
   },
@@ -59,6 +59,21 @@
           "howCreated": 1
         },
         {
+          "name": "cbcd729f5f64e1c867b1",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "tabela_cadastro_lojas"
+                }
+              },
+              "Property": "nome_loja"
+            }
+          },
+          "howCreated": 1
+        },
+        {
           "name": "298b57054d00649adc0a",
           "type": "Categorical",
           "expression": {
@@ -69,21 +84,6 @@
                 }
               },
               "Property": "num_cnpj"
-            }
-          },
-          "howCreated": 1
-        },
-        {
-          "name": "1d023ead47b70560d037",
-          "type": "Categorical",
-          "expression": {
-            "Column": {
-              "Expression": {
-                "SourceRef": {
-                  "Entity": "tabela_cadastro_lojas"
-                }
-              },
-              "Property": "nom_farmacia"
             }
           },
           "howCreated": 1
@@ -144,6 +144,21 @@
                 }
               },
               "Property": "produto"
+            }
+          },
+          "howCreated": 1
+        },
+        {
+          "name": "ee2a61d696ad4ff9063b",
+          "type": "Categorical",
+          "expression": {
+            "Column": {
+              "Expression": {
+                "SourceRef": {
+                  "Entity": "cadastro_fornecedor"
+                }
+              },
+              "Property": "nome_comercial"
             }
           },
           "howCreated": 1
@@ -303,138 +318,10 @@
     "sections": {
       "24ef3a674165c9405634": {
         "visualContainers": {
-          "6808f0dd9de9385d0aa4": {
-            "filters": {
-              "byName": {
-                "37c4783c9810fb1d5362": {
-                  "name": "37c4783c9810fb1d5362",
-                  "type": "Categorical",
-                  "filter": {
-                    "Version": 2,
-                    "From": [
-                      {
-                        "Name": "c",
-                        "Entity": "calendario",
-                        "Type": 0
-                      }
-                    ],
-                    "Where": [
-                      {
-                        "Condition": {
-                          "Not": {
-                            "Expression": {
-                              "In": {
-                                "Expressions": [
-                                  {
-                                    "Column": {
-                                      "Expression": {
-                                        "SourceRef": {
-                                          "Source": "c"
-                                        }
-                                      },
-                                      "Property": "ano_mes"
-                                    }
-                                  }
-                                ],
-                                "Values": [
-                                  [
-                                    {
-                                      "Literal": {
-                                        "Value": "null"
-                                      }
-                                    }
-                                  ]
-                                ]
-                              }
-                            }
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "ano_mes"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              },
-              "byExpr": [
-                {
-                  "name": "0be8922a00674bcc9117",
-                  "type": "Advanced",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "dia"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "8c3b298cd2abe1cef796",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "mv_dados_vendas_compras"
-                            }
-                          },
-                          "Property": "vlr_total_venda"
-                        }
-                      },
-                      "Function": 0
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
+          "0000d5589d316c33847f": {
             "singleVisual": {
-              "visualType": "lineChart",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 1,
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "ano_mes"
-                    }
-                  }
-                }
-              ],
-              "activeProjections": {
-                "Category": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "ano_mes"
-                    }
-                  }
-                ]
-              }
+              "visualType": "shape",
+              "objects": {}
             }
           },
           "06ab007ab02c654be752": {
@@ -456,7 +343,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "c9ca2f2adca30400640d",
+                  "name": "20e304b1a4626d0207a9",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -504,6 +391,193 @@
                     }
                   }
                 ]
+              }
+            }
+          },
+          "10ef0c27010b04b900ad": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "17abfc57da1c546b0bbf": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "1c26f63e85a532a5b343": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "1e62ba5722cc4c8854a5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "40e872ab3ea15ea006c2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_%cmv_liquido_ano_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_%cmv_liquido_ano_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "2596198092bef66dc73f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6be191ea1302bd5badc7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "logo_associacao"
+                        }
+                      },
+                      "Property": "link"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "simpleImageEBC4593F96F1425FB3D84C5BF02B5075",
+              "objects": {}
+            }
+          },
+          "25b63a1518205e5c3bdd": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "6612b2b02219562704ea",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%cmv_liquido_mes_atual"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%cmv_liquido_mes_atual"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "295b9e8209075d0564e8": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "2a1d3bcf6178b3818045": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "2cf1006fbadc400d49e0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9127e83c0e9bbb6157b9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_venda_liquida_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_venda_liquida_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "2f27a72280a3fb843c8d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
               }
             }
           },
@@ -617,437 +691,9 @@
               }
             }
           },
-          "50a749bd72d9a930450b": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "65c5f4016038ae46125d",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "geolocalizacao"
-                        }
-                      },
-                      "Property": "Municipio"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
+          "387d0fc4ee66a2c1889c": {
             "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "geolocalizacao"
-                        }
-                      },
-                      "Property": "Municipio"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "623681aa4a8a60e2940b": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "a9c893c5ba3117fa69c4",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "geolocalizacao"
-                        }
-                      },
-                      "Property": "UF_Nome"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "geolocalizacao"
-                        }
-                      },
-                      "Property": "UF_Nome"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "69a8533b76dd026ac0d8": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "8e91f34b962b39573d7f",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "tabela_cadastro_lojas"
-                        }
-                      },
-                      "Property": "num_cnpj"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "tabela_cadastro_lojas"
-                        }
-                      },
-                      "Property": "num_cnpj"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "6e8a7889eba542aa02cc": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "e9c2ebe4a24b57c66344",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "ano_mes"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "ano_mes"
-                    }
-                  }
-                }
-              ],
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "ano_mes"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "80dbbfef2b00e497bbbc": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "f19b774db1f2f57a9244",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "Date"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "general": [
-                    {
-                      "properties": {
-                        "filter": {
-                          "filter": {
-                            "Version": 2,
-                            "From": [
-                              {
-                                "Name": "c",
-                                "Entity": "calendario",
-                                "Type": 0
-                              }
-                            ],
-                            "Where": [
-                              {
-                                "Condition": {
-                                  "Comparison": {
-                                    "ComparisonKind": 2,
-                                    "Left": {
-                                      "Column": {
-                                        "Expression": {
-                                          "SourceRef": {
-                                            "Source": "c"
-                                          }
-                                        },
-                                        "Property": "Date"
-                                      }
-                                    },
-                                    "Right": {
-                                      "Literal": {
-                                        "Value": "datetime'2024-01-01T00:00:00'"
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      }
-                    }
-                  ],
-                  "data": [
-                    {
-                      "properties": {
-                        "startDate": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "datetime'2024-01-01T00:00:00'"
-                            }
-                          }
-                        },
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Between'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "orderBy": [
-                {
-                  "Direction": 1,
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "Date"
-                    }
-                  }
-                }
-              ],
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "Date"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "942b9321689513045946": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "06fe6f95adeeba7b4d07",
-                  "type": "Advanced",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "ano"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "calendario"
-                        }
-                      },
-                      "Property": "ano"
-                    }
-                  }
-                ]
-              }
-            }
-          },
-          "2596198092bef66dc73f": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "caa949792147f013e3df",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "logo_associacao"
-                        }
-                      },
-                      "Property": "link"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "simpleImageEBC4593F96F1425FB3D84C5BF02B5075",
+              "visualType": "image",
               "objects": {}
             }
           },
@@ -1174,7 +820,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "c9dfe863ae8f853cbdb2",
+                  "name": "57470a14d8d50cf5f679",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -1224,20 +870,26 @@
               }
             }
           },
-          "fa5fc0a3e300c2556593": {
+          "45c288c75d971752485e": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "47ab22b0009e150c4a50": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "08c9f353567341e6fba1",
+                  "name": "134c8b77126e4762395a",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
+                          "Entity": "mv_curva_abc_90_dias"
                         }
                       },
-                      "Property": "*%var_%desconto_venda_ano_anterior"
+                      "Property": "*qtd_produtos_cobertura_alta"
                     }
                   },
                   "howCreated": 0
@@ -1254,21 +906,140 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
+                          "Entity": "mv_curva_abc_90_dias"
                         }
                       },
-                      "Property": "*%var_%desconto_venda_ano_anterior"
+                      "Property": "*qtd_produtos_cobertura_alta"
                     }
                   }
                 }
               ]
             }
           },
-          "8e8b756d28a1ab75a0ec": {
+          "47f4cad31c373090ba5d": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "39b98c9125f9a451227c",
+                  "name": "a2a8a93ea1c19194088e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_produtos_estoque_parado"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_curva_abc_90_dias"
+                        }
+                      },
+                      "Property": "*qtd_produtos_estoque_parado"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "48de433edd1803b27276": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "4ec8cfd1d88100c7bd25": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "50080612cca6c14172be": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "50a749bd72d9a930450b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "65c5f4016038ae46125d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "geolocalizacao"
+                        }
+                      },
+                      "Property": "Municipio"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "geolocalizacao"
+                        }
+                      },
+                      "Property": "Municipio"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "520bc5d2dc319b160056": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "5764bab2d4d6ca2676ea": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "4235b1b16a227c094a3e",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -1277,7 +1048,7 @@
                           "Entity": "mv_dados_vendas_compras"
                         }
                       },
-                      "Property": "*%desconto_venda_mes_atual"
+                      "Property": "*qtd_atendimentos_mes_atual"
                     }
                   },
                   "howCreated": 0
@@ -1297,18 +1068,283 @@
                           "Entity": "mv_dados_vendas_compras"
                         }
                       },
-                      "Property": "*%desconto_venda_mes_atual"
+                      "Property": "*qtd_atendimentos_mes_atual"
                     }
                   }
                 }
               ]
             }
           },
-          "ffc9506d8dbc0c62390a": {
+          "58dee05ee11b7a1b3060": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "5ddf520046c4615b23cb": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "623681aa4a8a60e2940b": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "044523584682d784dea5",
+                  "name": "a9c893c5ba3117fa69c4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "geolocalizacao"
+                        }
+                      },
+                      "Property": "UF_Nome"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "geolocalizacao"
+                        }
+                      },
+                      "Property": "UF_Nome"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "64dc9977c9f9c1b17a74": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "6808f0dd9de9385d0aa4": {
+            "filters": {
+              "byName": {
+                "37c4783c9810fb1d5362": {
+                  "name": "37c4783c9810fb1d5362",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "c",
+                        "Entity": "calendario",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "c"
+                                        }
+                                      },
+                                      "Property": "ano_mes"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              },
+              "byExpr": [
+                {
+                  "name": "a4b494adaa9deb3d9c65",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "dia"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ba61aec9db46df728d7f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mv_dados_vendas_compras"
+                            }
+                          },
+                          "Property": "vlr_total_venda"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "69a8533b76dd026ac0d8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8e91f34b962b39573d7f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "num_cnpj"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "6bd084a1165b7cac13b9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "273a38e1915522373213",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -1317,7 +1353,7 @@
                           "Entity": "mv_dados_vendas_compras"
                         }
                       },
-                      "Property": "*%var_%desconto_venda_mes_anterior"
+                      "Property": "*%var_qtd_atendimentos_mes_anterior"
                     }
                   },
                   "howCreated": 0
@@ -1337,18 +1373,88 @@
                           "Entity": "mv_dados_vendas_compras"
                         }
                       },
-                      "Property": "*%var_%desconto_venda_mes_anterior"
+                      "Property": "*%var_qtd_atendimentos_mes_anterior"
                     }
                   }
                 }
               ]
             }
           },
+          "6e8a7889eba542aa02cc": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e9c2ebe4a24b57c66344",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano_mes"
+                    }
+                  }
+                ]
+              }
+            }
+          },
           "810ac1975b90d2ba0032": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "227fb7165ad574780f39",
+                  "name": "eb4f7b275eab379c7d1f",
                   "type": "Categorical",
                   "expression": {
                     "Column": {
@@ -1363,7 +1469,7 @@
                   "howCreated": 0
                 },
                 {
-                  "name": "740960f477f760f00b27",
+                  "name": "9d35dc03899b282faeb3",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -1413,11 +1519,11 @@
               }
             }
           },
-          "6bd084a1165b7cac13b9": {
+          "83df5370b27130bda4c8": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "ea2b6840c25c28f37c6d",
+                  "name": "ed8133849f901be37fbe",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -1426,47 +1532,7 @@
                           "Entity": "mv_dados_vendas_compras"
                         }
                       },
-                      "Property": "*%var_qtd_atendimentos_mes_anterior"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_qtd_atendimentos_mes_anterior"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "5764bab2d4d6ca2676ea": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "e6d2905aa4bf2ce54237",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*qtd_atendimentos_mes_atual"
+                      "Property": "*venda_liquida_mes_atual_"
                     }
                   },
                   "howCreated": 0
@@ -1486,27 +1552,27 @@
                           "Entity": "mv_dados_vendas_compras"
                         }
                       },
-                      "Property": "*qtd_atendimentos_mes_atual"
+                      "Property": "*venda_liquida_mes_atual_"
                     }
                   }
                 }
               ]
             }
           },
-          "e31f9a5b38353a897dc0": {
+          "84ba31065020293ba10e": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "dc4deba311ba97480965",
+                  "name": "60ee31f3473a42b04797",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
+                          "Entity": "mv_curva_abc_90_dias"
                         }
                       },
-                      "Property": "*%var_qtd_atendimentos_ano_anterior"
+                      "Property": "*qtd_produtos_risco_ruptura"
                     }
                   },
                   "howCreated": 0
@@ -1523,281 +1589,14 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
+                          "Entity": "mv_curva_abc_90_dias"
                         }
                       },
-                      "Property": "*%var_qtd_atendimentos_ano_anterior"
+                      "Property": "*qtd_produtos_risco_ruptura"
                     }
                   }
                 }
               ]
-            }
-          },
-          "961bf7ba016d280cee8e": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "0cdd36a221b0fb277e4b",
-                  "type": "Advanced",
-                  "expression": {
-                    "Aggregation": {
-                      "Expression": {
-                        "Column": {
-                          "Expression": {
-                            "SourceRef": {
-                              "Entity": "reloadtime"
-                            }
-                          },
-                          "Property": "Ultima_Atualizacao"
-                        }
-                      },
-                      "Function": 3
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "card",
-              "objects": {}
-            }
-          },
-          "c250b1eb28a6dd561896": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "d4d7c3f8f1e35bde3272",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*ticket_medio_mes_atual"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "cardVisual",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*ticket_medio_mes_atual"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "c1444d536ba9a014657c": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "c7c9be308c502db396f3",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_ticket_medio_mes_anterior"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_ticket_medio_mes_anterior"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "931ca57ba304ead794be": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "3fbd50c7f847de5234e7",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_ticket_medio_ano_anterior"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_ticket_medio_ano_anterior"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "a46fe397a3b5da36ecf1": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "48de433edd1803b27276": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "295b9e8209075d0564e8": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "5ddf520046c4615b23cb": {
-            "singleVisual": {
-              "visualType": "image",
-              "objects": {}
-            }
-          },
-          "e65baf43577796816779": {
-            "singleVisual": {
-              "visualType": "bookmarkNavigator",
-              "objects": {}
-            }
-          },
-          "17abfc57da1c546b0bbf": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "1c26f63e85a532a5b343": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "4ec8cfd1d88100c7bd25": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "bf533941aa11ed459031": {
-            "singleVisual": {
-              "visualType": "bookmarkNavigator",
-              "objects": {}
-            }
-          },
-          "f7bcb4bfe0465e0b3788": {
-            "singleVisual": {
-              "visualType": "image",
-              "objects": {}
-            }
-          },
-          "2f27a72280a3fb843c8d": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "58dee05ee11b7a1b3060": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "64dc9977c9f9c1b17a74": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "9fef3bb383273e0c7443": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "0000d5589d316c33847f": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "d36daf0859127b5c14b4": {
-            "singleVisual": {
-              "visualType": "bookmarkNavigator",
-              "objects": {}
-            }
-          },
-          "de7de068dc84a9f0dcb5": {
-            "singleVisual": {
-              "visualType": "image",
-              "objects": {}
-            }
-          },
-          "45c288c75d971752485e": {
-            "singleVisual": {
-              "visualType": "bookmarkNavigator",
-              "objects": {}
             }
           },
           "850bbbd2d699d133f730": {
@@ -1806,240 +1605,11 @@
               "objects": {}
             }
           },
-          "d3a3b65717135985e9b2": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {}
-            }
-          },
-          "ee410555d3682ea7c6ab": {
-            "singleVisual": {
-              "visualType": "shape",
-              "objects": {},
-              "display": {
-                "mode": "hidden"
-              }
-            }
-          },
-          "ff57f5a4904de7afba02": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "9704fdbb97c1b76ccc8b": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "10ef0c27010b04b900ad": {
-            "singleVisual": {
-              "visualType": "textbox",
-              "objects": {}
-            }
-          },
-          "2a1d3bcf6178b3818045": {
-            "singleVisual": {
-              "visualType": "image",
-              "objects": {}
-            }
-          },
-          "387d0fc4ee66a2c1889c": {
-            "singleVisual": {
-              "visualType": "image",
-              "objects": {}
-            }
-          },
-          "47ab22b0009e150c4a50": {
+          "8e8b756d28a1ab75a0ec": {
             "filters": {
               "byExpr": [
                 {
-                  "name": "f019d408369257ae7542",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_curva_abc_90_dias"
-                        }
-                      },
-                      "Property": "*qtd_produtos_cobertura_alta"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_curva_abc_90_dias"
-                        }
-                      },
-                      "Property": "*qtd_produtos_cobertura_alta"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "47f4cad31c373090ba5d": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "c795c7421dd12fa003b2",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_curva_abc_90_dias"
-                        }
-                      },
-                      "Property": "*qtd_produtos_estoque_parado"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_curva_abc_90_dias"
-                        }
-                      },
-                      "Property": "*qtd_produtos_estoque_parado"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "50080612cca6c14172be": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "520bc5d2dc319b160056": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "84ba31065020293ba10e": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "1d3faf6bea0e3fd6e899",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_curva_abc_90_dias"
-                        }
-                      },
-                      "Property": "*qtd_produtos_risco_ruptura"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_curva_abc_90_dias"
-                        }
-                      },
-                      "Property": "*qtd_produtos_risco_ruptura"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "d0125f5055308e20e209": {
-            "singleVisual": {
-              "visualType": "actionButton",
-              "objects": {}
-            }
-          },
-          "d9d434769cb070c025ae": {
-            "singleVisual": {
-              "visualType": "image",
-              "objects": {}
-            }
-          },
-          "a91cddde571497115b2e": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "f53504b4f6e63482e20e",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "tabela_cadastro_lojas"
-                        }
-                      },
-                      "Property": "*qtd_cnpjs"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "cardVisual",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "tabela_cadastro_lojas"
-                        }
-                      },
-                      "Property": "*qtd_cnpjs"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "1e62ba5722cc4c8854a5": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "79e9f57f2447dd880852",
+                  "name": "2af358ebb4e2e44ffa41",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -2048,47 +1618,7 @@
                           "Entity": "mv_dados_vendas_compras"
                         }
                       },
-                      "Property": "*%var_%cmv_liquido_ano_anterior"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_%cmv_liquido_ano_anterior"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "25b63a1518205e5c3bdd": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "c80808c6be09558e97de",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%cmv_liquido_mes_atual"
+                      "Property": "*%desconto_venda_mes_atual"
                     }
                   },
                   "howCreated": 0
@@ -2108,167 +1638,7 @@
                           "Entity": "mv_dados_vendas_compras"
                         }
                       },
-                      "Property": "*%cmv_liquido_mes_atual"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "d38457f7652050236006": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "00e8ac529b19dcbccfe4",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_%cmv_liquido_mes_anterior"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_%cmv_liquido_mes_anterior"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "2cf1006fbadc400d49e0": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "0a60a8b953003ae0b0a2",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_venda_liquida_mes_anterior"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_venda_liquida_mes_anterior"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "83df5370b27130bda4c8": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "d4d56bfac6aab09a1b9f",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*venda_liquida_mes_atual_"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "cardVisual",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*venda_liquida_mes_atual_"
-                    }
-                  }
-                }
-              ]
-            }
-          },
-          "ef2edcadac7dd33084b2": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "5ee55bb4ed866330eca0",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_venda_liquida_ano_anterior"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "multiRowCard",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*%var_venda_liquida_ano_anterior"
+                      "Property": "*%desconto_venda_mes_atual"
                     }
                   }
                 }
@@ -2398,7 +1768,7 @@
                   "howCreated": 1
                 },
                 {
-                  "name": "b67f7442dc96f897de4e",
+                  "name": "85c6ddbdb7c0852d50c2",
                   "type": "Advanced",
                   "expression": {
                     "Measure": {
@@ -2448,7 +1818,539 @@
               }
             }
           },
+          "931ca57ba304ead794be": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d4dd8a4cba74aad77b92",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_ticket_medio_ano_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_ticket_medio_ano_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "942b9321689513045946": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "06fe6f95adeeba7b4d07",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "calendario"
+                        }
+                      },
+                      "Property": "ano"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "961bf7ba016d280cee8e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e17696ee0bd5f56e8966",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "reloadtime"
+                            }
+                          },
+                          "Property": "Ultima_Atualizacao"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "9704fdbb97c1b76ccc8b": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "9fef3bb383273e0c7443": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "a46fe397a3b5da36ecf1": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "a91cddde571497115b2e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "28575bf5e0162cdaf8c1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "*qtd_cnpjs"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "tabela_cadastro_lojas"
+                        }
+                      },
+                      "Property": "*qtd_cnpjs"
+                    }
+                  }
+                }
+              ]
+            }
+          },
           "b5bbbe98ecbf31f0083c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "bf533941aa11ed459031": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "c1444d536ba9a014657c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "9e1ab05c22c404ea4170",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_ticket_medio_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_ticket_medio_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "c250b1eb28a6dd561896": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "010b1a4502417aa63701",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*ticket_medio_mes_atual"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*ticket_medio_mes_atual"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "d0125f5055308e20e209": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "d36daf0859127b5c14b4": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "d38457f7652050236006": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "91f183c09fbff86ed942",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_%cmv_liquido_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_%cmv_liquido_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "d3a3b65717135985e9b2": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "d9d434769cb070c025ae": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "de7de068dc84a9f0dcb5": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "e31f9a5b38353a897dc0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5783dd078303266439f9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_qtd_atendimentos_ano_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_qtd_atendimentos_ano_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "e65baf43577796816779": {
+            "singleVisual": {
+              "visualType": "bookmarkNavigator",
+              "objects": {}
+            }
+          },
+          "ee410555d3682ea7c6ab": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "ef2edcadac7dd33084b2": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d576b7c9e0866e71525c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_venda_liquida_ano_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_venda_liquida_ano_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "f7bcb4bfe0465e0b3788": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "fa5fc0a3e300c2556593": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1114a9d8941602c27bcf",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_%desconto_venda_ano_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_%desconto_venda_ano_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "ff57f5a4904de7afba02": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "ffc9506d8dbc0c62390a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3bb7acc9f9441b8bab61",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_%desconto_venda_mes_anterior"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "multiRowCard",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "mv_dados_vendas_compras"
+                        }
+                      },
+                      "Property": "*%var_%desconto_venda_mes_anterior"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "781e3562ae38767a61f3": {
             "singleVisual": {
               "visualType": "actionButton",
               "objects": {}
@@ -2483,6 +2385,9 @@
             "isHidden": false
           },
           "f917b2f744159c2f8686": {
+            "isHidden": true
+          },
+          "e020954636c7bc33d98b": {
             "isHidden": true
           }
         }

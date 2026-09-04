@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "7613f2add511aaf2494d",
+  "position": {
+    "x": 33,
+    "y": 317,
+    "z": 12000,
+    "height": 390.5,
+    "width": 1100.75,
+    "tabOrder": 17000
+  },
+  "visualGroup": {
+    "displayName": "box_indicadores",
+    "groupMode": "ScaleMode"
+  }
+}

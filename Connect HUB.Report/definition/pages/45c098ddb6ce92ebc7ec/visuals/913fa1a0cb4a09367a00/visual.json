@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "913fa1a0cb4a09367a00",
   "position": {
     "x": 0,
     "y": 0,
-    "z": 3500,
+    "z": 5000,
     "height": 285,
     "width": 1045,
     "tabOrder": 4000
@@ -57,8 +57,8 @@
                 }
               },
               "queryRef": "tabela_cadastro_lojas.nome_loja",
-              "nativeQueryRef": "Nome Filial",
-              "displayName": "Nome Filial"
+              "nativeQueryRef": "Nome loja",
+              "displayName": "Nome loja"
             },
             {
               "field": {
@@ -119,6 +119,36 @@
               "queryRef": "mv_vendas_produtos.*qtd_produto_venda",
               "nativeQueryRef": "Vendas Unidades",
               "displayName": "Vendas Unidades"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**Qtd_Cupons_1_Item"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.**Qtd_Cupons_1_Item",
+              "nativeQueryRef": "Qtd Cupons c/1 Item",
+              "displayName": "Qtd Cupons c/1 Item"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**%_Cupons_1_Item"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.**%_Cupons_1_Item",
+              "nativeQueryRef": "%Cupons c/1 Item",
+              "displayName": "%Cupons c/1 Item"
             }
           ]
         }
@@ -176,21 +206,14 @@
             "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'Left'"
+                  "Value": "'Center'"
                 }
               }
-            }
-          },
-          "selector": {
-            "metadata": "tabela_cadastro_lojas.nome_loja"
-          }
-        },
-        {
-          "properties": {
-            "alignment": {
+            },
+            "styleTotal": {
               "expr": {
                 "Literal": {
-                  "Value": "'Center'"
+                  "Value": "true"
                 }
               }
             }
@@ -235,26 +258,59 @@
                   "Value": "'Center'"
                 }
               }
-            }
-          },
-          "selector": {
-            "metadata": "mv_vendas_produtos.*qtd_produto_venda"
-          }
-        }
-      ],
-      "columnWidth": [
-        {
-          "properties": {
-            "value": {
+            },
+            "styleTotal": {
               "expr": {
                 "Literal": {
-                  "Value": "419D"
+                  "Value": "true"
                 }
               }
             }
           },
           "selector": {
-            "metadata": "tabela_cadastro_lojas.nome_loja"
+            "metadata": "mv_vendas_produtos.*qtd_produto_venda"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_vendas_produtos.**Qtd_Cupons_1_Item"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_vendas_produtos.**%_Cupons_1_Item"
           }
         }
       ],

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "13f67970b80444654ad2",
   "position": {
     "x": 0,
@@ -243,20 +243,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "ba392cf725979d839209",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "produto_gcp"
-              }
-            },
-            "Property": "grupo_fcia"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "132ae5ed52422bec1211",
         "field": {
           "Measure": {
@@ -304,20 +290,6 @@
           ]
         },
         "isLockedInViewMode": true
-      },
-      {
-        "name": "14f7c530f93919761de0",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_vendas_produtos"
-              }
-            },
-            "Property": "*%valor_total_descto_venda"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

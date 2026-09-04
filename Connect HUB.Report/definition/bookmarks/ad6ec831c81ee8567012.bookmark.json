@@ -2280,61 +2280,6 @@
               }
             }
           },
-          "9ae11841438d04c4bc81": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "316923f0106521806442",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "geolocalizacao"
-                        }
-                      },
-                      "Property": "Municipio"
-                    }
-                  },
-                  "howCreated": 0
-                },
-                {
-                  "name": "2a1922f87c1cedd6d929",
-                  "type": "Advanced",
-                  "expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*venda_liquida"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "esriVisual",
-              "objects": {},
-              "orderBy": [
-                {
-                  "Direction": 2,
-                  "Expression": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "mv_dados_vendas_compras"
-                        }
-                      },
-                      "Property": "*venda_liquida"
-                    }
-                  }
-                }
-              ]
-            }
-          },
           "13376efba104ec9b13df": {
             "filters": {
               "byExpr": [

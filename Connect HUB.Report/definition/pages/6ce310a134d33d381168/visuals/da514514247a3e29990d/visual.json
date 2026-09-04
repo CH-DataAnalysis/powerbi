@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "da514514247a3e29990d",
   "position": {
     "x": 550,
@@ -38,10 +38,10 @@
                       "Entity": "tabela_cadastro_lojas"
                     }
                   },
-                  "Property": "nom_farmacia"
+                  "Property": "nome_loja"
                 }
               },
-              "queryRef": "tabela_cadastro_lojas.nom_farmacia",
+              "queryRef": "tabela_cadastro_lojas.nome_loja",
               "nativeQueryRef": "Nome loja",
               "displayName": "Nome loja"
             },

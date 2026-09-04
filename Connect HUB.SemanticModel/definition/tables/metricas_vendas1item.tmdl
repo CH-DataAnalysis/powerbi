@@ -1,0 +1,85 @@
+table metricas_vendas1item
+	lineageTag: 3cc723c1-0012-4e32-8497-f7f563e682a0
+
+	measure Cor_%_Cupons_1_Item =
+			
+			VAR Indice =
+			    mv_vendas_produtos[**%_Cupons_1_Item]
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        Indice >= 0.80, "#fc282f",   -- Emergencial
+			        Indice >= 0.50, "#f87171",   -- Crítico
+			        Indice >= 0.20, "#fcba03",   -- Atenção
+			        "#00689F"                    -- Normal
+			    )
+		lineageTag: b36ba2fb-0042-4691-af5a-fc6e3cb59067
+
+	measure Cor_%LucroPerdido =
+			
+			VAR Valor =
+			    [***%LucroPerdido]
+			
+			RETURN
+			    IF(
+			        Valor < 0,
+			        "#C00000",
+			        "#008000"
+			    )
+		lineageTag: 9b52266b-f4bc-4c8c-9763-6d9d50db55b5
+
+	column metricas_vendas1item
+		lineageTag: 7a813761-0c93-4a2a-9920-f9bafd86eb80
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'metricas_vendas1item Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'metricas_vendas1item Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'metricas_vendas1item Campos'
+		isHidden
+		lineageTag: 1fe3a1f4-92a7-4c1a-ac6a-4531928b0146
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'metricas_vendas1item Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'metricas_vendas1item Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 7d564c01-618e-498f-a4be-b50fefa6e2b3
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition metricas_vendas1item = calculated
+		mode: import
+		source = ```
+				{
+				    ("Venda Bruta", NAMEOF('mv_vendas_produtos'[**venda_bruta]), 0),
+				    ("Venda Líquida", NAMEOF('mv_vendas_produtos'[*venda_liquida_h]), 1),
+				    ("Valor do Desconto", NAMEOF('mv_vendas_produtos'[*valor_desconto_venda]), 2),
+				    ("CMV Aquisição", NAMEOF('mv_vendas_produtos'[*valor_custo_aquisicao]), 3),
+				    ("% CMV Líquido", NAMEOF('mv_vendas_produtos'[**%cmv_liquido]), 4), 
+				    ("Venda Líquida 1 item", NAMEOF('mv_vendas_produtos'[**Vlr_Vendas_1_Item_mes_atual]), 5),
+				    ("Ticket médio 1Item", NAMEOF('mv_vendas_produtos'[***Ticket_medio_1_Item]), 6),
+				    ("Qtd. Atendimentos", NAMEOF('mv_vendas_produtos'[*qtd_atendimento_venda]), 7),
+				    ("Qtd. Venda 1 item", NAMEOF('mv_vendas_produtos'[**Qtd_Cupons_1_Item]), 8),
+				    ("% Participação de Vendas", NAMEOF('mv_vendas_produtos'[*%participacao_venda]),9)
+				}
+				```
+
+	annotation PBI_Id = 4517766c2899484c8f2c9b64482af4fd
+

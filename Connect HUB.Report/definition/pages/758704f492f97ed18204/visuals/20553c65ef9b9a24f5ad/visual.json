@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "20553c65ef9b9a24f5ad",
   "position": {
     "x": 0,
     "y": 68.845441054252262,
-    "z": 8000,
+    "z": 7000,
     "height": 62.17224013410069,
     "width": 240,
     "tabOrder": 2000
@@ -32,23 +32,6 @@
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "calendario"
-                  }
-                },
-                "Property": "ano_mes"
-              }
-            },
-            "direction": "Descending"
-          }
-        ]
       }
     },
     "objects": {

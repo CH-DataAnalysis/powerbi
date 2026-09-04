@@ -59,6 +59,33 @@ table geolocalizacao
 
 		annotation SummarizationSetBy = Automatic
 
+	column _localizacao = ```
+			
+			[Municipio] & ", " &
+			[UF_Sigla] & ", Brasil"
+			 
+			```
+		lineageTag: 1df0e819-d223-4d15-a083-226b3fabe214
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pais_Nome
+		dataType: string
+		lineageTag: 49b1a19e-a8d8-4f96-ae10-2b5a7ffa438a
+		summarizeBy: none
+		sourceColumn: Pais_Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Regiao_Nome
+		dataType: string
+		lineageTag: 16e96c06-942a-48da-b9bd-f3ea35acd74f
+		summarizeBy: none
+		sourceColumn: Regiao_Nome
+
+		annotation SummarizationSetBy = Automatic
+
 	partition geolocalizacao = m
 		mode: import
 		source =
@@ -67,11 +94,11 @@ table geolocalizacao
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Pais_Cod", type text}, {"Regiao_Cod", Int64.Type}, {"UF_Cod", Int64.Type}, {"Meso_Cod", Int64.Type}, {"Micro_Cod", Int64.Type}, {"Municipio_Cod", Int64.Type}, {"Municipio", type text}, {"Micro_Regiao", type text}, {"Meso_Regiao", type text}, {"UF_Sigla", type text}, {"UF_Nome", type text}, {"Regiao_Sigla", type text}, {"Regiao_Nome", type text}, {"Pais_Nome", type text}, {"Municipio_Area", type text}, {"Municipio_Ponto", type text}, {"Municipio_Area_Alta_Qualidade", type text}, {"Micro_Regiao_Area", type text}, {"Micro_Regiao_Ponto", type text}, {"Micro_Regiao_Area_Alta_Qualidade", type text}, {"Meso_Regiao_Area", type text}, {"Meso_Regiao_Ponto", type text}, {"Meso_Regiao_Area_Alta_Qualidade", type text}, {"UF_Area", type text}, {"UF_Ponto", type text}, {"UF_Area_Alta_Qualidade", type text}, {"Regiao_Area", type text}, {"Regiao_Ponto", type text}, {"Regiao_Area_Alta_Qualidade", type text}, {"Pais_Area", type text}, {"Pais_Ponto", type text}, {"Pais_Area_Alta_Qualidade", type text}}),
 				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"Municipio_Cod", "cod_municipio_filial"}}),
-				    #"Columns removed by Measure Killer"= Table.SelectColumns(#"Colunas Renomeadas",{"Meso_Cod","cod_municipio_filial","Meso_Regiao","UF_Sigla","Micro_Regiao","UF_Nome","Municipio"})
+				    #"Columns removed by Measure Killer"= Table.SelectColumns(#"Colunas Renomeadas",{"Meso_Cod", "cod_municipio_filial", "Municipio", "Micro_Regiao", "Meso_Regiao", "UF_Sigla", "UF_Nome", "Regiao_Nome", "Pais_Nome"})
 				in
 				    #"Columns removed by Measure Killer"
 
 	annotation PBI_NavigationStepName = Navegação
 
-	annotation PBI_ResultType = Exception
+	annotation PBI_ResultType = Table
 

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "e8ebf3983c84630c0007",
   "position": {
     "x": 1174.2857142857144,
@@ -27,8 +27,8 @@
                 }
               },
               "queryRef": "tabela_cadastro_lojas.nome_loja",
-              "nativeQueryRef": "nome loja",
-              "displayName": "nome loja"
+              "nativeQueryRef": "Nome loja",
+              "displayName": "Nome loja"
             },
             {
               "field": {
@@ -109,20 +109,6 @@
           },
           "selector": {
             "metadata": "vendas_produtos.**venda_liquida"
-          }
-        },
-        {
-          "properties": {
-            "value": {
-              "expr": {
-                "Literal": {
-                  "Value": "376.0539964017506D"
-                }
-              }
-            }
-          },
-          "selector": {
-            "metadata": "tabela_cadastro_lojas.nome_loja"
           }
         }
       ],
@@ -368,20 +354,6 @@
         "howCreated": "User"
       },
       {
-        "name": "94d183ef6713137fc14e",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "tabela_cadastro_lojas"
-              }
-            },
-            "Property": "nome_loja"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "5c1f651754ef497d7815",
         "field": {
           "Measure": {
@@ -429,20 +401,6 @@
           ]
         },
         "isLockedInViewMode": true
-      },
-      {
-        "name": "0bfad2b1bc6c0cc0501b",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_vendas_produtos"
-              }
-            },
-            "Property": "*%margem_lucro_bruta"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

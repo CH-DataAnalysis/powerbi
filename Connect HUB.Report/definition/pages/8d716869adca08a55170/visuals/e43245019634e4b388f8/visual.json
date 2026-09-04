@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "e43245019634e4b388f8",
   "position": {
     "x": -0.941176470588232,
@@ -12,5 +12,6 @@
   "visualGroup": {
     "displayName": "fechar_compras",
     "groupMode": "ScaleMode"
-  }
+  },
+  "isHidden": true
 }

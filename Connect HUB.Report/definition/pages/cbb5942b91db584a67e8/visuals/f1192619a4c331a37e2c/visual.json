@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "f1192619a4c331a37e2c",
   "position": {
     "x": 32.857142857142861,
@@ -64,7 +64,7 @@
                 "Property": "ano_mes"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -243,34 +243,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "1a03372fb37281af0daf",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "calendario"
-              }
-            },
-            "Property": "ano_mes"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "a78577676bcdb194992c",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_vendas_produtos"
-              }
-            },
-            "Property": "*%margem_lucro_bruta"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

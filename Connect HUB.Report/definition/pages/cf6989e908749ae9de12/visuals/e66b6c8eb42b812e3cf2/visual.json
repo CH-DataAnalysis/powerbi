@@ -1,8 +1,8 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "e66b6c8eb42b812e3cf2",
   "position": {
-    "x": 2.9217833267748174,
+    "x": 3.4143941642129958,
     "y": 285.34310593985839,
     "z": 2000,
     "height": 64.39191623088675,
@@ -27,9 +27,8 @@
                 }
               },
               "queryRef": "tabela_cadastro_lojas.nome_loja",
-              "nativeQueryRef": "Nome loja",
-              "active": true,
-              "displayName": "Nome loja"
+              "nativeQueryRef": "nome_loja",
+              "active": true
             }
           ]
         }

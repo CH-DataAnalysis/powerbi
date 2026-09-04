@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "0f0800ed75d59de3940d",
   "position": {
     "x": 141.14345738295356,
@@ -13,5 +13,6 @@
     "displayName": "compras",
     "groupMode": "ScaleMode"
   },
-  "parentGroupName": "8f85aad1599c091c04ad"
+  "parentGroupName": "8f85aad1599c091c04ad",
+  "isHidden": true
 }

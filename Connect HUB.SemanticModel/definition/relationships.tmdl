@@ -343,8 +343,8 @@ relationship 3dd08c32-cff8-c9b1-cf89-2f6903b6aba7
 	fromColumn: mv_compras_produtos.num_cnpj_fornecedor_tratado
 	toColumn: cadastro_fornecedor.cnpj_fornecedor
 
-relationship 07d27b39-6e8a-6784-d093-91ccb5683d83
+relationship c88a8ef6-8cf9-60a4-d41a-0edcc5499f03
 	toCardinality: many
-	fromColumn: tabela_cadastro_lojas.codigo_rede
+	fromColumn: tabela_cadastro_lojas.cod_matrizpac
 	toColumn: portal_authorization.tagvalue
 

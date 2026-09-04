@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "32bec9d0966ad8e60030",
   "position": {
     "x": 2.0788177339902632,
@@ -27,7 +27,7 @@
                 }
               },
               "queryRef": "tabela_cadastro_lojas.nome_loja",
-              "nativeQueryRef": "Nome loja",
+              "nativeQueryRef": "Nome loja1",
               "active": true,
               "displayName": "Nome loja"
             }

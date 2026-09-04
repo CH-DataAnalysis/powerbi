@@ -62,7 +62,7 @@
         }
       },
       {
-        "name": "780c0fe875db6b0eb0ae",
+        "name": "b3a59cbb3bca28e6aec8",
         "displayName": "Data",
         "ordinal": 2,
         "field": {
@@ -72,16 +72,33 @@
                 "Entity": "calendario"
               }
             },
-            "Property": "Date"
+            "Property": "data_exibicao"
           }
         },
-        "type": "RelativeDate",
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "cbcd729f5f64e1c867b1",
+        "displayName": "Nome loja",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "tabela_cadastro_lojas"
+              }
+            },
+            "Property": "nome_loja"
+          }
+        },
+        "type": "Categorical",
         "howCreated": "User"
       },
       {
         "name": "298b57054d00649adc0a",
         "displayName": "CNPJ",
-        "ordinal": 3,
+        "ordinal": 4,
         "field": {
           "Column": {
             "Expression": {
@@ -101,23 +118,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "1d023ead47b70560d037",
-        "displayName": "Nome loja",
-        "ordinal": 4,
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "tabela_cadastro_lojas"
-              }
-            },
-            "Property": "nom_farmacia"
-          }
-        },
-        "type": "Categorical",
-        "howCreated": "User"
       },
       {
         "name": "4b2b68765b06689782e1",
@@ -188,9 +188,26 @@
         "howCreated": "User"
       },
       {
+        "name": "ee2a61d696ad4ff9063b",
+        "displayName": "Fornecedor Padrão",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "cadastro_fornecedor"
+              }
+            },
+            "Property": "nome_comercial"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
         "name": "529e4f8079be188400de",
         "displayName": "Laboratório",
-        "ordinal": 9,
+        "ordinal": 10,
         "field": {
           "Column": {
             "Expression": {
@@ -207,7 +224,7 @@
       {
         "name": "47b419050ba799b1973b",
         "displayName": "Área da farmácia",
-        "ordinal": 10,
+        "ordinal": 11,
         "field": {
           "Column": {
             "Expression": {
@@ -224,7 +241,7 @@
       {
         "name": "6882af251632fb2b6547",
         "displayName": "Categoria",
-        "ordinal": 11,
+        "ordinal": 12,
         "field": {
           "Column": {
             "Expression": {
@@ -241,7 +258,7 @@
       {
         "name": "6d81c7b0610cac72e812",
         "displayName": "Vendedor",
-        "ordinal": 12,
+        "ordinal": 13,
         "field": {
           "Column": {
             "Expression": {
@@ -258,7 +275,7 @@
       {
         "name": "b874a6e5a25e6827a45b",
         "displayName": "Estado",
-        "ordinal": 13,
+        "ordinal": 14,
         "field": {
           "Column": {
             "Expression": {
@@ -275,7 +292,7 @@
       {
         "name": "ad9eab3287858b4c0149",
         "displayName": "Mesorregião",
-        "ordinal": 14,
+        "ordinal": 15,
         "field": {
           "Column": {
             "Expression": {
@@ -292,7 +309,7 @@
       {
         "name": "ae104a6119f4ef3bc9bf",
         "displayName": "Microrregião",
-        "ordinal": 15,
+        "ordinal": 16,
         "field": {
           "Column": {
             "Expression": {
@@ -309,7 +326,7 @@
       {
         "name": "4d2b63611df363abf034",
         "displayName": "Município",
-        "ordinal": 16,
+        "ordinal": 17,
         "field": {
           "Column": {
             "Expression": {
@@ -339,9 +356,9 @@
         }
       },
       {
-        "name": "47c7012b2c383fd0b557",
-        "displayName": "Associação",
-        "ordinal": 17,
+        "name": "884a41ff72cbd2dfa73f",
+        "displayName": "Nome Associação",
+        "ordinal": 18,
         "field": {
           "Column": {
             "Expression": {
@@ -349,23 +366,16 @@
                 "Entity": "tabela_cadastro_lojas"
               }
             },
-            "Property": "codigo_rede"
+            "Property": "nome_rede"
           }
         },
         "type": "Categorical",
-        "howCreated": "User",
-        "objects": {
-          "general": [
-            {
-              "properties": {}
-            }
-          ]
-        }
+        "howCreated": "User"
       },
       {
         "name": "1309c49bc6512443589b",
         "displayName": "Sistema",
-        "ordinal": 18,
+        "ordinal": 19,
         "field": {
           "Column": {
             "Expression": {
@@ -403,6 +413,13 @@
             "expr": {
               "Literal": {
                 "Value": "false"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
               }
             }
           }
@@ -456,6 +473,16 @@
           "type": "Image"
         },
         {
+          "name": "An_lise_das_compras053430363272975234.svg",
+          "path": "An_lise_das_compras053430363272975234.svg",
+          "type": "Image"
+        },
+        {
+          "name": "An_lise_das_vendas7458378883126751.svg",
+          "path": "An_lise_das_vendas7458378883126751.svg",
+          "type": "Image"
+        },
+        {
           "name": "An_lise_de_cresc._vendas36213483041910943.svg",
           "path": "An_lise_de_cresc._vendas36213483041910943.svg",
           "type": "Image"
@@ -463,16 +490,6 @@
         {
           "name": "An_lise_de_ruptura9007459109866455.svg",
           "path": "An_lise_de_ruptura9007459109866455.svg",
-          "type": "Image"
-        },
-        {
-          "name": "An_lise_mercado6037210579377706.svg",
-          "path": "An_lise_mercado6037210579377706.svg",
-          "type": "Image"
-        },
-        {
-          "name": "Bem_vindo_An_lise_mercado027040940008968062.svg",
-          "path": "Bem_vindo_An_lise_mercado027040940008968062.svg",
           "type": "Image"
         },
         {
@@ -488,11 +505,6 @@
         {
           "name": "close_(1)4547862754491706.png",
           "path": "close_(1)4547862754491706.png",
-          "type": "Image"
-        },
-        {
-          "name": "connect_hub6014459131103548.png",
-          "path": "connect_hub6014459131103548.png",
           "type": "Image"
         },
         {
@@ -546,11 +558,6 @@
           "type": "Image"
         },
         {
-          "name": "exclamacao10611828822507485.png",
-          "path": "exclamacao10611828822507485.png",
-          "type": "Image"
-        },
-        {
           "name": "farmacia8026423391025722.png",
           "path": "farmacia8026423391025722.png",
           "type": "Image"
@@ -568,36 +575,6 @@
         {
           "name": "higiene_beleza_perfumaria08449550965063879.png",
           "path": "higiene_beleza_perfumaria08449550965063879.png",
-          "type": "Image"
-        },
-        {
-          "name": "icon_barra39324487081741566.png",
-          "path": "icon_barra39324487081741566.png",
-          "type": "Image"
-        },
-        {
-          "name": "icon_caixa5754709663721372.png",
-          "path": "icon_caixa5754709663721372.png",
-          "type": "Image"
-        },
-        {
-          "name": "icon_calendar5368404349254385.png",
-          "path": "icon_calendar5368404349254385.png",
-          "type": "Image"
-        },
-        {
-          "name": "icon_database2415212250014287.png",
-          "path": "icon_database2415212250014287.png",
-          "type": "Image"
-        },
-        {
-          "name": "icon_mapa2972120701299924.png",
-          "path": "icon_mapa2972120701299924.png",
-          "type": "Image"
-        },
-        {
-          "name": "icon_seta_crescimento21344350444714388.png",
-          "path": "icon_seta_crescimento21344350444714388.png",
           "type": "Image"
         },
         {
@@ -651,23 +628,8 @@
           "type": "Image"
         },
         {
-          "name": "Prospec__o7824396598030193.svg",
-          "path": "Prospec__o7824396598030193.svg",
-          "type": "Image"
-        },
-        {
           "name": "saude_sexual_masculina3515437979265914.png",
           "path": "saude_sexual_masculina3515437979265914.png",
-          "type": "Image"
-        },
-        {
-          "name": "seta_crescimento7175541059029232.png",
-          "path": "seta_crescimento7175541059029232.png",
-          "type": "Image"
-        },
-        {
-          "name": "seta_decrescente865721567528652.png",
-          "path": "seta_decrescente865721567528652.png",
           "type": "Image"
         },
         {

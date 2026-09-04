@@ -321,10 +321,7 @@ table mv_produtos_com_estoque_sem_vendas_mais_de_90_dias
 				let
 				    NomeTabela = "mv_produtos_com_estoque_sem_vendas_mais_de_90_dias_" & Text.From(cliente),
 				
-				    Fonte = AmazonRedshift.Database(
-				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
-				        "business_connect"
-				    ),
+				    Fonte = AmazonRedshift.Database("bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439","business_connect"),
 				
 				    associacao = Fonte{[Name="associacao"]}[Data],
 				

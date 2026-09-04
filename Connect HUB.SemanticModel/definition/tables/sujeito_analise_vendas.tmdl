@@ -1,0 +1,64 @@
+table sujeito_analise_vendas
+	lineageTag: af02ca2d-e23b-43a2-ba8e-3e80ed483896
+
+	column sujeito_analise_vendas
+		lineageTag: 6830f3c3-bdfc-41db-8e75-21a6f30774c2
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'sujeito_analise_vendas Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'sujeito_analise_vendas Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'sujeito_analise_vendas Campos'
+		isHidden
+		lineageTag: 60371713-d2a5-4e87-bbbc-e698099dba64
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'sujeito_analise_vendas Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'sujeito_analise_vendas Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 7085786e-7355-4583-bc21-38f6a5b9b167
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sujeito_analise_vendas = calculated
+		mode: import
+		source =
+				{
+				    ("Associação", NAMEOF('tabela_cadastro_lojas'[nome_rede]), 0),
+				    ("Nome loja", NAMEOF('tabela_cadastro_lojas'[nome_loja]), 1),
+				    ("Laboratório Padrão", NAMEOF('produto_gcp'[laboratorio]), 2),
+				    ("Laboratório Farmácia", NAMEOF('mv_vendas_produtos'[nom_laborat]), 3),
+				    ("Nome Vendedor", NAMEOF('mv_vendas_produtos'[cod_nom_vendedor]), 4),
+				    ("Área da Farmácia", NAMEOF('produto_gcp'[area_farmacia]), 5),
+				    ("Visão Comercial", NAMEOF('produto_gcp'[grupo_fcia]), 6),
+				    ("Grupo de Produtos Padrão", NAMEOF('produto_gcp'[nome_subgrupo]), 7),
+				    ("Categoria", NAMEOF('produto_gcp'[nome_categoria]), 8),
+				    ("Produto Padrão", NAMEOF('produto_gcp'[produto_cod_barras]), 9),
+				    ("Produto Farmácia", NAMEOF('mv_vendas_produtos'[produto_cod_barras_farmacia]), 10),
+				    ("Classe Terapêutica", NAMEOF('produto_gcp'[classe_terapeutica]), 11),
+				    ("Princípio Ativo", NAMEOF('produto_gcp'[principio_ativo]), 12),
+				    ("Número da Nota", NAMEOF('mv_vendas_produtos'[num_nota]), 13),
+				    ("Município", NAMEOF('geolocalizacao'[Municipio]), 14),
+				    ("Microrregião", NAMEOF('geolocalizacao'[Micro_Regiao]), 15),
+				    ("Mesorregião", NAMEOF('geolocalizacao'[Meso_Regiao]), 16),
+				    ("Modalidade de Venda", NAMEOF('mv_vendas_produtos'[venda_delivery]), 16)
+				}
+
+	annotation PBI_Id = 833e417e303948e09bb1c58171d11d72
+

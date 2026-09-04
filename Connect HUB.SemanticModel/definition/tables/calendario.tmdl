@@ -25,6 +25,7 @@ table calendario
 		summarizeBy: sum
 		isNameInferred
 		sourceColumn: [Ano]
+		sortByColumn: ano_ordem_desc
 
 		annotation SummarizationSetBy = Automatic
 
@@ -118,6 +119,7 @@ table calendario
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [ano_mes]
+		sortByColumn: anomes_ordem_desc
 
 		annotation SummarizationSetBy = Automatic
 
@@ -160,6 +162,45 @@ table calendario
 		summarizeBy: none
 		isNameInferred
 		sourceColumn: [nome_dia_semana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column anomes_ordem_desc =
+			
+			-(
+			    YEAR('calendario'[Date]) * 100 +
+			    MONTH('calendario'[Date])
+			)
+		formatString: 0
+		lineageTag: 48e41b2f-99e9-47d1-9211-8ad9d6f36397
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ano_ordem_desc =
+			
+			-YEAR('calendario'[Date])
+		formatString: 0
+		lineageTag: cd0fe218-f496-4733-b0c0-ca062dd4b90e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_ordem_desc =
+			
+			-INT('calendario'[Date])
+		formatString: 0
+		lineageTag: 361717c4-2a1a-453e-9fe4-3090129a83d0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_exibicao =
+			
+			FORMAT('calendario'[Date], "dd/MM/yyyy")
+		lineageTag: d09ca0db-b6b8-441c-89f6-20cd4bb09c86
+		summarizeBy: none
+		sortByColumn: data_ordem_desc
 
 		annotation SummarizationSetBy = Automatic
 

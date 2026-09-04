@@ -222,6 +222,25 @@ table mv_performance_vendedores
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: 42db7223-ab91-442a-8cdc-e8c777fed214
 
+	measure _%qtd_venda_1_item =
+			
+			DIVIDE(
+			    COALESCE([_qtd_cupon_1_item], 0),
+			    [_qtd_atendimento],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d5178eec-3e65-4509-bc05-c16cef722e69
+
+	measure _qtd_cupon_1_item =
+			
+			CALCULATE(
+			    SUM(mv_performance_vendedores[qtd_cupons_um_item]),
+			    USERELATIONSHIP(calendario[Date],mv_performance_vendedores[mes])
+			)
+		formatString: 0
+		lineageTag: 26aec778-8186-4296-b4d5-0f86dc6068b6
+
 	column cod_associacao
 		dataType: int64
 		formatString: 0
@@ -451,10 +470,7 @@ table mv_performance_vendedores
 				let
 				    NomeTabela = "mv_performance_vendedores_bi_estrategico_" & Text.From(cliente),
 				
-				    Fonte = AmazonRedshift.Database(
-				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
-				        "business_connect"
-				    ),
+				    Fonte = AmazonRedshift.Database("bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439","business_connect"),
 				
 				    associacao = Fonte{[Name="associacao"]}[Data],
 				

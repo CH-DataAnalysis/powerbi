@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "aa293d8a00a18a055db0",
   "position": {
     "x": 0,
@@ -369,20 +369,6 @@
         "howCreated": "User"
       },
       {
-        "name": "4562b3aaa1036672978a",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "produto_gcp"
-              }
-            },
-            "Property": "grupo_fcia"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "e2389cce88a78f75aa8b",
         "field": {
           "Measure": {
@@ -430,20 +416,6 @@
           ]
         },
         "isLockedInViewMode": true
-      },
-      {
-        "name": "4797539128b3a3160496",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_vendas_produtos"
-              }
-            },
-            "Property": "*%margem_lucro_bruta"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

@@ -1,0 +1,61 @@
+table sujeito_analise_compra
+	lineageTag: a56e2a12-fdd1-4f83-87cb-82104e08a8b2
+
+	column sujeito_analise_compra
+		lineageTag: f1fb342a-aef2-48ce-aa9c-d22a8ac70a8f
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'sujeito_analise_compra Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'sujeito_analise_compra Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'sujeito_analise_compra Campos'
+		isHidden
+		lineageTag: c830ee10-8fa2-4dce-9482-17c8bac9ad97
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'sujeito_analise_compra Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'sujeito_analise_compra Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 74fff9c2-8276-4be9-a095-582d19361d68
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition sujeito_analise_compra = calculated
+		mode: import
+		source =
+				{
+				    ("Associação", NAMEOF('tabela_cadastro_lojas'[nome_rede]), 0),
+				    ("Nome Loja", NAMEOF('tabela_cadastro_lojas'[nome_loja]), 1),
+				    ("Laboratório Padrão", NAMEOF('produto_gcp'[laboratorio]), 2),
+				    ("Laboratório Farmácia", NAMEOF('mv_compras_produtos'[nom_laborat]), 3),
+				    ("Fornecedor Padrão", NAMEOF('cadastro_fornecedor'[nome_comercial]), 4),
+				    ("Fornecedor Farmácia", NAMEOF('mv_compras_produtos'[nom_fornec]), 5),
+				    ("Área da Farmácia", NAMEOF('produto_gcp'[area_farmacia]), 6),
+				    ("Visão Comercial", NAMEOF('produto_gcp'[grupo_fcia]), 7),
+				    ("Grupo de Produtos Padrão", NAMEOF('produto_gcp'[nome_subgrupo]), 8),
+				    ("Categoria", NAMEOF('produto_gcp'[nome_categoria]), 9),
+				    ("Produto Padrão", NAMEOF('produto_gcp'[produto_cod_barras]), 10),
+				    ("Produto Farmácia", NAMEOF('mv_compras_produtos'[produto_cod_barras_farmacia]), 11),
+				    ("Classe Terapêutica", NAMEOF('produto_gcp'[classe_terapeutica]), 12),
+				    ("Princípio Ativo", NAMEOF('produto_gcp'[principio_ativo]), 13),
+				    ("Número da Nota", NAMEOF('mv_compras_produtos'[num_nota]), 14)
+				}
+
+	annotation PBI_Id = 978403e9c0b442cb9f0195f18db54c4d
+

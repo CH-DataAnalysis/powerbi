@@ -1,8 +1,8 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "ecd125d566326f40ac44",
   "position": {
-    "x": 2.9217833267748174,
+    "x": 3.4143941642129958,
     "y": 428.73540577516945,
     "z": 8000,
     "height": 60,

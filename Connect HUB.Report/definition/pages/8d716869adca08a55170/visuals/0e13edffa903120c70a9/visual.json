@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "0e13edffa903120c70a9",
   "position": {
     "x": 0,
@@ -242,20 +242,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "a6da8c7b5fd84dd0391d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "produto_gcp"
-              }
-            },
-            "Property": "laboratorio"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "29a4f23cc3b53c29e1e7",
         "field": {
           "Measure": {
@@ -302,20 +288,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "e2afd6c069363ea321b6",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_vendas_produtos"
-              }
-            },
-            "Property": "*%valor_total_descto_venda"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

@@ -1,0 +1,50 @@
+table metricas_compras
+	lineageTag: a6f198a0-be27-4126-9fa4-0d87018bda94
+
+	column metricas_compras
+		lineageTag: 723e24b8-74c7-4502-a5c4-879fc6918fae
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'metricas_compras Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'metricas_compras Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'metricas_compras Campos'
+		isHidden
+		lineageTag: 361d0d72-51ed-4889-8ca8-3fdba53d242d
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'metricas_compras Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'metricas_compras Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 27bb71e7-6691-4245-a734-900296ef75f6
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition metricas_compras = calculated
+		mode: import
+		source =
+				{
+				    ("Valor Total da NFe", NAMEOF('mv_compras_produtos'[*valor_total_nfe]), 0),
+				    ("Valor Total dos Descontos", NAMEOF('mv_compras_produtos'[*valor_total_descto]), 1),
+				    ("Qtd. Comprada", NAMEOF('mv_compras_produtos'[*qtd_produto_compra]), 2),
+				    ("% Participação Compra", NAMEOF('mv_compras_produtos'[*%participacao_compra]), 3)
+				}
+
+	annotation PBI_Id = 06742c30ad1f4d2e9c60484dec2e9101
+

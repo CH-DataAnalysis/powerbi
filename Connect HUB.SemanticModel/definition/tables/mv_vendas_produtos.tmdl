@@ -10,7 +10,7 @@ table mv_vendas_produtos
 		pollingExpression = let Maxdat_atualiza = List.Max(mv_vendas_produtos[dat_atualiza]), accountForNull = if Maxdat_atualiza = null then #datetime(1901, 01, 01, 00, 00, 00) else Maxdat_atualiza in accountForNull
 		sourceExpression =
 			let
-			    NomeTabela = "mv_vendas_produtos_" & Text.From(cliente),
+			    NomeTabela = "mv_vendas_produtos_asfar_teste", // & Text.From(cliente),
 			
 			    Fonte = AmazonRedshift.Database(
 			        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
@@ -87,15 +87,12 @@ table mv_vendas_produtos
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
 	measure *%margem_lucro_bruta =
-			
-			COALESCE(
 			CALCULATE(
 			((SUM(mv_vendas_produtos[vlr_total_venda]) - sum(mv_vendas_produtos[vlr_custo_aquisicao])) / SUM(mv_vendas_produtos[vlr_total_venda])),
 			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
 			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
 			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
-			),
-			0)
+			)
 		formatString: 0.00%;-0.00%;0.00%
 		lineageTag: d43aa507-1e2f-4a5b-a3f3-91d50210a691
 
@@ -206,8 +203,7 @@ table mv_vendas_produtos
 			CALCULATE(
 			SUM(mv_vendas_produtos[vlr_custo_aquisicao]),
 			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
-			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao]),
-			    USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
 			)
 		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		lineageTag: 4b4748a6-075a-414f-a3e2-d8e839d7f3f5
@@ -346,9 +342,10 @@ table mv_vendas_produtos
 			)
 			
 			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
 		lineageTag: 8d9f3ca0-66c5-47c7-a4f5-311b08d77140
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
 	measure **venda_bruta =
 			CALCULATE(
@@ -361,6 +358,1204 @@ table mv_vendas_produtos
 		lineageTag: e12451a5-62cb-4946-a7cd-2fd063d90e8f
 
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure **Qtd_Cupons_1_Item =
+			
+			VAR CuponsVenda =
+			    CALCULATE(
+			        COUNTROWS(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            )
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR CuponsDevolucao =
+			    CALCULATE(
+			        COUNTROWS(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            )
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    CuponsVenda - CuponsDevolucao
+		formatString: #,0
+		lineageTag: 1ed53b1a-3d0d-44fa-9e20-f77af599019a
+
+	measure **%_Cupons_1_Item =
+			
+			DIVIDE(
+			    [**Qtd_Cupons_1_Item],
+			    [**Qtd_Cupons],
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 1f267deb-8ce4-4b6f-ac17-fa5bd95fdd09
+
+	measure **Qtd_Cupons =
+			
+			VAR CuponsVenda =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR CuponsDevolucao =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    CuponsVenda - CuponsDevolucao
+		formatString: 0
+		lineageTag: 884fde5e-de76-4def-986b-5fa6593d687c
+
+	measure *sku_venda =
+			CALCULATE(
+			    DISTINCTCOUNT(mv_vendas_produtos[cod_barra]),
+			    USERELATIONSHIP(produto_gcp[cod_barra],mv_vendas_produtos[cod_barra_tratado]),
+			    USERELATIONSHIP(calendario[Date],mv_vendas_produtos[dat_emissao])
+			)
+		formatString: #,0
+		lineageTag: e9dbb522-1d2e-491c-b5eb-6a24cb6fa476
+
+	measure *%participacao_venda = ```
+			
+			VAR _total =
+			    CALCULATE(
+			        [*venda_liquida_h],
+			
+			        ALLSELECTED(tabela_cadastro_lojas[nome_rede]),
+			        ALLSELECTED(tabela_cadastro_lojas[nome_loja]),
+			
+			        ALLSELECTED(produto_gcp[laboratorio]),
+			        ALLSELECTED(mv_vendas_produtos[nom_laborat]),
+			
+			        ALLSELECTED(produto_gcp[area_farmacia]),
+			        ALLSELECTED(produto_gcp[grupo_fcia]),
+			        
+			        ALLSELECTED(produto_gcp[nome_subgrupo]),
+			        ALLSELECTED(produto_gcp[nome_categoria]),
+			
+			        ALLSELECTED(produto_gcp[produto_cod_barras]),
+			        ALLSELECTED(mv_vendas_produtos[produto_cod_barras_farmacia]),
+			
+			        ALLSELECTED(produto_gcp[classe_terapeutica]),
+			        ALLSELECTED(produto_gcp[principio_ativo]),
+			
+			        ALLSELECTED(mv_vendas_produtos[num_nota]),
+			
+			        ALLSELECTED(mv_vendas_produtos[venda_delivery]),
+			        ALLSELECTED(mv_vendas_produtos[cod_nom_vendedor]),
+			
+			        ALLSELECTED(geolocalizacao[Municipio]),
+			        ALLSELECTED(geolocalizacao[Micro_Regiao]),
+			        ALLSELECTED(geolocalizacao[Meso_Regiao])
+			    )
+			
+			RETURN
+			    DIVIDE(
+			        [*venda_liquida_h],
+			        _total
+			    )
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: dc1307d8-7f36-4b74-b30e-250ca6567ec2
+
+	measure *maior_preco_venda =
+			
+			
+			MAXX(
+			    CALCULATETABLE(
+			        mv_vendas_produtos,
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    ),
+			
+			    DIVIDE(
+			        mv_vendas_produtos[vlr_total_venda],
+			        mv_vendas_produtos[qtd_produto_venda]
+			    )
+			)
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: a33df1ec-fbc1-4471-921e-043fed97be14
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure '***Gap_de_Ticket (R$)' = ```
+			[***Ticket_medio_mais1] - [***Ticket_medio_1_Item]
+			
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: af82d90e-e9b8-4449-a6b2-f4473738fdd7
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure ***Ticket_medio_1_Item = ```
+			DIVIDE ( [**Vlr_Vendas_1_Item], [**Qtd_Cupons_1_Item] )
+			
+			```
+		lineageTag: d98f4b1b-0ec9-4ab7-bc9d-3faf74b0bf19
+
+	measure **%_Cupon_1_Item_Mes_anterior =
+			
+			CALCULATE ( [**%_Cupons_1_Item], DATEADD ( calendario[Date], -1, MONTH ) )
+		lineageTag: 827a788f-11ac-40a7-8d39-4f483edd621a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **%_fisico_online =
+			
+			DIVIDE(
+			    [**Qtd_Cupon_ecommerce_mes_atual],
+			    [**Qtd_Cupon_balcao_mes_atual],
+			    0
+			)
+		formatString: 0.0000
+		lineageTag: 2181c0a6-5cb5-4a5f-986d-664ebf4e64fc
+
+	measure **qtd_cupons_1_item_mes_atual = ```
+			
+			
+			VAR CuponsVenda =
+			    CALCULATE(
+			        COUNTROWS(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            )
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR CuponsDevolucao =
+			    CALCULATE(
+			        COUNTROWS(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            )
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			        
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    CuponsVenda - CuponsDevolucao
+			```
+		formatString: #,0
+		lineageTag: 4a03246c-8d9d-4b17-961a-53e194b1b558
+
+	measure **Qtd_Cupons_mes_atual = ```
+			
+			VAR CuponsVenda =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),        
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR CuponsDevolucao =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    CuponsVenda - CuponsDevolucao
+			```
+		formatString: #,0
+		lineageTag: ae8aa180-9b0b-455e-9f2a-b0d27884c048
+
+	measure **Vlr_Vendas_1_Item =
+			
+			
+			VAR Vendas_1_Item =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR Devolucoes_1_Item =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    Vendas_1_Item - Devolucoes_1_Item
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 5a16089a-93f7-41d8-a11b-efac0bdeb847
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure **Vlr_Vendas_1_Item_mes_atual =
+			
+			
+			VAR Vendas_1_Item =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR Devolucoes_1_Item =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    Vendas_1_Item - Devolucoes_1_Item
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: f86a88e8-d9a9-4a72-9c3b-92082d3309f6
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure **Vlr_Vendas_ecommerce_atual =
+			
+			
+			VAR Vendas_ecommerce =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        mv_vendas_produtos[flg_ecommerce] = "S",
+			
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR Devolucoes_Vendas_ecommerce =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        mv_vendas_produtos[flg_ecommerce] = "S",
+			
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    Vendas_ecommerce - Devolucoes_Vendas_ecommerce
+		lineageTag: 74d25959-3e98-4699-ad2e-20c7f93068f1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **Vlr_Vendas_ecommerce_atual_voa = ```
+			
+			
+			VAR Vendas_ecommerce =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 2
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			       
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR Devolucoes_Vendas_ecommerce =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 2
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			       
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    Vendas_ecommerce - Devolucoes_Vendas_ecommerce
+			```
+		lineageTag: 848271c2-b897-463b-b8a0-d4fa6c82d57d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **Vlr_Vendas_s/ecommerce_atual =
+			
+			
+			VAR Vendas_ecommerce =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        mv_vendas_produtos[flg_ecommerce] <> "S",
+			
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR Devolucoes_Vendas_ecommerce =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] = 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        mv_vendas_produtos[flg_ecommerce] <> "S",
+			
+			        FILTER(
+			            ALL(calendario),
+			            calendario[ano_mes] = MAX(calendario[ano_mes])
+			        ),
+			
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    Vendas_ecommerce - Devolucoes_Vendas_ecommerce
+		lineageTag: 99a8e712-c431-48ff-8a00-1d7dbc041ec6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **Qtd_Cupons_+1 =
+			
+			VAR CuponsVenda =
+			    CALCULATE(
+			        COUNTROWS(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        )
+			                ),
+			                [QtdTotal] > 1
+			            )
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR CuponsDevolucao =
+			    CALCULATE(
+			        COUNTROWS(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        )
+			                ),
+			                [QtdTotal] > 1
+			            )
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    CuponsVenda - CuponsDevolucao
+		formatString: #,0
+		lineageTag: 3d498445-4f6c-4ebc-b25a-0ea0ea04aae9
+
+	measure **Qtd_Cupon_balcao_mes_atual =
+			
+			VAR CuponsVenda =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        mv_vendas_produtos[flg_ecommerce] <> "S",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR CuponsDevolucao =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        mv_vendas_produtos[flg_ecommerce] <> "S",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    CuponsVenda - CuponsDevolucao
+		formatString: 0
+		lineageTag: c5021807-0f9a-4d5b-a568-b08595834847
+
+	measure **Qtd_Cupon_ecommerce_mes_atual =
+			
+			VAR CuponsVenda =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        mv_vendas_produtos[flg_ecommerce] = "S",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR CuponsDevolucao =
+			    CALCULATE(
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento]),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        mv_vendas_produtos[flg_ecommerce] = "S",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    CuponsVenda - CuponsDevolucao
+		formatString: 0
+		lineageTag: 64915748-e0c2-4ded-9c1a-37c90ee759b5
+
+	measure *ticket_medio_1_item_atual_h =
+			
+			VAR TotalVendas =
+			    CALCULATE(
+			        [**Vlr_Vendas_1_Item_mes_atual],
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			    )
+			VAR TotalAtendimentos =
+			    CALCULATE(
+			        [**qtd_cupons_1_item_mes_atual],
+			        USERELATIONSHIP(calendario[Date], mv_vendas_produtos[dat_emissao]),
+			        USERELATIONSHIP(produto_gcp[cod_barra], mv_vendas_produtos[cod_barra_tratado]),
+			        USERELATIONSHIP(mv_dados_clientes[cod_cliente],mv_vendas_produtos[cod_cliente])
+			    )
+			RETURN
+			DIVIDE(TotalVendas, TotalAtendimentos, 0)
+		lineageTag: e9c6d436-cdf5-46b2-bc8a-8843bcdedbfc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure *media_itens_mes_atual =
+			
+			
+			CALCULATE(
+			    DIVIDE(
+			        SUM(mv_vendas_produtos[qtd_produto_venda]),
+			        DISTINCTCOUNT(mv_vendas_produtos[id_atendimento])
+			    ),
+			
+			    FILTER(
+			        ALL(calendario),
+			        calendario[ano_mes] = MAX(calendario[ano_mes])
+			    ),
+			
+			    USERELATIONSHIP(
+			        produto_gcp[cod_barra],
+			        mv_vendas_produtos[cod_barra_tratado]
+			    ),
+			
+			    USERELATIONSHIP(
+			        calendario[Date],
+			        mv_vendas_produtos[dat_emissao]
+			    ),
+			
+			    USERELATIONSHIP(
+			        mv_dados_clientes[cod_cliente],
+			        mv_vendas_produtos[cod_cliente]
+			    )
+			)
+		lineageTag: 64cc95fe-3402-474d-927b-f414f4e21db5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **Vlr_Vendas_mais1 =
+			
+			
+			VAR Vendas_mais1 =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] > 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "V",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			VAR Devolucoes_mais1 =
+			    CALCULATE(
+			        SUMX(
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES(mv_vendas_produtos[num_nota]),
+			                    "QtdTotal",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[qtd_produto_venda])
+			                        ),
+			                    "ValorVenda",
+			                        CALCULATE(
+			                            SUM(mv_vendas_produtos[vlr_total_venda])
+			                        )
+			                ),
+			                [QtdTotal] > 1
+			            ),
+			            [ValorVenda]
+			        ),
+			        mv_vendas_produtos[tip_venda] = "D",
+			        USERELATIONSHIP(
+			            produto_gcp[cod_barra],
+			            mv_vendas_produtos[cod_barra_tratado]
+			        ),
+			        USERELATIONSHIP(
+			            calendario[Date],
+			            mv_vendas_produtos[dat_emissao]
+			        ),
+			        USERELATIONSHIP(
+			            mv_dados_clientes[cod_cliente],
+			            mv_vendas_produtos[cod_cliente]
+			        )
+			    )
+			
+			RETURN
+			    Vendas_mais1 - Devolucoes_mais1
+		lineageTag: 552a96e4-2f38-4189-814f-7a6bc8f1d43a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ***Ticket_medio_mais1 = DIVIDE ( [**Vlr_Vendas_mais1], [**Qtd_Cupons_+1] )
+		lineageTag: 48c9f89f-9f19-43b3-aefa-954c4e9d9553
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure **Gap_Ticket_medio(%) = DIVIDE ( [***Gap_de_Ticket (R$)], [***Ticket_medio_1_Item] )
+		lineageTag: 42f128dd-e9f5-4870-a9bb-e7306d349a94
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure ***Texto_Diferenca_Ticket_1_Item =
+			
+			VAR QtdVendas =
+			    [**qtd_cupons_1_item]
+			
+			VAR Ticket1Item =
+			    [***ticket_medio_1_item]
+			
+			VAR TicketMais1 =
+			    [***ticket_medio_mais1]
+			
+			VAR TextoQtdVendas =
+			    SWITCH(
+			        TRUE(),
+			        QtdVendas >= 1000000,
+			            FORMAT(QtdVendas / 1000000, "0.#") & " mi",
+			        QtdVendas >= 1000,
+			            FORMAT(QtdVendas / 1000, "0") & " mil",
+			        FORMAT(QtdVendas, "#,##0")
+			    )
+			
+			RETURN
+			    TextoQtdVendas
+			        & " vendas × ("
+			        & FORMAT(TicketMais1, "R$ #,##0")
+			        & " − "
+			        & FORMAT(Ticket1Item, "R$ #,##0")
+			        & ") de diferença de ticket médio"
+		lineageTag: 02f1fe5f-5d7b-4ebc-b270-a479244529f8
+
+	measure ***Receita_Potencial_Perdida =
+			
+			VAR Gap = [***Gap_de_Ticket (R$)]
+			RETURN IF ( Gap > 0, Gap * [**Qtd_Cupons_1_Item], 0 )
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 997543b3-3904-4566-b21c-ca7261ccc620
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure ***%LucroPerdido = DIVIDE ( [***Receita_Potencial_Perdida], [**venda_liquida] )*-1
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d5dc5fd0-3fc1-4f39-b634-ff65adfe2445
+
+	measure ***Tooltip_Cupons_1_Item =
+			
+			"
+			REGRAS DE CÁLCULO
+			
+			• Cupons 1 Item
+			Quantidade de vendas que possuem exatamente 1 produto/item no cupom.
+			
+			• % Cupons 1 Item
+			Percentual de cupons com exatamente 1 item em relação ao total de cupons.
+			
+			• Ticket Médio 1 Item
+			Faturamento dos cupons com exatamente 1 item ÷ quantidade de cupons com 1 item.
+			
+			• Ticket Médio +1 Item
+			Faturamento dos cupons com mais de 1 item ÷ quantidade de cupons com mais de 1 item.
+			
+			• Diferença de Ticket Médio
+			Ticket Médio +1 Item − Ticket Médio 1 Item.
+			
+			• Potencial
+			Quantidade de Cupons 1 Item × Diferença de Ticket Médio.
+			
+			Quanto maior o % de Cupons 1 Item e a diferença de ticket médio,
+			maior o potencial de aumento do faturamento por meio da venda de itens adicionais.
+			"
+		lineageTag: 1b8d9489-a49b-4afc-b9cd-08286eeaf1de
+
+	measure ***Texto_%LucroPerdido =
+			
+			VAR Valor =
+			    [***%LucroPerdido]
+			
+			VAR Seta =
+			    IF(
+			        Valor < 0,
+			        UNICHAR(9660),
+			        UNICHAR(9650)
+			    )
+			
+			VAR Descricao =
+			    IF(
+			        Valor < 0,
+			        "Perda de oportunidades",
+			        "Oportunidade"
+			    )
+			
+			RETURN
+			    Seta
+			        & " "
+			        & FORMAT(ABS(Valor), "0.0%")
+			        & " "
+			        & Descricao
+		lineageTag: 00c50a01-6929-4b8c-8669-d824f8d80aba
 
 	column num_cnpj
 		dataType: string
@@ -656,11 +1851,33 @@ table mv_vendas_produtos
 
 		annotation SummarizationSetBy = Automatic
 
+	column produto_cod_barras_farmacia = [nom_produto] & " | " & [cod_barra]
+		lineageTag: fae9e2f5-cdab-47ab-9a59-45ebcb155735
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_laborat
+		dataType: string
+		lineageTag: 85074ca3-4fdd-42e6-add5-ff891c403936
+		summarizeBy: none
+		sourceColumn: nom_laborat
+
+		annotation SummarizationSetBy = Automatic
+
+	column nom_produto
+		dataType: string
+		lineageTag: 6218d9b2-4cdd-485f-9c66-7069c45b5a00
+		summarizeBy: none
+		sourceColumn: nom_produto
+
+		annotation SummarizationSetBy = Automatic
+
 	partition mv_vendas_produtos = m
 		mode: import
 		source =
 				let
-				    NomeTabela = "mv_vendas_produtos_" & Text.From(cliente),
+				    NomeTabela = "mv_vendas_produtos_asfar_teste", // & Text.From(cliente),
 				
 				    Fonte = AmazonRedshift.Database(
 				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",

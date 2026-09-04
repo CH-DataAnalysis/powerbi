@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "a29765854616911dac01",
   "position": {
     "x": 35.714285714285715,
     "y": 712.85714285714289,
-    "z": 3000,
+    "z": 2000,
     "height": 334.28571428571433,
     "width": 767.14285714285722,
     "tabOrder": 13000
@@ -44,7 +44,7 @@
               },
               "queryRef": "parceiros_pbm_padrao.parceiro_pbm",
               "nativeQueryRef": "Parceiro",
-              "active": true,
+              "active": false,
               "displayName": "Parceiro"
             }
           ]
@@ -185,6 +185,36 @@
               "queryRef": "vendas_produtos.*media_itens",
               "nativeQueryRef": "Média itens venda",
               "displayName": "Média itens venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**Qtd_Cupons_1_Item"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.**Qtd_Cupons_1_Item",
+              "nativeQueryRef": "Qtd Cupons c/1 Item",
+              "displayName": "Qtd Cupons c/1 Item"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**%_Cupons_1_Item"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.**%_Cupons_1_Item",
+              "nativeQueryRef": "%Cupons c/1 Item",
+              "displayName": "%Cupons c/1 Item"
             }
           ]
         }
@@ -217,6 +247,19 @@
             "queryRefs": [
               "tabela_cadastro_lojas.nome_loja"
             ],
+            "isCollapsed": true,
+            "identityKeys": [
+              {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tabela_cadastro_lojas"
+                    }
+                  },
+                  "Property": "nome_loja"
+                }
+              }
+            ],
             "isPinned": true
           },
           {
@@ -236,6 +279,195 @@
           "properties": {},
           "selector": {
             "metadata": "vendas_produtos.**venda_liquida"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*%valor_total_descto_venda"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*ticket_medio_atual_h"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*%margem_lucro_bruta"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.**%cmv_liquido"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*qtd_atendimento_venda"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*qtd_produto_venda"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*media_itens"
+          }
+        },
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_vendas_produtos.**Qtd_Cupons_1_Item"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_vendas_produtos.**%_Cupons_1_Item"
           }
         }
       ]

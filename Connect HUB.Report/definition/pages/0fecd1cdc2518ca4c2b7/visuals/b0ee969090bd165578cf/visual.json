@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "b0ee969090bd165578cf",
   "position": {
     "x": 1137.6334106728539,
@@ -257,48 +257,6 @@
             }
           ]
         }
-      },
-      {
-        "name": "448121d7c8bc79162840",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "tabela_cadastro_lojas"
-              }
-            },
-            "Property": "nome_loja"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "c148b00b5f0185831dbe",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_sugestao_transferencia_filiais"
-              }
-            },
-            "Property": "*potencial_economia_total"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "1fb068dfb3d1ba85a2a8",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_sugestao_transferencia_filiais"
-              }
-            },
-            "Property": "*qtd_sugerida_transferencia"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "e709fa179266c71204bb",
   "position": {
     "x": 0,
@@ -38,10 +38,10 @@
                       "Entity": "tabela_cadastro_lojas"
                     }
                   },
-                  "Property": "nom_farmacia"
+                  "Property": "nome_loja"
                 }
               },
-              "queryRef": "tabela_cadastro_lojas.nom_farmacia",
+              "queryRef": "tabela_cadastro_lojas.nome_loja",
               "nativeQueryRef": "Nome loja",
               "displayName": "Nome loja"
             },
@@ -221,16 +221,21 @@
         "sort": [
           {
             "field": {
-              "Column": {
+              "Aggregation": {
                 "Expression": {
-                  "SourceRef": {
-                    "Entity": "geolocalizacao"
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "mv_dados_vendas_compras"
+                      }
+                    },
+                    "Property": "vlr_total_venda"
                   }
                 },
-                "Property": "Meso_Regiao"
+                "Function": 0
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }
@@ -270,7 +275,7 @@
             "value": {
               "expr": {
                 "Literal": {
-                  "Value": "272.1634519458745D"
+                  "Value": "240.93139403164946D"
                 }
               }
             }
@@ -283,6 +288,92 @@
       "columnHeaders": [
         {
           "properties": {}
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dados_vendas_compras.*%desconto_venda"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dados_vendas_compras.*%cmv_liquido"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "dados_vendas_compras.*qtd_atendimentos"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "vendas_produtos.*qtd_produto_venda"
+          }
         }
       ]
     },

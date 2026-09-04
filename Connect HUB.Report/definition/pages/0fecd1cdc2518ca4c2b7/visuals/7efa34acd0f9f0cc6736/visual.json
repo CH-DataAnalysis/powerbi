@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "7efa34acd0f9f0cc6736",
   "position": {
     "x": -0.09523809523818727,
@@ -12,5 +12,6 @@
   "visualGroup": {
     "displayName": "fechar_performance",
     "groupMode": "ScaleMode"
-  }
+  },
+  "isHidden": true
 }

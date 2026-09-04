@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "42c6416f25cd42954da1",
   "position": {
     "x": 605.71428571428578,
@@ -107,6 +107,36 @@
             },
             {
               "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_vendedores"
+                    }
+                  },
+                  "Property": "qtd_cupons_um_item"
+                }
+              },
+              "queryRef": "Sum(mv_performance_vendedores.qtd_cupons_um_item)",
+              "nativeQueryRef": "Qtd cupons c/1 item",
+              "displayName": "Qtd cupons c/1 item"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_performance_vendedores"
+                    }
+                  },
+                  "Property": "_%qtd_venda_1_item"
+                }
+              },
+              "queryRef": "mv_performance_vendedores._%qtd_venda_1_item",
+              "nativeQueryRef": "%Venda c/1 item",
+              "displayName": "%Venda c/1 item"
+            },
+            {
+              "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
@@ -148,7 +178,7 @@
                     "Entity": "mv_performance_vendedores"
                   }
                 },
-                "Property": "_score_final"
+                "Property": "_total_vendas"
               }
             },
             "direction": "Descending"
@@ -291,6 +321,99 @@
       "columnHeaders": [
         {
           "properties": {}
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(mv_performance_vendedores.qtd_cupons_um_item)"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_performance_vendedores._media_itens"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_performance_vendedores._qtd_atendimento"
+          }
+        },
+        {
+          "properties": {
+            "styleTotal": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            },
+            "styleValues": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_performance_vendedores._%qtd_venda_1_item"
+          }
         }
       ]
     },

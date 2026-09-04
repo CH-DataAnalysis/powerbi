@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "4d4f232093d672c78699",
   "position": {
     "x": 32.857142857142861,
@@ -449,20 +449,6 @@
               }
             },
             "Property": "**venda_liquida"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "c6544348629da729021f",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_vendas_produtos"
-              }
-            },
-            "Property": "*%participacao"
           }
         },
         "type": "Advanced"

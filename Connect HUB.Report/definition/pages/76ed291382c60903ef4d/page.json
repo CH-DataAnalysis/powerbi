@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "76ed291382c60903ef4d",
+  "displayName": "info_perdas_vendas_itens",
+  "displayOption": "ActualSize",
+  "height": 460,
+  "width": 400,
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

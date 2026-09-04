@@ -8,6 +8,8 @@ table cadastro_fornecedor
 		summarizeBy: none
 		sourceColumn: cnpj_fornecedor
 
+		changedProperty = DataType
+
 		annotation SummarizationSetBy = Automatic
 
 	column nome_comercial

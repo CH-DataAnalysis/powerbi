@@ -11,7 +11,7 @@ queryGroup Diagnósticos
 
 	annotation PBI_QueryGroupOrder = 0
 
-annotation PBI_QueryOrder = ["geolocalizacao","produto_gcp","produto_gcp_nao_identificado","cadastro_fornecedor","tabela_cadastro_lojas","lat_long","parceiros_pbm_padrao","reloadtime","mv_classificacao_faturamento","mv_cod_ibge_lojas","mv_compras_produtos","mv_controle_coleta_farmacias","mv_curva_abc_90_dias","mv_dados_clientes","mv_dados_vendas_compras","mv_estoque","mv_performance_loja","mv_performance_vendedores","mv_produtos_com_estoque_sem_vendas_mais_de_90_dias","mv_sugestao_compras","mv_sugestao_transferencia_filiais","mv_vendas_produtos","logo_associacao","portal_authorization","plano_de_contas","despesas_rel_pai_analit-1768488","despesas_rel_pai_sint","RangeStart","RangeEnd","cliente"]
+annotation PBI_QueryOrder = ["geolocalizacao","produto_gcp","produto_gcp_nao_identificado","cadastro_fornecedor","tabela_cadastro_lojas","lat_long","parceiros_pbm_padrao","reloadtime","mv_classificacao_faturamento","mv_cod_ibge_lojas","mv_compras_produtos","mv_controle_coleta_farmacias","mv_curva_abc_90_dias","mv_dados_clientes","mv_dados_vendas_compras","mv_estoque","mv_performance_loja","mv_performance_vendedores","mv_produtos_com_estoque_sem_vendas_mais_de_90_dias","mv_sugestao_compras","mv_sugestao_transferencia_filiais","mv_vendas_produtos","logo_associacao","portal_authorization","despesas_rel_pai_analit-1768488","plano_de_contas","despesas_rel_pai_sint","RangeStart","RangeEnd","cliente"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -92,6 +92,11 @@ ref table mv_performance_vendedores
 ref table Filtro_Periodo
 ref table LocalDateTable_4b9edf5e-22cd-4fed-8230-5859e1970869
 ref table produto_gcp_nao_identificado
+ref table sujeito_analise_compra
+ref table metricas_compras
+ref table sujeito_analise_vendas
+ref table metricas_vendas
+ref table metricas_vendas1item
 
 ref role Dashpress
 ref role 'Nossafarma - 23172'

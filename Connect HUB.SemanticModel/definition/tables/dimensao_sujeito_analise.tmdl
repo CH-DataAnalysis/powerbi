@@ -40,7 +40,10 @@ table dimensao_sujeito_analise
 		mode: import
 		source =
 				{
-				    ("Nome loja", NAMEOF('tabela_cadastro_lojas'[nom_farmacia]), 0),
+				    ("Associação", NAMEOF('tabela_cadastro_lojas'[nome_rede]), 0),
+				    ("Nome Vendedor", NAMEOF('mv_vendas_produtos'[cod_nom_vendedor]), 4),
+				    ("Nome loja", NAMEOF('tabela_cadastro_lojas'[nome_loja]), 0),
+				    ("Produto Padrão", NAMEOF('produto_gcp'[produto_cod_barras]), 9),
 				    ("Grupo", NAMEOF('produto_gcp'[grupo_fcia]), 1),
 				    ("Área da farmácia", NAMEOF('produto_gcp'[area_farmacia]), 2),
 				    ("EAN", NAMEOF('produto_gcp'[cod_barra]), 3),

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "c91d79050410eebd450e",
   "position": {
     "x": 1172.8571428571429,
@@ -242,20 +242,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "e58476948ac42d142db7",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "tabela_cadastro_lojas"
-              }
-            },
-            "Property": "nome_loja"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "a6a06cf9287b9c4795c8",
         "field": {
           "Measure": {
@@ -303,20 +289,6 @@
           ]
         },
         "isLockedInViewMode": true
-      },
-      {
-        "name": "4c9184342cd8a29f1b61",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "mv_vendas_produtos"
-              }
-            },
-            "Property": "*%valor_total_descto_venda"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

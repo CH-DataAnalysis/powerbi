@@ -1346,61 +1346,6 @@
               }
             }
           },
-          "7ece81b8c19d511a7d3e": {
-            "filters": {
-              "byExpr": [
-                {
-                  "name": "75ba6e1b716bcf15ba30",
-                  "type": "Categorical",
-                  "expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "tabela_cadastro_lojas"
-                        }
-                      },
-                      "Property": "nome_loja"
-                    }
-                  },
-                  "howCreated": 0
-                }
-              ]
-            },
-            "singleVisual": {
-              "visualType": "slicer",
-              "objects": {
-                "merge": {
-                  "data": [
-                    {
-                      "properties": {
-                        "mode": {
-                          "expr": {
-                            "Literal": {
-                              "Value": "'Dropdown'"
-                            }
-                          }
-                        }
-                      }
-                    }
-                  ]
-                }
-              },
-              "activeProjections": {
-                "Values": [
-                  {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "tabela_cadastro_lojas"
-                        }
-                      },
-                      "Property": "nome_loja"
-                    }
-                  }
-                ]
-              }
-            }
-          },
           "b5d1ade330fbcca181d4": {
             "filters": {
               "byExpr": [

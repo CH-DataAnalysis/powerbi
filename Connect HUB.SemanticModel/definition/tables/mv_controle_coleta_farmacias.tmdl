@@ -189,16 +189,48 @@ table mv_controle_coleta_farmacias
 
 		annotation SummarizationSetBy = Automatic
 
+	column associacao
+		dataType: int64
+		formatString: 0
+		lineageTag: a2f96608-251c-4169-8d03-a41ceaf495d9
+		summarizeBy: sum
+		sourceColumn: associacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column sistema
+		dataType: string
+		lineageTag: e9a0dcc8-3aad-4cac-aefb-9de460478127
+		summarizeBy: none
+		sourceColumn: sistema
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_com_venda_mes_atual
+		dataType: int64
+		formatString: 0
+		lineageTag: 447894a6-dd4e-424a-9a7e-2d854fa3dba6
+		summarizeBy: sum
+		sourceColumn: dias_com_venda_mes_atual
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_com_compras_mes_atual
+		dataType: int64
+		formatString: 0
+		lineageTag: d1b3c887-0acd-47e9-8551-a437d0ae6777
+		summarizeBy: sum
+		sourceColumn: dias_com_compras_mes_atual
+
+		annotation SummarizationSetBy = Automatic
+
 	partition mv_controle_coleta_farmacias = m
 		mode: import
 		source =
 				let
 				    NomeTabela = "mv_controle_coleta_farmacias_" & Text.From(cliente),
 				
-				    Fonte = AmazonRedshift.Database(
-				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
-				        "business_connect"
-				    ),
+				    Fonte = AmazonRedshift.Database("bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439","business_connect"),
 				
 				    associacao = Fonte{[Name="associacao"]}[Data],
 				
@@ -209,20 +241,7 @@ table mv_controle_coleta_farmacias
 				        {"num_cnpj"}
 				    ),
 				
-				    #"Columns removed by Measure Killer" = Table.SelectColumns(
-				        #"Duplicatas Removidas",
-				        {
-				            "dias_sem_compra",
-				            "ult_registro_venda",
-				            "dias_sem_venda",
-				            "classificacao_captacao_venda",
-				            "status_compra",
-				            "ult_registro_compra",
-				            "ult_registro_estoque",
-				            "status_venda",
-				            "num_cnpj"
-				        }
-				    )
+				    #"Columns removed by Measure Killer" = Table.SelectColumns(#"Duplicatas Removidas",{"num_cnpj", "associacao", "sistema", "ult_registro_venda", "dias_sem_venda", "dias_com_venda_mes_atual", "status_venda", "classificacao_captacao_venda", "ult_registro_compra", "dias_sem_compra", "dias_com_compras_mes_atual", "status_compra", "ult_registro_estoque"})
 				
 				in
 				    #"Columns removed by Measure Killer"

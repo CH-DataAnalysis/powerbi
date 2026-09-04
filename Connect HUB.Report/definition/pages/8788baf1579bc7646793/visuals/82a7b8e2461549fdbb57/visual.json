@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
   "name": "82a7b8e2461549fdbb57",
   "position": {
     "x": 37.142857142857146,
@@ -65,7 +65,7 @@
                 "Property": "ano_mes"
               }
             },
-            "direction": "Ascending"
+            "direction": "Descending"
           }
         ]
       }

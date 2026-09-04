@@ -1,0 +1,55 @@
+table metricas_vendas
+	lineageTag: 857d7bbb-1b79-4410-8900-6fd742a598df
+
+	column metricas_vendas
+		lineageTag: 89ae5100-c46c-406a-b1a3-6a48710dd8ff
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'metricas_vendas Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'metricas_vendas Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'metricas_vendas Campos'
+		isHidden
+		lineageTag: 90c14944-8692-4e82-8ac3-73a445e8a02d
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'metricas_vendas Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'metricas_vendas Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 1dd134d8-65c7-47dd-a081-494814c81d8b
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition metricas_vendas = calculated
+		mode: import
+		source =
+				{
+				    ("Venda Líquida", NAMEOF('mv_vendas_produtos'[*venda_liquida_h]), 0),
+				    ("Venda Bruta", NAMEOF('mv_vendas_produtos'[**venda_bruta]), 1),
+				    ("Valor do Desconto", NAMEOF('mv_vendas_produtos'[*valor_desconto_venda]), 2),
+				    ("CMV Aquisição", NAMEOF('mv_vendas_produtos'[*valor_custo_aquisicao]), 3),
+				    ("% CMV Líquido", NAMEOF('mv_vendas_produtos'[**%cmv_liquido]), 4),
+				    ("Ticket Médio", NAMEOF('mv_vendas_produtos'[*ticket_medio_atual_h]), 5),
+				    ("Qtd. Atendimentos", NAMEOF('mv_vendas_produtos'[*qtd_atendimento_venda]), 6),
+				    ("Qtd. Vendida", NAMEOF('mv_vendas_produtos'[*qtd_produto_venda]), 7),
+				    ("% Participação de Vendas", NAMEOF('mv_vendas_produtos'[*%participacao_venda]), 8)
+				}
+
+	annotation PBI_Id = 672b996bccc04f2fb38093965533a811
+

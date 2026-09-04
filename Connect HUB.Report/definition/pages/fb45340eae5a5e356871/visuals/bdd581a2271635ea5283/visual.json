@@ -1,0 +1,676 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "bdd581a2271635ea5283",
+  "position": {
+    "x": 0.3333333333333357,
+    "y": 0,
+    "z": 0,
+    "height": 390,
+    "width": 1100,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "tabela_cadastro_lojas"
+                    }
+                  },
+                  "Property": "nome_loja"
+                }
+              },
+              "queryRef": "tabela_cadastro_lojas.nome_loja",
+              "nativeQueryRef": "Nome loja",
+              "displayName": "Nome loja"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_produto"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_produto",
+              "nativeQueryRef": "Valor Total dos Produtos",
+              "displayName": "Valor Total dos Produtos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_descto"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_descto",
+              "nativeQueryRef": "Valor Total dos Descontos",
+              "displayName": "Valor Total dos Descontos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*%valor_total_descto"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*%valor_total_descto",
+              "nativeQueryRef": "% Desconto Compra",
+              "displayName": "% Desconto Compra"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_icms_retido"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_icms_retido",
+              "nativeQueryRef": "Valor Total ICMS Retido",
+              "displayName": "Valor Total ICMS Retido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_icms"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_icms",
+              "nativeQueryRef": "Valor Total ICMS",
+              "displayName": "Valor Total ICMS"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_despesas_acessorias"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_despesas_acessorias",
+              "nativeQueryRef": "Valor Total Outras Despesas Acessórias",
+              "displayName": "Valor Total Outras Despesas Acessórias"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_frete"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_frete",
+              "nativeQueryRef": "Valor Total do Frete",
+              "displayName": "Valor Total do Frete"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_ipi"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_ipi",
+              "nativeQueryRef": "Valor Total do IPI",
+              "displayName": "Valor Total do IPI"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_seguro"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_seguro",
+              "nativeQueryRef": "Valor Total do Seguro",
+              "displayName": "Valor Total do Seguro"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*valor_total_nfe"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*valor_total_nfe",
+              "nativeQueryRef": "Valor Total da NFe",
+              "displayName": "Valor Total da NFe"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*qtd_produto_compra"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*qtd_produto_compra",
+              "nativeQueryRef": "Qtd. Comprada",
+              "displayName": "Qtd. Comprada"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*sku_compra"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*sku_compra",
+              "nativeQueryRef": "SKUs Compras",
+              "displayName": "SKUs Compras"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_compras_produtos"
+                    }
+                  },
+                  "Property": "*%participacao_compra"
+                }
+              },
+              "queryRef": "mv_compras_produtos.*%participacao_compra",
+              "nativeQueryRef": "% Participação Compra",
+              "displayName": "% Participação Compra"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**venda_bruta"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.**venda_bruta",
+              "nativeQueryRef": "Venda Bruta",
+              "displayName": "Venda Bruta"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*venda_liquida_h"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*venda_liquida_h",
+              "nativeQueryRef": "Venda Líquida",
+              "displayName": "Venda Líquida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*valor_desconto_venda"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*valor_desconto_venda",
+              "nativeQueryRef": "Desconto Venda",
+              "displayName": "Desconto Venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*%valor_total_descto_venda"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*%valor_total_descto_venda",
+              "nativeQueryRef": "% Desconto Venda",
+              "displayName": "% Desconto Venda"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*ticket_medio_atual_h"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*ticket_medio_atual_h",
+              "nativeQueryRef": "Ticket Médio",
+              "displayName": "Ticket Médio"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*valor_custo_aquisicao"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*valor_custo_aquisicao",
+              "nativeQueryRef": "CMV Aquisição",
+              "displayName": "CMV Aquisição"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "**%cmv_liquido"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.**%cmv_liquido",
+              "nativeQueryRef": "% CMV Líquido",
+              "displayName": "% CMV Líquido"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*%margem_lucro_bruta"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*%margem_lucro_bruta",
+              "nativeQueryRef": "% Margem Bruta",
+              "displayName": "% Margem Bruta"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*media_itens"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*media_itens",
+              "nativeQueryRef": "Média de Itens",
+              "displayName": "Média de Itens"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*qtd_atendimento_venda"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*qtd_atendimento_venda",
+              "nativeQueryRef": "Qtd. Atendimentos",
+              "displayName": "Qtd. Atendimentos"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*qtd_produto_venda"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*qtd_produto_venda",
+              "nativeQueryRef": "Qtd. Vendida",
+              "displayName": "Qtd. Vendida"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*sku_venda"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*sku_venda",
+              "nativeQueryRef": "SKUs Vendas",
+              "displayName": "SKUs Vendas"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mv_vendas_produtos"
+                    }
+                  },
+                  "Property": "*%participacao_venda"
+                }
+              },
+              "queryRef": "mv_vendas_produtos.*%participacao_venda",
+              "nativeQueryRef": "% Participação Venda",
+              "displayName": "% Participação Venda"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mv_compras_produtos"
+                  }
+                },
+                "Property": "*valor_total_produto"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "141.8449732983878D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_compras_produtos.*valor_total_despesas_acessorias"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "95.34362514454895D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_compras_produtos.*valor_total_seguro"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "132.0642520886455D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_compras_produtos.*valor_total_descto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "116.13201122256578D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_compras_produtos.*valor_total_icms_retido"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "135.25000185780692D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_compras_produtos.*valor_total_produto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "94.50001300464527D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_compras_produtos.*%valor_total_descto"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "107.00003321638397D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_compras_produtos.*%participacao_compra"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "108.249996560518D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_vendas_produtos.*%valor_total_descto_venda"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "96.99999108975624D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "mv_vendas_produtos.*%participacao_venda"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Análise comparativa de compras e vendas'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'center'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "7613f2add511aaf2494d",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d5e4fa24103d7da21b08",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mv_compras_produtos"
+              }
+            },
+            "Property": "*valor_total_nfe"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "mv_compras_produtos",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 1,
+                  "Left": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "m"
+                        }
+                      },
+                      "Property": "*valor_total_nfe"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "0L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "isLockedInViewMode": true
+      }
+    ]
+  }
+}

@@ -58,6 +58,22 @@ table produto_gcp_nao_identificado
 
 		annotation SummarizationSetBy = Automatic
 
+	column nome_subgrupo
+		dataType: string
+		lineageTag: 69a10baa-abfe-42dd-800e-b953101ec240
+		summarizeBy: none
+		sourceColumn: nome_subgrupo
+
+		annotation SummarizationSetBy = Automatic
+
+	column classe_terapeutica
+		dataType: string
+		lineageTag: 4a65ca36-3ac3-43fb-8581-4d877d1982a4
+		summarizeBy: none
+		sourceColumn: classe_terapeutica
+
+		annotation SummarizationSetBy = Automatic
+
 	partition produto_gcp_nao_identificado = m
 		mode: import
 		source =
@@ -70,10 +86,14 @@ table produto_gcp_nao_identificado
 				            "produto",
 				            "laboratorio",
 				            "grupo_fcia",
+				            "nome_subgrupo",
+				            "classe_terapeutica",
 				            "cod_barra"
 				        },
 				        {
 				            {
+				                "NÃO_IDENTIFICADO",
+				                "NÃO_IDENTIFICADO",
 				                "NÃO_IDENTIFICADO",
 				                "NÃO_IDENTIFICADO",
 				                "NÃO_IDENTIFICADO",

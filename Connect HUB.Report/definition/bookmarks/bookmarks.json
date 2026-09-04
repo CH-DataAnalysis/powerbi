@@ -6,6 +6,7 @@
       "displayName": "Vendas",
       "children": [
         "cd8805417e929c006606",
+        "830debc0cc0e3b374a86",
         "575d3fb52dca08a385b8",
         "7a2c9b0f85ab931f051b",
         "fb1be15d0b7aa4a0b0da",
@@ -20,6 +21,7 @@
       "displayName": "Compras",
       "children": [
         "497a57024a331cd31ab2",
+        "c07ac07fccd88d7e6801",
         "cbbd3d54944ec8615b7a",
         "314e703fa8712a5ad09a",
         "67a9458fdb89e8bc820e",
@@ -85,6 +87,26 @@
       ]
     },
     {
+      "name": "56e56060cb5b801494ba",
+      "displayName": "menu_analise_das_vendas",
+      "children": [
+        "9e0cc4faccaf63c1904a",
+        "284c21cd6d6e3438d2f0",
+        "4724ee9de83d79f1f946",
+        "6b0fd0207d5ee2543a75",
+        "53c3276a75ad6e914f0a"
+      ]
+    },
+    {
+      "name": "232fac790a5803184b32",
+      "displayName": "Indicadores de Vendas",
+      "children": [
+        "8eeb362f4773063b5895",
+        "4e36b70c4b86c0ead643",
+        "28a456288ded879a5362"
+      ]
+    },
+    {
       "name": "188d44dde03b04529ca6",
       "displayName": "menu_curva_abc",
       "children": [
@@ -140,6 +162,17 @@
       ]
     },
     {
+      "name": "aec7beef453de4b5819e",
+      "displayName": "menu_90_dias",
+      "children": [
+        "9cdec436217bae01402e",
+        "ce3281b012709cddaa00",
+        "4a66120d5603bb870e00",
+        "1227342db280dda95a62",
+        "221d051d82aee2c25c63"
+      ]
+    },
+    {
       "name": "ec71c3eb19dcc7ddeadc",
       "displayName": "menu_performance_loja",
       "children": [
@@ -181,6 +214,17 @@
         "3a8bf1a2d2772ae9ce13",
         "a6977d134f4e52cd0b40",
         "fd43f5ad9b51a7fc64c0"
+      ]
+    },
+    {
+      "name": "d3db022d0faa6eb0648b",
+      "displayName": "menu_analise_das_compras",
+      "children": [
+        "9b54e45431c203c7f9bb",
+        "11d1fcc3065a2b67515d",
+        "d96eb2820f90feaf8bed",
+        "62e208436a0a43807636",
+        "f9b9772cef814065de3b"
       ]
     },
     {
@@ -236,17 +280,6 @@
         "b1fa250602ab9af6fe75",
         "021aa474d4476b5acd26",
         "67e21d6d97e810a270a4"
-      ]
-    },
-    {
-      "name": "aec7beef453de4b5819e",
-      "displayName": "menu_90_dias",
-      "children": [
-        "9cdec436217bae01402e",
-        "ce3281b012709cddaa00",
-        "4a66120d5603bb870e00",
-        "1227342db280dda95a62",
-        "221d051d82aee2c25c63"
       ]
     },
     {

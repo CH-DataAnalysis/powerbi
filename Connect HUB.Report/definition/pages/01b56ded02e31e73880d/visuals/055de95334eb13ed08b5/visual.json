@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
   "name": "055de95334eb13ed08b5",
   "position": {
     "x": 3.0848329048843186,
@@ -23,12 +23,13 @@
                       "Entity": "tabela_cadastro_lojas"
                     }
                   },
-                  "Property": "nom_farmacia"
+                  "Property": "nome_loja"
                 }
               },
-              "queryRef": "tabela_cadastro_lojas.nom_farmacia",
-              "nativeQueryRef": "nom_farmacia",
-              "active": true
+              "queryRef": "tabela_cadastro_lojas.nome_loja",
+              "nativeQueryRef": "Nome loja",
+              "active": true,
+              "displayName": "Nome loja"
             }
           ]
         }
@@ -66,44 +67,6 @@
                 "Literal": {
                   "Value": "true"
                 }
-              }
-            },
-            "selfFilter": {
-              "filter": {
-                "Version": 2,
-                "From": [
-                  {
-                    "Name": "t",
-                    "Entity": "tabela_cadastro_lojas",
-                    "Type": 0
-                  }
-                ],
-                "Where": [
-                  {
-                    "Condition": {
-                      "Contains": {
-                        "Left": {
-                          "Column": {
-                            "Expression": {
-                              "SourceRef": {
-                                "Source": "t"
-                              }
-                            },
-                            "Property": "nom_farmacia"
-                          }
-                        },
-                        "Right": {
-                          "Literal": {
-                            "Value": "'79.491.650/0001-37'"
-                          }
-                        }
-                      }
-                    },
-                    "Annotations": {
-                      "PowerBI.MParameterBehavior": 1
-                    }
-                  }
-                ]
               }
             }
           }
