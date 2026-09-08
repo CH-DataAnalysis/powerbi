@@ -10,7 +10,7 @@ table mv_vendas_produtos
 		pollingExpression = let Maxdat_atualiza = List.Max(mv_vendas_produtos[dat_atualiza]), accountForNull = if Maxdat_atualiza = null then #datetime(1901, 01, 01, 00, 00, 00) else Maxdat_atualiza in accountForNull
 		sourceExpression =
 			let
-			    NomeTabela = "mv_vendas_produtos_asfar_teste", // & Text.From(cliente),
+			    NomeTabela = "mv_vendas_produtos_" & Text.From(cliente),
 			
 			    Fonte = AmazonRedshift.Database(
 			        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
@@ -1877,7 +1877,7 @@ table mv_vendas_produtos
 		mode: import
 		source =
 				let
-				    NomeTabela = "mv_vendas_produtos_asfar_teste", // & Text.From(cliente),
+				    NomeTabela = "mv_vendas_produtos_" & Text.From(cliente),
 				
 				    Fonte = AmazonRedshift.Database(
 				        "bc-prod.c9lkmnbigxth.us-east-1.redshift.amazonaws.com:5439",
