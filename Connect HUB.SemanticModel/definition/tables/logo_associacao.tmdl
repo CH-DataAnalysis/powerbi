@@ -22,7 +22,7 @@ table logo_associacao
 		mode: import
 		source =
 				let
-				    Fonte = Excel.Workbook(File.Contents("C:\PowerBI\logos.xlsx"), null, true),
+				    Fonte = Excel.Workbook(File.Contents(PastaArquivos & "\logos.xlsx"), null, true),
 				    Associação_Sheet = Fonte{[Item="Associação",Kind="Sheet"]}[Data],
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Associação_Sheet, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"codigo_rede", Int64.Type}, {"link", type text}})

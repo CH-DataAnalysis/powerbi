@@ -1,0 +1,167 @@
+[
+  {
+    "table": "cadastro_fornecedor",
+    "file": "cadastro_fornecedor.csv",
+    "sheet": null,
+    "headers": [
+      "cnpj_fornecedor",
+      "nome_fornecedor",
+      "nome_comercial"
+    ],
+    "csv_columns": 3,
+    "quote_style": "Csv"
+  },
+  {
+    "table": "despesas_rel_pai_analit-1768488",
+    "file": "despesas_rel_pai_analit.xlsx",
+    "sheet": "despesas_rel_pai_analit-1768488",
+    "headers": [
+      "mes",
+      "dinheiro",
+      "cheque",
+      "cartao",
+      "crediario",
+      "convenio",
+      "venda_extraida_sistema_operacional",
+      "desconto_concedido",
+      "despesas_com_pagamento_de_mercadorias",
+      "valor_juros",
+      "produtos_vencidos",
+      "reembolso_fcia_popular",
+      "num_clientes_atendidos",
+      "estoque_preco_venda",
+      "venda_delivery",
+      "contas_pagar_fornec_aberto",
+      "unidades_vendidas",
+      "num_colaboradores",
+      "m2_area_venda",
+      "valor_propagados",
+      "valor_genericos",
+      "valor_similares",
+      "valor_perfumarias",
+      "outros_valores",
+      "valor_sem_classificacao",
+      "qtd_propagados",
+      "qtd_genericos",
+      "qtd_similares",
+      "qtd_perfumarias",
+      "qtd_outros",
+      "qtd_sem_classificacao",
+      "cod_filial",
+      "num_cnpj"
+    ],
+    "csv_columns": null,
+    "quote_style": null
+  },
+  {
+    "table": "despesas_rel_pai_sint",
+    "file": "despesas_rel_pai_sint.xlsx",
+    "sheet": "despesas_rel_pai_sint",
+    "headers": [
+      "mes",
+      "valor_pagar",
+      "valor_pago",
+      "cod_filial",
+      "num_cnpj",
+      "codigo_referencia",
+      "cod_contasint",
+      "num_mascara",
+      "cod_despesa",
+      "descricao_despesa",
+      "sub_descricao_despesa",
+      "nom_contafb"
+    ],
+    "csv_columns": null,
+    "quote_style": null
+  },
+  {
+    "table": "geolocalizacao",
+    "file": "geolocalizacao.csv",
+    "sheet": null,
+    "headers": [
+      "Pais_Cod",
+      "Regiao_Cod",
+      "UF_Cod",
+      "Meso_Cod",
+      "Micro_Cod",
+      "Municipio_Cod",
+      "Municipio",
+      "Micro_Regiao",
+      "Meso_Regiao",
+      "UF_Sigla",
+      "UF_Nome",
+      "Regiao_Sigla",
+      "Regiao_Nome",
+      "Pais_Nome",
+      "Municipio_Area",
+      "Municipio_Ponto",
+      "Municipio_Area_Alta_Qualidade",
+      "Micro_Regiao_Area",
+      "Micro_Regiao_Ponto",
+      "Micro_Regiao_Area_Alta_Qualidade",
+      "Meso_Regiao_Area",
+      "Meso_Regiao_Ponto",
+      "Meso_Regiao_Area_Alta_Qualidade",
+      "UF_Area",
+      "UF_Ponto",
+      "UF_Area_Alta_Qualidade",
+      "Regiao_Area",
+      "Regiao_Ponto",
+      "Regiao_Area_Alta_Qualidade",
+      "Pais_Area",
+      "Pais_Ponto",
+      "Pais_Area_Alta_Qualidade"
+    ],
+    "csv_columns": 32,
+    "quote_style": "None"
+  },
+  {
+    "table": "lat_long",
+    "file": "lat_long.csv",
+    "sheet": null,
+    "headers": [
+      "CEP_1",
+      "CEP_2",
+      "Latitude",
+      "Longitude"
+    ],
+    "csv_columns": 4,
+    "quote_style": "None"
+  },
+  {
+    "table": "logo_associacao",
+    "file": "logos.xlsx",
+    "sheet": "Associação",
+    "headers": [
+      "codigo_rede",
+      "link"
+    ],
+    "csv_columns": null,
+    "quote_style": null
+  },
+  {
+    "table": "parceiros_pbm_padrao",
+    "file": "parceiros_pbm_padrao.csv",
+    "sheet": null,
+    "headers": [
+      "cod_parceiro",
+      "parceiro_pbm",
+      "Programa"
+    ],
+    "csv_columns": 3,
+    "quote_style": "None"
+  },
+  {
+    "table": "plano_de_contas",
+    "file": "plano_de_contas.xlsx",
+    "sheet": "Planilha1",
+    "headers": [
+      "codigo",
+      "descricao",
+      "subcodigo",
+      "subdescricao"
+    ],
+    "csv_columns": null,
+    "quote_style": null
+  }
+]

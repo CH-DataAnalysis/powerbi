@@ -22,7 +22,7 @@ table parceiros_pbm_padrao
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("C:\PowerBI\parceiros_pbm_padrao.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents(PastaArquivos & "\parceiros_pbm_padrao.csv"),[Delimiter=",", Columns=3, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"cod_parceiro", Int64.Type}, {"parceiro_pbm", type text}, {"Programa", type text}}),
 				    #"Columns removed by Measure Killer"= Table.SelectColumns(#"Tipo Alterado",{"cod_parceiro","parceiro_pbm"})

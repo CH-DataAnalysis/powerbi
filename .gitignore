@@ -9,3 +9,10 @@ Thumbs.db
 .vscode/
 .idea/
 .agents
+
+# Python tooling and local operational records
+__pycache__/
+*.pyc
+.venv/
+docs/operacao-local/
+data-local/

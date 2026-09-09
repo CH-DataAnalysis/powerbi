@@ -322,7 +322,7 @@ table despesas_rel_pai_analit-1768488
 		mode: import
 		source =
 				let
-				    Fonte = Excel.Workbook(File.Contents("C:\PowerBI\despesas_rel_pai_analit.xlsx"), null, true),
+				    Fonte = Excel.Workbook(File.Contents(PastaArquivos & "\despesas_rel_pai_analit.xlsx"), null, true),
 				    #"despesas_rel_pai_analit-1768488_Sheet" = Fonte{[Item="despesas_rel_pai_analit-1768488",Kind="Sheet"]}[Data],
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"despesas_rel_pai_analit-1768488_Sheet", [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"mes", type date}, {"dinheiro", type number}, {"cheque", type number}, {"cartao", type number}, {"crediario", type number}, {"convenio", type number}, {"venda_extraida_sistema_operacional", type number}, {"desconto_concedido", type number}, {"despesas_com_pagamento_de_mercadorias", type number}, {"valor_juros", type number}, {"produtos_vencidos", Int64.Type}, {"reembolso_fcia_popular", type number}, {"num_clientes_atendidos", Int64.Type}, {"estoque_preco_venda", type number}, {"venda_delivery", type number}, {"contas_pagar_fornec_aberto", type number}, {"unidades_vendidas", Int64.Type}, {"num_colaboradores", Int64.Type}, {"m2_area_venda", type number}, {"valor_propagados", type number}, {"valor_genericos", type number}, {"valor_similares", type number}, {"valor_perfumarias", type number}, {"outros_valores", type number}, {"valor_sem_classificacao", type number}, {"qtd_propagados", Int64.Type}, {"qtd_genericos", Int64.Type}, {"qtd_similares", Int64.Type}, {"qtd_perfumarias", Int64.Type}, {"qtd_outros", Int64.Type}, {"qtd_sem_classificacao", Int64.Type}})

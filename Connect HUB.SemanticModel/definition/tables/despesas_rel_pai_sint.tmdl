@@ -108,7 +108,7 @@ table despesas_rel_pai_sint
 		mode: import
 		source =
 				let
-				    Fonte = Excel.Workbook(File.Contents("C:\PowerBI\despesas_rel_pai_sint.xlsx"), null, true),
+				    Fonte = Excel.Workbook(File.Contents(PastaArquivos & "\despesas_rel_pai_sint.xlsx"), null, true),
 				    despesas_rel_pai_sint_Sheet = Fonte{[Item="despesas_rel_pai_sint",Kind="Sheet"]}[Data],
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(despesas_rel_pai_sint_Sheet, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"mes", type date}, {"valor_pagar", type number}, {"valor_pago", type number}})

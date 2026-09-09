@@ -14,7 +14,7 @@ table lat_long
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("C:\PowerBI\lat_long.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents(PastaArquivos & "\lat_long.csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"CEP_1", Int64.Type}, {"CEP_2", type text}, {"Latitude", type text}, {"Longitude", type text}}),
 				    #"Columns removed by Measure Killer"= Table.SelectColumns(#"Tipo Alterado",{"CEP_1"})

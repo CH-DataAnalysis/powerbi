@@ -203,7 +203,7 @@ table plano_de_contas
 		mode: import
 		source =
 				let
-				    Fonte = Excel.Workbook(File.Contents("C:\PowerBI\plano_de_contas.xlsx"), null, true),
+				    Fonte = Excel.Workbook(File.Contents(PastaArquivos & "\plano_de_contas.xlsx"), null, true),
 				    Planilha1_Sheet = Fonte{[Item="Planilha1",Kind="Sheet"]}[Data],
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Planilha1_Sheet, [PromoteAllScalars=true])
 				in

@@ -19,3 +19,7 @@ expression cliente = "26595" meta [IsParameterQuery=true, Type="Text", IsParamet
 
 	annotation PBI_ResultType = Text
 
+expression PastaArquivos = "C:\PowerBI" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b3d891b8-fc6e-4c3f-9966-281194c904ac
+
+	annotation PBI_ResultType = Text
